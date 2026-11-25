@@ -131,6 +131,8 @@ region below a product threshold in its entries, and \cref{thm:zeros}
 identifies a Dirichlet-zero covariance when both variables are large.
 \Cref{thm:criticaldiscrepancy} characterizes the sharply
 truncated norm through $xy=CN^2$ by signed rectangle counts.
+\Cref{thm:criticalgrid} reduces those counts to prefix rectangles
+on $O(\log N)$ dyadic pairs at fixed precision.
 \Cref{thm:shiftmean} bounds the mean norm of translated pairs of
 high-support windows at a single modulus.
 \Cref{thm:upperproduct} gives a uniform upper cutoff on the product
@@ -2082,6 +2084,130 @@ disjoint-interval argument applies. Thus
 Choose $\eta=\max(E^{1/3},N^{-1/100})$ and $Q=\eta^{-2}$
 when $\eta\le1/10$, using the uniform bound for $U_N(C)$
 otherwise. This proves \cref{eq:criticalfullrestriction}.
+
+\subsection{Prefix rectangles at the critical product}
+\label{sec:criticalgrid}
+
+Let $B_j=[2^j,2^{j+1})$ for $j\ge0$. Fix $C\ge1$, take
+$Q\ge2$ and an integer $10\le M\le N^{1/100}$, and keep
+only packet pairs at scales $X=2^j$, $Y=2^k$ with
+\begin{equation}
+       N^2/Q\le XY\le CN^2 .
+ \label{eq:criticalgridband}
+\end{equation}
+For each packet with $X\ge M$, use the grid points
+$X(1+i/M)$ for $0\le i\le M$. For $X<M$, use $X$, $2X$,
+and the half-integers strictly between them. For a grid
+point $u$ at scale $X$ write $P_X(u)=[X,u)$.
+Define $g_N(C;Q,M)$ as the maximum over the kept pairs
+and their grid points $u,v$ of
+\[
+   \frac{|\mu_{N,C}(P_X(u)\times P_Y(v))|}{\sqrt{XY}},
+\]
+with the maximum of an empty family set to zero.
+
+\begin{theorem}[A finite prefix test for the critical restriction]
+\label{thm:criticalgrid}
+Uniformly in $Q,M$ in the indicated ranges, for sufficiently
+large even $N$,
+\begin{equation}
+  g_N(C;Q,M)\le d_N(C)
+   \ll_C g_N(C;Q,M)+Q^{-1/2}
+       + M^{-1/2}\log(2M)+N^{-c}
+  \label{eq:criticalgridcomparison}
+\end{equation}
+for some $c>0$. Thus $U_N(C)\to0$ is equivalent to
+$g_N(C;Q,M)\to0$ for each fixed $Q,M$. The test uses
+$O_C(M^2\log(2Q)\log(2N))$ prefix rectangles.
+
+For $K\ge8\sqrt C$, one can use only the signed arithmetic
+component on the pairs with $\max(X,Y)/\min(X,Y)\ge K^2$.
+This changes the maximum by
+$O_C(K^{-1}\log(2K))$. For fixed $C,Q,M,K$ the resulting
+test has at most $O_{C,Q,M,K}(1)$ entries requiring the
+continuous model.
+\end{theorem}
+
+First consider $X\le Y$ and $X\le N/8$. For intervals
+$I\subset B_j$ and $J\subset B_k$, the continuous part of
+the signed rectangle discrepancy satisfies
+\begin{equation}
+ \frac{|\mu_{N,C}^{\rm cont}(I\times J)|}{\sqrt{XY}}
+      \ll \sqrt{X/Y}\,\log(2+Y/N).
+ \label{eq:criticalgridmodel}
+\end{equation}
+For fixed $x\in I$, set $q_x(y)=\mathbf1_J(y)
+\mathbf1_{xy\le CN^2}$. It has bounded total variation,
+including any specified values at the endpoints.
+The model lines contribute the difference
+$q_x(bN+x)-q_x(bN-x)$. The corresponding intervals
+$[bN-x,bN+x]$ are disjoint since $x<2X\le N/4$.
+Hence the sum of the absolute differences before inserting
+the singular-series ratios is $O(1)$. Only $b\ll Y/N$
+can contribute. The divisor expansion in \cref{sec:cutoff}
+gives
+\[
+  \frac{\SSS(bN)}{\SSS(N)}
+       =\sum_{d\mid b}a_N(d)
+       \ll 1+\log(2b).
+\]
+Integrating over $I$ of length at most $X$ and dividing
+by $\sqrt{XY}$ proves \cref{eq:criticalgridmodel}. On
+a kept pair with $Y/X\ge K^2$, put $s=\sqrt{X/Y}$ and
+$B=Y/N$. Then $s\le K^{-1}$, $sB\le\sqrt C$, and
+$X\le\sqrt C\,N/K\le N/8$. The bound
+$s\log(2+B)\ll_C K^{-1}\log(2K)$ follows by splitting
+at $B=K$. Symmetry handles $X>Y$.
+
+Every prefix rectangle is admissible in $d_N(C)$. For
+the reverse bound, each interval in its definition splits
+among a bounded number of dyadic packets at comparable
+scales. The normalized discrepancy is therefore bounded
+by a constant times the supremum for rectangles in individual
+dyadic pairs. If $XY>CN^2$, their measure is zero.
+For $XY<N^2/Q$, the absolute packet estimates from
+\cref{sec:subcritical} give
+$O_C(\sqrt{XY}/N+N^{-c})=O_C(Q^{-1/2}+N^{-c})$.
+
+On a kept pair with $M\le X\le Y$, round each interval
+to a consecutive union of its grid cells, allowing the
+empty interval. The change is confined to strips at
+the two endpoints, of widths at most $2X/M$ and $2Y/M$
+in their respective coordinates. The strip estimates in
+\cref{sec:subcritical} apply with $\eta=M^{-1}$ and bound
+the total change, on the normalized scale, by
+$O_C(M^{-1/2}\log(2M)+N^{-c})$.
+If $X<M\le Y$, choose a consecutive union of the
+half-integer cells at scale $X$ with exactly the same
+integer points as the smaller interval. Each cell contains
+at most one such point. Thus the arithmetic change comes
+only from the strips at scale $Y$. The two continuous
+rectangle masses are individually $O_C(N^{-c})$ by
+\cref{eq:criticalgridmodel}, since $X<M\le N^{1/100}$
+and any contributing pair has $Y\gg N$. When both scales
+are below $M$, no congruence line meets the pair for
+sufficiently large $N$.
+
+A rectangle formed by two consecutive unions of cells
+has measure equal to a signed sum of four prefix
+measures, so its normalized absolute measure is at
+most $4g_N(C;Q,M)$. This also applies to empty intervals
+and to the first or last cells of each packet. The
+estimates above prove \cref{eq:criticalgridcomparison}.
+For the asserted equivalence, take the upper limit as
+$N\to\infty$ at fixed $Q,M$ and then send both to infinity
+in \cref{eq:criticalgridcomparison}, using
+\cref{thm:criticaldiscrepancy}.
+
+The interval of possible $j+k$ in
+\cref{eq:criticalgridband} has length $O_C(\log(2Q))$,
+and each value gives $O_C(\log(2N))$ pairs. Each packet
+has at most $M+1$ grid points. In the modified test
+the model is needed only for $|j-k|\le 2\log_2 K$.
+Together with the bounded interval of possible sums
+at fixed $C,Q$, this places each of $j,k$ in an
+interval of bounded length at fixed $C,Q,K$.
+This proves both counts.
 
 \section{Dirichlet-zero covariance when both variables are large}
 \label{sec:zeros}
@@ -5051,6 +5177,10 @@ identifies the norm problem in this range with a signed rectangle
 discrepancy. In the most separated boxes the rectangle theorem
 keeps the discrete smaller coordinate and uses cancellation of the
 two continuous line contributions there.
+\Cref{thm:criticalgrid} makes this an explicit test at fixed precision.
+The number of signed arithmetic counts grows at most logarithmically
+in $N$, and the number of entries that need the continuous model
+is bounded independently of $N$.
 By \cref{thm:ppcut}, the arithmetic on $x,y\ge A$ can be
 restricted to primes, with the smaller input governed by
 the progression profiles in \cref{eq:pprows}.
@@ -5100,6 +5230,9 @@ the discriminant identity, vertex exclusion and separation
 inequalities for the line geometry in section 9.3.
 The sieve estimates and the operator comparison are proved
 analytically in that section.
+The file \texttt{formalization/CriticalPrefix.lean} verifies
+the four-prefix identity and the dyadic index counts in
+\cref{sec:criticalgrid}.
 
 \clearpage
 {\small
