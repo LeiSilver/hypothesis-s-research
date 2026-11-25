@@ -160,6 +160,9 @@ uniformly at every modulus, on the full support space.
 \Cref{thm:largeprimeconductors} shows that high-support
 decay is equivalent to decay for characters of full conductor
 at all sufficiently large prime factors of the modulus.
+\Cref{thm:shortgapdeletion} bounds the short-gap terms in
+the remaining covariance by a uniform operator estimate,
+including on a tapered upper product range.
 \Cref{thm:almostall} bounds the entire supported norm on a growing
 window for almost all even moduli.
 \Cref{thm:mixedpower} bounds mixed windows with upper scales
@@ -3940,6 +3943,156 @@ and \cref{eq:largeprimedivisortail} covers the new tail.
 This proves the reverse inequality and the equivalence.
 \end{proof}
 
+\subsection{A uniform bound on short gaps in the covariance}
+
+Let $P$ be any set of odd prime divisors of $N$. In the
+character family defining $\mathcal C_{N,P}$, put
+\[
+ \mathcal A_{N,P}^{\le u}(F,G)
+   =\frac2{\varphi(N)}
+      \sum_{\chi}
+      \sum_{\substack{\gamma,\gamma'\in\mathcal Z_\chi\\
+                         |\gamma-\gamma'|\le u/L}}
+        \widehat F(\gamma)\overline{\widehat G(\gamma')},
+       \qquad u\ge0.
+\]
+The inner sums are over labels, with multiplicity.
+Let $\mathcal W_{N,P}$ be the average of $\mathcal W_{q_\chi}^{*}$
+over the same family, with the same factor $2/\varphi(N)$.
+The complementary sum is denoted by $\mathcal A_{N,P}^{>u}$,
+so $\mathcal C_{N,P}=\mathcal A_{N,P}^{>u}
+                     +\mathcal A_{N,P}^{\le u}-\mathcal W_{N,P}$.
+Use the cutoff $\Theta$ of \cref{eq:uppertailmask}.
+
+\begin{theorem}[Short-gap deletion on the upper product range]
+\label{thm:shortgapdeletion}
+Assume $\grh(N)$. Uniformly in $P$, $u\ge0$, and $H\ge0$,
+on the positive log axis the form obtained from
+$\mathcal A_{N,P}^{\le u}-\mathcal W_{N,P}$ by multiplying
+its kernel by $\Theta((r+s-H)/L)$ has normalized norm
+\begin{equation}
+     \ll_{\Theta} (1+u)L e^{-H/L}.
+ \label{eq:shortgapupper}
+\end{equation}
+On a rectangle of log supports $r\ge H_1$, $s\ge H_2$,
+with $H_1,H_2\ge0$, the same estimate with $H=H_1+H_2$
+holds for the unmasked form. In particular, at
+$H=(1+\eta)L\log L$ for any fixed $0<\eta<1$, the tapered
+covariance differs in normalized norm by $O_\Theta(L^{-\eta/2})$
+from the tapered sum over pairs with
+$|\gamma-\gamma'|>L^{-1+\eta/2}$.
+\end{theorem}
+
+\begin{proof}
+Write $I_m=[m/L,(m+1)/L)$ and
+$c_m=1+L^{-1}\log(2+|m|/L)$. Let $M_{\chi,m}$ count
+the zero labels in $I_m$, and let $b_m(F)=\sup_{I_m}|\widehat F|$.
+A pair counted by $\mathcal A_{N,P}^{\le u}$ lies in bins
+with $|m-n|\le\lceil u\rceil$. By Cauchy--Schwarz and
+\cref{eq:shortzerocount}, the mean of $M_{\chi,m}M_{\chi,n}$
+over the chosen family, with its original normalization,
+is $O(c_m c_n)$. We may bound it by the corresponding
+mean over all odd characters because the counts are nonnegative.
+For tests on intervals of log length $O(L)$ this gives
+\begin{align*}
+ |\mathcal A_{N,P}^{\le u}(F,G)|
+   &\ll \sum_{|m-n|\le\lceil u\rceil}
+          c_m b_m(F)c_n b_n(G)\\
+   &\ll (1+u)L\,\|F\|_{H^1}\|G\|_{H^1}.
+\end{align*}
+For the second inequality sum over the $O(1+u)$ possible
+bin differences, use Cauchy--Schwarz for each, and apply
+\cref{eq:shortzerosampling} with
+$c_m^2\ll1+(m/L)^2$. This argument makes no use of the
+locations of the two log intervals. It also bounds the
+sum with each summand replaced by its absolute value.
+The archimedean form has bound $O(L\|F\|_{H^1}\|G\|_{H^1})$
+by \cref{eq:archdensity} since $q_\chi\le N$.
+
+For the product mask, use the length-$L$ packet partition
+from the proof of \cref{thm:upperproduct}, with centers $jL$
+and $kL$ on the positive log axis. Fourier separation of
+$\Theta((r+s-H)/L)$ on a packet pair has bounded Fourier
+$L^1$ norm with weight $(1+|\xi|)^2$, uniformly in $H,j,k$
+after inserting the fixed bump in $(r+s)/L-j-k$.
+The two phase multipliers cost at most this weight in the
+unweighted $H^1$ bounds just proved. For compact smooth tests,
+this operation multiplies the distribution kernel by the
+mask, by Fourier inversion on each packet. The packet
+bounds in energy are
+$O_\Theta((1+u)L e^{-(j+k)})$, since
+$W_N(r)\gg e^{2r/L}$ on $r\ge0$. They vanish for
+$j+k+2\le H/L$. The geometric row and column sums are
+$O_\Theta((1+u)L e^{-H/L})$, so the Schur bound and
+bounded overlap prove \cref{eq:shortgapupper}. The bounds
+extend to the supported energy spaces by density. The
+same sums, without a mask, have the bound with $H=H_1+H_2$
+when the two support restrictions are imposed.
+For the last assertion take $u=L^{\eta/2}$ and use
+$\SSS(N)\gg1$ as in the norm estimates.
+\end{proof}
+
+There is a different estimate for the part with identical
+labels, which works at lower products under a restriction on
+log separation. Let $\mathcal S_{N,P}$ be the part with
+identical labels in $\mathcal A_{N,P}^{\le0}$.
+Under $\grh(N)$, fix $D>0$ and take $A>D+3$. If the
+two tests are supported in $r,s\ge0$ with all differences
+satisfying
+\begin{equation}
+ |r-s|\le V,\qquad
+ V\le 2L-2\log R_A(N)-2(D+2)\log L,
+ \label{eq:projectedlogseparation}
+\end{equation}
+then
+\begin{equation}
+ \frac{|(\mathcal S_{N,P}-\mathcal W_{N,P})(F,G)|}{\SSS(N)}
+       \ll_{A,D} L^{-D}\NN(F)\NN(G)
+ \label{eq:projectedsamelabel}
+\end{equation}
+uniformly over all sets $P$ of odd prime divisors of $N$.
+For fixed $0<\eta<2$, the bound improves to
+$O_\eta(N^{-c_\eta}\NN(F)\NN(G))$ for some $c_\eta>0$
+if $V\le(2-\eta)L$.
+
+Indeed \cref{eq:largeprimeinvert} applies to both identical
+labels and the archimedean term. For $d\le R_A(N)$ put
+$n=N/d$. The explicit-formula calculation preceding
+\cref{eq:samelabelcorrection} applies to
+$\mathcal S_{n,\varnothing}-\mathcal W_{n,\varnothing}$,
+with the same log tests and $S_{F,G}(v)=0$ for $|v|>V$.
+This explicit-formula calculation uses compact test
+supports on the log axis. The unit part of
+the prime sum has coefficient mass
+$O(Le^{V/2}/n)$ by summing over the integers $bn\pm1$
+with $b\ge1$. The prime powers over primes dividing $n$
+give $O((\log n)/\sqrt n)$ as in that calculation.
+Here $\|S_{F,G}\|_\infty\le2\|F\|_2\|G\|_2\ll\NN(F)\NN(G)$
+on the positive log axis. By \cref{eq:projectedlogseparation}
+the first mass is $O(L^{-D-1})$ for every retained $n$.
+The reciprocal sum over all divisors of $N$ is $O(\log L)$
+by Mertens' theorem for primes up to $L$ and the bound for
+prime divisors above $L$. Use \cref{eq:largeprimenormalization}
+to add these terms.
+For $d>R_A(N)$, the individual zero-sum bound used in
+\cref{thm:largeprimeconductors} bounds the sum of absolute
+identical-label products by $O(L^3\NN(F)\NN(G))$ at
+every character. The archimedean part costs $O(L)$,
+so the tail estimate \eqref{eq:largeprimedivisortail}
+completes the proof of \cref{eq:projectedsamelabel}.
+For the power bound use the divisor cutoff $d\le N^{\eta/4}$.
+The first mass is now $O(LN^{-\eta/4})$. The tail reciprocal
+sum is bounded by
+\[
+ N^{-\eta/8}\prod_{p\mid N}(1-p^{-1/2})^{-1}
+       = N^{-\eta/8+o(1)},
+\]
+since $\sum_{p\mid N}p^{-1/2}=O(\sqrt L)$ by splitting at $L$.
+These two power savings absorb the logarithmic factors.
+In the range of \cref{eq:projectedlogseparation},
+$\mathcal C_{N,P}$ is therefore given, at that precision, by
+the sum over distinct labels.
+
 \section{Norm decay for almost all moduli on growing windows}
 \label{sec:almostall}
 
@@ -5913,6 +6066,9 @@ imprimitive characters with conductors close to $N$.
 reduction to characters primitive at every prime factor
 above $(\log N)^\rho$, with bounded losses in the comparison
 of the normalized norms.
+On the upper product range, \cref{thm:shortgapdeletion}
+further reduces the covariance to pairs with gaps larger
+than the indicated microscopic threshold.
 Known variance obstructions of the type studied by Fiorilli and
 Martin and by Hayani occur at $N\asymp\log\log x$
 \cite{FiorilliMartin,Hayani}. These support scales lie beyond
@@ -5969,6 +6125,10 @@ The file \texttt{formalization/ConductorInclusionExclusion.lean}
 checks the signed subset identity, the uniqueness of the
 local loss, and the lattice bound for the moving threshold in
 \cref{thm:largeprimeconductors}.
+The file \texttt{formalization/ZeroGapBins.lean} checks the
+bin-index range for short gaps and the elementary quadratic
+bound for summation at a fixed bin offset in
+\cref{thm:shortgapdeletion}.
 The file \texttt{formalization/CriticalArithmetic.lean}
 verifies the two congruence branches and the reduced
 proper-power threshold in \cref{thm:criticalpowers}.
