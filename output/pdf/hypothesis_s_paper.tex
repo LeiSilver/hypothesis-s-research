@@ -151,6 +151,10 @@ and a finite set of opposite-residue progression sums.
 \Cref{thm:criticalprofiles} bounds those sums near the square
 of the modulus using equidistribution in progressions with
 factored moduli.
+\Cref{thm:criticalpowers} proves decay in density for the
+entire proper-power contribution through a fixed critical
+product cap and identifies the fixed rows needed for decay
+at every modulus.
 We also give two-sided numerical certificates for the balanced restriction
 and three rectangular restrictions, and a lower bound on the unrestricted
 norm at a single modulus.
@@ -4894,6 +4898,209 @@ restriction, and its error is a power saving for
 $A_N\le(\log N)^C$. This proves the assertions about the
 original form.
 
+\subsection{Removing proper prime powers through a fixed product cap}
+
+Fix $C\ge1$ and use the measure $\mu_{N,C}$ and norm
+$U_N(C)$ of \cref{thm:criticaldiscrepancy}.
+Write $U_N^{\rm prime}(C)$ for the norm with only ordinary
+primes in both arithmetic coordinates, leaving the model
+unchanged. Let $V_N(C)$ be the norm of the difference of
+the two forms, so it measures the entire deleted arithmetic
+contribution. For a fixed proper prime power $n$ define
+\begin{equation}
+ r_{N,n}(C)=\frac1{N\SSS(N)}
+    \sup_{0\le t\le CN^2/n}
+      \left|\sum_{p\le t}(\log p)
+         \bigl(\mathbf1_{p\equiv n\ (N)}
+                -\mathbf1_{p\equiv -n\ (N)}\bigr)\right|
+ \label{eq:primepowerrow}
+\end{equation}
+if $(n,N)=1$, and set $r_{N,n}(C)=0$ otherwise. The sum
+is over ordinary primes.
+
+\begin{samepage}
+\begin{theorem}[A prime-only reduction at the critical product]
+\label{thm:criticalpowers}
+Uniformly for $A\ge2$, deleting every arithmetic pair
+with a proper prime power at least $A$ in either coordinate
+costs $O_C(A^{-1/2}+N^{-c})$ in the norm through $xy\le CN^2$,
+for some $c>0$. Deleting pairs whose larger coordinate
+is a proper prime power costs $O_C(N^{-c})$.
+
+Along any sequence of even moduli tending to infinity,
+$V_N(C)\to0$ if and only if $r_{N,n}(C)\to0$ for every
+fixed proper prime power $n$. Consequently $U_N(C)\to0$
+is equivalent to $U_N^{\rm prime}(C)\to0$ together with
+these fixed-row limits.
+
+For every $\epsilon>0$, the number of even $N\in[Y,2Y]$
+with $V_N(C)>\epsilon$ is $o_{C,\epsilon}(Y)$. All these
+assertions concern the physical form and hold without GRH.
+In particular,
+\[
+ \frac{1}{Y}\sum_{\substack{Y\le N\le2Y\\ N\ {\rm even}}}
+                         V_N(C)^2 \ \longrightarrow\ 0 .
+\]
+If $p_0(N)$ is the least prime that does not divide $N$,
+then $V_N(C)\ll_C p_0(N)^{-1}+N^{-c}$ at each modulus.
+\end{theorem}
+\end{samepage}
+
+Localize to packet pairs at scales $1\le X\le Y$ as in
+\cref{sec:subcritical}. For a nonzero clipped box we
+have $XY\ll_C N^2$ and $Y\gg N$. We use mass divided
+by $\SSS(N)\sqrt{XY}$ on each such pair.
+Fix $\delta=1/10$. If $X\ge N^\delta$, the whole packet
+with a proper prime power in either coordinate has
+mass $O_C(L^3\sqrt X)$ per line before normalization,
+by the count on intervals of length $O(X)$ in
+\cref{sec:subcritical}. There are $O(Y/N)$ lines, giving
+a normalized coefficient
+$O_C(N^{-c}\sqrt{XY}/N)$ for some $c>0$.
+If $X<N^\delta$ and $Y<N^{1+\delta}$, the whole packet
+costs $O(L\sqrt{XY}/N)$, with $XY\le N^{1+2\delta}$.
+
+In the remaining range $X<N^\delta$, $Y\ge N^{1+\delta}$,
+fix the smaller integer in a reduced residue class.
+In either of its two opposite classes, the larger
+proper powers have total von Mangoldt weight
+$O_C(N^{\delta/2}L^2)$. For each fixed exponent the
+congruence bound used in \cref{sec:subcritical} gives
+$O_{C,k}(N^{\delta/2})$ bases up to $O_C(Y^{1/k})$.
+There are only boundedly many residue periods because
+$Y\ll_C N^2$ and $k\ge2$. For all sufficiently large
+exponents together, the unrestricted base count is
+$O_C(L Y^{1/k_0})$, with fixed $2/k_0<\delta/2$.
+These counts give the claimed weight and hence a bound
+$O_C(N^{-c}Y/N)$ per row. Summing the smaller weights
+by Chebyshev's bound gives the normalized coefficient
+$O_C(N^{-c}\sqrt{XY}/N)$.
+
+For proper powers in the smaller coordinate, its total
+von Mangoldt weight on a packet is $O(\sqrt X)$.
+Indeed Chebyshev's bound gives $O(X^{1/k})$ for exponent
+$k$, and the exponents $k\ge3$ in total contribute
+$O(X^{1/3}\log(2X))$. For each such smaller power, the
+full larger-coordinate weight is $O(Y/\varphi(N))$ by
+the one-class sieve estimate from \cref{sec:subcritical}.
+After normalization this gives
+$O(X^{-1/2}\sqrt{XY}/N)$, using \cref{eq:subseries}.
+If the smaller power is at least $A$, then $X\gg A$,
+so the first factor is $O(A^{-1/2})$.
+The actual larger coordinate can be in the packet at
+scale $X$ only when the scales are comparable. A
+contributing comparable pair has $X\gg N$, and hence
+lies within the case $X\ge N^\delta$ already treated.
+
+The coefficients proportional to $\sqrt{XY}/N$ have
+bounded geometric row and column sums, because
+$XY\ll_C N^2$. In the case $X<N^\delta$,
+$Y<N^{1+\delta}$ the geometric sum is
+$O(LN^{-1/2+\delta})$. Sobolev point evaluation and the
+Schur bound now give the two operator estimates. The
+same absolute mass estimates hold for individual
+rectangles on these packet pairs.
+Every proper power in a reduced residue class has
+base at least $p_0(N)$, so taking $A=p_0(N)^2$ gives
+the stated pointwise bound for $V_N(C)$.
+
+Let $d_N^{\rm del}(C)$ be the discrepancy of the
+arithmetic measure containing exactly the pairs with
+a proper power in either coordinate. The first two
+comparisons of \cref{thm:criticaldiscrepancy} apply to
+this measure and $V_N(C)$. The proof uses absolute
+packet and strip estimates, which apply to any
+subselection of the arithmetic pairs, and the
+continuous component is zero here.
+
+Suppose first $V_N(C)\to0$. In the rectangle
+$\{n\}\times J$, for fixed proper power $n$, all
+arithmetic terms are in the deleted measure. For
+sufficiently large $N$, a contributing larger integer
+is $\gg N$, and the large-coordinate proper-power
+estimate just proved allows it to be restricted to a
+prime. On a dyadic interval at scale $Y$, the resulting
+absolute signed count, including the factor $\Lambda(n)$,
+is bounded by
+\[
+ O_C\bigl(\SSS(N)\sqrt{nY}
+                (d_N^{\rm del}(C)+N^{-c})\bigr).
+\]
+Here one can use the scale $X=n$ for the singleton.
+Split a prefix up to any $t\le CN^2/n$ into these
+dyadic intervals, with a last interval clipped at $t$.
+The geometric sum of $\sqrt{nY}/N$ is $O_C(1)$.
+Since $\Lambda(n)>0$, this proves $r_{N,n}(C)\to0$.
+Nonreduced classes are covered by the convention
+in \cref{eq:primepowerrow}.
+
+Conversely, fix $A,Q\ge2$. The only unsuppressed
+deleted contributions, up to a discrepancy
+$O_C(A^{-1/2}+N^{-c})$, have a proper power $n<A$
+and an ordinary prime in the other coordinate.
+For sufficiently large $N$ the two small-coordinate
+ranges cannot contribute together. Below
+$XY<N^2/Q$ the absolute packet bound gives discrepancy
+$O_C(Q^{-1/2}+N^{-c})$. For the remaining pairs,
+$\sqrt{XY}\ge N/\sqrt Q$. The row sum in any interval
+clipped by the product restriction is a difference of
+two prefixes, with one-sided limits used at endpoints.
+Its absolute value is bounded by
+$2N\SSS(N)r_{N,n}(C)$. Thus
+\begin{equation}
+ d_N^{\rm del}(C)
+  \ll_C A^{-1/2}+Q^{-1/2}+N^{-c}
+       +\sqrt Q\sum_{\substack{n<A\\ n\ {\rm proper\ power}}}
+                    \Lambda(n)r_{N,n}(C).
+ \label{eq:primepowerrowsufficiency}
+\end{equation}
+Take the upper limit in $N$ at fixed $A,Q$ and then
+send $A,Q$ to infinity. This proves $d_N^{\rm del}(C)\to0$
+and hence $V_N(C)\to0$. If $U_N(C)\to0$, the first,
+singleton argument also works with $d_N(C)$ in place
+of $d_N^{\rm del}(C)$, since the continuous line measure
+of $\{n\}\times J$ is zero. Therefore $V_N(C)\to0$ in
+this case as well. The triangle inequality now proves
+the asserted equivalence for $U_N(C)$.
+
+To obtain the density assertion, fix a proper power $n$.
+The portion of a prefix below $N^2/(nQ)$ in
+\cref{eq:primepowerrow} costs $O_C(Q^{-1}+N^{-c})$ on
+its normalized scale. To see this, apply the absolute
+packet bound at $X=n$ and sum it over the dyadic $P$,
+with the conversion factor $\sqrt{nP}/N$.
+The remaining interval has $O_{C,Q}(1)$ dyadic
+packets at scales $P\asymp_{n,C,Q}N^2$. On one
+such packet, approximate the indicator of a clipped
+interval by smooth ramps of width $\eta P$, where
+$0<\eta\le1/10$ is fixed. The smaller test can be
+chosen smooth, supported within $1/4$ of $n$, and
+equal to one at $n$ in the physical coordinate.
+Its energy norm is $O_n(1)$.
+Use the larger smooth indicator divided by $\sqrt P$
+as the physical weight. Its energy norm is
+$O_{n,C,Q}(\eta^{-1/2})$ by \cref{eq:logenergy}.
+The fixed-row sieve estimate in the proof of
+\cref{thm:criticaldiscrepancy} bounds the rounding change
+by $O_{n,C,Q}(\eta+N^{-c})$ after normalization by
+$N\SSS(N)$.
+All smoothed larger weights are supported below
+$R_N=N^2\log N$ for sufficiently large $N$.
+Apply \cref{eq:fixedprofiledecay} with fixed $A>n$ and
+$B=D=1$ to these tests. The equality of the row weight
+at $n$ and its disappearance at every other integer
+give, outside $o(Y)$ moduli in $[Y,2Y]$, an upper bound
+$O_{n,C,Q}(\eta^{-1/2}(\log N)^{-1})$ for the remaining
+smoothed terms on the scale in \cref{eq:primepowerrow}.
+First choose $Q$ large and then $\eta$
+small to conclude $r_{N,n}(C)\to0$ in density among the
+even moduli. Applying \cref{eq:primepowerrowsufficiency}
+with fixed $A,Q$ uses only finitely many such rows.
+The comparison with $V_N(C)$ gives the claimed density
+estimate. Since the first operator estimate with $A=2$
+gives $V_N(C)\ll_C1$, split the mean square at
+$V_N(C)=\epsilon$ and let $\epsilon\downarrow0$.
+
 \subsection{The same-label correction near the square of the modulus}
 
 For each fixed $B\ge0$ and $D>0$, all but $o(Y)$ even
@@ -5186,6 +5393,11 @@ restricted to primes, with the smaller input governed by
 the progression profiles in \cref{eq:pprows}.
 For those profiles, \cref{thm:criticalprofiles} controls the
 part through $N^2(\log N)^B$ on the stated modulus families.
+At each fixed cap $CN^2$, \cref{thm:criticalpowers} gives
+mean-square decay for the proper-power contribution over
+all even moduli. Its pointwise reduction leaves the
+fixed-residue asymmetries in \cref{eq:primepowerrow} and
+the ordinary-prime form.
 For the high-support block, \cref{thm:zeros} gives a fixed-modulus
 covariance criterion with an additive precision requirement.
 Known variance obstructions of the type studied by Fiorilli and
@@ -5233,6 +5445,9 @@ analytically in that section.
 The file \texttt{formalization/CriticalPrefix.lean} verifies
 the four-prefix identity and the dyadic index counts in
 \cref{sec:criticalgrid}.
+The file \texttt{formalization/CriticalArithmetic.lean}
+verifies the two congruence branches and the reduced
+proper-power threshold in \cref{thm:criticalpowers}.
 
 \clearpage
 {\small
