@@ -1838,7 +1838,7 @@ large even $N$,
 These two estimates hold for the physical form without GRH.
 Under $\grh(N)$ one also has
 \begin{equation}
- U_N(C)\ll_C \left(\frac{\|T_N\|}{\SSS(N)}\right)^{1/5}
+ U_N(C)\ll_C \left(\frac{\|T_N\|}{\SSS(N)}\right)^{1/3}
                     +N^{-c}.
  \label{eq:criticalfullrestriction}
 \end{equation}
@@ -1858,19 +1858,31 @@ $N^{-1/100}\le\eta\le1/10$. All packet mass bounds below are
 for the singular-series-normalized measure and include a
 further factor $(XY)^{-1/2}$.
 
-First, a sharp collar $CN^2<xy\le e^\eta CN^2$ has absolute
-mass $O_C(\sqrt\eta+N^{-c_1})$ on each packet pair, for some
-$c_1>0$. On each of the three orientations of the congruence
-lines the product is
-quadratic in $x$. The collar occupies at most two intervals of
-total length $O_C(\sqrt\eta X)$ there. For comparable scales
-this follows by completing the square, and for separated
-scales the derivative has magnitude $\gg Y$, giving length
-$O_C(\eta X)$. This proves the continuous bound using
+First, the upper collar $CN^2<xy\le e^\eta CN^2$ has absolute
+mass $O_C(\eta+N^{-c_1})$ on each packet pair. On the two
+difference lines the derivative of the product with respect
+to $x$ is $x+y\gg Y$. On the reflection line $x+y=bN$ its
+magnitude is $|x-y|\gg Y$ if the scales are sufficiently
+separated. For comparable scales, define
+\[
+ \Delta_C=\min_{\substack{b\in\mathbb N\\ b^2/4>C}}(b^2/4-C)>0
+\]
+and first take $\eta$ small enough that
+$C(e^\eta-1)\le\Delta_C/2$. A reflection line with
+$b^2/4\le C$ has no points in the upper collar. On any other
+reflection line there,
+\[
+ |x-y|^2=(bN)^2-4xy\ge 2\Delta_C N^2.
+\]
+In this range $X\asymp_C Y\asymp_C N$. Splitting at $x=y$,
+each interval in the inverse image of the collar has length
+$O_C(\eta X)$ by the derivative bound. Thus the total length
+per line is $O_C(\eta X)$ in each orientation.
+This proves the continuous bound using
 \cref{eq:subseries}. If $X\ge N^\delta$, the short-interval
 sieve \eqref{eq:uniformsieve} gives a weighted two-prime
-mass $O_C(\sqrt\eta X\SSS(bN))$ per line. The intervals
-can be padded to length $\asymp_C\sqrt\eta X$, whose
+mass $O_C(\eta X\SSS(bN))$ per line. The intervals
+can be padded to length $\asymp_C\eta X$, whose
 logarithm is comparable to $L$. The remainder is absorbed
 by this bound. The proper powers have weight $O_C(\sqrt X L^3)$
 on a whole line as in the proof of \cref{thm:subcritical}.
@@ -1895,12 +1907,22 @@ collar bound in this case as well.
 Only $O_C(1)$ unit log packets per row and column meet the
 collar. Thus its form has normalized norm
 \begin{equation}
- \ll_C \sqrt\eta+N^{-c_1}
+ \ll_C \eta+N^{-c_1}
  \label{eq:criticalcollar}
 \end{equation}
-by point evaluation and the Schur bound.
+by point evaluation and the Schur bound. For larger $\eta$
+up to $1/10$, the absolute packet bounds from
+\cref{sec:subcritical}, with cap $e^{1/10}CN^2$, give a
+bounded collar norm, which is $O_C(\eta)$ in that range.
 For $0<\eta<N^{-1/100}$ use the same bound with the collar
 enlarged to width $N^{-1/100}$, and decrease $c_1$.
+
+The bound is for an upper collar at a fixed $C$. If
+$C=b^2/4$, the reflection line $x+y=bN$ meets the lower
+collar $e^{-\eta}CN^2<xy\le CN^2$ in an interval of length
+$2N\sqrt{C(1-e^{-\eta})}$. Its unsigned continuous
+contribution on comparable packets can therefore be of
+order $\sqrt\eta$.
 
 Second, in a packet box clipped by $xy\le CN^2$, a strip
 of width $O(\eta Y)$ in the larger coordinate has absolute
@@ -2055,9 +2077,9 @@ times $|z'(y)|+(1+\eta^{-1})|z(y)|/y$, and the same
 disjoint-interval argument applies. Thus
 \[
  U_N(C)\ll_C (\eta^{-2}+\log(2+\log Q))E
-       +Q^{-1/2}+\sqrt\eta+N^{-c_1}.
+       +Q^{-1/2}+\eta+N^{-c_1}.
 \]
-Choose $\eta=\max(E^{2/5},N^{-1/100})$ and $Q=1/\eta$
+Choose $\eta=\max(E^{1/3},N^{-1/100})$ and $Q=\eta^{-2}$
 when $\eta\le1/10$, using the uniform bound for $U_N(C)$
 otherwise. This proves \cref{eq:criticalfullrestriction}.
 
@@ -5072,6 +5094,12 @@ python hypothesis_s_witness.py --weight-file hypothesis_s_witness_32762.json
 
 The derivations, computational code and manuscript were developed
 with OpenAI Codex assistance.
+
+The file \texttt{formalization/CriticalCollar.lean} verifies
+the discriminant identity, vertex exclusion and separation
+inequalities for the line geometry in section 9.3.
+The sieve estimates and the operator comparison are proved
+analytically in that section.
 
 \clearpage
 {\small
