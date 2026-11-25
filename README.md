@@ -4,12 +4,15 @@ This repository contains the English research manuscript and the code and data f
 
 - [Manuscript (PDF)](output/pdf/hypothesis_s_paper.pdf)
 - [LaTeX source](output/pdf/hypothesis_s_paper.tex)
+- [Lean verification of the finite conductor moment identities](formalization/ConductorMoments.lean)
 - [Lean verification of macroscopic congruence line isolation](formalization/MacroscopicLines.lean)
 - [Lean verification of the product cutoff geometry](formalization/CriticalCollar.lean)
 - [Lean verification of the prefix rectangle test](formalization/CriticalPrefix.lean)
 - [Lean verification of the signed progression rows](formalization/CriticalArithmetic.lean)
 
 ## Research checkpoint · 26 November 2026
+
+Theorem 10.8 bounds the proportion of odd characters with large conductor loss. With $L=\log N$, the proportion with $\log(N/q_\chi)>A(\log L)^2/\log\log L$ is at most $L^{-A+o(1)}$, with a matching exponent on primorial moduli. Under Dirichlet GRH, their contribution to the full normalized operator norm is $O_{A,\epsilon}(L^{2-A+\epsilon})$.
 
 Theorem 3.2 gives a quantitative equivalence between norm decay on each fixed window $x,y<RN$ and vanishing Hardy–Littlewood discrepancies on its individual sum and difference lines. In particular, Hypothesis S would imply the expected asymptotic for prime pairs $(p,p+N)$ with $aN<p<bN$, for fixed $0<a<b$ and all even $N$ tending to infinity.
 
@@ -29,12 +32,13 @@ With Elan installed, run the Lean check from the repository root.
 
 ```sh
 elan toolchain install leanprover/lean4:v4.35.0
+elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/ConductorMoments.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/MacroscopicLines.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/CriticalCollar.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/CriticalPrefix.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/CriticalArithmetic.lean
 ```
 
-The Lean modules cover isolation of individual congruence lines, vertex exclusion and line widths, the four-prefix inclusion–exclusion bound, the counts of dyadic index pairs, and the congruence branches and reduced prime-power threshold. Their axiom audits use only `propext`, `Classical.choice` and `Quot.sound`. The manuscript supplies the analytic proofs of the sieve and operator estimates.
+The Lean modules cover the finite moment identity and product support bound, isolation of individual congruence lines, vertex exclusion and line widths, the four-prefix inclusion–exclusion bound, the counts of dyadic index pairs, and the congruence branches and reduced prime-power threshold. Their axiom audits use only `propext`, `Classical.choice` and `Quot.sound`. The manuscript supplies the analytic proofs of the sieve and operator estimates.
 
 The manuscript's reproducibility section lists the commands for the finite certificates. The scripts and rational witness data are at the repository root. The manuscript acknowledges assistance from OpenAI Codex.

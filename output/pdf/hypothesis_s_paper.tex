@@ -60,6 +60,10 @@ $N^{2\log\log N+\kappa}$ costs $O(e^{-\kappa})$.
 A two-sided norm comparison lowers the product threshold to
 $N^{(3/2)\log\log N+\kappa}$ when the larger input exceeds
 $N^{\log\log N+\kappa}$, with smooth transitions.
+The character sum in the full form can be restricted to
+conductors $q$ with $\log(N/q)\ll
+(\log\log N)^2/\log\log\log N$ at arbitrarily small
+logarithmic cost in the operator norm.
 For $x,y\ge N^{1+\delta}$, the signed form equals a covariance
 of Dirichlet zeros minus the mean archimedean density, up to a
 power-saving operator error.
@@ -151,6 +155,8 @@ high-support windows at a single modulus.
 and isolates the character term at large products.
 \Cref{thm:asymupperproduct} tightens the cutoff for separated
 supports by using positivity on the smaller input.
+\Cref{thm:conductorcutoff} restricts the conductor range
+uniformly at every modulus, on the full support space.
 \Cref{thm:almostall} bounds the entire supported norm on a growing
 window for almost all even moduli.
 \Cref{thm:mixedpower} bounds mixed windows with upper scales
@@ -3588,6 +3594,173 @@ $z(y)(1-m(\log x,\log y))$. Its derivative is bounded by
 $O_\Theta(|z'(y)|+|z(y)|/y)$, whose squared integral with
 weight $y^2$ is controlled by the same energy bound.
 
+\subsection{A conductor cutoff for the full form}
+
+Write $q_\chi$ for the conductor of a character modulo $N$,
+$L=\log N$, $u=\log L$, and $v=\log u$. For fixed $A>0$
+and sufficiently large $N$, set
+\[
+ R_A(N)=\exp(Au^2/v),\qquad
+ \mathcal B_N(A)=\{\chi\bmod N:\chi\ {\rm odd},\
+                                      N/q_\chi>R_A(N)\}.
+\]
+We use the uniform probability measure on the odd characters.
+Let $T_N^{\mathrm{near}}(A)$ denote the form obtained from
+\cref{eq:split} by omitting the characters in $\mathcal B_N(A)$
+from $\mathcal A$, with its original normalization.
+The diagonal and continuous terms in that definition are
+those for the full form.
+
+\begin{theorem}[A conductor cutoff at every modulus]
+\label{thm:conductorcutoff}
+Uniformly in even $N$ tending to infinity,
+\begin{equation}
+ \Pr_{\rm odd}(\mathcal B_N(A))\ \le\ L^{-A+o(1)}.
+ \label{eq:conductortail}
+\end{equation}
+Along the primorial moduli $N=\prod_{p\le y}p$ this probability
+is $L^{-A+o(1)}$.
+Under $\grh(N)$, for every $\epsilon>0$,
+\begin{equation}
+ \frac{\|T_N-T_N^{\mathrm{near}}(A)\|}{\SSS(N)}
+       \ll_{A,\epsilon}L^{2-A+\epsilon}.
+ \label{eq:conductordelete}
+\end{equation}
+Thus for any fixed $D>0$, $A>D+2$ gives an $O_{A,D}(L^{-D})$
+error in normalized norm on the full space. On the high supports
+of \cref{thm:zeros}, the same error bound applies when removing
+those characters from the centered zero covariance,
+where each removed character's archimedean density is
+removed with its zero sum.
+\end{theorem}
+
+We first use the uniform measure on all characters. For each
+$p^\nu\Vert N$ put $e_p=\nu-\operatorname{ord}_p(q_\chi)$.
+The Chinese remainder theorem makes the losses $e_p$
+independent. The proportion satisfying $e_p\ge j$, for
+$1\le j\le\nu$, is $\varphi(p^{\nu-j})/\varphi(p^\nu)\le2p^{-j}$,
+by counting characters induced from the smaller prime power.
+For $0<s\le1/2$, telescoping over the possible losses gives
+\begin{align*}
+ \mathbf E[p^{s e_p}]
+   &=1+\sum_{j=1}^\nu
+             (p^{sj}-p^{s(j-1)})\Pr(e_p\ge j)\\
+   &\le 1+\frac{2(p^s-1)}{p(1-p^{s-1})}.
+\end{align*}
+Consequently
+\[
+ \log\mathbf E[(N/q_\chi)^s]
+       \ll \sum_{p\mid N}\frac{p^s-1}{p}.
+\]
+Take $s=v/u$, so that $L^s=u$. For $p\le\sqrt L$ use
+$p^s-1\le s(\log p)p^s$ and partial summation with
+Chebyshev's bound to get $O(L^{s/2})=O(\sqrt u)$.
+For $\sqrt L<p\le L$, use $\log p\ge u/2$ and bound the
+sum by $(2/u)\sum_{p\le L}(\log p)p^{s-1}=O(u/v)$,
+again by partial summation. There are at most $L/u$
+prime divisors $p>L$. As $p^{s-1}\le L^{s-1}$, these cost
+$O(1)$. The logarithm of the moment is therefore $o(u)$.
+Markov's inequality gives $\exp(-Au+o(u))$, since
+$s\log R_A=Au$. Conditioning on odd parity at most doubles
+the probability. This proves \cref{eq:conductortail}.
+
+For the lower bound on primorials, fix $0<\eta<1/2$ and
+consider only primes $y^{1-\eta}<p\le y$. In this range $e_p$
+is either zero or one, with $\Pr(e_p=1)=\pi_p=1/(p-1)$.
+These losses remain independent under the conditional law on odd
+characters. In fact the unused factor $p=3$ supplies an independent
+local parity which is odd with probability $1/2$.
+Mertens' theorem gives $\lambda=\sum_p\pi_p\longrightarrow
+-\log(1-\eta)$, and $\max_p\pi_p=O(y^{-(1-\eta)})$.
+By the prime number theorem $L\sim y$. Set
+\[
+ k=\left\lceil \frac{Au^2}{v(1-\eta)\log y}\right\rceil .
+\]
+Exactly $k$ losses in this range suffice for $N/q_\chi>R_A$.
+Their probability is at least $\prod_p(1-\pi_p)$ times
+the sum of $\prod_{p\in I}\pi_p$ over sets $I$ of $k$ distinct
+primes. In the ordered expansion of $\lambda^k$, the tuples
+with a repeated prime cost at most
+$\binom{k}{2}\lambda^{k-2}\sum_p\pi_p^2=o(\lambda^k)$.
+The distinct-set sum is thus $(1+o(1))\lambda^k/k!$,
+and the product over $p$ is bounded below by a positive
+constant depending on $\eta$. Since
+$k\sim (A/(1-\eta))u/v$, this gives a probability at least
+$L^{-A/(1-\eta)+o(1)}$. Letting $\eta$ decrease to zero
+establishes the stated exponent. The same argument with fixed
+$k$ also shows that a cutoff $N/q_\chi\le L^C$, for any fixed
+$C$, can discard a proportion bounded away from zero along
+primorials.
+
+For \cref{eq:conductordelete} we need a higher-moment version of
+\cref{eq:shortzerocount}. For each fixed integer $m\ge2$, let
+$\|V\|_{2m,\mathrm{odd}}=(\mathbf E_{\rm odd}|V|^{2m})^{1/(2m)}$.
+Then, uniformly in $t\in\mathbb R$ under $\grh(N)$,
+\begin{equation}
+ \left\|\#\{\gamma\in\mathcal Z_\chi:|\gamma-t|\le1/L\}
+         \right\|_{2m,\mathrm{odd}}
+ \ll_m 1+\frac{\log(2+|t|)}{L}.
+ \label{eq:shortzerohighmoment}
+\end{equation}
+Use the nonnegative even explicit-formula majorant of the proof of
+\cref{eq:shortzerocount}, with its Fourier support reduced to
+$[-1/(4m),1/(4m)]$ in the scaled variable. Its conductor and gamma
+terms have the displayed bound. Its prime polynomials are supported
+on $n\le N^{1/(4m)}$ with coefficients bounded by
+$O_m(\Lambda(n)/(L\sqrt n))$. Replacing $\chi^*$ by $\chi$
+contributes $O_m(1)$ as before, and the terms from proper prime
+powers cost $O_m(1)$ pointwise. For the latter, the contribution of
+squares uses $\sum_{p\le x}(\log p)/p\ll\log(2x)$, and the sum
+over exponents at least three converges before division by $L$.
+
+For a remaining polynomial $\sum_p a_p\chi(p)$, its $m$th
+power is supported on integers at most $N^{1/4}$. Odd-character
+orthogonality leaves only the diagonal when its norm in
+$L^2$ is squared. Each integer arises from at most $m!$ ordered
+prime factorizations into $m$ primes. Cauchy--Schwarz therefore
+bounds this mean square by $m!(\sum_p|a_p|^2)^m=O_m(1)$.
+The conjugate polynomials obey the same bound. This proves
+\cref{eq:shortzerohighmoment}.
+
+The bin argument of \cref{eq:zeroslow,eq:zeroshigh} now works in
+$L^{2m}$ of the odd characters, using the triangle inequality
+in that norm, \cref{eq:shortzerohighmoment}, and the same
+Cauchy--Schwarz bound over the frequency bins. With $T=2$
+it gives $O_m(L\|F\|_{H^1})$ on log intervals of length $O(L)$.
+The error terms of \cref{eq:poslogexplicit} are pointwise and
+therefore satisfy the same bounds in $L^{2m}$. Partitioning
+the positive log axis into length-$L$ packets and summing
+their exponentially weighted norms as in \cref{eq:Utail} gives
+\begin{equation}
+ \|\ell_\chi(F)\|_{2m,\mathrm{odd}}\ll_m L\NN(F)
+ \label{eq:charhighmoment}
+\end{equation}
+on the full space of tests. The terms with $\log n\le3$ are
+handled by point evaluation at the finitely many atoms; the
+explicit formula is used only on packets in $r\ge2$.
+
+The deleted form is the average of
+$\ell_\chi(F)\overline{\ell_\chi(G)}$ over the event
+$\mathcal B_N(A)$, with the uniform probability weights on all odd
+characters. H\"older's inequality and \cref{eq:charhighmoment}
+bound its norm by $O_m(L^2\Pr_{\rm odd}(\mathcal B_N(A))^{1-1/m})$.
+Choose $m$ so large that $A/m<\epsilon/2$, and apply
+\cref{eq:conductortail}. Since $\SSS(N)\gg1$, this proves
+\cref{eq:conductordelete}. On high supports, the same argument
+applies to the zero sums by the bin estimates or
+\cref{eq:poslogexplicit}. The archimedean form for any one
+character, with $b_N$ in \cref{eq:archdensity} replaced by
+$\log q_\chi$, has norm $O(L)$ there. The archimedean contribution
+of the deleted set is thus $O(L\Pr_{\rm odd}(\mathcal B_N(A)))$.
+This proves the centered covariance assertion.
+
+In particular, if $N=2M$ with $M$ odd and all its prime factors
+exceed $R_A(N)$, the retained characters are exactly those
+induced from primitive odd characters of conductor $M$.
+The factor of $2$ contributes only the trivial local character,
+and omitting any prime-power factor of the conductor would
+make $N/q_\chi>R_A(N)$.
+
 \section{Norm decay for almost all moduli on growing windows}
 \label{sec:almostall}
 
@@ -5553,6 +5726,10 @@ fixed-residue asymmetries in \cref{eq:primepowerrow} and
 the ordinary-prime form.
 For the high-support block, \cref{thm:zeros} gives a fixed-modulus
 covariance criterion with an additive precision requirement.
+\Cref{thm:conductorcutoff} discards the small-conductor part
+from both the covariance and the full form at arbitrary
+logarithmic precision. The resulting cutoff still retains
+imprimitive characters with conductors close to $N$.
 Known variance obstructions of the type studied by Fiorilli and
 Martin and by Hayani occur at $N\asymp\log\log x$
 \cite{FiorilliMartin,Hayani}. These support scales lie beyond
@@ -5601,6 +5778,10 @@ the four-prefix identity and the dyadic index counts in
 The file \texttt{formalization/MacroscopicLines.lean}
 checks the isolation of the two line types in an open
 half-modulus cell in \cref{thm:macroscopiclines}.
+The file \texttt{formalization/ConductorMoments.lean}
+checks the finite tail-increment identity for rational
+weights and the product support bound used in the proof of
+\cref{thm:conductorcutoff}.
 The file \texttt{formalization/CriticalArithmetic.lean}
 verifies the two congruence branches and the reduced
 proper-power threshold in \cref{thm:criticalpowers}.
