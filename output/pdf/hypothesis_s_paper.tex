@@ -157,6 +157,9 @@ and isolates the character term at large products.
 supports by using positivity on the smaller input.
 \Cref{thm:conductorcutoff} restricts the conductor range
 uniformly at every modulus, on the full support space.
+\Cref{thm:largeprimeconductors} shows that high-support
+decay is equivalent to decay for characters of full conductor
+at all sufficiently large prime factors of the modulus.
 \Cref{thm:almostall} bounds the entire supported norm on a growing
 window for almost all even moduli.
 \Cref{thm:mixedpower} bounds mixed windows with upper scales
@@ -3761,6 +3764,182 @@ The factor of $2$ contributes only the trivial local character,
 and omitting any prime-power factor of the conductor would
 make $N/q_\chi>R_A(N)$.
 
+\subsection{Primitivity at the large prime factors}
+
+For an even modulus $n$ and a set $P$ of odd prime divisors of
+$n$, write
+\[
+ \mathcal C_{n,P}(F,G)
+  =\frac2{\varphi(n)}
+   \sum_{\substack{\chi\bmod n,\ \chi\ {\rm odd}\\
+          \operatorname{ord}_p(q_\chi)=\operatorname{ord}_p(n)
+          \ (p\in P)}}
+       \left[ Z_\chi(F)\overline{Z_\chi(G)}
+                         -\mathcal W_{q_\chi}^{*}(F,G)\right].
+\]
+Here $\mathcal W_q^{*}$ is \cref{eq:archdensity} with $b_N$
+replaced by $\log q$. The centered covariance for all odd
+characters is $\mathcal C_{n,\varnothing}$. For $n=2$
+both forms are zero because there are no odd characters.
+Let $E_n^{\rm hi}(\delta)$ be the norm of
+$\mathcal C_{n,\varnothing}$ on tests supported in
+$r\ge(1+\delta)\log n$, divided by $\SSS(n)$.
+For $0<\rho<1$, define $P_n^{\rm hi}(\delta;\rho)$ in
+the same way using the prime set
+$P(n)=\{p\mid n:p>(\log n)^\rho\}$ for sufficiently large $n$.
+By \cref{thm:zeros}, the all-character norm equals that of
+the high-support physical form up to a power-saving error.
+
+\begin{theorem}[A two-way reduction at the large prime factors]
+\label{thm:largeprimeconductors}
+Fix $\delta>0$, $0<\rho<1$, and $D>0$. Take $A>D+3$.
+For even $N$ let $\mathcal I_A(N)$ consist of the even
+divisors $n$ of $N$ with $N/R_A(N)\le n\le N$, where
+$R_A$ is as in \cref{thm:conductorcutoff}. Under $\grh(N)$,
+\begin{align}
+ P_N^{\rm hi}(\delta;\rho)
+   &\ll_{\rho,\delta,A,D}
+          \max_{n\in\mathcal I_A(N)} E_n^{\rm hi}(\delta)
+                 +(\log N)^{-D}, \notag\\
+ E_N^{\rm hi}(\delta)
+   &\ll_{\rho,\delta,A,D}
+          \max_{n\in\mathcal I_A(N)} P_n^{\rm hi}(\delta;\rho)
+                 +(\log N)^{-D}.
+ \label{eq:largeprimeconductors}
+\end{align}
+Hence, under global Dirichlet GRH, decay on these high
+supports over all even moduli is equivalent to decay for
+the character families primitive at every prime factor
+above $(\log N)^\rho$, with the displayed normalization.
+\end{theorem}
+
+\begin{proof}
+For a prime set $P$ of odd divisors of $N$, let
+$\mathcal D_N(P)$ be the divisors of $N$ supported on $P$,
+including $1$. Induction of characters preserves their
+primitive zero sum and their own archimedean term.
+Inclusion--exclusion therefore gives
+\begin{align}
+ \mathcal C_{N,P}
+   &=\sum_{d\in\mathcal D_N(P)}
+         \mu(d)\frac{\varphi(N/d)}{\varphi(N)}
+                       \mathcal C_{N/d,\varnothing}, \label{eq:largeprimeinvert}\\
+ \mathcal C_{N,\varnothing}
+   &=\sum_{d\in\mathcal D_N(P)}
+        \frac{\varphi(N/d)}{\varphi(N)}
+                   \mathcal C_{N/d,P\cap\{p:p\mid N/d\}} .
+ \label{eq:largeprimereassemble}
+\end{align}
+In the first identity the characters with a loss at each prime
+in a selected subset are exactly those induced from the modulus
+obtained by dividing by the product of those primes. In the
+second identity the block indexed by $d$ fixes the entire
+conductor loss at the primes of $P$ to be $d$.
+
+For every even divisor $n=N/d$ of $N$, the normalized
+coefficient satisfies
+\begin{equation}
+ \frac{\varphi(n)\SSS(n)}{\varphi(N)\SSS(N)}
+     =\frac1d
+       \prod_{\substack{p>2,\ p\mid N\\p\nmid n}}
+           \frac{p(p-2)}{(p-1)^2}
+     \le\frac1d .
+ \label{eq:largeprimenormalization}
+\end{equation}
+If the primes of $P$ lie above $(\log N)^\rho/2$,
+then $\sum_{d\in\mathcal D_N(P)}1/d\ll_\rho1$.
+Indeed Mertens' theorem bounds the reciprocal prime
+sum from $(\log N)^\rho/2$ to $\log N$, and the prime
+divisors above $\log N$ add $O(1/\log\log N)$.
+We will also use the following uniform tail, allowing
+all divisors:
+\begin{equation}
+  \sum_{\substack{d\mid N\\d>R_A(N)}}\frac1d
+                     \le L^{-A+o(1)},\qquad L=\log N.
+ \label{eq:largeprimedivisortail}
+\end{equation}
+Take $s=\log\log L/\log L$ as in the proof of
+\cref{thm:conductorcutoff}. The sum of $d^{-1+s}$ is at most
+$\prod_{p\mid N}(1-p^{s-1})^{-1}$. The logarithm of this
+product is $o(\log L)$, since
+$\sum_{p\mid N}(p^s-1)/p=o(\log L)$ was proved there and
+$\sum_{p\mid N}1/p=O(\log\log L)$ by Mertens' theorem and
+the elementary bound for prime divisors above $L$.
+Multiplying by $R_A(N)^{-s}$ proves the tail bound.
+
+For the analytic comparison, write $\mathcal N_n$ for the energy
+with the modulus parameter $n$. Start with $F,G$ supported in
+$r\ge(1+\delta)L$. In the two forms at modulus $N$ we may
+truncate each test smoothly at $H=K L\log L$, with transition
+on $[H-L,H]$, for a fixed $K>D+3$. The error in either
+normalized form norm is $O(L^{2-K})$. In fact the estimates
+of \cref{eq:Utail,eq:poslogexplicit} and their proofs give
+the character mean-square norm of the zero sums as
+$O(L\NN(F))$, and $O(Le^{-(H-L)/L}\NN(F))$
+on a discarded part. Restriction to a subset of characters
+preserves these bounds with the original measure.
+The archimedean terms have bound
+$O(L\|F\|_{H^1}\|G\|_{H^1})$ on $r\ge0$ and hence the same
+exponential gain on a discarded part. The cutoff multiplier
+has energy norm at most $1+O(1/L)$.
+
+For $d\le R_A(N)$ and $n=N/d$ the truncated tests are
+supported in $r\ge(1+\delta)\log n$. On their support,
+\[
+ \frac{W_n(r)}{W_N(r)}
+       \le\exp\!\left(2r\left(\frac1{\log n}-\frac1L\right)\right)
+       =1+o(1)
+\]
+uniformly, because $0\le r\le H$ and $\log d=O_A((\log L)^2/
+\log\log L)$. Thus $\mathcal N_n$ costs at most $1+o(1)$
+relative to $\NN$ in all these terms.
+
+For the tail of either divisor sum we instead bound any
+single primitive zero sum with conductor dividing $N$ by
+$O(L^{3/2}\NN(F))$ on tests supported in $r\ge0$.
+To see this, on a unit log packet the unit-frequency-bin
+zero count is $O(L+\log(2+|t|))$. Cauchy--Schwarz with
+the Fourier supremum bound in each bin from the proof of
+\cref{eq:shortzerosampling}, now with unit bins, gives
+$O(L\|F_j\|_{H^1})$. The sum of the $H^1$ norms of
+these packets is $O(\sqrt L\,\NN(F))$ by Cauchy--Schwarz
+and $W_N(r)\gg e^{2r/L}$ for $r\ge0$.
+This bound together with the archimedean estimate gives a
+crude normalized norm $O(L^3)$ for each centered subfamily
+at $n$, measured in $\NN$ on the common support.
+\Cref{eq:largeprimenormalization,eq:largeprimedivisortail}
+then bound the tail by $L^{3-A+o(1)}\ll L^{-D}$.
+
+Taking $P=P(N)$ in \cref{eq:largeprimeinvert} and using the
+bounded sum of reciprocal weights proves the first inequality.
+For the reverse use \cref{eq:largeprimereassemble} with the
+same $P$. The threshold in a term at $n$ is initially
+$z=(\log N)^\rho$, whereas $P_n^{\rm hi}$ uses
+$z_n=(\log n)^\rho$. For $d\le R_A(N)$ every such $z_n$
+lies in $[z_-,z]$ with
+$z_-=(L-\log R_A(N))^\rho$. The interval $(z_-,z]$ has
+length $O_{\rho,A}(L^{\rho-1}\log R_A(N))=o(1)$
+and contains at most one prime $p_*$. If there is no
+extra prime in $P(n)$, the subfamily at $n$ already has
+the required threshold.
+
+If $p_*\mid n$ and $z_n<p_*\le z$, split the term at
+$n$ once more by \cref{eq:largeprimereassemble} at the
+single prime $p_*$, keeping the full-conductor conditions
+at the primes above $z$. Explicitly, a loss $p_*^j$
+gives the subfamily at $n'=n/p_*^j$ with full conductor
+at those primes and at $p_*$ if it still divides $n'$.
+If $dp_*^j\le R_A(N)$ then $z_{n'}\le z_n<p_*$,
+and the same interval $(z_-,z]$ contains no other prime.
+Thus the subfamily has exactly the required threshold
+$z_{n'}$. The new coefficient is bounded by $1/(dp_*^j)$
+by telescoping the factors in \cref{eq:largeprimenormalization}.
+Every new divisor $dp_*^j$ occurs at most once, since
+$p_*\nmid d$. The reciprocal sum is still $O_\rho(1)$,
+and \cref{eq:largeprimedivisortail} covers the new tail.
+This proves the reverse inequality and the equivalence.
+\end{proof}
+
 \section{Norm decay for almost all moduli on growing windows}
 \label{sec:almostall}
 
@@ -5730,6 +5909,10 @@ covariance criterion with an additive precision requirement.
 from both the covariance and the full form at arbitrary
 logarithmic precision. The resulting cutoff still retains
 imprimitive characters with conductors close to $N$.
+\Cref{thm:largeprimeconductors} gives a two-way high-support
+reduction to characters primitive at every prime factor
+above $(\log N)^\rho$, with bounded losses in the comparison
+of the normalized norms.
 Known variance obstructions of the type studied by Fiorilli and
 Martin and by Hayani occur at $N\asymp\log\log x$
 \cite{FiorilliMartin,Hayani}. These support scales lie beyond
@@ -5782,6 +5965,10 @@ The file \texttt{formalization/ConductorMoments.lean}
 checks the finite tail-increment identity for rational
 weights and the product support bound used in the proof of
 \cref{thm:conductorcutoff}.
+The file \texttt{formalization/ConductorInclusionExclusion.lean}
+checks the signed subset identity, the uniqueness of the
+local loss, and the lattice bound for the moving threshold in
+\cref{thm:largeprimeconductors}.
 The file \texttt{formalization/CriticalArithmetic.lean}
 verifies the two congruence branches and the reduced
 proper-power threshold in \cref{thm:criticalpowers}.
