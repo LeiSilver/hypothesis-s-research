@@ -104,6 +104,15 @@ which is the norm formulation of S when the admissible auxiliary function
 may be chosen to grow arbitrarily slowly. Here $\SSS(N)$ is the ordinary
 two-prime singular series.
 
+The global Dirichlet GRH used in this paper is the statement
+about all Dirichlet $L$-functions covered by the Lean proof
+released by Alp\"oge with Claude~\cite{AlpogeGRH}.
+The independent verification records include checks of the
+Dirichlet theorem statements, their axiom dependencies, and
+the exported proof in multiple kernels~\cite{SutherlandGRH,RubinsteinGRH}.
+We retain the GRH hypotheses in individual statements to
+specify the exact zero-location input to each argument.
+
 The norm in \cref{eq:goal} is a supremum over test functions whose supports
 may move with $N$. When both supports lie in $(N/3,2N/3)$, the only
 off-diagonal congruence contribution is the reflection $m+n=N$. This
@@ -113,6 +122,9 @@ problem on a line. The full norm can sample other regions, including a
 pair of windows with respective scales $\sqrt N$ and $N^{3/2}$.
 
 \Cref{thm:disc} gives the equivalence for the balanced window.
+\Cref{thm:macroscopiclines} treats all fixed multiples of $N$
+and isolates the Hardy--Littlewood discrepancies of individual
+sum and difference lines on those windows.
 \Cref{thm:cutoff} proves an asymptotic truncation of the full norm, including
 its mixed terms between retained and discarded supports.
 \Cref{thm:mesh} reduces the truncated problem to a matrix on a logarithmic
@@ -331,6 +343,143 @@ asymptotic
 Indeed, on this support $\log p,\log q=\log N+O(1)$, and proper
 prime powers contribute $o(N\SSS(N))$ to the weighted sum. The only
 prime pairs removed by the unit condition have $p=q=N/2$.
+
+\subsection{Individual sum and difference lines on bounded windows}
+
+Fix $R\ge1$. Write $W_N(R)$ for the normalized form norm
+on tests supported in $0<u,v<R$ in the scaled coordinates
+of \cref{sec:form}. Thus $W_N(R)=E_N(RN)$ in the notation
+of \cref{sec:almostall}. For $\sigma=\pm1$ and integer
+$1\le b\le2R$ let
+\[
+ H_{\sigma,b}=(0,R)\cap\{u:0<b-\sigma u<R\}.
+\]
+For intervals $K\subset H_{\sigma,b}$, with arbitrary endpoint
+inclusion, define
+\[
+ d_N^{\mathrm{line}}(R)=
+ \max_{\substack{\sigma=\pm1\\ 1\le b\le 2R}}
+ \sup_{K\subset H_{\sigma,b}}
+ \frac1{N\SSS(N)}
+ \left|
+ \sum_{\substack{n/N\in K\\m=bN-\sigma n}}\Lambda(n)\Lambda(m)
+             -N\SSS(bN)|K|
+ \right|.
+\]
+Empty lines contribute zero. There is no unit restriction
+in the definition of $d_N^{\mathrm{line}}(R)$.
+
+\begin{theorem}[A criterion on each macroscopic congruence line]
+\label{thm:macroscopiclines}
+For fixed $R\ge1$ and some absolute $c>0$, we have
+\begin{align*}
+ W_N(R)&\ll_R \bigl(d_N^{\mathrm{line}}(R)\bigr)^{1/3}+N^{-c},\\
+ d_N^{\mathrm{line}}(R)&\ll_R W_N(R)^{1/2}+N^{-c}.
+\end{align*}
+These are estimates for the physical form. Under $\grh(N)$
+they give an operator criterion. In particular, hypothesis S
+implies, for every fixed $0<a<b<\infty$,
+\begin{equation}
+  \#\{p\ {\rm prime}:aN<p<bN,\ p+N\ {\rm prime}\}
+   =\bigl(b-a+o(1)\bigr)\frac{N\SSS(N)}{(\log N)^2}.
+ \label{eq:macroscopicdifference}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Use $L=\log N$. For each line, imposing the unit condition
+in \cref{eq:form} removes weight $O_R(L^4)$. A removed pair
+has a coordinate equal to a prime power over a prime dividing
+$N$, and that coordinate determines the other. The equal
+coordinates on a reflection line are among the removed
+terms, since $n=m=bN/2$ is divisible by $N/2$.
+For a fixed $b$, $\SSS(bN)\ll_R\SSS(N)$ by
+\cref{eq:series}. The positive arithmetic and continuous
+masses on any interval of scaled length $O_R(\eta)$
+on such a line, after division by $N\SSS(N)$, are
+$O_R(\eta+N^{-c_0})$ for some $c_0>0$ and
+$N^{-1/100}\le\eta\le1/10$. For the arithmetic bound,
+apply the two-linear-form sieve \eqref{eq:uniformsieve}
+on a physical interval padded to length $H\asymp_R\eta N$.
+The logarithms of $H$ and $N$ are comparable, so the
+sieved primes contribute $O_R(H\SSS(bN))$ after inserting
+the weights. Primes at or below the sifting threshold
+$H^{c_1}$, with fixed small $c_1>0$, contribute
+$O_R(H^{c_1}L^2)$. Pairs involving a proper power cost
+$O_R(\sqrt N L^3)$ by counting the proper powers up to
+$RN$ in either coordinate. The same estimates at a
+fixed $\eta$ give $d_N^{\mathrm{line}}(R)\ll_R1$.
+
+For the first inequality cut each test smoothly below
+$u=\eta$ with a transition on $[\eta,2\eta]$.
+The cutoff multipliers are bounded in the energy norm
+since their transitions have log width $\log 2$.
+Every discarded term has physical product $xy\le
+2R\eta N^2$. The physical-form bounds in the proof of
+\cref{thm:subcritical}, including the estimate for $x<1$
+or $y<1$, give an error $O_R(\eta^{1/2}+N^{-c_0})$,
+decreasing $c_0$ if necessary. For a unit test on the
+remaining support the scaled weight $f$ has supremum
+and total variation $O_R(\eta^{-1/2})$. Indeed,
+$f(u)=u^{-1/2}F(\log(Nu))$. For the variation apply
+Cauchy--Schwarz in log coordinates, using the bounded
+unweighted $H^1$ norm there and
+$\int_{\log(N\eta)}^{\log(NR)}N e^{-r}\,\ud r\le1/\eta$.
+The product weight $f(u)\overline{g(b-\sigma u)}$
+has supremum and variation $O_R(\eta^{-1})$.
+On each line, partial summation bounds the integral
+against the discrepancy measure by this bound times
+the supremum of its interval discrepancy. Transposing
+handles the other difference orientation. Summing the
+bounded number of lines and accounting for the unit
+condition gives
+\[
+ W_N(R)\ll_R\eta^{1/2}+N^{-c_0}
+                 +\eta^{-1}\bigl(d_N^{\mathrm{line}}(R)+L^4/N\bigr).
+\]
+Take $\eta=\max\{N^{-1/100},(d_N^{\mathrm{line}}(R))^{2/3}\}$
+when this is below a sufficiently small constant depending on $R$.
+For larger discrepancy take $\eta$ equal to that constant.
+
+For the reverse inequality, start with $K\subset H_{\sigma,b}$.
+Omit the part within $4\eta$ of an endpoint of $(0,R)$ in
+either coordinate or of a half-integer in the first coordinate.
+This deletes only $O_R(1)$ short intervals and costs
+$O_R(\eta+N^{-c_0})$ in the normalized discrepancy.
+Each remaining interval $K'$ lies in an open cell
+$(j/2,(j+1)/2)$ in the first coordinate. In the rectangle
+with $u$ in this cell and $v=b-\sigma u'$ for $u'$ in the
+same cell, the only congruence line is $v+\sigma u=b$.
+In fact $v+\sigma u=b+\sigma(u-u')$ with $|u-u'|<1/2$,
+whereas $v-\sigma u=b-\sigma(u+u')$ is not an integer
+since $j<u+u'<j+1$.
+
+Choose two smooth tests approximating the indicators of
+$K'$ and $b-\sigma K'$ with ramps of width $\eta$.
+Their supports lie in that isolating rectangle and in
+$(0,R)^2$. For an interval of length at most $2\eta$
+one can use the short-interval estimate directly.
+The bound on the coefficient in \cref{eq:energy} for
+$u\le R$ gives energy norm $O_R(\eta^{-1/2})$ for each
+test. The product weight restricted to the line
+differs from the interval indicator only in strips of
+total length $O(\eta)$, whose cost is
+$O_R(\eta+N^{-c_0})$. Applying $W_N(R)$ to the two
+tests and using the unit-condition error gives
+\[
+ d_N^{\mathrm{line}}(R)\ll_R \eta^{-1}W_N(R)+\eta+N^{-c_0}.
+\]
+Take $\eta=\max\{N^{-1/100},W_N(R)^{1/2}\}$ up to a fixed
+small upper bound. When $W_N(R)$ is larger, the total
+mass estimate for each line suffices.
+
+Under hypothesis S, every $W_N(R)$ tends to zero.
+For \cref{eq:macroscopicdifference} take $R>b+1$, the
+line $v-u=1$, and the interval $(a,b)$. Proper powers
+contribute $O_R(\sqrt N L^3)$ to the weighted count, and
+both prime logarithms are $L+O_{a,b}(1)$. This gives
+the claimed asymptotic.
+\end{proof}
 
 \section{Certification on the balanced window}
 \label{sec:certificate}
@@ -5346,6 +5495,10 @@ every fixed interior subinterval. Conversely, these subinterval
 asymptotics suffice for the restriction, using only an upper bound
 for the total mass near its ends. The separated-window certificates
 exhibit parts of the full form outside the reach of this equivalence.
+\Cref{thm:macroscopiclines} identifies the individual line
+asymptotics needed for the entire window $x,y<RN$, including
+the pointwise prime-difference asymptotic
+\eqref{eq:macroscopicdifference}.
 
 An independent preprint by Y. Liu~\cite{YLiu} reports an asymptotic
 obstruction to hypothesis R under Dirichlet GRH from fluctuations
@@ -5445,6 +5598,9 @@ analytically in that section.
 The file \texttt{formalization/CriticalPrefix.lean} verifies
 the four-prefix identity and the dyadic index counts in
 \cref{sec:criticalgrid}.
+The file \texttt{formalization/MacroscopicLines.lean}
+checks the isolation of the two line types in an open
+half-modulus cell in \cref{thm:macroscopiclines}.
 The file \texttt{formalization/CriticalArithmetic.lean}
 verifies the two congruence branches and the reduced
 proper-power threshold in \cref{thm:criticalpowers}.
@@ -5458,6 +5614,24 @@ J.~Li and J.~Liu,
 \newblock preprint, Mathematical Research Center, Shandong University,
 13 November 2026.
 \newblock \url{https://mrc.sdu.edu.cn/english/info/1018/1514.htm}.
+
+\bibitem{AlpogeGRH}
+L.~Alp\"oge,
+\newblock \emph{Announcement and Lean formalization of the Riemann
+hypothesis and Dirichlet GRH}, 20 November 2026.
+\newblock \url{https://alpo.ge/remark.pdf}.
+
+\bibitem{SutherlandGRH}
+A.~V. Sutherland,
+\newblock \emph{Verification files for the Lean proof of the Riemann
+hypothesis}, November 2026.
+\newblock \url{https://math.mit.edu/~drew/grh/}.
+
+\bibitem{RubinsteinGRH}
+M.~Rubinstein,
+\newblock \emph{An independent check of the Lean proof of RH and GRH},
+November 2026.
+\newblock \url{https://mrubinst.github.io/grh-lean-verification/}.
 
 \bibitem{Lichtman}
 J.~D. Lichtman,
