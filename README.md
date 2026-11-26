@@ -47,6 +47,8 @@ This repository contains the English research manuscript and the code and data f
 
 ## Research checkpoint · 27 November 2026
 
+Proposition 3.7 constructs a single nonnegative perturbation of the von Mangoldt weights that preserves the orders of the progression-variance and Fourier error bounds used in the single-test argument. Its reflected margin vanishes at infinitely many prescribed powers of two. The construction locates a limitation of those estimates: they allow complete anticorrelation between the two coordinates at a sparse set of even integers.
+
 Proposition 3.6 evaluates the major-arc contribution to the fixed reflected test at every even $N\in[Y,2Y]$ under Dirichlet GRH. With $Q=\lfloor\sqrt Y/(\log Y)^4\rfloor$, the remaining real Fourier coefficient is supported on frequencies admitting reduced approximants of denominator between $Q$ and $\lceil Y/Q\rceil$. A failure of distinct prime representation in the test window would require this coefficient to equal $-(4/45)N\mathfrak S(N)+O(Y/\log Y)$. The sum of squared deviations of the normalized margin from $4/45$ on the whole dyadic interval is $O(\sqrt Y(\log Y)^9)$. The pointwise lower bound on the remaining coefficient is open.
 
 Proposition 3.5 gives the same positive proportion inside each prescribed even class $a\bmod q$ for even $q$, uniformly when $Kq(\log Y)^2\le H\le\sqrt Y$. The local factor counts the unit residues $r$ for which $a-r$ is also a unit. It equals the mean singular-series weight per integer in that class.

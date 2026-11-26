@@ -986,6 +986,82 @@ margins follows by Chebyshev's inequality. If $r_N=0$,
 $N\SSS(N)\Delta_N\le H_N(\log N)^2=o(Y/L)$, proving the last claim.
 \end{proof}
 
+\begin{proposition}[Individual failures compatible with the distribution bounds]
+\label[proposition]{prop:single-test-obstruction}
+There exists a nonnegative weight $W(m)\in\{0,\Lambda(m),2\Lambda(m)\}$
+with the following properties. Write $b=W-\Lambda$. For $T\ge2$,
+\begin{align}
+ \sup_{\substack{J\subset[T,2T]\ {\rm interval}\\ \alpha\in\mathbb R}}
+ \left|\sum_{m\in J} b(m)e(m\alpha)\right|
+ &\ll\sqrt{T\log(2T)},\label{eq:single-test-perturb}\\
+ \sum_{r\bmod q}\int_T^{2T}
+ \left|\sum_{\substack{x<m\le x+h\\m\equiv r\bmod q}}b(m)\right|^2\,\ud x
+ &\ll Th\log(2T)\qquad(q\ge1,\ 1\le h\le T).
+ \label{eq:single-test-perturb-variance}
+\end{align}
+Nevertheless the arithmetic margin $\int f^2\,\ud\mu_N$ formed
+with $W$ in both coordinates is zero at every sufficiently large
+$N_j=2^{2^j}$. One may prescribe any finite initial segment on
+which $W=\Lambda$.
+\end{proposition}
+
+\begin{proof}
+Work first at $N=N_j$ and consider unordered pairs $\{m,N-m\}$
+in the open support of $f(\cdot/N)$ with $(m,N)=1$ and
+$\Lambda(m)\Lambda(N-m)>0$. They are disjoint pairs of distinct
+integers. There are $O(N/(\log N)^2)$ of them: the prime-pair
+sieve used in \cref{thm:disc} has $\SSS(N)=2C_2$ on powers of
+two, and pairs containing a proper power number
+$O(\sqrt N\log N)$. On each pair choose an independent uniform
+sign $\epsilon$. Multiply the weight at the smaller member by
+$1+\epsilon$ and at the larger by $1-\epsilon$. Each product is
+then zero. All weights outside these pairs keep their original
+values.
+
+Fix an interval $J$ and a frequency. The Fourier sum of the
+changes on this block is a sum of independent signs times
+complex numbers of modulus at most $2\log N$. The sum of their
+squared moduli is $O(N)$. The exponential moment inequality
+$\cosh v\le e^{v^2/2}$ applied to the real and imaginary parts
+bounds the probability that the modulus exceeds $t$ by
+$4\exp(-c_0t^2/N)$ for an absolute $c_0>0$. There are $O(N^2)$
+different interval restrictions and a grid of $O(N^3)$ frequencies
+of spacing at most $N^{-3}$ on the circle. A union bound with
+$t=C\sqrt{N\log N}$ for sufficiently large $C$ gives a choice
+of signs working for the entire grid and all intervals. The
+derivative of each Fourier sum in its frequency is $O(N^2\log N)$
+by the trivial bound on its coefficients, so the grid bound
+extends to the full circle.
+
+Use one such choice on each block, starting beyond the specified
+initial segment. For sufficiently large starting index the range
+$[T,3T]$ intersects at most one block, necessarily with $T\asymp N_j$.
+This proves \cref{eq:single-test-perturb}. To see the variance
+bound, write $B(\xi)=\sum_{T\le m\le3T}b(m)e(m\xi)$ and let
+$B_r$ denote its restriction to $m\equiv r\bmod q$. Finite
+Fourier orthogonality gives
+\[
+  \sum_{r\bmod q}|B_r(\xi)|^2
+     =q^{-1}\sum_{a\bmod q}|B(\xi+a/q)|^2\ll T\log(2T).
+\]
+Convolving each restricted measure with an interval of length $h$
+and applying real-line Plancherel costs a factor
+$\int_{\mathbb R}|\widehat{\mathbf1}_{[0,h]}(\xi)|^2\,\ud\xi=h$.
+Restricting the resulting integral to $[T,2T]$ proves
+\cref{eq:single-test-perturb-variance}.
+\end{proof}
+
+In particular, under Dirichlet GRH the modified weights satisfy
+the same orders of upper bounds in the short-interval variance
+and in \cref{eq:arcintegrated,eq:arcmeansquare}, with the original
+main terms. For the latter two estimates, \cref{eq:single-test-perturb}
+bounds the extra squared error summed over reduced numerators by
+$O(qT\log(2T))$ pointwise and $O(BqT\log(2T))$ on bandwidth $B$.
+Yet the reflected coefficient on $\mathfrak m$ for these weights
+attains $-(4/45)N_j\SSS(N_j)+O(N_j/\log N_j)$, by the major-arc
+calculation in \cref{prop:single-test-minor}. Thus these distribution
+bounds alone allow the full loss of the main term at isolated moduli.
+
 \section{Certification on the balanced window}
 \label{sec:certificate}
 
