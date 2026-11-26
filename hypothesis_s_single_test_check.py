@@ -91,6 +91,49 @@ def check_sifted_twists():
     print(f"Verified both twist identities on {len(samples)} prime shifts at each of two cutoffs.")
 
 
+def check_twist_divisors():
+    # Coordinates in the basis (1, v), where v**2 = v - 1.
+    roots = [(1, 0), (0, 1), (-1, 1), (-1, 0), (0, -1), (1, -1)]
+    checked = local = 0
+    limit = 360
+    ps = [factors(n) for n in range(limit + 1)]
+    for z in (3, 5, 7):
+        for n in range(1, limit + 1):
+            small = [p for p in ps[n] if p <= z]
+            large = [p for p in ps[n] if p > z]
+            exponent = 3*len(small) + len(large) + len(set(large))
+            predicted = roots[exponent % 6] if len(set(small)) == len(small) else (0, 0)
+            a = b = 0
+            for d in range(1, n + 1):
+                if n % d or len(ps[d]) != len(set(ps[d])):
+                    continue
+                partner = ps[n//d]
+                if partner and partner[0] <= z:
+                    continue
+                x, y = roots[len(partner) % 6]
+                sign = (-1)**len(ps[d])
+                a, b = a + sign*x, b + sign*y
+            if (a, b) != predicted:
+                raise AssertionError(("Mobius twist", z, n))
+            if len(ps[n]) == len(set(ps[n])):
+                x, y = roots[-len(large) % 6]
+                sign = (-1)**len(ps[n])
+                if (a, b) != (sign*x, sign*y):
+                    raise AssertionError(("squarefree phase", z, n))
+            checked += 1
+            if len(set(ps[n])) == 1 and large:
+                p, j = large[0], len(large)
+                phi = (n//p)*(p-1)
+                for component, value in enumerate((a, b)):
+                    x = roots[j % 6][component]
+                    prev = roots[(j-1) % 6][component]
+                    model = Fraction(x, n) - Fraction(prev, phi)
+                    if Fraction(value, phi) - model != Fraction(x, n*(p-1)):
+                        raise AssertionError(("large-prime Euler correction", z, n))
+                local += 1
+    print(f"Verified {checked} divisor coefficients and {local} local Euler corrections.")
+
+
 def check_twist_profile():
     # Row k encloses c_k(i/mesh) in units of 1/scale. On each cell
     # bound the increasing numerator and the reciprocal separately.
@@ -200,6 +243,7 @@ def main():
         raise AssertionError("three-factor ranges or strip overlap")
     check_rough_pairs()
     check_sifted_twists()
+    check_twist_divisors()
     check_twist_profile()
 
 

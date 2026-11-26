@@ -1810,6 +1810,159 @@ weight. Cauchy--Schwarz and $\sum_N\SSS(N)^2\ll H+L^2$ from
 even moduli.
 \end{proof}
 
+\begin{proposition}[A pointwise progression remainder for the twist]
+\label[proposition]{prop:single-test-twist-progressions}
+Take $z=N^{1/5}$, $v=\exp(i\pi/3)$, $h=h_{z,v}$ and $b_z=\mu*h$
+(Dirichlet convolution). For $x$ in the test window put
+$V(x)=F(x/N)\log x\log(N-x)$, extending by zero outside, and set
+\[
+ I_N=\int\frac{V(x)}{\log x}\,\ud x,\qquad
+ E_N(d)=\sum_{\substack{p\equiv N\bmod d\\ (p,N)=1}} V(p)
+              -\frac{I_N}{\varphi(d)} \qquad ((d,N)=1).
+\]
+The integral is over the test window and $p$ is prime.
+Let $X=7N/12$ and $D=\sqrt N/(\log N)^B$ for a sufficiently
+large absolute constant $B$. Retain those $D<d\le X$ coprime
+to $N$ that admit no factorization $d=q_1q_2q_3$ with the
+three bounds of \cref{prop:single-test-factorable}. Define
+\[
+ R_N=\frac{1}{N\SSS(N)}
+ \sum_{\substack{d\ {\rm retained}\\d\ {\rm squarefree}}}
+       \mu(d)\overline v^{\,\omega_{>z}(d)} E_N(d),
+\]
+where $\omega_{>z}$ counts the prime divisors exceeding $z$.
+Unconditionally, for each sufficiently large even $N$,
+\begin{align}
+ J_N(z,v)&=cD_v(5)+R_N+O((\log N)^{-1/2}),\nonumber\\
+ \frac{1}{N\SSS(N)}\sum_{\substack{d\le D\\(d,N)=1}}
+ b_z(d)\sum_{\substack{p\equiv N\bmod d\\(p,N)=1}}V(p)
+ &=2c\bigl(v+v^2\log(3/2)\bigr)+O_B((\log N)^{-1/2}).
+ \label{eq:single-test-twist-progression}
+\end{align}
+Here $c=4/45$ and $D_v$ is the profile in
+\cref{prop:single-test-twist-mean}. If the window has no
+distinct prime pair, then $\Re R_N\le-0.2042c+o(1)$.
+\end{proposition}
+
+\begin{proof}
+Write $L=\log N$. The divisor coefficients satisfy
+$b_z(p^j)=h(p)^{j-1}(h(p)-1)$ for $j\ge1$, with the zeroth
+power equal to one. Thus $|b_z(d)|\le1$ since $|v-1|=1$.
+We first compute the arithmetic sum for $T=X$ and $T=D$:
+\begin{equation}
+ \sum_{\substack{d\le T\\(d,N)=1}}\frac{b_z(d)}{\varphi(d)}
+ =\frac{\SSS(N)}{\log T}D_v\left(\frac{\log T}{\log z}\right)
+     +O(L^{-3/2}).
+ \label{eq:single-test-twist-periodic}
+\end{equation}
+Put $b(e)={\bf1}_{(e,N)=1}\mu(e)/\varphi(e)$ and $t(r)=h(r)/r$.
+The left side differs from $\sum_{er\le T}b(e)t(r)$ by
+$O_A(L^{-A})$ for every fixed $A$. To see this first restrict
+$t$ to units. The local coefficients agree at all primes up to
+$z$. For $p>z$, $p\nmid N$, the difference at $p^j$ is
+$v^j/(p^j(p-1))$ for $j\ge1$. Telescoping the products over
+$p\le T$ costs at most a fixed power of $L$ times
+$\sum_{p>z}p^{-2}$. Indeed the local absolute sums of either
+sequence are at most $1+O(1/p)$. Restoring nonunits in $t$
+costs at most a fixed power of $L$ times
+$\sum_{p\mid N,\,p>z}1/p\ll L/z$.
+
+The partial sums of $b$ have a zero total mass and a nonzero
+first logarithmic moment. We record the uniformity needed when
+$N$ varies. For $\Re s>0$ write
+\[
+ \sum_{m\ge1}\frac{b(m)}{m^s}=\zeta(1+s)^{-1}U_N(s),
+ \quad U_N(s)=
+ \prod_{p\mid N}(1-p^{-1-s})^{-1}
+ \prod_{p\nmid N}\frac{1-p^{-s}/(p-1)}{1-p^{-1-s}}.
+\]
+At $s=0$ the product is $U_N(0)=\SSS(N)$ by \eqref{eq:series}.
+Put $\sigma=1/\log L$. The sum of the absolute Dirichlet
+coefficients of $U_N$, weighted by $m^\sigma$, is
+$O((\log L)^C)$ for an absolute $C$. The second product has
+summable local errors $O(p^{-2+\sigma})$. In the first,
+$p^\sigma\le e^2$ up to $L^2$; the larger prime divisors
+contribute $O(L(L^2)^{-1+\sigma})$ to its logarithm.
+Convolving with $\mu(m)/m$ and splitting the $U_N$-variable
+at $\sqrt x$, the classical zero-free-region bound
+$\sum_{m\le y}\mu(m)/m\ll\exp(-c_0\sqrt{\log y})$ gives
+\[
+ \left|\sum_{e\le x} b(e)\right|
+ \ll(\log L)^C\bigl(\exp(-c_1\sqrt{\log x})+x^{-\sigma/2}\bigr).
+\]
+For $K=\exp((\log L)^4)$ both this bound for $x\ge K$ and
+its integral against $(1+\log x)\,\ud x/x$ over $[K,\infty)$
+are $O_A(L^{-A})$. By partial summation and the value and
+derivative of $\zeta(1+s)^{-1}U_N(s)$ at zero,
+\[
+ \sum_{e\le K} b(e)=O_A(L^{-A}),\qquad
+ \sum_{e\le K} b(e)\log e=-\SSS(N)+O_A(L^{-A}).
+\]
+The range $e>K$ in the convolution contributes $O_A(L^{-A})$
+by summing $b$ on $(K,T/r]$ first and using
+$\sum_{r\le T}|t(r)|\ll L$.
+
+For $1\le e\le K$ one has
+\[
+ \sum_{T/e<r\le T}\frac{h(r)}r
+ =\frac{\log e}{\log T}D_v\left(\frac{\log T}{\log z}\right)
+   +O_A\left(\frac{(1+\log e)^2}{L^2}+L^{-A}\right).
+\]
+Here the required precision follows directly from the ordinary
+prime number theorem with logarithmic savings. In detail, $r$
+has at most four prime factors above $z$. For each $k\le4$ sum
+over ordered factors and divide by $k!$; repeated primes cost
+$O(z^{-1}L^4)$ in reciprocal weight. At fixed other factors
+each prime is in an interval in $[z,T]$. Partial summation replaces
+its reciprocal prime measure by $\ud x/(x\log x)$ with error
+$O_A(L^{-A})$, uniformly in the endpoints. Iteration preserves
+arbitrary logarithmic saving since the other absolute integrals
+and sums are $O(L^4)$. In the log product variable $s$, the
+density after division by $k!$ is $c_k(s/\log z)/s$.
+Indeed for $k=1$ this is the prime integral. Multiplication by
+$s=\sum_i\log p_i$ cancels one denominator in each of $k$
+symmetric terms, giving the integral of the preceding density
+up to $s-\log z$, exactly the recurrence in
+\cref{prop:single-test-twist-mean}. On $[\log(T/K),\log T]$
+the resulting density with weights $v^k$ is Lipschitz with
+constant $O(L^{-2})$. Integrating it gives the display.
+Subtract this interval sum from $\sum_{r\le T}h(r)/r$ and use
+the two moments of $b$. The Taylor error costs
+$O((1+\log K)^3/L^2)$ since $\sum_{e\le K}1/\varphi(e)\ll\log K$.
+This proves \eqref{eq:single-test-twist-periodic}.
+
+Finally $h=1*b_z$ gives the prime progression expansion exactly,
+as only divisors coprime to $N$ occur on the unit samples.
+The Bombieri--Vinogradov theorem for $d\le D$ and the
+three-factor estimate used in \cref{prop:single-test-factorable}
+for the additional moduli bound the sum of the absolute
+discrepancies on their union by $O(N/L^2)$ on choosing $B$
+sufficiently large. Partial summation inserts $V$ with total
+variation $O(L^2)$; replacing the unrestricted prime main
+term by $I_N$ costs arbitrary logarithmic saving by the prime
+number theorem and $\sum_{d\le X}1/\varphi(d)\ll L$.
+The excluded diagonal affects only $d=1$ among unit divisors,
+at cost $O(L^2)$. A nonsquarefree $d$ of nonzero coefficient
+must contain $q^2$ with $q>z$ prime. Its progression part,
+summed absolutely over such $d$, is
+$O_\epsilon(L^2 N^\epsilon\sum_{z<q\le\sqrt N} N/q^2)$:
+each multiple of $q^2$ can occur for at most $\tau(N-p)$
+divisors of $N-p$. For the model part use
+$1/\varphi(q^2 m)\le1/(\varphi(q^2)\varphi(m))$ and
+$\sum_{m\le X}1/\varphi(m)\ll L$. Both errors save a fixed
+power of $N$ after normalization. On squarefree $d$ the
+coefficient is $\mu(d)(1-v)^{\omega_{>z}(d)}$ and $1-v=\bar v$.
+Since $I_N=N(cL+O(1))$ and $\SSS(N)\gg1$,
+\eqref{eq:single-test-twist-periodic} at $X$ gives the first
+formula. At $D$ the profile argument tends to $5/2$ with error
+$O_B(\log L/L)$, and $D_v(5/2)=v+v^2\log(3/2)$.
+This gives the second. For $P_N=0$ the pointwise minorant and
+the sieve lower limit of \cref{prop:single-test-twisted-sieve}
+give $\Re J_N\le-2c\log(3/2)+o(1)$.
+Subtract the profile using $g(5)>0.2042$ in the notation of
+\cref{prop:single-test-twist-mean}.
+\end{proof}
+
 \section{Certification on the balanced window}
 \label{sec:certificate}
 
