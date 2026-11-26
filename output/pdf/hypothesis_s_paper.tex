@@ -488,6 +488,39 @@ Indeed, on this support $\log p,\log q=\log N+O(1)$, and proper
 prime powers contribute $o(N\SSS(N))$ to the weighted sum. The only
 prime pairs removed by the unit condition have $p=q=N/2$.
 
+\paragraph{A one-sided test for Goldbach representations.}
+Take $f(u)=(1-144(u-1/2)^2)_+$ and $g(u)=f(1-u)$.
+This fixed test belongs to $H^1_0(I)$, takes values in $[0,1]$,
+and is positive precisely on $(5/12,7/12)$. Its squared integral
+is $(1/12)\int_{-1}^1(1-t^2)^2\,\ud t=4/45$. Put
+\[
+  \Delta_N=\frac4{45}-\frac{\B(f,g)}{\SSS(N)},\qquad
+  H_N=2\bigl(\sqrt N+N^{1/3}\lfloor\log_2 N\rfloor\bigr).
+\]
+Let $r_N$ count ordered pairs of distinct primes $p+q=N$ with
+$5N/12<p<7N/12$. Under the hypotheses of \cref{thm:disc},
+\begin{equation}
+ r_N\ \ge\ \frac{N\SSS(N)}{(\log N)^2}\Delta_N-H_N .
+ \label{eq:single-goldbach-test}
+\end{equation}
+Indeed, \cref{eq:balance} gives $\Delta_N=\int f^2\,\ud\mu_N$.
+At most $\sqrt N$ squares and at most $N^{1/3}$ powers for
+each exponent $3\le k\le\lfloor\log_2 N\rfloor$ can occur in
+either coordinate. Their total weight before normalization is
+at most $H_N(\log N)^2$. Each remaining atom contributes at
+most $(\log N)^2$, and the unit condition excludes $p=q=N/2$.
+This proves \cref{eq:single-goldbach-test}.
+
+Thus a fixed $\varepsilon>0$ with
+$\B(f,g)/\SSS(N)\le 4/45-\varepsilon$ at every sufficiently
+large even $N$ would give
+$r_N\ge(\varepsilon-o(1))N\SSS(N)/(\log N)^2$, since
+$\SSS(N)\gg1$. Even an $N$-dependent margin suffices for
+existence whenever $N\SSS(N)\Delta_N>H_N(\log N)^2$.
+Establishing such a margin at every sufficiently large even
+modulus remains open. \Cref{prop:single-test-short-mean} gives
+a positive margin for a positive proportion in short intervals.
+
 \subsection{Individual sum and difference lines on bounded windows}
 
 Fix $R\ge1$. Write $W_N(R)$ for the normalized form norm
@@ -623,6 +656,791 @@ line $v-u=1$, and the interval $(a,b)$. Proper powers
 contribute $O_R(\sqrt N L^3)$ to the weighted count, and
 both prime logarithms are $L+O_{a,b}(1)$. This gives
 the claimed asymptotic.
+\end{proof}
+
+\subsection{A short-interval mean for the reflected test}
+
+\begin{proposition}[Mean margin in the one-sided test]
+\label[proposition]{prop:single-test-short-mean}
+Assume Dirichlet GRH. Write $L=\log Y$, and let $Y,H$ be positive
+integers with $L^3\le H\le\sqrt Y$. Sum over the even integers
+$Y<N\le Y+H$. For the test in \cref{eq:single-goldbach-test},
+\[
+ \frac{\sum_N N\SSS(N)\Delta_N}{\sum_N N\SSS(N)}
+    =\frac4{45}+O\bigl((L^3/H)^{1/2}\bigr).
+\]
+If $H/L^3\to\infty$, then $\gg H$ of these even integers satisfy
+$\Delta_N\ge2/45$. Each such integer has
+$r_N\ge(2/45-o(1))N\SSS(N)/L^2$ ordered representations in the
+stated window.
+\end{proposition}
+
+\begin{proof}
+Set $F=f^2$, extended by zero, and $c=\int F=4/45$. The numerator
+is the convolution of the two von Mangoldt weights summed over
+the indicated moduli with the unit restriction and weight $F(m/N)$.
+Extending to all pairs of positive integers $m,n$ with $Y<m+n\le Y+H$
+costs $O(HL^2)$. Indeed an odd sum of two prime powers requires a
+power of two, with $O(1)$ choices on this support and $O(H)$ choices
+for its partner. Nonunit pairs have a common prime base and the
+ratio of their coordinates lies between $5/7$ and $7/5$. Such powers
+must coincide, giving $O(H)$ diagonal pairs. Replacing $F(m/N)$ by
+$F(m/Y)$ costs $O(H^2L)$ by Lipschitz continuity, since
+$\sum_{m\le 2Y}\Lambda(m)\ll Y$ and the inner sum is $O(HL)$.
+The resulting sum is
+\[
+ \sum_m \Lambda(m) F(m/Y)
+       \bigl(\psi(Y-m+H)-\psi(Y-m)\bigr).
+\]
+On the support put $v=Y-m\asymp Y$. The Selberg integral under RH
+\cite{PracharShort,GoldstonYildirimShort}, at progression modulus one,
+gives $\sum_{v\asymp Y}|\psi(v+H)-\psi(v)-H|^2\ll YHL^2$.
+For integer $H$ the integrand is constant on each $[v,v+1)$,
+so the integral bounds the discrete sum. Cauchy--Schwarz with
+$\sum_{m\le2Y}\Lambda(m)^2\ll YL$ costs $O(Y\sqrt H L^{3/2})$.
+The RH prime number theorem and partial summation give
+$\sum_m\Lambda(m)F(m/Y)=cY+O(\sqrt Y L^2)$.
+The numerator is therefore $cYH+O(Y\sqrt H L^{3/2})$.
+
+For the denominator write $C_2=\prod_{p>2}(1-(p-1)^{-2})$.
+By \cref{eq:series}, $\SSS(2k)=2C_2\sum_{d\mid k}h(d)$, where
+$h$ is supported on odd squarefree integers and
+$h(d)=\prod_{p\mid d}(p-2)^{-1}$ there. Mertens' bound gives
+$\sum_{d\le t}h(d)\ll\log(2t)$, and the Euler product gives
+$C_2\sum_d h(d)/d=1$. Counting multiples of $2d$ in the interval
+and bounding the Euler-sum tail by partial summation yields
+$\sum_N\SSS(N)=H+O(L)$. Thus $\sum_N N\SSS(N)=YH+O(YL+H^2)$.
+Dividing proves the mean estimate.
+
+The same expansion for $\SSS(N)^2$ has local coefficients
+$(1+1/(p-2))^2-1=2/p+O(p^{-2})$. Their squarefree products have
+partial sums $O(L^2)$ up to $2Y$, and the series after division by
+$d$ converges. Counting multiples gives $\sum_N\SSS(N)^2\ll H+L^2$.
+The proof of \cref{thm:disc} gives $0\le\Delta_N\le\mu_N(I)\ll1$.
+When $H/L^3\to\infty$, terms with $\Delta_N\ge c/2$ must therefore
+carry $\gg H$ of the sum of $\SSS(N)$. Cauchy--Schwarz and the
+second moment show that there are $\gg H$ such moduli.
+Now apply \cref{eq:single-goldbach-test}.
+\end{proof}
+
+For the existence of a Goldbach number in a short interval under
+RH, Chirre and Hagen obtain length $123\log^2 Y$
+\cite{ChirreHagen}. The mean above measures the margin for a fixed
+balanced test and gives a lower bound on the number of its prime
+representations on the selected moduli.
+
+\begin{proposition}[The fixed test on intervals of squared logarithmic length]
+\label[proposition]{prop:single-test-tents}
+Under the hypotheses and notation of \cref{prop:single-test-short-mean},
+allow $L^2\le H\le\sqrt Y$. Then
+\[
+ \frac{\sum_N N\SSS(N)\Delta_N}{\sum_N N\SSS(N)}
+ =\frac4{45}
+ +O\left(\frac{L^2}{H}\log\left(2+\frac H{L^2}\right)\right).
+\]
+There is an absolute $K$ such that every such interval with
+$H\ge K L^2$ contains $\gg H$ even integers with $\Delta_N\ge2/45$.
+The representation bound of \cref{prop:single-test-short-mean}
+holds on these moduli.
+\end{proposition}
+
+\begin{proof}
+Write $T_h(s)=(1-|s|/h)_+$, $F=f^2$, and $c=\int F$.
+For real $t\in[Y,Y+H]$ and $1\le h\le H$ we first show that
+\begin{equation}
+ \sum_{2\mid N}T_h(N-t)N\SSS(N)\Delta_N
+       =c t h+O(YL^2).
+ \label{eq:single-test-tent}
+\end{equation}
+Put $P_h(x)=\psi(x+h)-\psi(x)$. The overlap of
+$[m-h,m)$ with $(t-n-h,t-n]$ has length $hT_h(m+n-t)$.
+Consequently the left side is
+\[
+ \frac1h\int F(x/t)P_h(x)P_h(t-x-h)\,\ud x
+       +O(h^2 L+h L^2).
+\]
+Indeed, on the overlap $|x/t-m/(m+n)|\ll h/Y$ wherever either
+weight is nonzero. The total unrestricted tent mass before
+inserting $F$ is $O(YhL)$ by Chebyshev's bound on the first
+variable and the trivial interval count on the second.
+After restoring $F(m/(m+n))$, removal of odd sums and nonunit
+pairs costs $O(hL^2)$ as in \cref{prop:single-test-short-mean}.
+
+Write $P_h(x)=h+E_h(x)$. The constant term of the integral after
+division by $h$ is $cth$. Either linear term is $O(h\sqrt Y L^2)$:
+integrate first over shifts $0\le u\le h$ and apply the RH prime
+number theorem by partial summation to the translated test. Its
+total variation is bounded uniformly, also after reflection. More
+explicitly, for the first term one integrates
+$\sum_m\Lambda(m)F((m-u)/t)-\int F((v-u)/t)\,\ud v$
+over $u$. On both supports the Selberg integral bounds
+$\int_{x\asymp Y}|E_h(x)|^2\,\ud x\ll YhL^2$
+\cite{PracharShort,GoldstonYildirimShort}. Cauchy--Schwarz bounds
+the quadratic term after division by $h$ by $O(YL^2)$.
+This proves \cref{eq:single-test-tent} since $h\le\sqrt Y$.
+
+To recover the interval, start with the tent of radius $H/2$
+centered at its midpoint. Its two outer linear ramps each have
+width $H/2$. On bisecting a ramp of width $b$, add half a tent
+of radius $b/2$ at its midpoint. This makes the inner half
+constant one and leaves an outer ramp of width $b/2$. Perform
+this on both sides until the ramp width is at most $L^2$.
+There are $O(\log(2+H/L^2))$ tents, each of radius at least
+one for large $Y$. Their sum with these coefficients equals one
+off the two end intervals inside $(Y,Y+H]$ and lies in $[0,1]$
+everywhere. For a tent, $\int sT_h(s-t)\,\ud s=th$. The
+integrated main terms therefore differ from
+$c\int_Y^{Y+H}s\,\ud s$ by $O(YL^2)$.
+The omitted mass of the discrete sum is also $O(YL^2)$,
+including any endpoint atom, by $\Delta_N\ll1$ and the
+interval estimate $\sum_N\SSS(N)=b+O(L)$ on a segment of
+length $b$ from the preceding proof. Partial summation of that
+estimate gives $\sum_N N\SSS(N)=\int_Y^{Y+H}s\,\ud s+O(YL)$.
+Summing \cref{eq:single-test-tent} and dividing gives the claim.
+Choose $K$ so that the error in the mean is at most $c/4$.
+The second-moment argument for $\SSS(N)$ in
+\cref{prop:single-test-short-mean} now gives the asserted count.
+\end{proof}
+
+\begin{proposition}[The fixed test in a prescribed residue class]
+\label[proposition]{prop:single-test-classes}
+Assume Dirichlet GRH. For even $q\ge2$ and even $a\bmod q$, restrict
+both sums in \cref{prop:single-test-tents} to $N\equiv a\bmod q$.
+If $qL^2\le H\le\sqrt Y$ and $u=H/(qL^2)$, the resulting mean
+is $4/45+O(\log(2+u)/u)$, uniformly in $q$ and $a$.
+For $H\ge K qL^2$ with an absolute $K$, at least $\gg H/q$
+integers in this class have $\Delta_N\ge2/45$.
+\end{proposition}
+
+\begin{proof}
+Write $\lambda=\#\{r\bmod q:(r(a-r),q)=1\}/\varphi(q)^2$.
+On a tent as in \cref{eq:single-test-tent}, use the product of
+short sums in the classes $r,a-r$ and sum over the indicated $r$.
+This gives the main term $c\lambda th$ and an absolute error
+$O(YL^2)$ independent of $q$. To see this, prime powers with base
+dividing $q$ contribute $O((1+\omega(q))hL^2)$, since each such
+prime has $O(1)$ powers on the support and there are $O(h)$ possible
+partners. The diagonal and variation errors from the previous
+proof still apply. All these errors are $O(YL^2)$.
+
+For a unit class $r$ put
+$E_r(x)=\psi(x+h;q,r)-\psi(x;q,r)-h/\varphi(q)$.
+Partial summation of the GRH progression estimate gives
+$O(h\sqrt Y L^2)$ for the integral of each $E_r$ against
+the translated or reflected test, uniformly since $q\le\sqrt Y$.
+Each linear term carries the factor $1/\varphi(q)$ after division
+by $h$, and there are at most $\varphi(q)$ terms of either kind.
+For the quadratic term, Cauchy--Schwarz over $x,r$ and the
+injection $r\mapsto a-r$ bound the absolute integral by the
+sum of short-interval variances over all unit classes on a fixed
+multiplicative range about $Y$. Prachar's GRH bound
+\cite[(1.4)]{GoldstonYildirimShort} gives $O(YhL^2)$ before
+division by $h$.
+
+We identify the mean of the singular series in this class. Put
+\[
+ A=2C_2\prod_{\substack{p\mid(a,q)\\p>2}}\frac{p-1}{p-2}.
+\]
+With the coefficients $h(d)$ of \cref{prop:single-test-short-mean},
+we have $\SSS(N)=A\sum_{d\mid N,\,(d,q)=1}h(d)$ on the class.
+On any subinterval of length $b$ the congruences for a term $d$
+give $b/(qd)+O(1)$ samples. The Euler product satisfies
+\[
+ A\prod_{p\nmid q}(1+h(p)/p)=q\lambda
+ =\prod_{p\mid q}\frac{p(p-\nu_p)}{(p-1)^2},
+ \qquad \nu_p=\#\{0,a\bmod p\}.
+\]
+Indeed the last product counts the permissible residues by the
+Chinese remainder theorem, and the factors away from $q$ cancel
+those of $C_2$. In particular $q\lambda\asymp A\gg1$ uniformly.
+The divisor sums and tail bounds of \cref{prop:single-test-short-mean}
+now give
+\[
+ \sum_{\substack{N\ \mathrm{in\ the\ subinterval}\\N\equiv a\bmod q}}
+    \SSS(N)=\lambda b+O(AL),\qquad
+ \sum_{\substack{Y<N\le Y+H\\N\equiv a\bmod q}}\SSS(N)^2
+       \ll A^2(H/q+L^2).
+\]
+For the second estimate one squares the Euler factors away from
+$q$ and bounds the partial sum of the resulting coefficients by
+$O(L^2)$, uniformly on deleting any primes.
+
+Stop the tent subdivision at ramp width at most $qL^2$.
+Its $O(\log(2+u))$ tents cost $O(YL^2\log(2+u))$ in total.
+The two end intervals cost $O(Y A L^2)$ in both the model and
+the arithmetic mass, by the first sum above and $\Delta_N\ll1$.
+Partial summation gives the denominator
+$\lambda\int_Y^{Y+H}s\,\ud s+O(YAL)\asymp YAH/q$.
+This proves the mean estimate. For sufficiently large $K$, the
+terms with $\Delta_N\ge2/45$ carry $\gg A H/q$ of the sum of
+$\SSS(N)$ in the class. The second estimate and Cauchy--Schwarz
+give $\gg H/q$ distinct integers, as claimed.
+\end{proof}
+
+\subsection{The frequency contribution at an individual even integer}
+
+Put $e(x)=\exp(2\pi i x)$, $L=\log Y$ and
+$Q=\lfloor\sqrt Y/L^4\rfloor$. On the unit circle remove the arcs
+$|\alpha-a/q|\le Q/(qY)$ at reduced fractions of denominator
+$q\le Q$, and denote the complement by $\mathfrak m$. For
+$1\le s\le2$ put
+\[
+ S_s(\alpha)=\sum_m\Lambda(m) f(m/(sY))e(m\alpha),\qquad
+ D_N=\int_{\mathfrak m} S_{N/Y}(\alpha)^2 e(-N\alpha)\,\ud\alpha .
+\]
+The symmetry $\alpha\mapsto-\alpha$ makes $D_N$ real. This is the
+fixed reflected test in the classical circle-method treatment of
+the Goldbach exceptional set \cite[Section~3]{BhowmikGrimmelt}.
+
+\begin{proposition}[A pointwise reduction for the reflected test]
+\label[proposition]{prop:single-test-minor}
+Assume Dirichlet GRH. Uniformly for even $N\in[Y,2Y]$,
+\[
+ N\SSS(N)\bigl(\Delta_N-4/45\bigr)=D_N+O(Y/L).
+\]
+Every $\alpha\in\mathfrak m$ has a reduced approximant $a/q$
+with $Q<q\le\lceil Y/Q\rceil$ and $|\alpha-a/q|\le Q/(qY)$
+on the circle. Moreover,
+\begin{equation}
+ \sum_{\substack{Y\le N\le2Y\\2\mid N}}|\Delta_N-4/45|^2
+      \ll \sqrt Y\,L^9 .
+ \label{eq:single-test-deviation}
+\end{equation}
+In particular at most $O(\sqrt Y\,L^9)$ of these moduli have
+$\Delta_N<2/45$. At any remaining candidate for failure of a
+distinct prime representation in the support of $f$, one must
+have $D_N=-(4/45)N\SSS(N)+O(Y/L)$.
+\end{proposition}
+
+\begin{proof}
+Fourier inversion gives $N\SSS(N)\Delta_N$ as the full-circle
+coefficient of $S_{N/Y}^2$ up to $O(L^2)$. Indeed $f$ is
+symmetric about $1/2$ and the only nonunit prime powers that can
+pair on this support are equal. For the disjoint removed arcs
+write $\beta=\alpha-a/q$, $v_s(\beta)=\int f(x/(sY))e(x\beta)\,\ud x$,
+$M=\mu(q)v_s(\beta)/\varphi(q)$ and $E=S_s(a/q+\beta)-M$.
+The interval estimates \cref{eq:arcintegrated,eq:arcmeansquare}
+apply to $f(x/(sY))$ by integrating its interval indicators of
+superlevel sets. More generally they hold, up to an absolute
+factor, for compactly supported weights on this range of bounded
+supremum and total variation, by integration against their
+derivative measures.
+
+Summing \cref{eq:arcintegrated} at bandwidth $Q/(qY)$ gives
+$\int_{\mathfrak m^c}|E|^2\ll Q^2L^4$. Plancherel on the real
+line and $\sum_{q\le Q}1/\varphi(q)\ll L$ give
+$\int_{\mathfrak m^c}|M|^2\ll YL$. The $L^1$ error in replacing
+$S_s^2$ by $M^2$ there is thus
+$O(\sqrt Y QL^{5/2}+Q^2L^4)=O(Y/L)$, independently of $s$.
+The complete coefficient of the main terms is
+$\SSS(N)\int f(x/(sY))f((N-x)/(sY))\,\ud x$. To complete the
+integrals and singular series, use \cref{eq:almosttails} with
+$P\asymp Y$, since $|v_s(\beta)|\ll\min(Y,|\beta|^{-1})$.
+The cost at each $N$ is $O_\epsilon(Y^{1+\epsilon}/Q)$:
+on a dyadic range $R<q\le2R$ use
+$\sum(q,N)\le2R\tau(N)$, $|c_q(N)|\le(q,N)$ and
+$1/\varphi(q)^2\ll_\epsilon q^{-2+\epsilon}$.
+Summing the ranges on either side of $Q$ gives the stated cost
+after adjusting $\epsilon$. At $s=N/Y$ the complete integral
+equals $4N/45$. This proves the pointwise formula. Dirichlet
+approximation with parameter $\lceil Y/Q\rceil$ gives the
+assertion about $\mathfrak m$.
+
+For the second moment, keep $s$ fixed first. Let $G_s$ equal
+$S_s^2$ on $\mathfrak m$ and $S_s^2-M^2$ on the removed arcs.
+On $\mathfrak m$ the approximant above has $Y|\beta|\le1$.
+By \cref{eq:arcmeansquare} and $q\le2\sqrt Y L^4$,
+$|S_s|\ll Y^{3/4}L^4$ there, including the main term
+$O(Y/\varphi(q))$ with $q>Q$. Parseval gives
+$\int_0^1|S_s|^2\ll YL$, hence
+$\int_{\mathfrak m}|S_s|^4\ll Y^{5/2}L^9$.
+
+On the arcs of denominator $q$, the pointwise bound for
+$|E|^2$ is $O(qY(1+Q/q)^2L^4)$, and its integral summed over
+the reduced numerators is $O(QL^4)$. Their product, summed over
+$q\le Q$, bounds $\int_{\mathfrak m^c}|E|^4$ by $O(YQ^3L^9)$.
+For $|ME|^2$, integrate first up to $|\beta|=1/Y$ and then over
+dyadic bands of increasing $Y|\beta|$. Using
+\cref{eq:arcintegrated} and the decay of $v_s$ gives
+$O(qY^2L^4/\varphi(q)^2)$ per denominator. Indeed the innermost
+band has $|v_s|\ll Y$ and integrated squared error $O(qL^4)$.
+The outer bands contribute a convergent geometric sum.
+Using $\sum_{q\le Q}q/\varphi(q)^2\ll L^3$ gives $O(Y^2L^7)$
+for all the mixed terms. Thus $\int |G_s|^2\ll Y^{5/2}L^9$.
+
+The derivative $\partial_s f(x/(sY))$ exists almost everywhere in
+$s$ and has uniformly bounded supremum and total variation in $x$.
+The fourth-moment estimates also apply to this weight. The mixed
+estimate allows either weight in either factor. Cauchy--Schwarz then bounds
+$\int|\partial_sG_s|^2$ by $O(Y^{5/2}L^9)$ as well. If $b_j(s)$
+is the $j$th Fourier coefficient of $G_s$, absolute continuity gives
+$\sup_s |b_j(s)|^2\le2|b_j(1)|^2+2\int_1^2|b'_j(s)|^2\,\ud s$.
+Bessel's inequality and integration in $s$ now control the sum
+of these squared suprema by $O(Y^{5/2}L^9)$. This permits taking
+$s=N/Y$ in each coefficient. The uniform completion error has
+squared sum $O_\epsilon(Y^{3+2\epsilon}/Q^2)$, which is smaller
+on taking $\epsilon<1/8$. Divide by $(N\SSS(N))^2\gg Y^2$
+to obtain \cref{eq:single-test-deviation}. The count of small
+margins follows by Chebyshev's inequality. If $r_N=0$,
+\cref{eq:single-goldbach-test} gives
+$N\SSS(N)\Delta_N\le H_N(\log N)^2=o(Y/L)$, proving the last claim.
+\end{proof}
+
+\begin{proposition}[Individual failures compatible with the distribution bounds]
+\label[proposition]{prop:single-test-obstruction}
+There exists a nonnegative weight $W(m)\in\{0,\Lambda(m),2\Lambda(m)\}$
+with the following properties. Write $b=W-\Lambda$. For $T\ge2$,
+\begin{align}
+ \sup_{\substack{J\subset[T,2T]\ {\rm interval}\\ \alpha\in\mathbb R}}
+ \left|\sum_{m\in J} b(m)e(m\alpha)\right|
+ &\ll\sqrt{T\log(2T)},\label{eq:single-test-perturb}\\
+ \sum_{r\bmod q}\int_T^{2T}
+ \left|\sum_{\substack{x<m\le x+h\\m\equiv r\bmod q}}b(m)\right|^2\,\ud x
+ &\ll Th\log(2T)\qquad(q\ge1,\ 1\le h\le T).
+ \label{eq:single-test-perturb-variance}
+\end{align}
+Nevertheless the arithmetic margin $\int f^2\,\ud\mu_N$ formed
+with $W$ in both coordinates is zero at every sufficiently large
+$N_j=2^{2^j}$. One may prescribe any finite initial segment on
+which $W=\Lambda$.
+\end{proposition}
+
+\begin{proof}
+Work first at $N=N_j$ and consider unordered pairs $\{m,N-m\}$
+in the open support of $f(\cdot/N)$ with $(m,N)=1$ and
+$\Lambda(m)\Lambda(N-m)>0$. They are disjoint pairs of distinct
+integers. There are $O(N/(\log N)^2)$ of them: the prime-pair
+sieve used in \cref{thm:disc} has $\SSS(N)=2C_2$ on powers of
+two, and pairs containing a proper power number
+$O(\sqrt N\log N)$. On each pair choose an independent uniform
+sign $\epsilon$. Multiply the weight at the smaller member by
+$1+\epsilon$ and at the larger by $1-\epsilon$. Each product is
+then zero. All weights outside these pairs keep their original
+values.
+
+Fix an interval $J$ and a frequency. The Fourier sum of the
+changes on this block is a sum of independent signs times
+complex numbers of modulus at most $2\log N$. The sum of their
+squared moduli is $O(N)$. The exponential moment inequality
+$\cosh v\le e^{v^2/2}$ applied to the real and imaginary parts
+bounds the probability that the modulus exceeds $t$ by
+$4\exp(-c_0t^2/N)$ for an absolute $c_0>0$. There are $O(N^2)$
+different interval restrictions and a grid of $O(N^3)$ frequencies
+of spacing at most $N^{-3}$ on the circle. A union bound with
+$t=C\sqrt{N\log N}$ for sufficiently large $C$ gives a choice
+of signs working for the entire grid and all intervals. The
+derivative of each Fourier sum in its frequency is $O(N^2\log N)$
+by the trivial bound on its coefficients, so the grid bound
+extends to the full circle.
+
+Use one such choice on each block, starting beyond the specified
+initial segment. For sufficiently large starting index the range
+$[T,3T]$ intersects at most one block, necessarily with $T\asymp N_j$.
+This proves \cref{eq:single-test-perturb}. To see the variance
+bound, write $B(\xi)=\sum_{T\le m\le3T}b(m)e(m\xi)$ and let
+$B_r$ denote its restriction to $m\equiv r\bmod q$. Finite
+Fourier orthogonality gives
+\[
+  \sum_{r\bmod q}|B_r(\xi)|^2
+     =q^{-1}\sum_{a\bmod q}|B(\xi+a/q)|^2\ll T\log(2T).
+\]
+Convolving each restricted measure with an interval of length $h$
+and applying real-line Plancherel costs a factor
+$\int_{\mathbb R}|\widehat{\mathbf1}_{[0,h]}(\xi)|^2\,\ud\xi=h$.
+Restricting the resulting integral to $[T,2T]$ proves
+\cref{eq:single-test-perturb-variance}.
+\end{proof}
+
+In particular, under Dirichlet GRH the modified weights satisfy
+the same orders of upper bounds in the short-interval variance
+and in \cref{eq:arcintegrated,eq:arcmeansquare}, with the original
+main terms. For the latter two estimates, \cref{eq:single-test-perturb}
+bounds the extra squared error summed over reduced numerators by
+$O(qT\log(2T))$ pointwise and $O(BqT\log(2T))$ on bandwidth $B$.
+Yet the reflected coefficient on $\mathfrak m$ for these weights
+attains $-(4/45)N_j\SSS(N_j)+O(N_j/\log N_j)$, by the major-arc
+calculation in \cref{prop:single-test-minor}. Thus these distribution
+bounds alone allow the full loss of the main term at isolated moduli.
+
+\subsection{The reflected correlation of two long M\"obius divisor sums}
+
+For $2\le R\le\sqrt N$ use the truncated divisor sum of
+Goldston and Y{\i}ld{\i}r{\i}m \cite{GoldstonYildirimDivisor},
+\[
+ \begin{aligned}
+ \Lambda_R(n)&=\sum_{d\mid n,\ d\le R}\mu(d)\log(R/d),\\
+ U_R(n)&=\Lambda(n)-\Lambda_R(n)
+       =-\sum_{d\mid n,\ d>R}\mu(d)\log(d/R)\quad(n>1).
+ \end{aligned}
+\]
+The last equality uses $\sum_{d\mid n}\mu(d)=0$. Thus the
+remainder retains the exact M\"obius signs of the prime weights.
+
+\begin{proposition}[Two long divisors in the single-test remainder]
+\label[proposition]{prop:single-test-long-divisors}
+Assume Dirichlet GRH. Write $F=f^2$, $c=4/45$ and $L=\log N$.
+For every sufficiently large even $N$ and $2\le R\le\sqrt N$,
+\[
+ N\SSS(N)(\Delta_N-c)=
+ \sum_{1<m<N-1} F(m/N) U_R(m)U_R(N-m)
+ +O_\epsilon\bigl(N^{1+\epsilon}/R+\sqrt N R L^2+R^2\bigr).
+\]
+At $R=\sqrt N/L^4$ the error is $O(N/L^2)$. The sum then runs
+over $ud+ve=N$ with $d,e>R$, $u,v\ll\sqrt N L^4$ and weight
+$F(ud/N)\mu(d)\mu(e)\log(d/R)\log(e/R)$. A lower bound
+$-(c-\eta)N\SSS(N)$ for this sum with fixed $\eta>0$ would imply
+a positive fixed-test margin at every modulus where it holds.
+\end{proposition}
+
+\begin{proof}
+Put $b_d=\mu(d)\log(R/d)$ for $d\le R$ and zero otherwise.
+The expansion $1_{d\mid m}=d^{-1}\sum_{q\mid d}c_q(m)$ gives
+$\Lambda_R(m)=\sum_{q\le R}a_q c_q(m)$, where
+$a_q=\sum_{q\mid d}b_d/d$. Set $a_q=0$ for $q>R$ and
+$b_q^*=\mu(q)/\varphi(q)$. We first compare the two correlations
+involving $\Lambda_R$ to their periodic means.
+
+For the mixed sum $\sum_m F(m/N)\Lambda(m)\Lambda_R(N-m)$,
+each divisor $d$ imposes $m\equiv N\bmod d$. Its weighted prime
+sum equals $cN\,1_{(N,d)=1}/\varphi(d)+O(\sqrt N L^2)$ by
+partial summation under GRH. In a nonunit class only powers
+of primes dividing $d$ can contribute, with total weight $O(L^2)$.
+The main term for each $d$ averages the divisor indicator with
+$m$ uniform on units modulo $d$. For $q\mid d$ those units reduce
+uniformly to units modulo $q$, on which $c_q(N-m)$ has average
+$b_q^*c_q(N)$ by its additive character expansion. Since
+$\sum_d|b_d|\le\sum_{d\le R}\log(R/d)\ll R$, the mixed sum equals
+\[
+ cN\sum_q a_q b_q^*c_q(N)+O(\sqrt N R L^2).
+\]
+Reflection gives the other mixed sum since $F(u)=F(1-u)$.
+For $\Lambda_R(m)\Lambda_R(N-m)$ the two divisor conditions
+give either no solution or one class modulo their least common
+multiple. Summing $F(m/N)$ on a class differs from its integral
+times the class density by $O(1)$, uniformly by bounded variation.
+The total error is $O(R^2)$. In the periodic mean, additive
+orthogonality pairs equal reduced frequencies in $c_q(m)c_{q'}(N-m)$,
+giving zero for $q\ne q'$ and $c_q(N)$ otherwise. The main term
+of this sum is therefore $cN\sum_q a_q^2c_q(N)$.
+
+It remains to control
+$\sum_q (b_q^*-a_q)^2c_q(N)$, since
+$\sum_q(b_q^*)^2 c_q(N)=\SSS(N)$.
+Both coefficients vanish for nonsquarefree $q$. For squarefree
+$q\le R$ put $Z=R/q$. Then
+\[
+ a_q=\frac{\mu(q)}q\sum_{\substack{k\le Z\\(k,q)=1}}
+                  \frac{\mu(k)}k\log(Z/k).
+\]
+Without the coprimality condition the sum is
+$1+O_\delta(Z^{-1/2+\delta})$ for each $0<\delta<1/2$.
+Indeed the RH bound $\sum_{k\le t}\mu(k)\ll_\delta t^{1/2+\delta}$
+\cite{SoundMobius} controls the two tails by partial summation,
+using a smaller exponent to absorb logarithms. The limiting
+sums $\sum\mu(k)/k=0$ and $\sum-\mu(k)\log(k)/k=1$ follow from
+the value and derivative of $1/\zeta(s)$ at $1$.
+To remove the primes dividing $q$, convolve $\mu$ with the
+indicator of integers $\ell$ supported on these primes. This
+sums the unrestricted estimate at $Z/\ell$ with weight $1/\ell$.
+The main series is $\prod_{p\mid q}(1-1/p)^{-1}=q/\varphi(q)$.
+Both its tail and the summed errors are
+$O_\delta(Z^{-1/2+\delta}\prod_{p\mid q}(1-p^{-1/2-\delta})^{-1})$.
+The product is $O_\delta(q^\delta)$ by treating finitely many
+small primes separately. It follows that
+\[
+ |b_q^*-a_q|\ll_\delta q^{-1+\delta}(q/R)^{1/2-\delta}.
+\]
+On $q\le R$ the squared difference times $|c_q(N)|$ sums to
+$\ll_\delta R^{-1+2\delta}\sum_{q\le R}(q,N)/q
+\ll R^{-1+2\delta}\tau(N)\log(2R)$.
+On $q>R$ the dyadic tail estimate in the proof of
+\cref{prop:single-test-minor} applies. Taking $\delta$ small gives
+$O_\epsilon(N^\epsilon/R)$ for the full coefficient error.
+Finally expand $U_R(m)U_R(N-m)$ and use the $O(L^2)$ unit-condition
+error for the original $\Lambda$ product. Substitution proves
+the formula with all $m$ in the residual sum.
+\end{proof}
+
+\begin{proposition}[Coprime complementary factors at every even modulus]
+\label[proposition]{prop:single-test-coprime-tail}
+In \cref{prop:single-test-long-divisors} one can restrict the sum
+to $(m,N)=1$ with error
+\[
+ O_\epsilon\bigl(N^{1+\epsilon}/R+\sqrt N R L^2+2^{\omega(N)}R^2\bigr).
+\]
+In particular $R=\sqrt N/(L^4\,2^{\omega(N)/2})=N^{1/2-o(1)}$
+gives error $O(N/L^2)$ for every sufficiently large even $N$.
+In the resulting sum over $ud+ve=N$, every factor on the left
+is a unit modulo $N$ and $(ud,ve)=1$. In particular, fixing $u,v$
+restricts $d$ to the single class $N\overline u\bmod v$ when $v>1$.
+\end{proposition}
+
+\begin{proof}
+Set $\kappa=\varphi(N)/N$ and retain only divisors $(d,N)=1$
+in the short sums. This is exact on the unit samples. Write
+$a'_q=\sum_{q\mid d,\,(d,N)=1} b_d/d$. Only $(q,N)=1$ occur.
+For a mixed sum we may extend the prime coordinate to all $m$:
+the extra prime powers have a base dividing $N$, with $O(\omega(N))$
+samples on the balanced support. The other short sum has absolute
+weight at most $\tau(N-m)L$, giving cost $O_\epsilon(N^\epsilon)$.
+The mixed mean in the preceding proof now uses $a'_q$.
+
+For the two short sums insert
+$1_{(m,N)=1}=\sum_{s\mid(m,N)}\mu(s)$ in the CRT count.
+The period of the two divisor conditions is coprime to $N$.
+The restriction multiplies its density by $\kappa$ and costs
+$O(2^{\omega(N)})$ per divisor pair in the bounded-variation
+estimate. Thus the two short sums have main term
+$cN\kappa\sum_{(q,N)=1}(a'_q)^2c_q(N)$ with error
+$O(2^{\omega(N)}R^2)$.
+
+For $(q,N)=1$ the limiting coefficient for $a'_q$ is
+$b_q^*/\kappa$. Indeed the coprimality restriction on $k$
+in the preceding proof now removes all primes of $qN$.
+The coefficient error for $q\le R$ is at most
+$O_\delta(q^{-1}(qN)^\delta(q/R)^{1/2-\delta})$.
+The Euler product gives
+\[
+ \kappa^{-1}\sum_{(q,N)=1}(b_q^*)^2 c_q(N)=\SSS(N):
+\]
+the primes dividing $N$ contribute $p/(p-1)$ to the singular
+series, including the factor two. Completing the square leaves
+$\kappa\sum_{(q,N)=1}(a'_q-b_q^*/\kappa)^2c_q(N)$.
+The same dyadic estimates, with $\kappa^{-1}\ll_\delta N^\delta$
+and sufficiently small $\delta$, bound it by $O_\epsilon(N^\epsilon/R)$.
+This proves the error estimate. The stated choice of $R$ uses
+$2^{\omega(N)}\le\tau(N)=N^{o(1)}$. Finally $(m,N)=1$ gives
+$(m,N-m)=1$, hence the coprimalities in the claim.
+\end{proof}
+
+\begin{proposition}[Uniform square-root cutoff on coprime summands]
+\label[proposition]{prop:single-test-uniform-coprime}
+In \cref{prop:single-test-coprime-tail} the error is
+\[
+ O_\epsilon\bigl(N^{1+\epsilon}/R+\sqrt N R L^2
+                        +N^\epsilon R^{39/20}\bigr).
+\]
+Thus $R=\sqrt N/L^4$ gives $O(N/L^2)$ with $(ud,ve)=1$ for
+every sufficiently large even $N$.
+\end{proposition}
+
+\begin{proof}
+We estimate the discrepancy for the two short sums jointly in
+their divisors. Write $d\in[D/2,D]$, $e\in[E/2,E]$, and allow
+separate coefficients $\alpha_d,\beta_e$ of modulus at most one,
+supported on units modulo $N$. Define
+\[
+ \mathcal K(D,E)=
+ (DE)^{17/20}(D+E)^{1/4}+(DE)^{7/8}(D+E)^{1/8}.
+\]
+For each $s\mid N$ put $X=N/s$. On $s\mid m$ the conditions
+$d\mid m$, $e\mid N-m$ become $d\mid m/s$, $e\mid X-m/s$.
+They require $(d,e)=1$, since any common divisor divides $N$
+and $d,e$ are units. For a compatible pair their weighted count is
+\begin{equation}
+ \sum_{k\equiv X\bar d\bmod e} F(dk/X)
+   =\frac X{de}\sum_{j\in\mathbb Z}
+        \widehat F(jX/(de))\,e(jX\bar d/e),
+ \label{eq:single-test-physical-poisson}
+\end{equation}
+where $\widehat F(y)=\int F(x)e(-xy)\,\ud x$ and $e(t)=\exp(2\pi i t)$.
+The zero frequency gives $cX/(de)$. We claim the sum of the
+other frequencies, with the indicated coefficients and summed over
+$d,e$, is $O_\epsilon((DE)^\epsilon\mathcal K(D,E))$, uniformly
+in $X$. If either scale is bounded, the bounded-variation
+progression error $O(1)$ for each pair suffices since then
+$DE\ll\mathcal K(D,E)$.
+
+For $j\ne0$ use Bettin and Chandee's trilinear estimate with its
+third variable fixed at one and multiplier $jX$
+\cite[Theorem~1]{BettinChandeeFractions}. With $t=X/(DE)$ it bounds
+the bilinear sum of the phase in \cref{eq:single-test-physical-poisson}
+by $O_\epsilon((DE)^\epsilon(1+|j|t)^{1/2}\mathcal K(D,E))$.
+Here the two $\ell^2$ norms contribute $(DE)^{1/2}$. The estimate
+is uniform when either coefficient is twisted by an imaginary power.
+
+To separate the amplitude, let $v=\log(de/(DE))$ and multiply
+$g(v)=t e^{-v}\widehat F(jt e^{-v})$ by a fixed smooth compactly
+supported function equal to one on $[-\log4,0]$. Both
+$\widehat F(y)$ and $\widehat F'(y)$ are $O((1+|y|)^{-3})$:
+$F$ and $xF(x)$ are piecewise polynomials with a double zero at
+each boundary, and their second derivatives have bounded variation.
+Consequently $\|g\|_{H^1}\ll t(1+|j|t)^{-2}$ for the cut-off
+function. Cauchy--Schwarz and Plancherel give the same bound for
+the $L^1$ norm of its Fourier transform. Fourier inversion in $v$
+separates the coefficients by imaginary powers. Since
+$\sum_{j\ne0} t(1+|j|t)^{-3/2}\ll1$ for every $t>0$, the
+claimed discrepancy bound follows.
+
+In the proof of \cref{prop:single-test-coprime-tail}, apply this
+estimate to each term $\mu(s)$ in the unit restriction with the
+short divisor coefficients divided by $L$. The zero frequencies
+give exactly the periodic main terms used there. Summation over
+the dyadic boxes and $s\mid N$ costs at most $N^\epsilon$ after
+adjusting $\epsilon$. As $D,E\ll R$, we have
+$\mathcal K(D,E)\ll R^{39/20}$. This replaces the term
+$2^{\omega(N)}R^2$ in the earlier proof. At the asserted $R$ the
+new term saves a fixed power of $N$, and the mixed sum costs
+$O(N/L^2)$.
+\end{proof}
+
+\begin{proposition}[Deleting a range from the two long divisors]
+\label[proposition]{prop:single-test-delete-products}
+Assume Dirichlet GRH, take $R=\sqrt N/L^4$, and fix $0<\eta<1/100$.
+In the coprime residual sum of \cref{prop:single-test-uniform-coprime}
+one may retain only the solutions $ud+ve=N$ with
+\[
+ \max(d,e)>T=N^{20/39-\eta},\qquad de>Z=N^{45/44-\eta}.
+\]
+The deleted contribution is $O_\eta(N^{1-\eta/2})$ at each even
+$N$. In particular the retained complementary factors satisfy
+$\min(u,v)<N^{19/39+\eta}$ and $uv<N^{43/44+\eta}$. The total
+error in the formula for the fixed test is still $O_\eta(N/L^2)$.
+\end{proposition}
+
+\begin{proof}
+The deleted divisors satisfy $d,e>R$ and lie in the union
+of the square $\max(d,e)\le T$ and the region $de\le Z$.
+On the unit samples we can restrict $d,e$ to units modulo $N$.
+After inclusion--exclusion on $(m,N)=1$, use
+\cref{eq:single-test-physical-poisson} on these two regions and
+their intersection. The coefficients are now $\mu(d)\log(d/R)$
+and $\mu(e)\log(e/R)$.
+
+For the nonzero frequencies the square has
+$\mathcal K(D,E)\ll T^{39/20}$. For any box meeting the product
+region, $DE\le4Z$ and $\max(D,E)\ll Z/R$. Therefore
+\[
+ \mathcal K(D,E)\ll Z^{11/10}R^{-1/4}+ZR^{-1/8}.
+\]
+The sharp product condition can be imposed at a cost $O(\log N)$
+in this estimate. Indeed take the boundary at $\lfloor Z\rfloor+1/2$.
+In $\log(de/(DE))$ every integer product in a crossing box is
+at distance $\gg 1/Z$ from this boundary. Convolve the interval
+indicator on a fixed larger log interval with a smooth unit-mass
+kernel of radius $N^{-3}$, placing its other endpoint outside the
+box. The values at the integer products are exact. The transform
+is $O(\min(1,1/|\xi|,N^3/|\xi|^2))$ and has $L^1$ norm $O(L)$.
+Its characters again twist the separate divisor coefficients.
+This also applies to boxes clipped by the square. Including the
+coefficient sizes, divisor count and dyadic summation costs at most
+$O_\epsilon(N^\epsilon)$. The first exponents at $T$ and $Z$ are
+$(39/20)(20/39-\eta)$ and $(11/10)(45/44-\eta)-1/8$.
+The second product term has exponent $45/44-\eta-1/16$ up to
+logarithms. All three bounds save at least $\eta/2$ on taking
+$\epsilon$ sufficiently small.
+
+On summing over $s$ the zero frequencies contribute
+\[
+ c\varphi(N)\sum_{\substack{(d,e)\ \mathrm{deleted}\\(de,N)=(d,e)=1}}
+         \frac{\mu(d)\mu(e)}{de}\log(d/R)\log(e/R).
+\]
+For fixed $d$ the admissible $e$
+form an interval above $R$ before the coprimality restriction.
+Under RH,
+\[
+ \sum_{\substack{k\le x\\(k,b)=1}}\mu(k)
+       \ll_\epsilon b^\epsilon x^{1/2+\epsilon}.
+\]
+This follows from the Mertens bound by the convolution over
+integers supported on primes dividing $b$ used in
+\cref{prop:single-test-long-divisors}. Partial summation with
+$b=dN$ bounds the inner sum of $\mu(e)\log(e/R)/e$ by
+$O_\epsilon(N^\epsilon R^{-1/2})$, uniformly in its endpoints.
+The absolute outer sum of $\log(d/R)/d$ costs $O(L^2)$.
+The full zero frequency is thus $O_\epsilon(N^{3/4+\epsilon})$.
+This proves the deletion estimate. Finally $u<N/d$, $v<N/e$
+give the stated complementary ranges.
+\end{proof}
+
+\begin{proposition}[Removing individually factorable divisors]
+\label[proposition]{prop:single-test-factorable}
+In the retained sum of \cref{prop:single-test-delete-products},
+put $\delta=1/1200$ and
+\[
+ Q_2=N^{1/25},\qquad Q_3=N^{1/14},\qquad
+ Q_1=(N/3)^{1/2+\delta}/(Q_2Q_3).
+\]
+Let $\mathcal D$ consist of the integers $d>R$ admitting at least
+one factorization $d=q_1q_2q_3$ with $q_i\le Q_i$. We may require
+both $d\notin\mathcal D$ and $e\notin\mathcal D$, at cost
+$O_{A,\eta}(N L^{-A})$ for every fixed $A>0$. In particular,
+any surviving divisor of size at most $N^{1/2+\delta/2}$ has a
+prime factor exceeding $N^{\delta/5}$.
+\end{proposition}
+
+\begin{proof}
+First select $d\in\mathcal D$, leaving the second long divisor
+unrestricted. Put $g_d=\mu(d)\log(d/R)$ on the selected divisors
+coprime to $N$ and zero elsewhere. With $G(m)=\sum_{d\mid m}g_d$,
+the sign in $U_R$ gives the selected contribution as
+\[
+ -\sum_{(m,N)=1}F(m/N)G(m)U_R(N-m).
+\]
+We compare its prime and short-divisor parts.
+
+For $5N/12\le x\le7N/12$, take the first parameter in Maynard's
+three-factor estimate \cite[Theorem~1.2]{MaynardIII} equal to
+$x^{1/2+\delta}/(Q_2Q_3)\ge Q_1$. The exponents of $Q_2,Q_3$
+relative to $x$ tend uniformly to $1/25,1/14$. These lie strictly
+in the required ranges
+\[
+ 40\delta<b<1/20-7\delta,\qquad
+ 1/10+12\delta-b<c'<1/10-4\delta-3b/5.
+\]
+For each $q_1,q_2$ choose the outer residue $N\bmod q_1q_2$,
+and for $q_3$ the compatible residue $N\bmod q_1q_2q_3$,
+keeping only factors coprime to $N$. The theorem thus bounds
+\[
+ \sum_{\substack{d\in\mathcal D\\(d,N)=1}}
+       \bigl|\pi(x;d,N)-\pi(x)/\varphi(d)\bigr|
+ \ll_B N L^{-B}
+\]
+for arbitrary fixed $B$. Each eligible modulus needs only one of
+its factorizations in this absolute bound. Partial summation with
+$F(1-x/N)\log x$ and $|g_d|\le L$ preserves arbitrary logarithmic
+saving. The ordinary prime number theorem under RH gives the
+integrated principal term $cN$ before multiplication by
+$\sum_d g_d/\varphi(d)$, whose absolute value is $O(L^3)$.
+In restoring proper powers, each sampled integer $n$ occurs for
+at most $\tau(N-n)$ divisors, giving total cost $O_\epsilon(N^{1/2+\epsilon})$.
+The extra nonunits in the prime coordinate cost $O_\epsilon(N^\epsilon)$
+as in \cref{prop:single-test-coprime-tail}. Thus the prime part
+equals $cN\sum_d g_d/\varphi(d)+O_A(NL^{-A})$.
+
+For the short-divisor part write $b_e=\mu(e)\log(R/e)$ on $e\le R$.
+On units only $(e,N)=1$ occur. The zero-frequency calculation in
+\cref{prop:single-test-uniform-coprime} gives
+\[
+ c\varphi(N)\sum_d\frac{g_d}{d}
+        \sum_{\substack{e\le R\\(e,dN)=1}}\frac{b_e}{e}.
+\]
+The inner sum is $dN/\varphi(dN)+O_\epsilon(N^\epsilon R^{-1/2})$
+by the restricted logarithmic M\"obius estimate of
+\cref{prop:single-test-long-divisors}. Since $(d,N)=1$, the
+display has the same main term as the prime part. The discrepancy
+is also acceptable: both divisor scales are at most a constant
+times $N^{1/2+\delta}$, so the bound for the nonzero frequencies
+is $O_\epsilon(N^{(1/2+\delta)39/20+\epsilon})$, with exponent
+strictly below one for small $\epsilon$. This proves the strip
+estimate before the geometric deletions.
+
+Intersecting this strip with the region deleted in
+\cref{prop:single-test-delete-products} still gives its power
+saving: insert $1_{\mathcal D}(d)$ in the first coefficient.
+The nonzero-frequency bound allows arbitrary coefficients there,
+and the M\"obius sum used for the zero frequency is over $e$.
+Hence the strip estimate holds on the retained region. Reflection
+gives the estimate with $e\in\mathcal D$. These two strips cannot
+intersect there since $Q_1Q_2Q_3<T$.
+
+Finally suppose $R<d\le N^{1/2+\delta/2}$ and every prime factor
+is at most $N^{\delta/5}$. Extract prime factors successively to
+make a product in $(Q_2/N^{\delta/5},Q_2]$, then a disjoint one
+in $(Q_3/N^{\delta/5},Q_3]$. There are enough factors at each
+step since $R\gg Q_2Q_3$. The remaining factor is at most
+$N^{1/2+9\delta/10}/(Q_2Q_3)<Q_1$ for large $N$. This puts $d$
+in $\mathcal D$, proving the assertion.
 \end{proof}
 
 \section{Certification on the balanced window}
@@ -14072,6 +14890,98 @@ pair sum. Inserting their signs and $\mu(n)=-1$
 gives $-3\log n$.
 \end{proof}
 
+\begin{proposition}[The divisor cutoff at the square root of each value]
+\label[proposition]{prop:criticalgridmovingroot}
+Under the hypotheses of \cref{prop:criticalgridrough-endpoint}, both
+of its normalized mean-square conclusions hold with $d>\sqrt n$ in
+place of $d>\sqrt{2V}$. In the rows for two to four prime factors,
+write the factors in increasing order as $a,b,c,e$, stopping at the last factor.
+On the squarefree support $P^-(n)>w$, the resulting divisor weight is
+\[
+\begin{array}{c|l}
+\text{number of prime factors} & \text{weight}\\ \hline
+1 & 0\\
+2 & -\log a\\
+3 & \mathbf 1_{c<ab}\log n\\
+4 & \log\min\{a^2,abc/e\}\\
+5 & -3\log n .
+\end{array}
+\]
+In particular the three-prime part needs only triples whose largest
+prime is smaller than the product of the other two.
+\end{proposition}
+
+\begin{proof}
+First fix $21/64\le\theta<1/3$ and put $L=\log Y$. For any fixed
+$J_0>0$, the replacement of $B_N^{\rm p}(I,J)$ by the count with
+screen $s_{Y^\theta}$ and a constant cutoff $d>D$ has squared
+error $O(Y^3L^{-J_0})$ uniformly for $\sqrt V\le D\le\sqrt{2V}$.
+Indeed this interval lies in
+$[Y^{1-1/32},Y^{1+1/32}]$ for large $Y$, so
+\cref{thm:criticalgridbalancedmobius,prop:criticalgridbalancedmobius}
+give the replacement with $s_z$. The proof of
+\cref{thm:criticalgridrough-tail} applies down to $\sqrt V$:
+rounding the divisor condition in
+\cref{eq:criticalgridrough-tail-split} costs
+$O(V(\Delta+D^{-1}))$ affected integers, and the resulting long
+coefficient has the same divisor bound for every $D$. The
+dispersion ranges depend on the extracted prime and $V$ alone.
+
+Partition $J\subset[V,2V]$ into $O(L^H)$ disjoint intervals of
+length at most $VL^{-H}$, with $H$ fixed below. On each interval
+of upper endpoint $v$ use $D=\sqrt v$. The prime counts add over
+the partition, with disjoint endpoint conventions. The triangle
+inequality in $\ell^2(N)$ costs at most $O(L^H)$ times the
+single-interval error norm. We may choose its logarithmic saving
+after fixing $H$.
+
+Switching these cutoffs to $\sqrt n$ affects only integers
+$n=dk$ with $\sqrt n<d\le\sqrt v$. Hence $d\asymp\sqrt V$ and
+$0<d-k=(d^2-n)/d\ll\sqrt V L^{-H}$. Counting the possible
+$(d,k)$ shows that the union $\mathcal A$ of affected integers
+has size $O(VL^{-H}+\sqrt V)$ over the entire partition.
+At a sampled integer the absolute change is at most $\tau(n)L$
+up to an absolute constant. For each modulus the total sampling
+weight $\sum_{p,b,\sigma}\log p$ on this range is $O(XB)=O(Y)$.
+Weighted Cauchy--Schwarz and the bound $\tau(n-\sigma p)$ for
+the number of possible moduli give the squared error bound
+\[
+ \ll YL^2\sum_{p\in I}\log p\sum_{\sigma=\pm1}
+       \sum_{n\in\mathcal A}\tau(n)^2\tau(n-\sigma p)
+ \ll YXV (|\mathcal A|/V)^{1/2} L^{C_0}
+\]
+for an absolute $C_0$. The last inequality follows by
+Cauchy--Schwarz on $\mathcal A$ and the divisor moments on
+$[1,3V]$, uniformly in the shift $p$. Since $XV\asymp Y^2$,
+taking $H$ sufficiently large gives $O(Y^3L^{-J_0})$.
+
+We can now pass to $s_w$ with this moving cutoff. In the screen
+comparison in \cref{prop:criticalgridrough-endpoint}, the deleted
+squarefree integers have at most six prime factors. The absolute
+divisor weight is therefore $O(L)$ for either cutoff. The same
+one-class sieve bounds the normalized change by
+$O_C(1/3-\theta+1/L)$ pointwise and uniformly over the tests.
+For fixed $\theta$, summing the previous squared errors over
+$O(\log\log Y)$ normalized tests costs $o(Y)$. Taking the upper
+limit and then sending $\theta$ to $1/3$ proves the assertion
+also for the prefix maximum.
+
+Finally, the new weight is
+$\mu(n)\sum_{m\mid n,\,m<\sqrt n}\mu(m)\log m$.
+For $n=ab$ only $a$ contributes. For $n=abc$ with $c<ab$ the
+three singletons contribute, and with $c>ab$ the contributing
+divisors are $a,b,ab$, whose signed logarithms sum to zero.
+Equality is excluded by unique factorization.
+For four primes every triple exceeds $w^3\ge\sqrt n$, so all
+singletons contribute. From each complementary pair of
+two-prime divisors precisely the smaller one occurs, giving
+$ab,ac,\min(ae,bc)$. Their product divided by $n$ is
+$\min(a^2,abc/e)$. For five primes every pair has a complementary
+triple above $\sqrt n$. Counting the singleton and pair
+logarithms gives $-3\log n$ as before. The term $m=1$ has weight
+zero throughout.
+\end{proof}
+
 \clearpage
 \section{Conditional bounds from uniform prime-pair discrepancies}
 \label{sec:pairconditional}
@@ -14315,6 +15225,9 @@ divisors with one or two prime factors.
 \Cref{prop:criticalgridrough-endpoint} lowers the maximum
 number of prime factors from six to five in the density
 criterion.
+\Cref{prop:criticalgridmovingroot} evaluates the remaining weights
+at the cutoff $d>\sqrt n$ and removes the three-prime values
+with largest prime exceeding the product of the other two.
 \Cref{prop:criticalgridarcsharpness} shows that a power saving
 for arbitrary arc functions cannot follow from their size,
 their energy, and the conductor cutoffs alone.
@@ -14772,6 +15685,32 @@ in short intervals},
 \newblock in \emph{Topics in Number Theory}, Colloq. Math. Soc.
 J\'anos Bolyai \textbf{13}, North-Holland, Amsterdam, 1976,
 267--280.
+
+\bibitem{ChirreHagen}
+A.~Chirre and M.~V.~Hagen,
+\newblock \emph{On Goldbach numbers in short intervals},
+\newblock \url{https://arxiv.org/abs/2512.23534}.
+
+\bibitem{BhowmikGrimmelt}
+G.~Bhowmik and L.~Grimmelt,
+\newblock \emph{The exceptional set of the Goldbach problem},
+\newblock \url{https://arxiv.org/abs/2607.27282}.
+
+\bibitem{GoldstonYildirimDivisor}
+D.~A.~Goldston and C.~Y.~Y{\i}ld{\i}r{\i}m,
+\newblock \emph{Higher correlations of divisor sums related to primes I:
+triple correlations},
+\newblock \url{https://arxiv.org/abs/math/0111212}.
+
+\bibitem{BettinChandeeFractions}
+S.~Bettin and V.~Chandee,
+\newblock \emph{Trilinear forms with Kloosterman fractions},
+\newblock \url{https://arxiv.org/abs/1502.00769}.
+
+\bibitem{SoundMobius}
+K.~Soundararajan,
+\newblock \emph{Partial sums of the M\"obius function},
+\newblock \url{https://arxiv.org/abs/0705.0723}.
 
 \bibitem{GoldstonYildirimShort}
 D.~A. Goldston and C.~Y. Y{\i}ld{\i}r{\i}m,
