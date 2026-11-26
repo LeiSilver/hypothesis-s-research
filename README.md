@@ -4,6 +4,7 @@ This repository contains the English research manuscript and the code and data f
 
 - [Manuscript (PDF)](output/pdf/hypothesis_s_paper.pdf)
 - [LaTeX source](output/pdf/hypothesis_s_paper.tex)
+- [Lean verification of the finite prefix estimate](formalization/PrefixPersistence.lean)
 - [Lean verification of the centered product collar](formalization/CenteredProduct.lean)
 - [Lean verification of the finite Euler-factor residue calculation](formalization/EulerOrthogonality.lean)
 - [Lean verification of the divisor-grid cutoff and endpoints](formalization/DivisorGrid.lean)
@@ -19,6 +20,8 @@ This repository contains the English research manuscript and the code and data f
 - [Lean verification of the signed progression rows](formalization/CriticalArithmetic.lean)
 
 ## Research checkpoint · 26 November 2026
+
+Theorem 13.4 gives an unconditional mean-square estimate for each bounded smaller input range, averaged over all even moduli. Up to $xy\le C_0N^2(\log Y)^B$ for $N\in[Y,2Y]$, the average squared normalized norm is $O((\log Y)^{B-2+\varepsilon})$. The same estimate holds for the progression correction to the identical zero labels. The proof converts the first-moment progression estimate of Bombieri, Friedlander and Iwaniec into a maximal estimate for the signed prefixes.
 
 Theorem 9.4 approximates the critical product form on $x\le A\le N/8$ by sampling the larger test at $bN$ and keeping the signed weight $\Lambda(bN+n)-\Lambda(bN-n)$. The normalized operator error is $O_C(A/N+N^{-c})$ through $xy\le CN^2$. The larger values can be restricted to primes. Decay through every fixed critical cap is equivalent to decay of the individual macroscopic line discrepancies together with a limit of these centered norms on separated inputs.
 
@@ -58,6 +61,7 @@ With Elan installed, run the Lean check from the repository root.
 
 ```sh
 elan toolchain install leanprover/lean4:v4.35.0
+elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/PrefixPersistence.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/CenteredProduct.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/EulerOrthogonality.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/DivisorGrid.lean

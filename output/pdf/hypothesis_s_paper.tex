@@ -197,6 +197,9 @@ and a finite set of opposite-residue progression sums.
 \Cref{thm:criticalprofiles} bounds those sums near the square
 of the modulus using equidistribution in progressions with
 factored moduli.
+\Cref{thm:fixedrowmeansquare} gives a quantitative mean-square
+estimate for bounded smaller inputs over all even moduli,
+including the progression correction for identical zero labels.
 \Cref{thm:criticalpowers} proves decay in density for the
 entire proper-power contribution through a fixed critical
 product cap and identifies the fixed rows needed for decay
@@ -6959,6 +6962,212 @@ summing over $\mathcal F(Y)$. Taking $H>A+D+2$ makes the
 lower cutoff negligible in the claimed mean square. This
 proves \cref{eq:productfactored}.
 
+\subsection{A quantitative mean-square estimate for fixed residues}
+
+For any fixed positive integer $n$, use the right side of
+\cref{eq:primepowerrow} to define $r_{N,n}(C)$, with the same
+convention when $(n,N)>1$. Let $s_N(C)$ be the norm of
+$\mathcal P_N/\SSS(N)$ from \cref{eq:samelabelcorrection} on
+tests on the positive log axis whose two supports have all
+log differences of absolute value at most $\log(CN^2)$.
+
+\begin{theorem}[Fixed-residue cancellation near the critical product]
+\label{thm:fixedrowmeansquare}
+Fix $A\ge2$, $C_0\ge1$, $B\ge0$, $n\ge1$ and $\varepsilon>0$.
+Write $\lambda=\log Y$. Uniformly for choices of
+$1\le C_N\le C_0\lambda^B$ at each modulus in $[Y,2Y]$,
+\begin{align}
+ \sum_{\substack{Y\le N\le2Y\\N\ {\rm even}}}
+     \bigl(R_{N,C_N}(A)^2+s_N(C_N)^2\bigr)
+       &\ll_{A,C_0,B,\varepsilon} Y\lambda^{B-2+\varepsilon},
+ \label{eq:fixedrowmeansquare}
+ \\
+ \sum_{\substack{Y\le N\le2Y\\N\ {\rm even}}}r_{N,n}(C_N)^2
+       &\ll_{C_0,B,n,\varepsilon} Y\lambda^{2B-2+\varepsilon}.
+ \label{eq:fixedrowprefixmeansquare}
+\end{align}
+The same estimate for $R_{N,C_N}(A)$ holds for the original
+critical form restricted to $x\le A$, and for the centered
+form with the larger values restricted to primes.
+There is also an increasing cutoff $A(Y)\to\infty$ for which
+the estimate at $B=0$ for $R_{N,C_N}(A(Y))$ holds for each
+fixed $C_0,\varepsilon$. These are unconditional bounds
+for the physical forms and the progression correction.
+\end{theorem}
+
+\begin{proof}
+Let $P$ range over the dyadic scales
+$Y/4\le P\le 16C_0Y^2\lambda^B$. Put $P_*=Y^2\lambda^{-6}$.
+For any of the finitely many residues used in the theorem,
+including $1$, let
+\[
+ D_{N,n,P}(v)=\frac{N}{P\SSS(N)}
+       \bigl(\psi(v;N,n)-\psi(v;N,-n)\bigr)
+\]
+when $(n,N)=1$, and set it to zero otherwise.
+Here $\psi(v;N,a)$ sums $\Lambda(m)$ up to $v$ in the class
+$a$ modulo $N$. For $P\ge P_*$ and $P/4\le v\le4P$ the
+absolute first-moment theorem of Bombieri, Friedlander
+and Iwaniec~\cite{BFI1987} gives
+\begin{equation}
+ \sum_{\substack{Y\le N\le2Y\\N\ {\rm even}}}|D_{N,n,P}(v)|
+ \ll_{C_0,B,n,\varepsilon}Y\lambda^{-2+\varepsilon}.
+ \label{eq:fixedrowfirstmoment}
+\end{equation}
+Indeed, for fixed $a\ne0$, their sum of
+$|\psi(v;q,a)-v/\varphi(q)|$ on $Q\le q<2Q$, restricted
+to $(q,a)=1$, is
+$O_a(v(\log h/\log v)^2(\log\log v)^{B_0})$
+for $3\le h\le v$ and $Q^2\le vh$, with an absolute
+$B_0$. Apply this with $a=n,-n$, $Q=Y$ and
+$h=\max(3,4Y^2/v)$. The same choice of $h$ allows
+$Q=2Y$ to cover the endpoint if needed. Here
+$\log h=O(\log\lambda)$ and $\log v\asymp\lambda$.
+The two common terms cancel, and multiplication by
+$N/(P\SSS(N))\ll Y/P$ gives
+\cref{eq:fixedrowfirstmoment}.
+
+Write $m_{N,n}(P)=\sup_{P/2\le v\le2P}|D_{N,n,P}(v)|$.
+For $P\ge P_*$ there is a uniform short-interval bound
+\begin{equation}
+ \bigl|D_{N,n,P}(v)-D_{N,n,P}(w)\bigr|
+        \ll_{C_0,B} |v-w|/P+Y^{-1/10},
+       \qquad P/4\le v,w\le4P .
+ \label{eq:fixedrowmoduluscontinuity}
+\end{equation}
+Pad the progression interval to physical length
+$\max(|v-w|,PY^{-1/10})$. Its parameter interval in a
+given class has length $\gg PY^{-1/10}/Y$.
+The one-class sieve from \cref{sec:subcritical} bounds
+the prime weight by a constant times the padded length
+divided by $\varphi(N)$. The logarithms of the parameter
+length and of the prime values are comparable.
+In either unit class the proper prime powers up to
+$64C_0Y^2\lambda^B$ have total weight $O_{C_0,B}(Y^{1/20})$.
+For finitely many fixed exponents use the root bound
+from \cref{sec:subcritical}, with exponent $1/100$ in
+the upper bound for the root count. Their bases cover
+$O_{C_0,B}(1+\lambda^{B/2})$ residue periods. For the larger exponents
+the unrestricted base count gives the bound on choosing
+the fixed exponent threshold large enough.
+This mass is absorbed by the sieve estimate at the
+padded length. Now $\SSS(N)\asymp N/\varphi(N)$ proves
+\cref{eq:fixedrowmoduluscontinuity}.
+
+The whole-prefix sieve bound gives $m_{N,n}(P)\ll_{C_0,B}1$
+for $P>Y^{11/10}$, even if $P<P_*$. For $P\le Y^{11/10}$
+use $O(P/N+1)$ candidate integers in either class to
+obtain $m_{N,n}(P)\ll_{C_0,B}\lambda$.
+In the first bound, sieve on the progression parameter
+interval of length $\asymp P/N$ and remove the primes at
+or below its sifting level by the trivial count. The
+proper-power estimate above applies there as well.
+
+For $P\ge P_*$, if $m_{N,n}(P)$ is larger than a sufficiently
+large constant times $Y^{-1/10}$, take a point in $[P/2,2P]$
+where $|D|$ is at least three quarters of this supremum.
+By \cref{eq:fixedrowmoduluscontinuity}, $|D|$ exceeds a
+quarter of the supremum on a neighboring interval of length
+at least $cP m_{N,n}(P)$ within $[P/4,4P]$. The uniform
+bound on $m_{N,n}(P)$ permits the same choice of $c>0$
+for all the moduli. Consequently
+\[
+ m_{N,n}(P)^2
+      \ll_{C_0,B} P^{-1}\int_{P/4}^{4P}|D_{N,n,P}(v)|\,\ud v
+                       +Y^{-1/5}.
+\]
+Sum over the moduli and apply \cref{eq:fixedrowfirstmoment}.
+This proves $\sum_N m_{N,n}(P)^2
+\ll_{C_0,B,n,\varepsilon}Y\lambda^{-2+\varepsilon}$ uniformly
+for $P\ge P_*$.
+
+The centered prefix on $bN\le v$ differs from
+$\psi(v;N,n)-\psi(v;N,-n)$ by $O_n(\lambda)$ on these
+packets. Moving the endpoint by $n$ alters at most a
+bounded number of integers in each class, and the initial
+value at $n$ contributes at most $\Lambda(n)$. Thus
+\[
+ m'_{N,n}(P)=m_{N,n}(P)+K_nY\lambda/P
+\]
+with a sufficiently large constant $K_n$ bounds the normalized
+centered prefixes. The extra term has a negligible mean
+square for $P\ge P_*$ and preserves the two crude bounds
+for smaller $P$.
+Partition the larger test into smooth dyadic packets
+supported in $[P/2,2P]$. Partial summation, with any
+row-dependent endpoint $C_NN^2/n$ in this packet, bounds
+the normalized contribution in \cref{eq:criticalcenteredform}
+of each fixed $n$ by
+\[
+ \frac{\Lambda(n)}{\sqrt n}|F(\log n)|
+       \sum_P O\bigl((\sqrt P/Y)m'_{N,n}(P)\bigr)\NN(G).
+\]
+Indeed the supremum plus total variation of
+$z(y)$ on a packet at $P$ is $O(P^{-1/2}\NN(G))$.
+The signed prefix bound on the packet gives the same
+estimate for the interval truncated at $C_NN^2/n$, by
+including its endpoint term. By Sobolev point evaluation,
+the finitely many smaller weights cost $O_A(\NN(F))$.
+
+For each residue the sum of the weights $\sqrt P/Y$ is
+$O_{C_0}(\lambda^{B/2})$. Squaring the packet sum by weighted
+Cauchy--Schwarz and applying the maximal bound on
+$P\ge P_*$ gives $O(Y\lambda^{B-2+\varepsilon})$ after
+summing over the moduli. For $P<P_*$ the weights have
+sum $O(\lambda^{-3})$. In the portion $P\le Y^{11/10}$
+they have sum $O(Y^{-9/20})$ and the squared prefix
+bound is $O(\lambda^2)$ there. Thus the discarded part
+also satisfies the claimed estimate.
+
+For $r_{N,n}(C_N)$ the normalized prefix on a packet
+has bound $O((P/Y^2)m_{N,n}(P)+Y^{-c})$, using the
+proper-power count to keep just the primes.
+Below the first retained packet only the fixed initial
+value at $n$ can contribute, at normalized cost $O_n(Y^{-1})$.
+Here the weights $P/Y^2$ sum to $O_{C_0}(\lambda^B)$.
+The same weighted mean-square argument with these
+weights proves \cref{eq:fixedrowprefixmeansquare}.
+For $s_N(C_N)$ apply partial summation to the same packets
+with the residue $1$ and the weight $y^{-1/2}S_{F,G}(\log y)$.
+Both the correlation and its derivative have supremum
+$O(\NN(F)\NN(G))$ on the positive log axis by
+Cauchy--Schwarz. Thus the normalized packet bound again
+has weight $O(\sqrt P/Y)$ times $m_{N,1}(P)$.
+The width of the log support difference cuts the sum off
+at $C_NN^2$. The weights $\sqrt P/Y$ again give
+\cref{eq:fixedrowmeansquare}.
+
+To transfer the estimate to the physical form, use the
+replacement in \cref{thm:criticalcenteredrows} with $A$
+fixed. For each fixed $x\le A$ the product indicators now
+differ for at most one $b$, with $bN$ within $x$ of
+$C_NN^2/x$. In the arithmetic terms this costs
+$O_{A,B,C_0}(L/N)$ in normalized norm by point
+evaluation and the finitely many $n\le A$.
+In the continuous terms use $\SSS(bN)/\SSS(N)\ll(bN)^{1/4}$
+and $|z(bN\pm x)|\ll (bN)^{-1/2}\NN(G)$.
+Integrating $|w(x)|x^{1/4}$ over $[1,A]$ gives a bound
+$O_A(N^{-1/2})$ in normalized norm. With the common
+indicator, sampling at $bN$ costs $O_A(A/N)$ in the
+model by \cref{eq:criticalcenterderivative}.
+For the arithmetic form the same derivative bound and
+$O_{A,B,C_0}(L)$ for the finite smaller weights at
+each $b$ give $O_{A,B,C_0}(L/N)$.
+Finally, the proper-power mass $O_{C_0,B}(Y^{1/20})$
+in each of the finitely many larger classes has weight
+$O(Y^{-1/2}\NN(G))$ per unit of mass, since $y\gg Y$.
+This proves the versions for the original form and for
+prime larger values.
+
+Apply the bound at $B=0$ with $A=C_0=k$ and
+$\varepsilon=1/k$ at consecutive
+integer levels $k\ge2$. Choose increasing thresholds
+$Y_k\ge\exp(\exp k)$ so large that the constant for
+level $k$ is absorbed by $(\log Y)^{1/k}$ for $Y\ge Y_k$.
+Take $A(Y)=k$ on $[Y_k,Y_{k+1})$. The uniformity in
+$C\le C_0$ then proves the growing-cutoff assertion.
+\end{proof}
+
 \clearpage
 \section{Conditional bounds from uniform prime-pair discrepancies}
 \label{sec:pairconditional}
@@ -7103,6 +7312,10 @@ the ordinary-prime form.
 \Cref{thm:criticalcenteredrows} characterizes decay through
 every fixed cap by the individual macroscopic line counts
 and the centered arithmetic form on separated inputs.
+\Cref{thm:fixedrowmeansquare} bounds the mean square of the
+centered norm for bounded smaller inputs by
+$O_{A,C,\varepsilon}((\log Y)^{-2+\varepsilon})$ over even
+moduli in $[Y,2Y]$.
 For the high-support block, \cref{thm:zeros} gives a fixed-modulus
 covariance criterion with an additive precision requirement.
 \Cref{thm:conductorcutoff} discards the small-conductor part
@@ -7212,6 +7425,11 @@ identity used in \cref{eq:eulerorthogonality}.
 The file \texttt{formalization/CenteredProduct.lean} checks
 the boundary collar for shifting the product test in
 \cref{thm:criticalcenteredrows}.
+
+The file \texttt{formalization/PrefixPersistence.lean} checks
+the finite sum version of the large-prefix estimate used in
+\cref{thm:fixedrowmeansquare}.
+
 The file \texttt{formalization/CriticalArithmetic.lean}
 verifies the two congruence branches and the reduced
 proper-power threshold in \cref{thm:criticalpowers}.
@@ -7368,6 +7586,12 @@ J. Maynard,
 Fixed residue classes},
 \newblock Mem. Amer. Math. Soc. \textbf{306} (2025), no.~1542.
 \newblock \url{https://arxiv.org/abs/2006.06572}.
+
+\bibitem{BFI1987}
+E. Bombieri, J. B. Friedlander and H. Iwaniec,
+\newblock \emph{Primes in arithmetic progressions to large moduli. II},
+\newblock Math. Ann. \textbf{277} (1987), 361--393.
+\newblock \url{https://doi.org/10.1007/BF01458321}.
 
 \bibitem{MaynardIII}
 J. Maynard,
