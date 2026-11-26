@@ -15,6 +15,48 @@ def factors(n):
     return primes
 
 
+def check_rough_pairs():
+    moduli = [*range(48, 450, 2), 1802, 2336]
+    factorizations = [factors(m) for m in range(max(moduli))]
+    patterns = set()
+    checked = 0
+    for n in moduli:
+        for numerator, denominator in [(5, 12), (9, 20), (1, 2)]:
+            threshold = n**numerator
+            for m in range(5*n//12 + 1, (7*n-1)//12 + 1):
+                if gcd(m, n) != 1:
+                    continue
+                pair = [factorizations[m], factorizations[n-m]]
+                if any(ps[0]**denominator <= threshold for ps in pair):
+                    continue
+                counts = [sum(p*p <= k for p in set(ps))
+                          for k, ps in zip((m, n-m), pair)]
+                primes = int(all(len(ps) == 1 for ps in pair))
+                if primes - (1 - sum(counts)) != prod(counts):
+                    raise AssertionError(("rough-pair correction", n, m, counts))
+                patterns.add(tuple(counts))
+                checked += 1
+    if patterns != {(0, 0), (1, 0), (0, 1), (1, 1)}:
+        raise AssertionError(("missing rough-pair case", patterns))
+
+    levels = 0
+    for n in range(48, 100, 2):
+        band = [r for r in (11, 13, 17) if n % r]
+        for h in (1, 2, 3, 5, 6, 10, 15, 30):
+            local = prod(1 if n % p == 0 else 2 for p in factors(h))
+            for r in band:
+                for t in band:
+                    if r == t:
+                        continue
+                    start = r * ((n * pow(r, -1, t)) % t)
+                    hits = sum(m*(n-m) % h == 0
+                               for m in range(start, start+r*t*h, r*t))
+                    if hits != local:
+                        raise AssertionError(("rough-pair sieve density", n, h, r, t))
+                    levels += 1
+    print(f"Verified {checked} rough-pair corrections and {levels} overlap sieve densities.")
+
+
 def main():
     limit = 256
     divisors = [tuple(d for d in range(1, n + 1) if n % d == 0)
@@ -89,6 +131,7 @@ def main():
             and Fraction(1, 10)+12*delta-b < c < Fraction(1, 10)-4*delta-3*b/5
             and Fraction(1, 2)+delta < square-Fraction(1, 100)):
         raise AssertionError("three-factor ranges or strip overlap")
+    check_rough_pairs()
 
 
 if __name__ == "__main__":

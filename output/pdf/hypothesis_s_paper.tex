@@ -1443,6 +1443,115 @@ $N^{1/2+9\delta/10}/(Q_2Q_3)<Q_1$ for large $N$. This puts $d$
 in $\mathcal D$, proving the assertion.
 \end{proof}
 
+\begin{proposition}[A rough-pair lower bound with a quadratic remainder]
+\label[proposition]{prop:single-test-rough-pairs}
+Let $N$ be sufficiently large and even, $L=\log N$,
+$0\le\theta\le1/12$ and $z=N^{1/2-\theta}$. Write $n=N-m$ and
+sum over $(m,N)=1$ in the open support of $F=f^2$. Put
+\[
+ W(m)=\frac{F(m/N)\log m\log n}{N\SSS(N)},\qquad
+ C_z(m)=\sum_{\substack{z<r\le\sqrt m\\r\ {\rm prime},\ r\mid m}}1 .
+\]
+Write $\sum^*$ for the further restriction that both $m$ and $n$
+have least prime factor greater than $z$. Define
+\[
+ A_N(z)=\sum\nolimits^* W(m),\qquad
+ B_N(z)=\sum\nolimits^* W(m)(1-C_z(m)-C_z(n)).
+\]
+Let $P_N$ be the sum of $W(m)$ over distinct prime pairs. Uniformly
+in $\theta$, with absolute implied constants,
+\begin{align}
+ 0\le A_N(z)-P_N &\ll \theta+L^{-1},\nonumber\\
+ 0\le P_N-B_N(z) &\ll (\theta+L^{-1})^2 .
+ \label{eq:single-test-rough-sandwich}
+\end{align}
+Moreover $0\le\Delta_N-P_N\ll N^{-1/2}L^3$. Thus $B_N(z)>0$
+already certifies a distinct prime representation at that $N$.
+At $z=\sqrt N/L^4$ the difference $\Delta_N-B_N(z)$ is
+$O((\log L/L)^2)$. The arithmetic estimates use no zero hypothesis.
+\end{proposition}
+
+\begin{proof}
+Since $z^3>N$, a composite in the sifted window has exactly two
+prime factors counted with multiplicity. Precisely one distinct prime
+divisor is at most its square root, including for a prime square.
+Thus $C_z$ is the composite indicator on these samples. The prime
+pairs in the window are sifted, and the unit condition removes the
+diagonal. Inclusion--exclusion gives the exact nonnegative remainder
+\[
+ P_N-B_N(z)=\sum\nolimits^* W(m) C_z(m)C_z(n).
+\]
+The bound for $\Delta_N-P_N$ follows from the proper-power count
+in \eqref{eq:single-goldbach-test}.
+
+Let $\mathcal P$ be the primes in $(z,\sqrt{7N/12}]$ coprime to
+$N$, and put $U=\sum_{r\in\mathcal P}1/r$ (zero for an empty
+interval). Partial summation using $\pi(x)\ll x/\log x$ gives
+$U\ll L^{-1}+\log((1/2)/(1/2-\theta))\ll L^{-1}+\theta$.
+To bound samples with $m$ composite, write $m=rs$ with
+$r\in\mathcal P$. In an interval of length $H\asymp N/r$ for
+$s$, sift the forms $s,N-rs$ by primes up to $H^\kappa<z$ for
+a sufficiently small fixed $\kappa>0$. Each prime excludes two
+residues except at primes dividing $rN$, which exclude one.
+Equation~\eqref{eq:uniformsieve}, Mertens' product and
+\eqref{eq:series} bound the count by $O(H\SSS(N)/L^2)$:
+the extra Euler factor at $r$ is bounded and $H\gg\sqrt N$.
+Multiplying by $L^2/(N\SSS(N))$ and summing over $r$ gives
+$O(U)$. Reflection treats $n$ and proves the first bound.
+
+For the overlap consider the nonnegative sequence indexed by $m$
+with weights
+\[
+ F(m/N)\sum_{\substack{r,t\in\mathcal P\\r\mid m,\ t\mid N-m}}1 .
+\]
+Dropping the unit restriction here can only enlarge the bound. Sift
+$m(N-m)$ by primes up to $y=N^\gamma$, where $\gamma>0$ is a small
+absolute constant chosen below. Every overlap sample survives and
+has multiplicity at least one. Let $A_h$ be the mass with
+$h\mid m(N-m)$ for squarefree $h$ composed of primes at most $y$.
+Put $\nu(p)=1$ for $p\mid N$ and $\nu(p)=2$ otherwise, extending
+multiplicatively to squarefree $h$. For $h\le D=N^{1/1000}$ we have
+\begin{align}
+ A_h &= M\,\nu(h)/h + R_h,\qquad
+ M=cN\sum_{\substack{r,t\in\mathcal P\\r\ne t}}(rt)^{-1},
+ \quad c=\int F=4/45,\nonumber\\
+ \sum_{h\le D}^{\flat}3^{\omega(h)}|R_h|&\ll N^{99/100}.
+ \label{eq:single-test-rough-level}
+\end{align}
+Here the flat sum is over the specified sieve divisors. Indeed,
+assign each $p\mid h$ to $m$ or $N-m$, assigning it only to $m$
+when $p\mid N$. The resulting $\nu(h)$ disjoint conditions have
+$a\mid m$, $b\mid N-m$ with $ab=h$. For a fixed allocation the
+progression moduli are $ar,bt$. For $\gamma<1/1000$ the small
+primes are below every $r,t\in\mathcal P$. The case $r=t$ is
+impossible since $r\nmid N$, and otherwise $(ar,bt)=1$.
+The zero frequency in \eqref{eq:single-test-physical-poisson}
+with $X=N$ gives $M/h$. Its nonzero-frequency estimate only needs
+the inverse modulo $bt$ on the coprime pairs: no inversion modulo
+$N$ occurs. Apply it with separate indicators of $a\mathcal P$
+and $b\mathcal P$ on dyadic boxes. Both scales are
+$O(N^{1/2+1/1000})$, so the discrepancy per allocation is
+$O_\epsilon(N^{(1/2+1/1000)39/20+\epsilon})$, including the
+dyadic sums. Since $3^{\omega(h)}\nu(h)\ll_\epsilon h^\epsilon$,
+summing costs $O_\epsilon(D^{1+\epsilon})$ and gives
+\eqref{eq:single-test-rough-level}.
+
+The Selberg upper bound \cite[Theorem~9.1]{Richert} now bounds
+the sifted mass by $M/G+O(N^{99/100})$, where
+\[
+ G=\sum_{\substack{d\le\sqrt D\\d\mid\prod_{p\le y}p}}
+       \prod_{p\mid d}\frac{\nu(p)}{p-\nu(p)} .
+\]
+Under the normalized full product measure the mean of $\log d$
+is $\sum_{p\le y}\nu(p)\log(p)/p\ll\gamma L$. Choose $\gamma$
+small enough that at least half its mass has $d\le\sqrt D$.
+Hence $G^{-1}\ll\prod_{p\le y}(1-\nu(p)/p)\ll\SSS(N)/L^2$.
+The sifted mass is $O(N U^2\SSS(N)/L^2+N^{99/100})$.
+After restoring the weight bound $L^2/(N\SSS(N))$, the power
+error is $O(L^{-2})$. This proves the quadratic estimate.
+For the stated moving threshold take $\theta=4\log L/L$.
+\end{proof}
+
 \section{Certification on the balanced window}
 \label{sec:certificate}
 

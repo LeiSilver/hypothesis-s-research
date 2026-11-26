@@ -47,6 +47,8 @@ This repository contains the English research manuscript and the code and data f
 
 ## Research checkpoint · 27 November 2026
 
+Proposition 3.13 bounds the contribution of composite pairs to the fixed test at each even integer. Sift both summands at $z=N^{1/2-\theta}$, with $0\le\theta\le1/12$. The excess over the weighted prime-pair count is $O(\theta+1/\log N)$. Subtracting once for each composite summand gives a lower bound with error $O((\theta+1/\log N)^2)$. A bilinear progression estimate and the Selberg upper bound control the pairs subtracted twice. At $z=\sqrt N/(\log N)^4$ the lower bound approximates the original margin within $O((\log\log N/\log N)^2)$. Its positivity at every sufficiently large even integer remains open.
+
 Proposition 3.12 uses Maynard's three-factor progression theorem to remove additional strips even when the opposite divisor is unrestricted. After the deletions of Proposition 3.11, neither divisor may factor into three integers bounded respectively by $(N/3)^{1/2+1/1200}/(Q_2Q_3)$, $Q_2=N^{1/25}$ and $Q_3=N^{1/14}$. In particular, a surviving divisor at most $N^{1/2+1/2400}$ must have a prime factor exceeding $N^{1/6000}$. This still leaves a signed sum whose pointwise lower bound is open.
 
 Proposition 3.11 bounds the part of the remaining coprime correlation with $\max(d,e)\le N^{20/39-\eta}$ or $de\le N^{45/44-\eta}$ by $O_\eta(N^{1-\eta/2})$, at every even modulus under Dirichlet GRH for fixed $0<\eta<1/100$. In the surviving sum the complementary factors satisfy $\min(u,v)<N^{19/39+\eta}$ and $uv<N^{43/44+\eta}$. The pointwise one-sided estimate on this surviving sum remains open.
