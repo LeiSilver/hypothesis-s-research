@@ -802,6 +802,81 @@ The second-moment argument for $\SSS(N)$ in
 \cref{prop:single-test-short-mean} now gives the asserted count.
 \end{proof}
 
+\begin{proposition}[The fixed test in a prescribed residue class]
+\label[proposition]{prop:single-test-classes}
+Assume Dirichlet GRH. For even $q\ge2$ and even $a\bmod q$, restrict
+both sums in \cref{prop:single-test-tents} to $N\equiv a\bmod q$.
+If $qL^2\le H\le\sqrt Y$ and $u=H/(qL^2)$, the resulting mean
+is $4/45+O(\log(2+u)/u)$, uniformly in $q$ and $a$.
+For $H\ge K qL^2$ with an absolute $K$, at least $\gg H/q$
+integers in this class have $\Delta_N\ge2/45$.
+\end{proposition}
+
+\begin{proof}
+Write $\lambda=\#\{r\bmod q:(r(a-r),q)=1\}/\varphi(q)^2$.
+On a tent as in \cref{eq:single-test-tent}, use the product of
+short sums in the classes $r,a-r$ and sum over the indicated $r$.
+This gives the main term $c\lambda th$ and an absolute error
+$O(YL^2)$ independent of $q$. To see this, prime powers with base
+dividing $q$ contribute $O((1+\omega(q))hL^2)$, since each such
+prime has $O(1)$ powers on the support and there are $O(h)$ possible
+partners. The diagonal and variation errors from the previous
+proof still apply. All these errors are $O(YL^2)$.
+
+For a unit class $r$ put
+$E_r(x)=\psi(x+h;q,r)-\psi(x;q,r)-h/\varphi(q)$.
+Partial summation of the GRH progression estimate gives
+$O(h\sqrt Y L^2)$ for the integral of each $E_r$ against
+the translated or reflected test, uniformly since $q\le\sqrt Y$.
+Each linear term carries the factor $1/\varphi(q)$ after division
+by $h$, and there are at most $\varphi(q)$ terms of either kind.
+For the quadratic term, Cauchy--Schwarz over $x,r$ and the
+injection $r\mapsto a-r$ bound the absolute integral by the
+sum of short-interval variances over all unit classes on a fixed
+multiplicative range about $Y$. Prachar's GRH bound
+\cite[(1.4)]{GoldstonYildirimShort} gives $O(YhL^2)$ before
+division by $h$.
+
+We identify the mean of the singular series in this class. Put
+\[
+ A=2C_2\prod_{\substack{p\mid(a,q)\\p>2}}\frac{p-1}{p-2}.
+\]
+With the coefficients $h(d)$ of \cref{prop:single-test-short-mean},
+we have $\SSS(N)=A\sum_{d\mid N,\,(d,q)=1}h(d)$ on the class.
+On any subinterval of length $b$ the congruences for a term $d$
+give $b/(qd)+O(1)$ samples. The Euler product satisfies
+\[
+ A\prod_{p\nmid q}(1+h(p)/p)=q\lambda
+ =\prod_{p\mid q}\frac{p(p-\nu_p)}{(p-1)^2},
+ \qquad \nu_p=\#\{0,a\bmod p\}.
+\]
+Indeed the last product counts the permissible residues by the
+Chinese remainder theorem, and the factors away from $q$ cancel
+those of $C_2$. In particular $q\lambda\asymp A\gg1$ uniformly.
+The divisor sums and tail bounds of \cref{prop:single-test-short-mean}
+now give
+\[
+ \sum_{\substack{N\ \mathrm{in\ the\ subinterval}\\N\equiv a\bmod q}}
+    \SSS(N)=\lambda b+O(AL),\qquad
+ \sum_{\substack{Y<N\le Y+H\\N\equiv a\bmod q}}\SSS(N)^2
+       \ll A^2(H/q+L^2).
+\]
+For the second estimate one squares the Euler factors away from
+$q$ and bounds the partial sum of the resulting coefficients by
+$O(L^2)$, uniformly on deleting any primes.
+
+Stop the tent subdivision at ramp width at most $qL^2$.
+Its $O(\log(2+u))$ tents cost $O(YL^2\log(2+u))$ in total.
+The two end intervals cost $O(Y A L^2)$ in both the model and
+the arithmetic mass, by the first sum above and $\Delta_N\ll1$.
+Partial summation gives the denominator
+$\lambda\int_Y^{Y+H}s\,\ud s+O(YAL)\asymp YAH/q$.
+This proves the mean estimate. For sufficiently large $K$, the
+terms with $\Delta_N\ge2/45$ carry $\gg A H/q$ of the sum of
+$\SSS(N)$ in the class. The second estimate and Cauchy--Schwarz
+give $\gg H/q$ distinct integers, as claimed.
+\end{proof}
+
 \section{Certification on the balanced window}
 \label{sec:certificate}
 

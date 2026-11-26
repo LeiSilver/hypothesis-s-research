@@ -47,6 +47,8 @@ This repository contains the English research manuscript and the code and data f
 
 ## Research checkpoint · 27 November 2026
 
+Proposition 3.5 gives the same positive proportion inside each prescribed even class $a\bmod q$ for even $q$, uniformly when $Kq(\log Y)^2\le H\le\sqrt Y$. The local factor counts the unit residues $r$ for which $a-r$ is also a unit. It equals the mean singular-series weight per integer in that class.
+
 Proposition 3.4 gives a positive proportion of even integers with fixed-test margin at least $2/45$ in **every** interval $(Y,Y+H]$ with $K(\log Y)^2\le H\le\sqrt Y$ under Dirichlet GRH, for a sufficiently large absolute constant $K$. It averages the two prime variables with a triangular weight and recovers the interval by successive bisection at its ends. The error in the weighted mean is $O(\log(2+u)/u)$ for $u=H/(\log Y)^2\ge1$.
 
 Section 3 gives a one-sided Goldbach criterion on a single fixed test supported on $[5/12,7/12]$. Its squared integral is $4/45$. Under the modulus-specific GRH hypothesis, a fixed positive gap below $4/45$ for the normalized reflected pairing at every sufficiently large even modulus would give $\gg N\mathfrak S(N)/(\log N)^2$ ordered prime representations there. The proof gives an explicit proper-prime-power allowance for each modulus. The required uniform gap remains open.
