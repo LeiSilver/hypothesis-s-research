@@ -267,6 +267,48 @@ def check_presifted_large_factor():
     print(f"Certified the 121/200 large-factor example and {checked} disjoint sieve densities.")
 
 
+def check_joint_sieve():
+    beta, eps = Fraction(121, 200), Fraction(1, 100000)
+    for eta, target in [(Fraction(1, 800), Fraction(1, 50)),
+                        (Fraction(1, 220), Fraction(1, 5000))]:
+        ratio = (Fraction(1, 2)-eta)/(1-beta-2*eta)
+        v = (ratio-1)/(ratio+1)
+        # log(ratio) = 2 atanh(v), with a geometric majorant on the tail.
+        terms = 6
+        log_upper = 2*(sum(v**(2*j+1)/(2*j+1) for j in range(terms))
+                       + v**(2*terms+1)/((2*terms+1)*(1-v*v)))
+        if not (0 < v < 1 and Fraction(1, 2)-2*log_upper-2*eps > target):
+            raise AssertionError(("joint sieve logarithmic margin", eta, target))
+    if not 86 < (1-beta)*220 < 87:
+        raise AssertionError("cofactor multiplicity cutoff")
+
+    ps = [factors(n) for n in range(97)]
+    squarefree = [n for n in range(1, 97) if len(ps[n]) == len(set(ps[n]))]
+    phi = {n: prod(p-1 for p in ps[n]) for n in squarefree}
+    checked = 0
+    for n in range(48, 101, 2):
+        for y in (3, 5, 7, 11):
+            eligible = {p for p in (3, 5, 7, 11) if p <= y and n % p}
+            for cutoff in (12, 37, 96):
+                direct = Fraction(0)
+                opened = Fraction(0)
+                for d in squarefree:
+                    if d > cutoff:
+                        break
+                    direct += prod(Fraction(2, p-2) if p in eligible else Fraction(1, p-1)
+                                   for p in ps[d])
+                    if not eligible.issuperset(ps[d]):
+                        continue
+                    u = prod(Fraction(p, (p-1)*(p-2)) for p in ps[d])
+                    inner = sum(Fraction(1, phi[e]) for e in squarefree
+                                if e*d <= cutoff and gcd(e, d) == 1)
+                    opened += u*inner
+                if direct != opened:
+                    raise AssertionError(("joint Selberg denominator", n, y, cutoff))
+                checked += 1
+    print(f"Certified both raised cutoffs and {checked} joint Selberg denominator identities.")
+
+
 def main():
     limit = 256
     divisors = [tuple(d for d in range(1, n + 1) if n % d == 0)
@@ -348,6 +390,7 @@ def main():
     check_twist_profile()
     check_upper_mark_sieve()
     check_presifted_large_factor()
+    check_joint_sieve()
 
 
 if __name__ == "__main__":
