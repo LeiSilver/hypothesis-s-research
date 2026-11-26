@@ -151,6 +151,9 @@ identifies a Dirichlet-zero covariance when both variables are large.
 truncated norm through $xy=CN^2$ by signed rectangle counts.
 \Cref{thm:criticalgrid} reduces those counts to prefix rectangles
 on $O(\log N)$ dyadic pairs at fixed precision.
+\Cref{thm:criticalcenteredrows} expresses the separated part
+of the critical restriction in terms of the differences of
+von Mangoldt weights on the two sides of multiples of $N$.
 \Cref{thm:shiftmean} bounds the mean norm of translated pairs of
 high-support windows at a single modulus.
 \Cref{thm:upperproduct} gives a uniform upper cutoff on the product
@@ -2392,6 +2395,164 @@ Together with the bounded interval of possible sums
 at fixed $C,Q$, this places each of $j,k$ in an
 interval of bounded length at fixed $C,Q,K$.
 This proves both counts.
+
+\subsection{Sampling the larger test at multiples of the modulus}
+
+Write $\mathcal B_{N,C}$ for the form of the normalized measure
+$\mu_{N,C}$ in \cref{thm:criticaldiscrepancy}, evaluated against
+$w(x)\overline{z(y)}$ in the physical convention.
+For $1\le A\le N/8$, define the centered arithmetic form
+\begin{equation}
+ \mathcal R_{N,C,A}(F,G)=\frac{1}{\SSS(N)}
+ \sum_{\substack{2\le n\le A\\(n,N)=1}}\frac{\Lambda(n)}{\sqrt n}
+      F(\log n)\!
+ \sum_{\substack{b\ge1\\ n bN\le CN^2}}
+   \bigl(\Lambda(bN+n)-\Lambda(bN-n)\bigr)
+      \frac{\overline{G(\log(bN))}}{\sqrt{bN}} .
+ \label{eq:criticalcenteredform}
+\end{equation}
+Denote its norm, with the first test supported in $x\le A$,
+by $R_{N,C}(A)$. Use the usual energy in both tests.
+
+\begin{theorem}[Centered progression differences at the critical product]
+\label{thm:criticalcenteredrows}
+For fixed $C\ge1$ and $1\le A\le N/8$ one has
+\begin{equation}
+ |\mathcal B_{N,C}(F,G)-\mathcal R_{N,C,A}(F,G)|
+   \ll_C (A/N+N^{-c})\NN(F)\NN(G)
+ \label{eq:criticalcenterederror}
+\end{equation}
+when $F$ is supported in $x\le A$, for some absolute $c>0$.
+The estimate remains valid with $\Lambda(bN\pm n)$ in
+\cref{eq:criticalcenteredform} replaced by the logarithmic
+weight on ordinary primes.
+
+Along a sequence of even moduli tending to infinity, decay
+of $U_N(C)$ for every fixed $C\ge1$ is equivalent to the
+following two conditions:
+\begin{align}
+ &d_N^{\mathrm{line}}(R)\longrightarrow0
+            &&\text{for every fixed }R\ge1, \notag\\
+ &\lim_{K\to\infty}\limsup_{N\to\infty} R_{N,C}(N/K)=0
+            &&\text{for every fixed }C\ge1 .
+ \label{eq:criticalcenteredcriterion}
+\end{align}
+Here $K\ge8$ and the upper limit in $N$ is along the chosen
+sequence. Both assertions concern physical forms and hold
+without GRH.
+\end{theorem}
+
+\begin{proof}
+For $x\le A$ the two larger points on a congruence line are
+$y=bN+x$ and $y=bN-x$, with respective signs plus and minus.
+On either point, replacing the condition $xy\le CN^2$ by
+$xbN\le CN^2$ can change the contribution only in the collar
+$|xy-CN^2|\le A^2$. On the part of these lines with $1\le x\le A$,
+one has $y\ge N-A\ge7N/8$, so the two variables are separated
+by a ratio at least seven. The proof of \cref{eq:criticalcollar}
+therefore applies on both sides of the boundary. In detail,
+on a packet pair at scales $X\le Y$, the derivative of $xy$
+on each line has magnitude $\gg Y$, including on the
+reflection line. The collar on that line has length
+$O_C(\eta X)$ with $\eta=\max((A/N)^2,N^{-1/100})$.
+For $X\ge N^{1/10}$ the two-linear-form sieve at this length
+gives the same collar estimate as in \cref{eq:criticalcollar}.
+For $X<N^{1/10}$, each smaller integer has a larger-coordinate
+interval of length $O_C(\eta Y)$, and the row sieve estimate
+used there applies. The proper-power bounds and geometric
+packet summation are the same. Thus changing both indicators
+costs $O_C((A/N)^2+N^{-c})$ in normalized norm.
+
+Put $I_b=[bN-A,bN+A]$ and
+$D_b^2=\int_{I_b}y^2|z'(y)|^2\,\ud y$.
+The intervals $I_b$ are disjoint. For $0\le x\le A$,
+\begin{equation}
+ |z(bN\pm x)-z(bN)|\ll\frac{\sqrt{x}}{bN}D_b,\qquad
+ \sum_b D_b^2\ll\NN(G)^2 .
+ \label{eq:criticalcenterderivative}
+\end{equation}
+The first inequality is Cauchy--Schwarz on the segment
+from $bN$ to $bN\pm x$. For the second use
+$y^2|z'(y)|^2\,\ud y=|G'(\log y)-G(\log y)/2|^2\,\ud\log y$
+on the positive log axis. In the normalized continuous form,
+replace both larger weights by $z(bN)$ under the common
+indicator $xbN\le CN^2$. They cancel for each $x,b$.
+The error is $O(A/N)$ in norm by
+\cref{eq:criticalcenterderivative}, the bound
+$\int_1^A |w(x)|\sqrt{x}\,\ud x\ll A\NN(F)$ and
+\[
+ \sum_{b\ge1}\frac{1}{b^2}
+           \left(\frac{\SSS(bN)}{\SSS(N)}\right)^2\ll1.
+\]
+The last bound follows from the convergent Euler product
+used for the small-input model in \cref{sec:subcritical}.
+
+For the arithmetic form on the same indicator,
+$b\ll_C N$ since $n\ge2$. In
+\cref{eq:criticalcenterderivative}, the factor $\sqrt n$
+cancels the $n^{-1/2}$ from the smaller test. If
+$A\ge N^{1/10}$, the line count satisfies
+\[
+ \sum_{2\le n\le A}\Lambda(n)\Lambda(bN\pm n)
+          \ll_C A\SSS(bN) .
+\]
+Indeed the two-linear-form sieve on the entire interval
+of length $A$ bounds its two-prime contribution.
+The von Mangoldt weights of prime values are $O_C(L)$
+and $\log A\ge L/10$. Primes at or below the sifting
+threshold $A^{c_1}$ have contribution $O_C(A^{c_1}L^2)$.
+Proper powers have contribution $O_C(\sqrt A L^3)$,
+by the count on intervals of length $A$ at scale at least
+$A$ and the unrestricted count in the smaller input.
+The omitted values and sieve remainder are absorbed by
+the displayed bound. Sobolev point evaluation bounds
+$|F(\log n)|$ by $O(\NN(F))$. Applying
+\cref{eq:criticalcenterderivative} and the convergent
+weighted square sum in $b$ now bounds the arithmetic
+replacement by $O_C(A/N)\NN(F)\NN(G)$.
+For $A<N^{1/10}$ use instead the line bound $O_C(AL)$
+from Chebyshev's estimate and $\Lambda(bN\pm n)\ll_C L$.
+It gives a power saving by the same Cauchy--Schwarz argument.
+This proves \cref{eq:criticalcenterederror}.
+All replacement errors are bounded in absolute value and
+apply also to arithmetic pairs in which the larger input
+is a proper power. \Cref{thm:criticalpowers} bounds that
+part of the original critical form by $O_C(N^{-c})$.
+This proves the version with ordinary primes.
+
+If $U_N(C)\to0$ for all $C$, \cref{eq:criticalcenterederror}
+implies the second limit in \cref{eq:criticalcenteredcriterion}.
+The form on the window $x,y<RN$ is a restriction of the
+form through $xy\le R^2N^2$ on $x,y\ge1$. The model with
+either coordinate below one has norm $O(N^{-1})$ on the
+normalized scale by \cref{sec:subcritical}. Thus $W_N(R)\to0$
+and \cref{thm:macroscopiclines} gives the first limit.
+
+Conversely, at fixed $K\ge8$ split each test by a smooth
+cutoff in log coordinates, supported in $x\le N/K$ and
+equal to one on $x\le N/(2K)$. Its multiplier norm is
+bounded independently of $K,N$. The terms with at least
+one lower piece cost $O_C(R_{N,C}(N/K)+K^{-1}+N^{-c})$
+by \cref{eq:criticalcenterederror} and symmetry.
+For the two upper pieces, $xy\le CN^2$ implies both
+coordinates are at most $2CKN$. Insert bounded smooth
+cutoffs supported in $x,y<RN$ with $R=4CK$.
+Only finitely many lines $y=bN-\sigma x$ meet this region.
+The condition $xy\le CN^2$ cuts the permitted $x$ interval
+on each such line into at most two intervals, since the
+product is a quadratic in $x$. On these intervals the
+product $w(x)\overline{z(bN-\sigma x)}$ has supremum
+plus total variation $O_{C,K}(N^{-1}\NN(F)\NN(G))$.
+This follows from the physical weight bounds on the
+fixed log windows about $L$ and the chain rule on the line.
+Integration by parts using the interval discrepancies
+in \cref{thm:macroscopiclines} therefore bounds the upper
+block by $O_{C,K}(d_N^{\mathrm{line}}(4CK)+N^{-c})$ in
+normalized norm, where the last term covers the unit
+restriction as in the proof of that theorem.
+Take the upper limit in $N$ at fixed $K$, then let $K$
+tend to infinity. This proves the equivalence.
+\end{proof}
 
 \section{Dirichlet-zero covariance when both variables are large}
 \label{sec:zeros}
@@ -6939,6 +7100,9 @@ mean-square decay for the proper-power contribution over
 all even moduli. Its pointwise reduction leaves the
 fixed-residue asymmetries in \cref{eq:primepowerrow} and
 the ordinary-prime form.
+\Cref{thm:criticalcenteredrows} characterizes decay through
+every fixed cap by the individual macroscopic line counts
+and the centered arithmetic form on separated inputs.
 For the high-support block, \cref{thm:zeros} gives a fixed-modulus
 covariance criterion with an additive precision requirement.
 \Cref{thm:conductorcutoff} discards the small-conductor part
@@ -7045,6 +7209,9 @@ samples in \cref{thm:divisorgridcovariance}.
 The file \texttt{formalization/EulerOrthogonality.lean} checks
 the size of the residual modulus and the diagonal residue
 identity used in \cref{eq:eulerorthogonality}.
+The file \texttt{formalization/CenteredProduct.lean} checks
+the boundary collar for shifting the product test in
+\cref{thm:criticalcenteredrows}.
 The file \texttt{formalization/CriticalArithmetic.lean}
 verifies the two congruence branches and the reduced
 proper-power threshold in \cref{thm:criticalpowers}.

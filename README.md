@@ -4,6 +4,7 @@ This repository contains the English research manuscript and the code and data f
 
 - [Manuscript (PDF)](output/pdf/hypothesis_s_paper.pdf)
 - [LaTeX source](output/pdf/hypothesis_s_paper.tex)
+- [Lean verification of the centered product collar](formalization/CenteredProduct.lean)
 - [Lean verification of the finite Euler-factor residue calculation](formalization/EulerOrthogonality.lean)
 - [Lean verification of the divisor-grid cutoff and endpoints](formalization/DivisorGrid.lean)
 - [Lean verification of the trapezoidal endpoint term](formalization/PrimorialModel.lean)
@@ -18,6 +19,8 @@ This repository contains the English research manuscript and the code and data f
 - [Lean verification of the signed progression rows](formalization/CriticalArithmetic.lean)
 
 ## Research checkpoint · 26 November 2026
+
+Theorem 9.4 approximates the critical product form on $x\le A\le N/8$ by sampling the larger test at $bN$ and keeping the signed weight $\Lambda(bN+n)-\Lambda(bN-n)$. The normalized operator error is $O_C(A/N+N^{-c})$ through $xy\le CN^2$. The larger values can be restricted to primes. Decay through every fixed critical cap is equivalent to decay of the individual macroscopic line discrepancies together with a limit of these centered norms on separated inputs.
 
 Theorem 10.16 replaces the full contribution above a tapered product threshold $xy=e^H$ by bounded-height, separated zero pairs. The normalized operator error is $O(e^{-H/L}(L(1+u)+L^2/\sqrt T))$, where $L=\log N$, the retained ordinates have height at most $T$, and their gaps exceed $u/L$. This applies even when one physical input stays bounded. A character-orthogonality estimate controls the imprimitive Euler correction uniformly.
 
@@ -55,6 +58,7 @@ With Elan installed, run the Lean check from the repository root.
 
 ```sh
 elan toolchain install leanprover/lean4:v4.35.0
+elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/CenteredProduct.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/EulerOrthogonality.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/DivisorGrid.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/PrimorialModel.lean
