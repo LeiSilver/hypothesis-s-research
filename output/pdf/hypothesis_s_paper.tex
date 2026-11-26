@@ -32,7 +32,7 @@
 \title{\bfseries Local reductions and certified norm bounds\\
 for the Li--Liu spectral hypothesis S}
 \author{}
-\date{26 November 2026}
+\date{27 November 2026}
 
 \begin{document}
 \maketitle
@@ -286,6 +286,12 @@ complete coefficient into two Kloosterman sums and removes
 part of the resulting zero mode.
 \Cref{thm:criticalgriddoublezero} reconstructs the physical
 Type~II count from the transition-range double zero mode.
+\Cref{thm:criticalgriduncappedtransition} extends this
+reconstruction to the entire transition block by shortening
+the denominator period and reflecting the nonzero Farey
+harmonics. The longer-divisor remainder then has a physical
+representation with complementary factors $\ll Y^{1-\beta}$
+in \cref{prop:criticalgriduncappedtail}.
 \Cref{thm:criticalpowers} proves decay in density for the
 entire proper-power contribution through a fixed critical
 product cap and identifies the fixed rows needed for decay
@@ -13213,6 +13219,202 @@ with the sampling convention of
 \cref{eq:criticalgridtransitionphysical}.
 \end{proof}
 
+\begin{theorem}[Reconstruction without a shared-prime cutoff]
+\label{thm:criticalgriduncappedtransition}
+Assume Dirichlet GRH and retain the hypotheses of
+\cref{thm:criticalgriddoublecompletion} used to obtain the
+completed sequence. Suppose that $\beta>0$ and
+\begin{equation}
+ \tfrac52\beta+\varepsilon+16\rho<\xi/2 .
+ \label{eq:criticalgriduncappedcondition}
+\end{equation}
+The entire completed block $A_*<d\le T_*=BY^\beta$
+equals $U_N$ of \cref{eq:criticalgridtransitionphysical}
+up to squared error $O(Y^{3-\delta})$ over the even moduli,
+for some $\delta>0$. In particular, writing $\mathcal W_N^{>T_*}$
+for the completed sequence restricted to $d>T_*$, one has
+\begin{equation}
+ \sum_{\substack{Y\le N\le 2Y\\2\mid N}}
+ |B_N^{\rm p}(I,J)-U_N-\mathcal W_N^{>T_*}|^2
+ \ll Y^{3-\delta}.
+ \label{eq:criticalgriduncappedreduction}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+First take $k\ne0$. For fixed $d,g,j$ put
+$a=\prod_{p_0\mid(d,j),\,p_0\nmid g}p_0$.
+The arithmetic function of $x$ prior to denominator
+completion has period $Dj/a$. To see this, fix a prime
+$p_0\mid a$ and let $A=v_{p_0}(D)$ and $J_1=v_{p_0}(j)$.
+The admissibility condition at this prime is that $x$ is
+a unit and $L\equiv v\bar x\bmod p_0^{J_1}$. In the phase
+$m\equiv j\bar x\bmod p_0^A$. In fact $p_0\nmid g$, so
+the first congruence for $m$ already specifies its residue
+modulo $p_0^A$, and the second is automatic from
+$ju=Lx-v$ and $p_0^A\mid v$. Thus the admissible branch
+and its phase at this prime depend on $x$ only modulo
+$p_0^{\max(J_1,A-J_1)}$. This divides $p_0^{A+J_1-1}$.
+The other prime-power components are unchanged under
+translation by $Dj/a$, by the Chinese remainder theorem.
+The complete coefficient at frequency $k$ therefore
+vanishes unless $a\mid k$.
+
+On a block $T\le d<2T$ the fixed-index estimate of
+\cref{thm:criticalgriddoublecompletion} for $k\ne0$ is
+\[
+ O_\epsilon\!\left(
+ \frac{P Y^{2\rho+\epsilon}}{d(1+|h|)}
+ \left(1+\frac{B(D_1,N)}{D_1}\right)
+ \frac{(k,j_1)^{1/2}}{\sqrt{j_1}}\right).
+\]
+Since $d$ is squarefree, write $d=a w$ and $a_g=(d,g)$.
+Then $w/a_g\mid D_1$, so
+\[
+ \frac{(D_1,N)}{D_1}\le
+       \frac{(w/a_g,N)}{w/a_g}
+       \le Y^\rho\frac{(w,N)}{w}.
+\]
+For each fixed $k\ne0$ we may sum over $a\mid k$.
+The sum of $(w,N)/w$ over $T/a\le w<2T/a$ is
+$O(\tau(N))$, by expanding $(w,N)$ as the totient
+sum over common divisors and summing $1/l$ on a dyadic
+interval for the corresponding quotients $l$.
+For each $d,g$ and possible $a$, the $j$ sum costs
+$O_\epsilon(Y^{3\rho/2+\epsilon}\sqrt{T/P})$, by the
+same Rankin and gcd bounds as in
+\cref{thm:criticalgriddoublecompletion}, with
+$j\ll Y^{3\rho}T/P$. These bounds absorb the extra
+factor $\tau(|k|)$ from the $a$ sum.
+Summing $h,g$ and the screen pairs, and then
+$0<|k|\ll Y^{10\rho}T^2/V$, gives the pointwise bound
+\[
+ O_\epsilon\!\left(
+ X\sqrt{PT}\,Y^{5\rho+\epsilon}
+   (1+Y^{10\rho}T^2/V)(1+(B/T)Y^\rho)\right).
+\]
+Summing $T$ costs at most
+$O_\epsilon(Y^{1-\xi/2+(5/2)\beta+\varepsilon+16\rho+\epsilon})$,
+using $B/A_*\ll_{C,Q}Y^\varepsilon$. This saves a power
+by \cref{eq:criticalgriduncappedcondition}.
+
+Now take $k=0$ and $h\ne0$. First remove
+$e(-hv/(g j x))$ from the integrand in the transform.
+Its difference from one is $O(|h|D/(g j R_*))$.
+The absolute Ramanujan estimate from
+\cref{thm:criticalgriddoublecompletion} bounds the
+error after summing over $b$, for fixed $p,\sigma$
+and the other indices, by
+\[
+ O_\epsilon\!\left(
+ \frac{P Y^\epsilon}{d(1+|h|)}
+ \left(\frac{B(p,D_1,N)}{D_1}+D_0\right)
+ \frac{(h,j_1)}{j_1}\frac{|h|D}{g j R_*}\right).
+\]
+Here $D_0\le r\,(d,g)(d,j)\le Y^{2\rho}j$.
+Also $(p,D_1,N)\le Y^\rho(p,d)$.
+Using $D\le Y^\rho T_*$ and summing as in the
+zero-frequency estimate of \cref{thm:criticalgriddoublecompletion},
+the error is
+\[
+ O_\epsilon\!\left(
+ XP Y^{9\rho+\epsilon}\frac{T_*}{R_*}(1+B/A_*)\right).
+\]
+Indeed $|h|/(1+|h|)\le1$, the $h$ count is
+$O(Y^{4\rho})$, and the remaining harmonic sum in
+$j_1$ and the count of $j_0$ cost $O_\epsilon(Y^\epsilon)$.
+Since $T_*/R_*\ll_{C,Q}Y^{\beta-3\xi/4}/X$,
+this also saves a power.
+
+After removal of that phase, the transforms for
+$h$ and $-h$ agree, since $a_h=a_{-h}$.
+The map $(x_b,L_b)\mapsto(-x_b,-L_b)$ preserves
+admissibility, keeps $u_b$ fixed and negates $m_0$.
+It follows that $C_0(0,h,-n)=C_0(0,-h,n)$.
+Thus the sum $F(n)$ of the two coefficients $C_0$,
+normalized by $gJ_0$, is even in $n$ and $|F(n)|\le2$.
+This sum has a period $E\mid r\,(d,g)$.
+For primes dividing $g$, the full $D$-component at
+such primes already divides $r(d,g)$. At the other
+primes of $D_0$, one has $m_0=j\bar x_b$ on the
+local component, so the period in $n$ divides
+$p_0^{\max(v_{p_0}(D)-v_{p_0}(j),0)}$.
+This divides the corresponding prime power of $r$
+since $d$ is squarefree. In particular $E\le Y^{2\rho}$
+and $(E,D_1)=1$.
+
+For any interval of $b$ the signed sum of
+$F(bN+\sigma p)c_{D_1}(bN+\sigma p)/D_1$ is
+$O(E\tau(D_1))$. Expand the Ramanujan sum on divisors
+$v_0\mid D_1$ and fix a residue $u_0\bmod E$.
+For a given $v_0$, pair the positive congruences
+$bN+p\equiv u_0\bmod E$, $v_0\mid bN+p$ with
+the negative congruences at residue $-u_0$.
+The two solution sets are reflections in $b$,
+and are both empty or single residue classes of
+the same period. The discrepancy on an interval
+is at most two, and $F$ has the same value on the
+paired residues. Summing $u_0,v_0$ with weights
+$v_0/D_1$ proves the bound.
+
+For the new transform at $k=0$, the bound
+$O_\epsilon(PY^\epsilon/(Dg(1+|h|)))$ and its
+$n$-derivative bound with the extra factor $Y^{2\rho}/V$
+still hold. Replacing $n=bN+\sigma p$ by $bN$
+in the transform alone costs a relative bound
+$O(pB Y^{2\rho}/V)$ in the slope sum, using the
+supremum bound on the normalized arithmetic coefficient.
+Partial summation against the signed progression
+bound then gives a total contribution
+\[
+ O_\epsilon\!\left(
+ \frac{P Y^{4\rho+\epsilon}}{d(1+|h|)}
+                \frac{(h,j_1)}{j_1}\right)
+\]
+for each $p,d,g,j$ and pair $h,-h$.
+The sums over $j_0,j_1,h$ again cost
+$O_\epsilon(Y^\epsilon)$. With the screen, divisor and
+prime sums the pointwise bound is
+$O_\epsilon(XP Y^{5\rho+\epsilon})$.
+
+Only the uncapped $k=h=0$ term remains. Use
+\cref{eq:criticalgriddoublezero-lattice} with
+$\mathfrak m_\infty$ directly and the uncapped
+normalization in the proof of
+\cref{thm:criticalgriddoublezero}.
+The smoothing, screen and progression errors there
+are power saving and require no bound on $D_0$.
+This gives $U_N$ with the asserted squared error.
+The approximation of the original sequence by the
+full completed sum follows from
+\cref{thm:criticalgridfrozenvaughan,thm:criticalgridpoisson,thm:criticalgridclippeddeletion,thm:criticalgriddoublecompletion}.
+Combining the squared errors proves
+\cref{eq:criticalgriduncappedreduction}.
+\end{proof}
+
+\begin{proposition}[The longer-divisor remainder in physical variables]
+\label[proposition]{prop:criticalgriduncappedtail}
+Under the preceding hypotheses, fix $J_0>0$ and choose the
+exponent of $z$ sufficiently large. Then $\mathcal W_N^{>T_*}$
+equals the signed physical sum in
+\cref{eq:criticalgridtransitionphysical} with $d>T_*$
+in place of $A_*<d\le T_*$, up to squared error
+$O(Y^3(\log Y)^{-J_0})$ over the even moduli.
+Every complementary factor $m=n/d$ in this physical
+remainder satisfies $m\ll Y^{1-\beta}$.
+\end{proposition}
+
+\begin{proof}
+Apply \cref{thm:criticalgridlongmobius} with $W=1$ and
+$U=\lfloor A_*\rfloor$, adopting the sampling conventions
+of \cref{eq:criticalgridtransitionphysical} by the endpoint
+and screen estimates of \cref{prop:criticalgriddoublezero-lower}.
+Their bounds use only the divisor majorant for the weight,
+so apply to the entire physical sum with $d>A_*$.
+Subtract $U_N$ and use \cref{eq:criticalgriduncappedreduction}.
+Finally $n\ll V$ and $V/T_*=Y^{1-\beta}$.
+\end{proof}
+
 \clearpage
 \section{Conditional bounds from uniform prime-pair discrepancies}
 \label{sec:pairconditional}
@@ -13441,8 +13643,10 @@ M\"obius range across all retained arc denominators.
 \Cref{thm:criticalgriddoublecompletion} makes the two
 Kloosterman factors of the long-divisor remainder
 explicit and removes a portion of its zero mode.
-\Cref{thm:criticalgriddoublezero} gives a physical
-congruence sum for the transition-range contribution.
+\Cref{thm:criticalgriduncappedtransition,prop:criticalgriduncappedtail}
+give physical congruence sums on both sides of the
+transition cutoff, with complementary factors $\ll Y^{1-\beta}$
+above it.
 \Cref{prop:criticalgridarcsharpness} shows that a power saving
 for arbitrary arc functions cannot follow from their size,
 their energy, and the conductor cutoffs alone.
@@ -13618,6 +13822,11 @@ used to change a branch representative in
 The file \texttt{formalization/DoubleZeroReconstruction.lean}
 verifies the reduced divisibility condition and the
 divisor regrouping in \cref{thm:criticalgriddoublezero}.
+
+The file \texttt{formalization/TransitionPeriod.lean}
+checks the prime-power exponent bound, the scaled inverse
+congruences and the reflected progression identity used
+in \cref{thm:criticalgriduncappedtransition}.
 
 The file \texttt{formalization/PrefixPersistence.lean} checks
 the finite sum version of the large-prefix estimate used in

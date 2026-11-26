@@ -4,6 +4,7 @@ This repository contains the English research manuscript and the code and data f
 
 - [Manuscript (PDF)](output/pdf/hypothesis_s_paper.pdf)
 - [LaTeX source](output/pdf/hypothesis_s_paper.tex)
+- [Lean verification of the shortened local period and signed progression reflection](formalization/TransitionPeriod.lean)
 - [Lean verification of the reconstructed divisibility condition and divisor regrouping](formalization/DoubleZeroReconstruction.lean)
 - [Lean verification of the double completion phase and branch representative](formalization/DoubleCompletion.lean)
 - [Lean verification of the clipped-arc inverse branches and their reflection](formalization/ClippedArcCancellation.lean)
@@ -41,6 +42,12 @@ This repository contains the English research manuscript and the code and data f
 - [Lean verification of the product cutoff geometry](formalization/CriticalCollar.lean)
 - [Lean verification of the prefix rectangle test](formalization/CriticalPrefix.lean)
 - [Lean verification of the signed progression rows](formalization/CriticalArithmetic.lean)
+
+## Research checkpoint · 27 November 2026
+
+Theorem 13.29 reconstructs the entire completed transition block $A_*<d\le BY^\beta$ as its physical signed Type II sum, with power-saving squared error when $(5/2)\beta+\varepsilon+16\rho<\xi/2$. A shorter local period forces a shared divisor of $d$ and $j$ to divide every surviving nonzero denominator frequency. At zero denominator frequency, pairing the opposite Farey harmonics yields an even periodic coefficient whose two signed slope counts have equal means.
+
+Proposition 13.30 identifies the completed block $d>BY^\beta$ with the corresponding physical sum up to any fixed logarithmic saving in squared norm. Its complementary factors are $O(Y^{1-\beta})$. Cancellation of the physical sums remains open.
 
 ## Research checkpoint · 26 November 2026
 
@@ -140,6 +147,7 @@ With Elan installed, run the Lean check from the repository root.
 
 ```sh
 elan toolchain install leanprover/lean4:v4.35.0
+elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/TransitionPeriod.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/DoubleZeroReconstruction.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/DoubleCompletion.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/ClippedArcCancellation.lean
