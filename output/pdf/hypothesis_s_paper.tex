@@ -3081,6 +3081,149 @@ lower bound by $c\,c_3(5)$ gives
 $4(\log(3/2)-c_4(5))/c_3(5)>3.84$ by the same recurrence.
 \end{proof}
 
+\begin{proposition}[The fixed test in the range of an exceptional real zero]
+\label[proposition]{prop:single-test-exceptional-character}
+Let $\chi$ be a primitive quadratic character of conductor
+$q=2^r q'>1$, where $q'$ is odd and squarefree and $r\in\{0,2,3\}$.
+Suppose $L(s,\chi)$ has a real zero $1-1/(\eta\log q)$ with
+$\eta\ge10$. Put $d=\varphi(2^r)$ and $B=q'/\gcd(q',3)$.
+For even $N$ define
+\[
+ K_q(N)=
+ \begin{cases}
+ \displaystyle\chi(-1)(-1)^{N/d}
+    \prod_{\ell\mid q',\,\ell\nmid N}\frac{-1}{\ell-2},
+       &d\mid N,\\[4pt]
+ 0,&d\nmid N ,
+ \end{cases}
+\]
+where $\ell$ runs over primes. Uniformly for
+$12\le\log N/\log q\le\sqrt\eta$ as $\eta\to\infty$,
+\begin{equation}
+ P_N=c(1+K_q(N))+o(1),\qquad c=4/45 .
+ \label{eq:single-test-exceptional-character}
+\end{equation}
+The same estimate holds for $\Delta_N$. The main term vanishes
+exactly when
+\begin{equation}
+ dB\mid N,\qquad
+ \chi(-1)(-1)^{N/d+\mathbf1_{3\mid q',\,3\nmid N}}=-1 .
+ \label{eq:single-test-exceptional-classes}
+\end{equation}
+At every other even $N$ in the stated range $P_N\ge 2c/3-o(1)$.
+In any interval of length $H$ inside that range, possible failures
+of distinct prime representation number at most $1+6H/q$ for
+sufficiently large $\eta$. In the classes
+\eqref{eq:single-test-exceptional-classes}, each distinct prime
+pair in the window contains precisely one prime with $\chi(p)=1$.
+In particular, for odd $q$ coprime to three and $\chi(-1)=1$,
+the lower bound holds at every even $N$ in the range.
+For the progression discrepancy of \cref{prop:single-test-upper-mark},
+the zero classes satisfy
+\[
+ -1-I_1-o(1)\le R_N^+/c\le -1+3I_1+o(1),
+\]
+whereas off these classes $R_N^+/c\ge -1/3-I_1-o(1)$.
+\end{proposition}
+
+\begin{proof}
+Write $V=\log N/\log q$, $L=\log N$. Theorem~1.4 of
+Matom\"aki and Merikoski \cite{MatomakiMerikoskiSiegel} computes
+the unrestricted Goldbach sum with the multiplier $1+K_q(N)$.
+For the fixed window we need the localized estimate established in
+Sections~2 and~7 of their proof. We give the passage from their
+dyadic sums to the present weight. For $5/12\le t\le1/2$ split
+the prefix $m\le tN$ into intervals $(X,2X]$ with
+$X=tN/2^j$, $j\ge1$. Here $X\le N/4$. Fix a sufficiently small
+$\epsilon>0$ in their argument and use the dyadic formula while
+$X\ge N^{1-\epsilon/3}$. On each such interval its main term
+is $X\SSS(N)(1+K_q(N))$. The smooth cutoff there can be replaced
+by the sharp dyadic interval at cost $O(X^{1-\epsilon}L^2)$
+by bounding the two end strips, with the same negligible change
+to the main integral. The omitted prefix costs
+$O(N^{1-\epsilon/3}L^2)$. Throughout these dyadic intervals
+$\log X/\log q\asymp V$ and exceeds ten for small $\epsilon$.
+Thus the error bound of the cited proof, summed using
+$\sum X\le N$, gives uniformly in $t$
+\[
+ \sum_{m\le tN}\Lambda(m)\Lambda(N-m)
+     =tN\SSS(N)(1+K_q(N))+o(N\SSS(N)).
+\]
+Indeed, after normalization the errors are bounded by a constant
+times
+\[
+ e^{-c_0\sqrt{V\log\eta}}+e^{-c_0\sqrt L}
+       +V(\log\eta)^6/\eta+N^{-c_0}L^2
+\]
+for some $c_0>0$. We used $N/\varphi(N)\asymp\SSS(N)$ for even
+$N$, by \eqref{eq:series}. These terms tend to zero in the
+specified range; $\eta\to\infty$ forces $q\to\infty$ since
+each fixed $L(s,\chi)$ is nonzero at one.
+
+Partial summation against $F$ on $[5/12,1/2]$ and symmetry on
+the other half give the factor $\int F=c$. A diagonal term costs
+$O(L^2)$ and proper powers in either coordinate cost
+$O(\sqrt N L^3)$ before normalization. Distinct primes in a
+representation are automatically coprime to $N$. This proves
+\eqref{eq:single-test-exceptional-character} and the assertion
+for $\Delta_N$.
+
+The local meaning of $K_q(N)$ is the mean of
+$\chi(a)\chi(N-a)$ over $a\bmod q$ with $(a(N-a),q)=1$.
+At an odd $\ell\mid q'$ the mean is $\chi_\ell(-1)$ when
+$\ell\mid N$, and $-\chi_\ell(-1)/(\ell-2)$ otherwise, where
+$\chi_\ell$ is the Legendre symbol. For the latter case the
+complete sum of the quadratic symbol of $a(a-N)$ equals $-1$:
+completing the square reduces the count to the factorization of
+a fixed nonzero square as a product in the finite field.
+At modulus four or eight, enumeration of the odd classes gives
+zero if $d\nmid N$, and $\chi_{2^r}(-1)(-1)^{N/d}$ otherwise.
+For $r=0$ the factor is one since $N$ is even. Multiplication
+over the conductor gives the claimed mean.
+
+If some $\ell\ge5$ divides $q'$ but not $N$, the absolute value
+of the product is at most $1/3$. Otherwise the only possible
+odd-prime sign change comes from $3\mid q'$, $3\nmid N$.
+This proves the class criterion and the lower bound off it.
+All zero classes lie among multiples of $dB\ge q/6$, proving
+the count. On those classes the mean of signs is $-1$, so
+every admissible summand has sign product $-1$. Both primes
+in the window exceed $q$ in the range considered. Using the
+symmetry of $W$ one obtains the exact identity there
+\[
+ P_N=2\sum_{\substack{p,\ N-p\ {\rm distinct\ primes}\\
+                       \chi(p)=1}} W(p).
+\]
+The discrepancy bounds follow from
+$R_N^+=P_N+U_N-c(1+I_1)+O(L^{-1/2})$ and the uniform bound
+$0\le U_N\le4cI_1+o(1)$ of \cref{prop:single-test-semiprime-mass}.
+\end{proof}
+
+\begin{corollary}[Real zero-free intervals]
+\label[corollary]{cor:single-test-zero-free}
+If $\liminf_{2\mid N,\ N\to\infty} P_N>0$, then for some
+$\kappa>0$ no primitive quadratic character with
+$2\mid q$, $\chi(-1)=-1$, or $3\mid q$ has a real zero in
+$(1-\kappa/\log q,1)$. If $P_N\to c$ through all even integers,
+the same assertion holds for every primitive quadratic character of
+conductor greater than one.
+These implications also hold with $\Delta_N$ in place of $P_N$.
+\end{corollary}
+
+\begin{proof}
+If the asserted zero-free interval fails, take a sequence with
+$\eta\to\infty$. For $\chi(-1)=-1$ take $N=2q^{12}$.
+For $\chi(-1)=1$ and $2\mid q$ take $N=2q^{12}+q/2$.
+For $\chi(-1)=1$, $q$ odd and $3\mid q$ take
+$N=2q^{12}+2q/3$. These are even integers in the required
+range for large $\eta$ and each satisfies
+\eqref{eq:single-test-exceptional-classes}; hence $P_N=o(1)$.
+For the stronger premise $P_N\to c$, always take $N=2q^{12}$.
+Then $K_q(N)=\chi(-1)$, giving $|P_N-c|=c+o(1)$ for either
+parity. Finally $\Delta_N-P_N=o(1)$ by
+\cref{prop:single-test-rough-pairs}.
+\end{proof}
+
 \section{Certification on the balanced window}
 \label{sec:certificate}
 
@@ -17369,6 +17512,13 @@ J\'anos Bolyai \textbf{13}, North-Holland, Amsterdam, 1976,
 A.~Chirre and M.~V.~Hagen,
 \newblock \emph{On Goldbach numbers in short intervals},
 \newblock \url{https://arxiv.org/abs/2512.23534}.
+
+\bibitem{MatomakiMerikoskiSiegel}
+K. Matom\"aki and J. Merikoski,
+\newblock \emph{Siegel zeros, twin primes, Goldbach's conjecture,
+and primes in short intervals},
+\newblock Int. Math. Res. Not. IMRN (2023), 20337--20384.
+\newblock \url{https://arxiv.org/abs/2112.11412}.
 
 \bibitem{BhowmikGrimmelt}
 G.~Bhowmik and L.~Grimmelt,

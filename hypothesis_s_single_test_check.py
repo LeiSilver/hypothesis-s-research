@@ -334,6 +334,56 @@ def check_presifted_large_factor():
     print(f"Certified the 121/200 large-factor example and {checked} disjoint sieve densities.")
 
 
+def check_exceptional_character_classes():
+    # Primitive quadratic components listed by their values on odd units.
+    two_parts = [(1, {0: 1}), (4, {1: 1, 3: -1}),
+                 (8, {1: 1, 3: -1, 5: -1, 7: 1}),
+                 (8, {1: 1, 3: 1, 5: -1, 7: -1})]
+    checked = zero_classes = 0
+    for two_part, local in two_parts:
+        for odd in (1, 3, 5, 7, 11, 15, 21, 35, 105):
+            q = two_part*odd
+            if q == 1:
+                continue
+            ps = factors(odd)
+            squares = {p: {a*a % p for a in range(1, p)} for p in ps}
+            chi = [local.get(a % two_part, 0)
+                   * prod(0 if a % p == 0 else 1 if a % p in squares[p] else -1 for p in ps)
+                   for a in range(q)]
+            d = len(local)
+            base = odd//gcd(odd, 3)
+            period = lcm(2, q)
+            vanishing = set()
+            for n in range(0, period, 2):
+                signs = [chi[a]*chi[(n-a) % q] for a in range(q) if chi[a] and chi[(n-a) % q]]
+                predicted = (chi[-1]*(-1)**(n//d)*prod(Fraction(-1, p-2) for p in ps if n % p)
+                             if n % d == 0 else 0)
+                missing_three = int(odd % 3 == 0 and n % 3 != 0)
+                zero = n % (d*base) == 0 and chi[-1]*(-1)**(n//d+missing_three) == -1
+                if (Fraction(sum(signs), len(signs)) != predicted or (predicted == -1) != zero
+                        or (not zero and 1+predicted < Fraction(2, 3))):
+                    raise AssertionError(("exceptional character class", q, chi[-1], n))
+                if n == 0 and predicted != chi[-1]:
+                    raise AssertionError(("conductor multiple", q))
+                if zero:
+                    vanishing.add(n)
+                checked += 1
+            zero_classes += len(vanishing)
+            if chi[-1] == -1:
+                witness = 2*q**12
+            elif two_part > 1:
+                witness = 2*q**12 + q//2
+            elif odd % 3 == 0:
+                witness = 2*q**12 + 2*q//3
+            else:
+                if vanishing:
+                    raise AssertionError(("positive in every even class", q))
+                continue
+            if witness % period not in vanishing:
+                raise AssertionError(("zero-free witness", q, witness))
+    print(f"Verified {checked} even character classes, including {zero_classes} vanishing classes.")
+
+
 def check_switched_logarithmic_sieve():
     # gamma < H_m - log(m). Bound exp(H_m) by its Taylor series
     # with a geometric tail, keeping every operation rational.
@@ -487,6 +537,7 @@ def main():
     check_joint_sieve()
     check_switched_logarithmic_sieve()
     check_interval_proportions()
+    check_exceptional_character_classes()
 
 
 if __name__ == "__main__":
