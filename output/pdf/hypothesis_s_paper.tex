@@ -255,6 +255,8 @@ terms to larger denominators and conductors.
 \Cref{thm:criticalgridprimitiveconductors} uses the dual
 multiplicative large sieve to impose a lower bound near $Y$
 on every primitive conductor in the sum.
+\Cref{thm:criticalgridcommonconductors} raises this bound and
+removes pairs of conductors with a large common divisor.
 \Cref{thm:criticalpowers} proves decay in density for the
 entire proper-power contribution through a fixed critical
 product cap and identifies the fixed rows needed for decay
@@ -10920,6 +10922,200 @@ subset of characters in a divisor group. It gives
 by the same degree bound.
 \end{proof}
 
+\clearpage
+\subsection{Conductor pairs with a common divisor}
+
+Use the parameters and partition of \cref{thm:criticalgriddualmajor}.
+Expand the sampled $F_q$ in characters as in
+\cref{thm:criticalgridglobalcharacters}. For each primitive
+conductor $c$, combine all nonprincipal terms with that
+conductor into a sequence $W_{c,N}$. We write
+$W_c(\alpha)=\sum_{Y\le N\le2Y,\,2\mid N}W_{c,N}e(\alpha N)$.
+This grouping includes all approximation denominators and all
+the divisor groups within each denominator.
+
+\begin{theorem}[Large primitive conductors with small common divisors]
+\label{thm:criticalgridcommonconductors}
+Suppose $2\le X\le Y^{1/2-\eta}$, $Y^2/Q\le XV\le CY^2$,
+and $0<\xi<1/10$. Let $P=Y^{1-\xi}/X$ and
+$Q_*=\lceil V/P\rceil$. Under Dirichlet GRH, one can retain only
+$c>Q_*Y^{-\xi/4}$, with
+\begin{equation}
+ \sum_{\substack{Y\le N\le2Y\\2\mid N}}
+       \left|B_N^{\rm p}(I,J)-
+                     \sum_{c>Q_*Y^{-\xi/4}}W_{c,N}\right|^2
+          \ll_{C,Q,\eta,\xi}Y^{3-\xi/8}.
+ \label{eq:criticalgridtopconductors}
+\end{equation}
+In these terms $d e_b(k/c)=q/c<Y^{\xi/4}$.
+
+In the square of $\sum_{c>Q_*Y^{-\xi/4}}W_c$, integrated on any
+measurable $E\subset\mathbb R/\mathbb Z$, the signed sum of
+the cross terms with $(c,c')\ge Y^{\xi/4}$ is
+$O_{C,Q,\eta,\xi}(Y^{3-\xi/8})$. The same bound holds
+for the sum of the absolute integrals over any set of ordered
+conductor pairs with row and column degrees
+$O(Y^{1+3\xi/4})$. In particular, one can delete both
+$|c-c'|\le Y^{1+3\xi/4}$ and $(c,c')\ge Y^{\xi/4}$,
+with a power saving in the second moment. The product of a
+surviving pair of primitive characters, conjugating the second,
+has conductor $\gg_Q Y^{2+\xi}$.
+
+For $X\le Y^\kappa$ take
+$E=(\mathbb R/\mathbb Z)\setminus\mathfrak M_Y$.
+Then the integrals for the surviving pairs give the original
+prime-prefix second moment up to $O(Y^{3-\min(3\kappa/4,\xi/32)})$.
+\end{theorem}
+
+\begin{proof}
+The global principal-character bound proved in
+\cref{thm:criticalgridglobalcharacters} uses only the larger
+range $X\le Y^{1/2-\eta}$. Indeed, the two principal bounds
+use $p\ll\sqrt V$, the divisor sums for $q/(q,N)$, and
+$P^2/V\ll_Q Y^{-2\xi}/X$. They bound the squared norm of
+the principal sum by $O_\epsilon(Y^{3-2\xi+\epsilon})$.
+It therefore suffices to work with the nonprincipal expansion
+of the output in \cref{eq:criticalgriddualmajor}.
+
+Use $v_{d,e_0,k}(\chi)$ and $a_{d,\ell}(\psi)$ from
+\cref{thm:criticalgridprimitiveconductors}, fixing one term
+of degree $j$ in the separated power series. We apply the GRH
+bound $\sum_{n\le z}\psi(n)\ll_\epsilon c^\epsilon\sqrt z$
+for primitive nonprincipal $\psi\bmod c$
+\cite[Section~1]{GoldmakherMimicry}. Inclusion--exclusion and
+partial summation bound the weighted slope sum for
+$\chi\bmod k$ induced by $\psi$ by
+$O_\epsilon(Y^\epsilon\sqrt{B/e_0})$.
+In a nonempty slope group $e_0\le3B$, so the count of
+integers is compatible with this bound even when $B/e_0<1$.
+Multiplicative Parseval for $\gamma_{q,k}$ and
+Cauchy--Schwarz over $\beta$, as in
+\cref{eq:criticalgridprimitivecoeff}, now give
+\begin{equation}
+ \sum_{\chi\bmod k,\ \chi\ne\chi_0} e_0 k\,|v_{d,e_0,k}(\chi)|^2
+ \ll_\epsilon Y^\epsilon B(P/V)\|F_q\|_2^2 .
+ \label{eq:criticalgridcommoncoeff}
+\end{equation}
+The factors $|V\beta|^j$ and the variation norms of the slope
+weights are bounded uniformly in $j$.
+
+This time use weights $1/(e_0k)$ for Cauchy--Schwarz
+in \cref{eq:criticalgridprimitivegroup}. For $c\mid k$,
+the reciprocal weight sum is at most
+\[
+ \sum_{\substack{e_0,u\ge1\\ d e_0 c u\le Q_*}}
+                          \frac{1}{e_0 c u}
+       \ll \frac{\log^2(2Q_*)}{c}.
+\]
+Thus for a conductor interval $C_1<c\le2C_1$,
+\begin{equation}
+ \sum_\psi^* |a_{d,\ell}(\psi)|^2
+     \ll_\epsilon Y^\epsilon\frac{B P}{V C_1}
+                \sum_{\substack{q\\d\ell\mid q}}\|F_q\|_2^2.
+ \label{eq:criticalgridcommoncompressed}
+\end{equation}
+Here the sum at fixed $q,d$ has at most $\tau(q)$ choices
+of $(e_0,k)$, and for each $k$ induction from a primitive
+character gives at most one character modulo $k$.
+These bounds hold also with any additional conductor
+restriction in the interval.
+
+For a positive integer $g$, the reduced fractions of denominators
+$C_1<c\le2C_1$ divisible by $g$ have circular spacing at least
+$g/(4C_1^2)$. Indeed the cross numerator of the difference,
+including any integer translate, is a multiple of $g$.
+Write each primitive character by its Gauss-sum expansion and
+apply the additive large sieve \cite{MontgomeryVaughanSieve}.
+For such a family of primitive characters this bounds
+the sum over an integer interval of length $M$ by
+\[
+ \sum_m\left|\sum_{\psi:\,g\mid \operatorname{cond}(\psi)}
+                     ^* a_{d,\ell}(\psi)\psi(m)\right|^2
+ \ll (1+M+C_1^2/g)
+      \sum_{\psi:\,g\mid\operatorname{cond}(\psi)}^*
+         \frac{\varphi(c)}{c}|a_{d,\ell}(\psi)|^2 .
+\]
+The weight $\varphi(c)/c$ results from additive orthogonality
+at fixed $c$ and the Gauss-sum modulus $\sqrt c$.
+Apply this on $[Y/(d\ell),2Y/(d\ell)]$, using
+Cauchy--Schwarz over $d\ell\mid N$ before summing over $N$.
+On summing over $g\ge G$ with weight $\tau(g)$, each conductor
+is counted with total weight at most $\sum_{g\mid c}\tau(g)$.
+This costs $Y^\epsilon$ with sufficiently small starting
+divisor exponents. The sum over $d,\ell$ in
+\cref{eq:criticalgridcommoncompressed} also costs $Y^\epsilon$
+since $d\ell\mid q$. Restoring the separated power series
+by the triangle inequality in the squared-norm space over
+$N,g$ gives
+\begin{equation}
+ \sum_{g\ge G}\tau(g)
+       \left\|\sum_{\substack{C_1<c\le2C_1\\g\mid c}}W_c\right\|_2^2
+ \ll_\epsilon
+ Y^\epsilon\frac{BP}{V C_1}(Y+C_1^2/G)\sum_q\|F_q\|_2^2.
+ \label{eq:criticalgridcommonsieve}
+\end{equation}
+The $L^2$ norm here is in $\alpha$ by Parseval. The
+coefficients have the same summable factors in $j$ as
+in \cref{thm:criticalgridprimitiveconductors}.
+
+Take the $g=1$ term and sum over dyadic intervals with
+$c\le Q_*Y^{-\xi/4}$. Since $P/V\asymp Q_*^{-1}$,
+$Q_*\asymp_{C,Q}Y^{1+\xi}$, and $C_1\ge1$, the bound is
+$O_\epsilon(Y^\epsilon B Y^{-\xi/4}\sum_q\|F_q\|_2^2)$,
+absorbing the dyadic costs. The estimate
+$B\sum_q\|F_q\|_2^2\ll_C Y^3L$ gives
+\cref{eq:criticalgridtopconductors}.
+The product bound $d e_b(k/c)<Y^{\xi/4}$ follows from
+$q\le Q_*$.
+
+For a retained interval with $c>C_1$, take $G=C_1$ in
+\cref{eq:criticalgridcommonsieve}. The term $g=c$ then
+contains only $W_c$ in that interval. Since the retained
+$C_1\gg_{C,Q}Y^{1+3\xi/4}$, summation over dyadic
+intervals gives
+\[
+ \sum_{c>Q_*Y^{-\xi/4}}\|W_c\|_2^2
+ \ll_\epsilon Y^\epsilon (BP/V)\sum_q\|F_q\|_2^2
+ \ll_{C,\epsilon}Y^{2-\xi+\epsilon}.
+\]
+The degree bound in \cref{thm:criticalgriddenominatorpairs}
+and contraction to $E$ give the stated absolute estimate.
+
+For the common-divisor deletion, set
+$\lambda_G(g)=\sum_{a\mid g,\ a\ge G}\mu(g/a)$.
+M\"obius inversion gives
+$1_{(c,c')\ge G}=\sum_{g\mid c,\,g\mid c'}\lambda_G(g)$,
+where $\lambda_G$ vanishes for $g<G$ and
+$|\lambda_G(g)|\le\tau(g)$. The corresponding signed
+sum of integrals is
+$\sum_{g\ge G}\lambda_G(g)\|\sum_{c:g\mid c}W_c\|_{L^2(E)}^2$,
+with only retained $c$. By Cauchy--Schwarz over the
+dyadic intervals and \cref{eq:criticalgridcommonsieve},
+its absolute value is at most
+\[
+ O_\epsilon\!\left(
+ Y^\epsilon B
+  \left(\frac{Y}{Q_*(Q_*Y^{-\xi/4})}+\frac1G\right)
+     \sum_q\|F_q\|_2^2\right).
+\]
+For $G=Y^{\xi/4}$ this is $O(Y^{3-\xi/8})$.
+One can then additionally discard the nearby pairs
+on the complement of this deletion by the absolute
+degree estimate.
+
+Finally, at any prime where the two primitive conductor
+exponents differ, the product retains the larger exponent.
+This follows from the local conductor criterion on the
+kernel of reduction by one power of the prime. Therefore
+the product conductor is at least $cc'/(c,c')^2$.
+With $c,c'>Q_*Y^{-\xi/4}$ and $(c,c')<Y^{\xi/4}$
+this is $\gg_Q Y^{2+\xi}$.
+For the last assertion, Parseval and Cauchy--Schwarz
+transfer \cref{eq:criticalgridtopconductors} to the integral
+of the square on $E$, using $|B_N^{\rm p}|\ll YL$.
+Then apply \cref{eq:criticalgridmodulusarcs}.
+\end{proof}
+
 \section{Conditional bounds from uniform prime-pair discrepancies}
 \label{sec:pairconditional}
 
@@ -11263,7 +11459,9 @@ It also checks that $r=q/(q,N)$ divides every $m$ such that
 $q\mid Nm$, the divisor grouping used in
 \cref{thm:criticalgridglobalcharacters}. The same file checks
 the divisor constraint and conductor bound used in the
-coefficient grouping of \cref{thm:criticalgridprimitiveconductors}.
+coefficient grouping of \cref{thm:criticalgridprimitiveconductors},
+and the circular spacing numerator in
+\cref{thm:criticalgridcommonconductors}.
 
 The file \texttt{formalization/PrefixPersistence.lean} checks
 the finite sum version of the large-prefix estimate used in
@@ -11458,6 +11656,13 @@ H.~L. Montgomery and R.~C. Vaughan,
 \newblock \emph{Multiplicative Number Theory II}, Cambridge
 University Press, 2026, Chapter~19.
 \newblock \url{https://doi.org/10.1017/9781009445030.005}.
+
+\bibitem{GoldmakherMimicry}
+L. Goldmakher,
+\newblock \emph{Multiplicative mimicry and improvements to the
+P\'olya--Vinogradov inequality},
+\newblock Algebra Number Theory \textbf{6} (2012), 123--163.
+\newblock \url{https://doi.org/10.2140/ant.2012.6.123}.
 
 \bibitem{AssingBlomerLi}
 E.~Assing, V.~Blomer, and J.~Li,

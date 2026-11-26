@@ -106,10 +106,23 @@ theorem conductor_bound_from_cofactor (d e k c cutoff : Nat)
     _ = d * k := by rw [Nat.mul_assoc, hk]
     _ ≤ d * e * k := Nat.mul_le_mul_right k hde
 
+theorem common_denominator_circular_spacing (g a a' c c' n : Int)
+    (hc : g ∣ c) (hc' : g ∣ c')
+    (hDistinct : a * c' - a' * c - n * (c * c') ≠ 0) :
+    g.natAbs ≤ (a * c' - a' * c - n * (c * c')).natAbs := by
+  have hFirst : g ∣ a * c' := Int.dvd_mul_of_dvd_right hc'
+  have hSecond : g ∣ a' * c := Int.dvd_mul_of_dvd_right hc
+  have hPeriod : g ∣ n * (c * c') :=
+    Int.dvd_mul_of_dvd_right (Int.dvd_mul_of_dvd_left hc)
+  have hDifference := Int.dvd_sub (Int.dvd_sub hFirst hSecond) hPeriod
+  exact Nat.le_of_dvd (Int.natAbs_pos.mpr hDistinct)
+    (Int.natAbs_dvd_natAbs.mpr hDifference)
+
 #print axioms slope_reduced_denominator
 #print axioms modulus_dvd_reduced_cofactor_product
 #print axioms modulus_dvd_iff_reduced_cofactor_dvd
 #print axioms grouped_sieve_divisibility
 #print axioms conductor_bound_from_cofactor
+#print axioms common_denominator_circular_spacing
 
 end HypothesisS
