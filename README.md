@@ -4,6 +4,8 @@ This repository contains the English research manuscript and the code and data f
 
 - [Manuscript (PDF)](output/pdf/hypothesis_s_paper.pdf)
 - [LaTeX source](output/pdf/hypothesis_s_paper.tex)
+- [Lean verification of the truncated inclusion-exclusion bound](formalization/TruncatedInclusionExclusion.lean)
+- [Lean verification of coprime factors of squarefree values](formalization/SquarefreeFactors.lean)
 - [Lean verification of signed residue counts in complete and incomplete blocks](formalization/ResidueBlocks.lean)
 - [Lean verification of the finite prefix estimate](formalization/PrefixPersistence.lean)
 - [Lean verification of the centered product collar](formalization/CenteredProduct.lean)
@@ -21,6 +23,8 @@ This repository contains the English research manuscript and the code and data f
 - [Lean verification of the signed progression rows](formalization/CriticalArithmetic.lean)
 
 ## Research checkpoint · 26 November 2026
+
+Theorems 9.7 and 9.8 restrict the Type II approximation through each fixed critical product cap to squarefree expanded values with no prime factor at most $(\log N)^B$, for any fixed $B>0$. The two factors are consequently squarefree and coprime. Under Dirichlet GRH the discarded contributions have a power-saving normalized operator bound uniformly over the even moduli. Theorem 9.7 also bounds the Type II contribution restricted by any individual nontrivial square divisor.
 
 Theorems 9.5 and 9.6 give a Type II approximation to the full critical product restriction $xy\le CN^2$. On separated inputs the Type I terms cancel by the difference of two residue counts. On the remaining packets Dirichlet GRH gives a Type I main term equal to the continuous singular-series model, with a uniform power-saving error in the normalized operator norm. For any fixed $0<\theta<1/6$, the resulting form retains only Type II weights with both factors exceeding $\lfloor N^\theta\rfloor$ in the expanded coordinate.
 
@@ -64,6 +68,8 @@ With Elan installed, run the Lean check from the repository root.
 
 ```sh
 elan toolchain install leanprover/lean4:v4.35.0
+elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/TruncatedInclusionExclusion.lean
+elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/SquarefreeFactors.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/ResidueBlocks.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/PrefixPersistence.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/CenteredProduct.lean

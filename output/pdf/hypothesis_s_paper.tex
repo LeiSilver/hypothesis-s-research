@@ -160,6 +160,10 @@ bilinear form on the separated critical range.
 \Cref{thm:fullcriticaltypeii} uses Dirichlet GRH to remove the
 Type~I terms and the continuous model throughout each fixed
 critical product cap.
+\Cref{thm:squarefreecriticaltypeii} restricts the remaining
+Type~II terms to squarefree integers and coprime factors.
+\Cref{thm:roughcriticaltypeii} also removes prime factors
+up to any fixed power of $\log N$ from the expanded values.
 \Cref{thm:shiftmean} bounds the mean norm of translated pairs of
 high-support windows at a single modulus.
 \Cref{thm:upperproduct} gives a uniform upper cutoff on the product
@@ -2856,6 +2860,395 @@ to the other two terms of the cutoff decomposition,
 using symmetry for the case with a lower second piece.
 With $A=2N^{2/3}$ and $Q=N^{1/3-2\theta}$ all of those errors
 also save a power of $N$.
+\end{proof}
+
+\subsection{Squarefree values in the Type II form}
+
+Let $\mathcal K^{\mathrm{sf}}_{N,C}$ be the form
+$\mathcal K_{N,C}$ of \cref{thm:fullcriticaltypeii},
+with every occurrence of $\mathcal L_{U,V}(t)$ replaced by
+\begin{equation}
+ \mu^2(t)\mathcal L_{U,V}(t)
+  =\sum_{\substack{dm=t\\d>U,\ m>V\\(d,m)=1}}
+        \mu(d)\mu^2(m)\sum_{\substack{p\mid m\\p>V}}\log p .
+ \label{eq:squarefreevaughan}
+\end{equation}
+In this expression $p$ is prime. For an integer $r\ge2$,
+write $\mathcal K^{(r)}_{N,C}$ for the form instead using
+$\mathbf1_{r^2\mid t}\mathcal L_{U,V}(t)$.
+
+\begin{theorem}[Squarefree Type II weights at every modulus]
+\label{thm:squarefreecriticaltypeii}
+Fix $C\ge1$ and $0<\theta<1/6$ and use the parameters
+of \cref{thm:fullcriticaltypeii}. Under global Dirichlet GRH,
+for sufficiently large even $N$,
+\begin{equation}
+ \|\mathcal B_{N,C}-\mathcal K^{\mathrm{sf}}_{N,C}\|
+  +\|\mathcal K_{N,C}-\mathcal K^{\mathrm{sf}}_{N,C}\|
+  +\sup_{r\ge2}\|\mathcal K^{(r)}_{N,C}\|
+          \ll_{C,\theta} N^{-c_\theta}
+ \label{eq:squarefreecriticaltypeii}
+\end{equation}
+for some $c_\theta>0$, with the normalization of
+\cref{thm:fullcriticaltypeii}. Thus the norm through each
+fixed critical cap decays if and only if the form using
+only squarefree expanded values and coprime factors decays.
+\end{theorem}
+
+We use two square-divisor counts. For $Y\ge2$, an interval
+$I\subset[Y/c,cY]$ of length $H$, and $D\ge1$, with $c$
+fixed, one has
+\begin{equation}
+ \#\{t\in I:\text{some }r>D\text{ has }r^2\mid t\}
+      \ll_c (H+1)/D+Y^{19/60}.
+ \label{eq:largesquareinterval}
+\end{equation}
+Here and below the counts are over positive integers.
+First sum $(H+1)/r^2+O(1)$ for $r\le Y^{19/60}$.
+For $r>Y^{21/60}$ write $t=r^2m$ and sum over
+$m\ll_c Y^{18/60}$. For each $m$ the interval of
+possible $r$ has length $O_c((H+1)/\sqrt{Ym})$.
+Starting at $\max(D,Y^{21/60})$ gives a total
+$O_c((H+1)/D+Y^{18/60})$ in this range.
+
+For the intervening $r$, use dyadic blocks at scale $R$,
+allowing a last partial block. The number of multiples is
+an interval main term of size $O((H+1)\sum r^{-2})$
+plus two sums of the centered fractional part of $v/r^2$
+at the interval endpoints $v\asymp_c Y$.
+For either sum the Erd\H{o}s--Tur\'an inequality gives
+\[
+ O\!\left(\frac{R}{K}
+       +\sum_{1\le j\le K}\frac1j
+          \left|\sum_{r\ {\rm in\ block}}
+                   \exp(2\pi i jv/r^2)\right|\right).
+\]
+This follows by integrating the discrepancy bound for
+intervals $[u,1)$ over $0\le u\le1$
+\cite[pp.~112--113]{KuipersNiederreiter}.
+The second derivative estimate
+\cite[Theorem~2.2]{GrahamKolesnik}, with second derivative
+of order $jY/R^4$, bounds this expression by
+$O_c(R/K+\sqrt{KY}/R+R^2/\sqrt Y)$.
+At $K=\lceil Y^{1/12}\rceil$ every term is
+$O_c(Y^{4/15})$, uniformly for these $R$.
+The number of blocks is $O(\log(2Y))$, so adding the
+main term and both outer ranges proves
+\cref{eq:largesquareinterval}. To cover arbitrary
+endpoint inclusion, enlarge $I$ by at most one at each end.
+
+For a unit residue $a$ modulo $N$ and $Y\ll_C N^2$,
+the second count is
+\begin{equation}
+ \#\{t\le cY:t\equiv a\bmod N,\
+                      \text{some }r>D\text{ has }r^2\mid t\}
+       \ll_{C,c,\varepsilon}\frac{Y}{ND}
+                               +N^\varepsilon Y^{1/3}.
+ \label{eq:largesquareprogression}
+\end{equation}
+For $r\le Y^{1/3}$ the Chinese remainder theorem gives
+$O_c(Y/(Nr^2)+1)$, since $r$ is a unit. Above this
+threshold write $t=r^2m$, with $m\ll_c Y^{1/3}$.
+For each unit $m$, the congruence
+$r^2\equiv a\overline m\bmod N$ has $O_\varepsilon(N^\varepsilon)$
+unit roots by the prime-power root bound of
+\cref{sec:subcritical}. Since $r\ll_{C,c}N$, each root
+has only boundedly many lifts. This gives
+\cref{eq:largesquareprogression}.
+
+\begin{proof}[Proof of \cref{thm:squarefreecriticaltypeii}]
+First consider terms on the critical product whose expanded
+value $t$ has a square divisor $r^2$ with $r>D=N^\xi$,
+for any fixed $\xi>0$. This part of a form is a power
+saving in norm whenever its pair coefficients before the
+physical test weights are $O_\varepsilon(N^\varepsilon)$
+for every $\varepsilon>0$. This assertion applies both to
+the physical packets and to the separated terms sampled at
+$bN$ in \cref{thm:criticaltypeii}. To prove it take a pair
+of packets at scales $X\le Y$ with $Y$ the expanded scale.
+Then $XY\ll_C N^2$. On the sampled terms $t=bN\pm n$
+is comparable to the scale of $bN$. The congruence lines
+in the physical variables still have $O_C(Y/N)$ shifts
+whenever the packet is nonzero. Each line has an
+interval for the expanded value of length $O(X)$.
+If $Y\le N^{151/100}$, its count is
+$O_C(X/D+\min(X,Y^{19/60}))$ by
+\cref{eq:largesquareinterval} and the trivial count.
+Use the physical supremum bounds and the lower bound
+for $\SSS(N)$ to obtain the normalized packet bound
+\[
+ O_{C,\varepsilon}\left(
+    N^\varepsilon\left(\frac{\sqrt{XY}}{ND}
+                        +\frac{Y^{79/120}}{N}\right)\right)
+\]
+on unit packet tests. If $Y>N^{151/100}$, apply
+\cref{eq:largesquareprogression} for each of the $O(X)$
+smaller integers. This gives the normalized bound
+\[
+ O_{C,\varepsilon}\left(
+    \frac{\sqrt{XY}}N N^\varepsilon
+       \left(D^{-1}+\frac{N^{1+\varepsilon}}{Y^{2/3}}\right)\right).
+\]
+Both bounds save a power on taking $\varepsilon$
+small in terms of $\xi$. There are $O_C(L^2)$
+nonzero packet pairs, so the power saving persists.
+
+We can start the proof of the approximation with
+$\Lambda(t)$ replaced by $\mu^2(t)\Lambda(t)$.
+For the lower test pieces use the prime version of
+\cref{thm:criticalcenteredrows}, then delete the lower
+product band as in \cref{thm:criticaltypeii}. For the
+two upper pieces this change deletes only proper
+prime powers from the expanded coordinate. On each
+clipped line there are $O((X/\sqrt Y+1)L)$ such values,
+by counting possible bases for each exponent at
+scale $Y$. The two von Mangoldt weights cost $O_C(L^2)$,
+and after summing $O_C(Y/N)$ lines, the normalized
+block is
+$O_C((\sqrt{XY}/N)(Y^{-1/2}+X^{-1})L^3)$.
+It is a power saving because $X\gg N^{2/3}$.
+
+Use Vaughan's identity on $\mu^2(t)\Lambda(t)$.
+The short term still vanishes. In both Type~I terms,
+replace $\mu^2(t)$ by
+$\sum_{r\le D,\ r^2\mid t}\mu(r)$.
+The difference is supported on the large-square set
+just estimated. Each Type~I weight and the difference
+of the squarefree cutoffs are bounded by
+$O_C((\log N)\tau(t)^2)$ in product, hence by
+$O_\varepsilon(N^\varepsilon)$ for every $\varepsilon>0$.
+The large-square estimate therefore applies.
+In the Type~II terms keep $\mu^2(t)$ exactly.
+
+On the separated packets repeat the proof of
+\cref{thm:criticaltypeii} for each square divisor
+$r\le D$. For a divisor $d$ in the Type~I terms the
+condition on $b$ is now $\operatorname{lcm}(d,r^2)
+\mid bN\pm n$. The two residue counts still differ by
+at most one on any prefix, or both vanish if the
+divisor modulus is nonunit. The logarithmic shift
+estimate is unchanged. Summing over $r$ bounds the
+result by $O_C(DA\sqrt Q\,UVL/N)$.
+
+For the two upper pieces, on a shift $h$ apply the
+same progression argument as in \cref{thm:fullcriticaltypeii}.
+Only replace the modulus for a divisor $d$ by
+$\operatorname{lcm}(d,r^2)$ and sum over $r\le D$.
+The normalized progression errors on the packet are
+$O_C(DUV L^3/\sqrt X)$.
+We calculate the main terms for each $r$.
+If $(r,h)>1$ there is no reduced class in either
+Type~I sum. Otherwise for $(\ell,h)=1$ put
+$M=\operatorname{lcm}(r^2,\ell)$ and set
+\[
+ D_{h,r,\ell}(s)
+ =\sum_{(d,h)=1}
+    \frac{\mu(d)\varphi(M)}{\varphi(\operatorname{lcm}(r^2,d\ell))}
+      d^{-s}
+ =\zeta(1+s)^{-1}E_{h,r,\ell}(s).
+\]
+Here $\ell=1$ is used for the logarithmic Type~I term.
+As in \cref{eq:typeimoebius}, the absolute sum of
+the coefficients of $E_{h,r,\ell}$ against $k^{1/4}$
+is $O_\nu(h^\nu r)$ uniformly in $\ell$.
+Indeed, at primes outside $r$ the local factors are
+those of the preceding proof. At $p\mid r$, the local
+factor of $D_{h,r,\ell}$ is $1-p^{-s}$ if
+$v_p(\ell)<2v_p(r)$, since multiplying $\ell$ by $p$
+does not change the least common multiple. Otherwise
+it is $1-p^{-1-s}$. After removing $1-p^{-1-s}$,
+these factors have absolute local sum $O(p^{1/4})$ at
+exponent $1/4$. Their product is $O(r)$, by absorbing
+the absolute constant into $p^{3/4}$ at all large
+primes and bounding the finitely many small factors.
+
+The truncated sum of the coefficients of
+$D_{h,r,\ell}$ is consequently $O_\nu(h^\nu r U^{-1/4})$
+by the M\"obius sum argument in \cref{eq:typeimoebius}.
+The logarithmic sum for $\ell=1$ differs from
+$D'_{h,r,1}(0)$, with the minus sign from
+\cref{eq:typeimain}, by
+$O_\nu(h^\nu r U^{-1/4}\log(2U))$.
+For $r>1$ this derivative is zero: at each $p\mid r$
+the local factor contains $1-p^{-s}$ in addition
+to the common simple zero of $\zeta(1+s)^{-1}$.
+For $r=1$ the derivative is $\SSS(h)$ as before.
+In the second Type~I term the summation in $\ell$
+costs $O(\log(2V))$ since $\varphi(M)\ge\varphi(\ell)$.
+Thus summing over $r\le D$ contributes the original
+main weight $\SSS(h)$ and an error
+$O_\nu(h^\nu D^2 U^{-1/4}L)$.
+The main weight cancels the model. The packet norm
+of the error has the additional factor
+$O_C(\sqrt{XY}/N)$, from the line integrals as in
+\cref{thm:fullcriticaltypeii}.
+
+Choose $0<\xi<\min(\theta/32,(1/3-2\theta)/4)$ and
+then choose $\nu$ sufficiently small in terms of $\theta$.
+All three Type~I errors are power savings, since
+$U=V=\lfloor N^\theta\rfloor$, $A=2N^{2/3}$,
+$Q=N^{1/3-2\theta}$ and the two upper scales are
+at least a fixed multiple of $N^{2/3}$.
+Adding the square-divisor truncation and the previous
+sampling and product errors proves the first
+bound of \cref{eq:squarefreecriticaltypeii}.
+The second follows by \cref{thm:fullcriticaltypeii}.
+The identity \cref{eq:squarefreevaughan} follows
+because a squarefree product has squarefree coprime
+factors and its divisors contributing to $\Lambda$
+are primes.
+
+For a fixed restriction $r^2\mid t$ with $2\le r\le D$,
+apply the same Type~I estimates with just that $r$.
+Its model main weight is zero by the derivative
+calculation. The original $\Lambda(t)$ with $r^2\mid t$
+contributes only proper prime powers. The larger-power
+estimate of \cref{thm:criticalpowers}, or the upper
+packet count above, bounds it by a power saving.
+For the separated sampled terms the same absolute
+packet estimate applies with cap $2CN^2$, because $bN$
+and the physical larger coordinate are comparable.
+When $r>D$ the large-square count applies directly
+to $\mathcal L_{U,V}$. These bounds are uniform in
+$r$ and prove the last assertion.
+\end{proof}
+
+\subsection{Removing small prime factors from the expanded value}
+
+For $z\ge2$ write $w_z(t)$ for the indicator that $t$ has no
+prime factor at most $z$. Define $\mathcal K^{\mathrm{sf},z}_{N,C}$
+by replacing each $\mathcal L_{U,V}(t)$ of
+\cref{thm:fullcriticaltypeii} by
+$w_z(t)\mu^2(t)\mathcal L_{U,V}(t)$.
+
+\begin{theorem}[Type II weights with no small prime factors]
+\label{thm:roughcriticaltypeii}
+Fix $C\ge1$, $0<\theta<1/6$ and $B>0$.
+Take $z=(\log N)^B$ and keep the parameters of
+\cref{thm:fullcriticaltypeii}. Under global Dirichlet GRH,
+there is $c_{\theta,B}>0$ such that, for sufficiently large
+even $N$,
+\begin{equation}
+ \|\mathcal B_{N,C}-\mathcal K^{\mathrm{sf},z}_{N,C}\|
+   +\|\mathcal K^{\mathrm{sf}}_{N,C}
+                         -\mathcal K^{\mathrm{sf},z}_{N,C}\|
+        \ll_{C,\theta,B} N^{-c_{\theta,B}} .
+ \label{eq:roughcriticaltypeii}
+\end{equation}
+Thus both factors of every expanded value in the remaining
+form are squarefree and coprime, exceed $\lfloor N^\theta\rfloor$,
+and have no prime factor at most $(\log N)^B$.
+\end{theorem}
+
+\begin{proof}
+Let $L=\log N$ and put $D=N^\xi$, where
+$0<\xi<\min(\theta/64,(1/3-2\theta)/8,1/16)$.
+Take $k=\lfloor \xi L/(2\log(2z))\rfloor$.
+For sufficiently large $N$ one has $z^{k+1}\le D$.
+For $j\ge0$ let $\mathcal E_j$ be the set of products of
+$j$ distinct primes at most $z$, with $\mathcal E_0=\{1\}$.
+The truncated inclusion--exclusion identity gives
+\begin{equation}
+ \left|w_z(t)-\sum_{j=0}^{k}(-1)^j
+                        \sum_{\substack{a\in\mathcal E_j\\a\mid t}}1\right|
+       \le \sum_{\substack{a\in\mathcal E_{k+1}\\a\mid t}}1 .
+ \label{eq:truncrough}
+\end{equation}
+If $b$ is the number of distinct primes at most $z$ that divide
+$t$, the signed sum for $b\ge1$ is $(-1)^k\binom{b-1}{k}$
+by Pascal's identity, and its magnitude is at most
+$\binom{b}{k+1}$. For $b=0$ the signed sum equals $w_z(t)$.
+Also
+\begin{equation}
+ \sum_{a\in\mathcal E_{k+1}}\frac{1}{a}
+    \le \frac{1}{(k+1)!}
+               \left(\sum_{p\le z}\frac1p\right)^{k+1}
+    \ll_{\xi,B} N^{-c_{\xi,B}}
+ \label{eq:truncroughrec}
+\end{equation}
+for some $c_{\xi,B}>0$. Indeed the inner sum is
+$O(\log(2z))$ by harmonic summation,
+$k+1\asymp_{\xi,B}L/\log L$, and
+$(k+1)!\ge((k+1)/e)^{k+1}$.
+
+The right side of \cref{eq:truncrough} contributes a power
+saving on the critical product when multiplied by pair
+coefficients $O_\varepsilon(N^\varepsilon)$ for every
+$\varepsilon>0$, before multiplying by the test weights.
+We check this for the physical and sampled terms at once,
+with packet scales $X\le Y$ as in the proof of
+\cref{thm:squarefreecriticaltypeii}. If $Y\le N^{3/2}$,
+each of the $O_C(Y/N)$ lines has at most $O_C(X/a+1)$
+multiples of $a$ in the expanded coordinate. The normalized
+packet bound on unit tests is therefore
+\[
+ O_{C,\varepsilon}\left(N^\varepsilon
+  \left(\frac{\sqrt{XY}}N\sum_{a\in\mathcal E_{k+1}}\frac1a
+                         +\frac{D\sqrt Y}{N\sqrt X}\right)\right),
+\]
+since all $a\in\mathcal E_{k+1}$ are at most $D$.
+The last term in parentheses is $O(N^{\xi-1/4})$.
+If $Y>N^{3/2}$, fix the smaller integer and count
+multiples of $a$ in its two opposite unit classes modulo
+$N$. If $(a,N)>1$ there are none. Otherwise the Chinese
+remainder theorem bounds the count by $O_C(Y/(Na)+1)$.
+Summing over the smaller integers gives the same reciprocal
+sum contribution, with endpoint error
+$O_{C,\varepsilon}(N^\varepsilon D\sqrt{X/Y})$.
+Here $\sqrt{X/Y}\ll_C N/Y$ by the product cap, so this
+also saves a power. Equation~\eqref{eq:truncroughrec} and
+the $O_C(L^2)$ packet count give the asserted norm saving.
+
+The prime in the expanded coordinate has size $\gg N^{2/3}$,
+so the prime version of the starting arithmetic forms in
+\cref{thm:squarefreecriticaltypeii} is unchanged by $w_z(t)$.
+Apply Vaughan's identity to $w_z(t)\mu^2(t)\Lambda(t)$.
+In the Type~I part replace $w_z$ by its truncated sum
+in \cref{eq:truncrough}. Then replace $\mu^2(t)$ by its
+sum over $r\le D$, $r^2\mid t$. For the first replacement
+use the preceding bound. For the second use the
+large-square bound of \cref{thm:squarefreecriticaltypeii},
+since the truncated $w_z$ has magnitude at most $\tau(t)$.
+All weights for those errors, including the von Mangoldt
+weight in the unexpanded coordinate, are
+$O_\varepsilon(N^\varepsilon)$. Keep both indicators
+exactly in the Type~II part.
+
+In each remaining Type~I term the joint divisibility
+condition on $t$ becomes $\operatorname{lcm}(d,r^2,a)\mid t$,
+where $d$ denotes the Type~I divisor, $r\le D$, and
+$a\in\bigcup_{j\le k}\mathcal E_j$. There are at most $D^2$
+choices for $(r,a)$. The residue count on the separated
+packets and the GRH progression estimate on the two
+upper pieces apply as in \cref{thm:squarefreecriticaltypeii}.
+They give errors
+$O_C(D^2A\sqrt Q\,UVL/N)$ and $O_C(D^2 UVL^3/\sqrt X)$
+respectively, prior to summing the upper packets.
+
+For the upper main terms, in the series $D_{h,r,\ell}(s)$
+of the preceding proof replace $r^2$ by
+$M_0=\operatorname{lcm}(r^2,a)$, and put
+$M=\operatorname{lcm}(M_0,\ell)$.
+There is a reduced residue only if $(M_0\ell,h)=1$.
+The Euler factor at $p\mid M_0$ is $1-p^{-s}$ when
+$v_p(\ell)<v_p(M_0)$ and $1-p^{-1-s}$ otherwise.
+The previous coefficient estimate therefore holds with
+$O_\nu(h^\nu r a)$, since the product of the distinct
+primes dividing $M_0$ is at most $r a$.
+For the logarithmic Type~I term the derivative at zero
+vanishes when $M_0>1$, as $\ell=1$. For $M_0=1$, which
+requires $r=a=1$, the derivative is $\SSS(h)$.
+The Type~I main weight is thus $\SSS(h)$, with error
+$O_\nu(h^\nu D^4 U^{-1/4}L)$, by summing the factor $r a$
+over $r,a\le D$ and using $\varphi(M)\ge\varphi(\ell)$
+in the other Type~I term.
+This leaves the model cancellation and adds at most
+$O_{C,\nu}(N^{2\nu}D^4U^{-1/4}L\sqrt{XY}/N)$ per packet.
+The choice of $\xi$ and sufficiently small $\nu>0$ makes
+this and the two progression errors power savings.
+Summation over the packets proves the first comparison
+in \cref{eq:roughcriticaltypeii}. The other follows from
+\cref{thm:squarefreecriticaltypeii}.
 \end{proof}
 
 \section{Dirichlet-zero covariance when both variables are large}
@@ -7619,6 +8012,11 @@ $\kappa>0$, leaving the Type~II contribution.
 \Cref{thm:fullcriticaltypeii} gives the same reduction
 through every fixed critical product cap, using Dirichlet
 GRH for the progression estimates in the two upper pieces.
+\Cref{thm:squarefreecriticaltypeii} shows that only
+coprime factorizations of squarefree expanded values
+are needed through these caps.
+\Cref{thm:roughcriticaltypeii} also excludes every prime
+factor below a prescribed log-power cutoff.
 \Cref{thm:fixedrowmeansquare} bounds the mean square of the
 centered norm for bounded smaller inputs by
 $O_{A,C,\varepsilon}((\log Y)^{-2+\varepsilon})$ over even
@@ -7735,6 +8133,15 @@ the boundary collar for shifting the product test in
 The file \texttt{formalization/ResidueBlocks.lean} checks
 the two-residue count bound through the incomplete period
 used in \cref{thm:criticaltypeii}.
+
+The file \texttt{formalization/SquarefreeFactors.lean}
+checks that the factors of a squarefree value are
+squarefree and share no nontrivial common divisor
+in \cref{eq:squarefreevaughan}.
+
+The file \texttt{formalization/TruncatedInclusionExclusion.lean}
+verifies the finite alternating sum and the error bound
+by the next binomial coefficient in \cref{eq:truncrough}.
 
 The file \texttt{formalization/PrefixPersistence.lean} checks
 the finite sum version of the large-prefix estimate used in
@@ -7914,6 +8321,18 @@ K.~Soundararajan,
 \newblock \emph{Partial sums of the M\"obius function},
 \newblock J. Reine Angew. Math. \textbf{631} (2009), 141--152.
 \newblock \url{https://arxiv.org/abs/0705.0723}.
+
+\bibitem{KuipersNiederreiter}
+L.~Kuipers and H.~Niederreiter,
+\newblock \emph{Uniform Distribution of Sequences},
+\newblock Wiley, New York, 1974.
+\newblock \url{https://web.maths.unsw.edu.au/~josefdick/preprints/KuipersNied_book.pdf}.
+
+\bibitem{GrahamKolesnik}
+S.~W. Graham and G.~Kolesnik,
+\newblock \emph{Van der Corput's Method of Exponential Sums},
+\newblock Cambridge University Press, 1991.
+\newblock \url{https://doi.org/10.1017/CBO9780511661976}.
 
 \bibitem{MaynardIII}
 J. Maynard,
