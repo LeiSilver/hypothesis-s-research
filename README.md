@@ -4,6 +4,7 @@ This repository contains the English research manuscript and the code and data f
 
 - [Manuscript (PDF)](output/pdf/hypothesis_s_paper.pdf)
 - [LaTeX source](output/pdf/hypothesis_s_paper.tex)
+- [Lean verification of the dyadic interval boundary count](formalization/DyadicIntervalBoundary.lean)
 - [Lean verification of the clipped Fourier line and its sampling period](formalization/CriticalFourierWindow.lean)
 - [Lean verification of the local progression density cases](formalization/ProgressionLocalDensity.lean)
 - [Lean verification of the truncated inclusion-exclusion bound](formalization/TruncatedInclusionExclusion.lean)
@@ -25,6 +26,8 @@ This repository contains the English research manuscript and the code and data f
 - [Lean verification of the signed progression rows](formalization/CriticalArithmetic.lean)
 
 ## Research checkpoint · 26 November 2026
+
+Theorem 9.13 removes rational arcs at the scale of the smaller variable using only one screened Type II weight. Under Dirichlet GRH the power-saving estimate holds on packets with smaller scale $X\ge N^{1/2+\eta}$. For denominators up to $P=(\log N)^K$, the arcs of radius $P/(qX)$ can be removed on packets with $X\ge \sqrt N(\log N)^{3K+2D+10}$ with an $O((\log N)^{-D})$ operator error. The other packets use the larger-scale arcs of Theorem 9.11. The new estimate uses the full progression variance and a translated dyadic interval decomposition.
 
 Theorem 9.11 removes small-denominator rational arcs from the screened Type II forms through every fixed product cap $xy\le CN^2$. Under Dirichlet GRH the normalized operator error saves a power of $N$ uniformly over the even moduli. With one Type II weight, the deleted arcs have radius $P/(qY)$ for $q\le P=N^\lambda$, where $Y$ is the larger packet scale. With both weights replaced on supports $x,y\ge N^{1/2+\eta}$, the deleted arcs have radius $P/(qX)$, where $X$ is the smaller scale. The complementary integrals still require cancellation.
 
@@ -74,6 +77,7 @@ With Elan installed, run the Lean check from the repository root.
 
 ```sh
 elan toolchain install leanprover/lean4:v4.35.0
+elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/DyadicIntervalBoundary.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/CriticalFourierWindow.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/ProgressionLocalDensity.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/TruncatedInclusionExclusion.lean

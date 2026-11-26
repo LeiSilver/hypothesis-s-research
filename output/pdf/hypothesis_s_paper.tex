@@ -3653,7 +3653,7 @@ with $q\le P\le N^{\rho/32}$ and $|\beta|\le P/(qW)$,
 this gives
 \begin{equation}
  \left|\sum_{(t,N)=1} A_\rho(t)w(t)e(\alpha t)\right|
- \ll_{\rho,B,c_0} H\sqrt W, N^{-\delta}P.
+ \ll_{\rho,B,c_0} H\sqrt W\, N^{-\delta}P.
  \label{eq:criticalfourierexp}
 \end{equation}
 Indeed the bound before restricting $\beta$ is
@@ -3772,6 +3772,226 @@ two progression savings, and $\lambda<\sigma/32$.
 Summing the $O_C(L^2)$ packet pairs preserves a power
 saving. Now apply \cref{thm:roughcriticaltypeii,thm:doublecriticaltypeii}
 to obtain the stated estimates.
+\end{proof}
+
+\subsection{Rational arcs at the shorter scale with one Type II weight}
+
+For a pair of packets in the singly expanded form, keep
+the notation and clipped intervals of \cref{eq:criticalfourierline}.
+Write $J_v$ for the intersection of the expanded packet
+interval with $|t-v|\le c_2X$, using the enlarged packet
+interval in the sampled terms. For a vector indexed by
+$a\bmod q$ use its Euclidean norm. Define the maximal
+short-interval progression sum by
+\[
+ E_v(q)=\sup_{J\subset J_v}
+ \left(\sum_{a\bmod q}
+  \left|\sum_{\substack{t\in J,\ (t,N)=1\\t\equiv a\bmod q}}
+        A_\theta(t)\right|^2\right)^{1/2},
+\]
+where the supremum is over intervals. A dyadic decomposition
+of the intervals permits a bound for the full residue vector
+at every sampled shift.
+
+\begin{lemma}[Progression cancellation on the sampled windows]
+\label[lemma]{lem:sampledshorttypeii}
+Fix $C,\theta,B$ as in \cref{thm:roughcriticaltypeii}.
+There are $\lambda_0,c_0>0$ such that, under Dirichlet GRH,
+for $\sqrt N\le X\le Y$, $q\le N^{\lambda_0}$ and
+$2\le S\le X/2$, one has
+\begin{equation}
+ \frac{1}{\sqrt{XY}}\sum_v E_v(q)
+ \ll_{C,\theta,B}\frac{\sqrt{XY}}{N}
+   \left(\frac1S+\frac{\sqrt{NS}}{X}L\log(2S)+N^{-c_0}\right),
+ \qquad L=\log N .
+ \label{eq:sampledshorttypeii}
+\end{equation}
+The sum may use any of the line orientations in
+\cref{eq:criticalfourierline}.
+\end{lemma}
+
+\begin{proof}
+As before, the geometric packet conditions give
+$XY\ll_C N^2$, $Y\gg N$ and $O_C(Y/N)$ shifts.
+For an interval $J$ write
+$D(J)_a=\sum_{t\in J,\,t\equiv a\bmod q}\Lambda(t)
+       -|J|/\varphi(q)$ on the reduced classes.
+We first bound $M_v=\sup_{J\subset J_v}\|D(J)\|_2$.
+For $X\ge N^{3/4}$, the pointwise GRH estimate of
+\cref{thm:fullcriticaltypeii} gives
+$M_v\ll_C \sqrt{qY}L^2$. Since
+$\sqrt{qY}/X\ll_C \sqrt q\,N/X^{3/2}$, this is
+$O_C(X N^{-c})$ for small fixed $\lambda_0>0$.
+
+For $X<N^{3/4}$, the clipped windows have length $O(X)$
+and lie within $O(X)$ of positive shifts $v\asymp Y$.
+Let $H=X/S$. For each $u\in[0,H]$ use grid cells of
+length $H$ in a block beginning at $v-kH+u$ and containing
+$2^m$ cells, with $k\asymp S$ and $2^m\asymp S$ chosen
+to cover $[v-c_2 X,v+c_2 X]$ with a margin of at least
+one cell for every $u$. Use half-open grid intervals.
+Each $J$ in this window admits inner and outer grid
+intervals, with endpoint differences at most $2H$.
+The inner interval may be empty. By positivity of the
+prime measure, for each class the absolute discrepancy
+on $J$ is bounded by the sum of those on the enclosing
+and enclosed intervals plus $O(H/\varphi(q))$.
+This comparison also covers endpoints of $J$ by extending
+the enclosing interval or shortening the enclosed one
+by a cell. Thus $M_v$ is bounded by
+$O(H)$ plus twice the maximum discrepancy norm on
+grid intervals.
+
+Decompose a grid interval into its maximal contained
+dyadic blocks of cells. The blocks are disjoint. At
+each length there are at most two, since a maximal
+block's parent must cross one of the two endpoints
+unless the block is the whole grid, and at most one
+contained child can come from each crossing parent.
+If $\mathcal D_v(u)$ is the family of all the dyadic
+blocks of this grid, Cauchy--Schwarz gives
+\[
+ M_v^2 \ll H^2+\frac{\log(2S)}{H}\int_0^H
+       \sum_{I\in\mathcal D_v(u)}\|D(I)\|_2^2\,\ud u .
+\]
+At a fixed block length and index, the starting-point
+intervals over the shifts are disjoint, as $H<N$.
+They lie in a fixed multiplicative range about $Y$.
+Prachar's GRH bound as in \cref{eq:sampledshortprogressions}
+therefore bounds the sum of the integrals for this block
+by $O_C(Y |I| L^2)$, using $2\le H\le |I|\ll X$.
+The total length of the blocks at each level is $O(X)$
+and the number of levels is $O(\log(2S))$. Consequently
+\[
+ \sum_v M_v^2\ll_C (Y/N)H^2+YS L^2\log^2(2S).
+\]
+Cauchy--Schwarz over the shifts supplies the first
+two terms of \cref{eq:sampledshorttypeii}.
+
+We now replace the prime discrepancy by the screened
+Type~II weight. Work in the full residue vector, using
+zero prime density for nonreduced residues. The combined
+prime-power mass on nonreduced classes, or removed by the
+unit condition modulo $N$, is $O_C(L^2)$ per line.
+The additional proper powers removed by $s_z(t)$ have
+mass $O_C((X/\sqrt Y+1)L^2)$ per line, by counting
+integer bases for every exponent on an interval of
+length $O(X)$ at scale $Y$. These bounds control the
+norm of the error vector since they bound its absolute
+sum over the classes.
+
+Write $R=\lfloor N^\theta\rfloor$ and truncate the two
+sieve factors in $s_z(t)I_{R,R}(t)$ at $D_0=N^{\theta/128}$
+as in the proof of \cref{lem:criticalfourierprogressions}.
+On each clipped interval the square truncation error
+is at most
+$O_{C,\varepsilon}(N^\varepsilon(X/D_0+Y^{19/60}))$
+by \cref{eq:largesquareinterval} and the divisor bound.
+Here $Y^{19/60}/X\ll_C N^{-1/40}$ since
+$X\ge\sqrt N$ and $Y\ll_C N^2/X$.
+For the roughness truncation, counting multiples of
+each $b\in\mathcal E_{k+1}$ in the interval gives
+$O_{C,\varepsilon}(N^\varepsilon(XN^{-c'}+D_0))$ for
+some $c'>0$ by \cref{eq:truncroughrec}. Both bounds
+control the absolute sum over the classes and save a
+power of $N$ relative to $X$.
+
+The local Type~I density calculation of
+\cref{lem:criticalfourierprogressions}, with $D_0$ as
+truncation parameter, applies on each $J$ at scale $Y$.
+Its integrated error now has length $O(X)$ and the
+counting remainders have the same bound on every
+interval. More explicitly, the main term in class $a$
+is $|J|\mathbf1_{(a,q)=1}/\varphi(q)$ and the error in
+that class is
+\[
+ O_{C,\nu,\varepsilon}\!\left(
+ XqD_0^4 R^{-1/4} L N^\nu
+     + D_0^2 R^2 L N^\varepsilon\right).
+\]
+This estimate includes the condition $(t,N)=1$.
+Multiplying by $\sqrt q$ bounds the Euclidean norm of
+these errors. With $\nu=\theta/128$ and
+$\lambda_0\le\theta/64$, both terms save a power relative
+to $X$ on choosing $\varepsilon$ small. Vaughan's
+identity now gives $E_v(q)\le M_v+O_{C,\theta,B}(X N^{-c_0})$
+uniformly over the shifts. Together with their count,
+this proves \cref{eq:sampledshorttypeii}.
+\end{proof}
+
+\begin{theorem}[Shorter-scale rational arcs in the singly expanded form]
+\label{thm:shortscalecriticalarcs}
+Fix $C,\theta,B$ as in \cref{thm:roughcriticaltypeii}
+and put $L=\log N$. In the singly expanded form,
+replace the full line integrals of
+\cref{eq:criticalfourierline} by their integrals over
+the complement of $\mathfrak M(W,P)$. Under Dirichlet
+GRH the resulting form approximates $\mathcal B_{N,C}$
+in operator norm with the following choices.
+\begin{enumerate}
+\item For each fixed $0<\eta<1/2$, there exist
+      $\lambda,c>0$ such that $P=N^\lambda$ and
+      $W=X$ on packets with $X\ge N^{1/2+\eta}$,
+      $W=Y$ elsewhere, give error $O_{C,\theta,B,\eta}(N^{-c})$.
+\item For each fixed $K,D>0$, take $P=L^K$ and
+      $W=X$ on packets with $X\ge\sqrt N L^{3K+2D+10}$,
+      $W=Y$ elsewhere. The error is
+      $O_{C,\theta,B,K,D}(L^{-D})$.
+\end{enumerate}
+Both statements apply to arbitrary test supports with
+the original sharp product cutoffs.
+\end{theorem}
+
+\begin{proof}
+For a packet with $W=X$, let $P\le N^{\lambda_0}$.
+Fix $q\le P$ and $\beta$ with $|\beta|\le P/(qX)$.
+By vector-valued partial summation, the residue vector
+of the expanded Fourier polynomial before multiplication
+by $e(at/q)$ has norm at most
+\[
+ \ll_C Y^{-1/2}\NN(G_k)(1+|\beta|X)E_v(q),
+\]
+where $G_k$ denotes the expanded packet test. Indeed
+the geometric support has length $O(X)$ and its test
+weight has supremum plus variation $O(Y^{-1/2}\NN(G_k))$.
+The derivative from $e(\beta t)$ costs $O(|\beta|X)$
+times the supremum of the test weight. By finite
+Fourier orthogonality modulo $q$, summing the absolute
+values over all numerators $a\bmod q$ costs at most
+$q$ times the norm of this residue vector. The
+smaller Fourier polynomial is bounded by
+$O(\sqrt X\NN(F_j))$ by Chebyshev's bound, uniformly
+over the lines and frequencies. Integrate in $\beta$
+and sum over $v$ and $q$. Overlapping arcs only
+increase the resulting upper bound for the absolute
+integral. In units of $\NN(F_j)\NN(G_k)$ the bound is
+\[
+ \ll_C P\sum_{q\le P}\left(1+\frac{P}{q}\right)
+      \frac{\sum_v E_v(q)}{\sqrt{XY}}
+ \ll_{C,\theta,B}
+  P^2\log(2P)\left(\frac1S+
+          \frac{\sqrt{NS}}{X}L\log(2S)+N^{-c_0}\right)
+\]
+by \cref{eq:sampledshorttypeii} and the product cap.
+
+In the first case take $S=\lceil N^{\eta/2}\rceil$
+and choose $\lambda$ sufficiently small in terms of
+$\eta,\lambda_0,c_0$. Each displayed term saves a
+power of $N$. In the second case take
+$S=\lceil P^2 L^{D+4}\rceil$. Then the first term is
+$O_{K,D}(L^{-D-4}\log(2L))$, the second is
+$O_{K,D}(L^{-D-7}\log^2(2L))$ by the lower bound on
+$X$, and the third saves a power of $N$. In both cases
+the choice satisfies $2\le S\le X/2$ on the indicated
+packets for large $N$.
+
+On the remaining packets use the singly expanded
+estimate over $\mathfrak M(Y,P)$ in the proof of
+\cref{thm:criticalminorarc}, choosing $\lambda$ still
+smaller in the power case if needed. The $O_C(L^2)$
+packet pairs preserve the required errors. Finally,
+\cref{thm:roughcriticaltypeii} gives the approximation
+to $\mathcal B_{N,C}$.
 \end{proof}
 
 \section{Dirichlet-zero covariance when both variables are large}
@@ -8546,6 +8766,9 @@ weights in both coordinates above $N^{1/2+\eta}$.
 power-sized denominator from the screened forms. On
 the doubly expanded range it does so at the inverse
 scale of the smaller coordinate.
+\Cref{thm:shortscalecriticalarcs} reaches that scale with
+one Type~II weight, down to $\sqrt N$ times a power of
+$\log N$ for logarithmic arc parameters.
 \Cref{thm:fixedrowmeansquare} bounds the mean square of the
 centered norm for bounded smaller inputs by
 $O_{A,C,\varepsilon}((\log Y)^{-2+\varepsilon})$ over even
@@ -8680,6 +8903,10 @@ The file \texttt{formalization/CriticalFourierWindow.lean}
 checks that the clipping retains every point on a signed
 line and that discrete frequency sampling detects exact
 line membership in \cref{eq:criticalfourierline}.
+
+The file \texttt{formalization/DyadicIntervalBoundary.lean}
+checks the endpoint assignment and uniqueness at each
+scale used in \cref{lem:sampledshorttypeii}.
 
 The file \texttt{formalization/PrefixPersistence.lean} checks
 the finite sum version of the large-prefix estimate used in
