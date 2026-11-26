@@ -518,7 +518,8 @@ $r_N\ge(\varepsilon-o(1))N\SSS(N)/(\log N)^2$, since
 $\SSS(N)\gg1$. Even an $N$-dependent margin suffices for
 existence whenever $N\SSS(N)\Delta_N>H_N(\log N)^2$.
 Establishing such a margin at every sufficiently large even
-modulus remains open.
+modulus remains open. \Cref{prop:single-test-short-mean} gives
+a positive margin for a positive proportion in short intervals.
 
 \subsection{Individual sum and difference lines on bounded windows}
 
@@ -656,6 +657,77 @@ contribute $O_R(\sqrt N L^3)$ to the weighted count, and
 both prime logarithms are $L+O_{a,b}(1)$. This gives
 the claimed asymptotic.
 \end{proof}
+
+\subsection{A short-interval mean for the reflected test}
+
+\begin{proposition}[Mean margin in the one-sided test]
+\label[proposition]{prop:single-test-short-mean}
+Assume Dirichlet GRH. Write $L=\log Y$, and let $Y,H$ be positive
+integers with $L^3\le H\le\sqrt Y$. Sum over the even integers
+$Y<N\le Y+H$. For the test in \cref{eq:single-goldbach-test},
+\[
+ \frac{\sum_N N\SSS(N)\Delta_N}{\sum_N N\SSS(N)}
+    =\frac4{45}+O\bigl((L^3/H)^{1/2}\bigr).
+\]
+If $H/L^3\to\infty$, then $\gg H$ of these even integers satisfy
+$\Delta_N\ge2/45$. Each such integer has
+$r_N\ge(2/45-o(1))N\SSS(N)/L^2$ ordered representations in the
+stated window.
+\end{proposition}
+
+\begin{proof}
+Set $F=f^2$, extended by zero, and $c=\int F=4/45$. The numerator
+is the convolution of the two von Mangoldt weights summed over
+the indicated moduli with the unit restriction and weight $F(m/N)$.
+Extending to all pairs of positive integers $m,n$ with $Y<m+n\le Y+H$
+costs $O(HL^2)$. Indeed an odd sum of two prime powers requires a
+power of two, with $O(1)$ choices on this support and $O(H)$ choices
+for its partner. Nonunit pairs have a common prime base and the
+ratio of their coordinates lies between $5/7$ and $7/5$. Such powers
+must coincide, giving $O(H)$ diagonal pairs. Replacing $F(m/N)$ by
+$F(m/Y)$ costs $O(H^2L)$ by Lipschitz continuity, since
+$\sum_{m\le 2Y}\Lambda(m)\ll Y$ and the inner sum is $O(HL)$.
+The resulting sum is
+\[
+ \sum_m \Lambda(m) F(m/Y)
+       \bigl(\psi(Y-m+H)-\psi(Y-m)\bigr).
+\]
+On the support put $v=Y-m\asymp Y$. The Selberg integral under RH
+\cite{PracharShort,GoldstonYildirimShort}, at progression modulus one,
+gives $\sum_{v\asymp Y}|\psi(v+H)-\psi(v)-H|^2\ll YHL^2$.
+For integer $H$ the integrand is constant on each $[v,v+1)$,
+so the integral bounds the discrete sum. Cauchy--Schwarz with
+$\sum_{m\le2Y}\Lambda(m)^2\ll YL$ costs $O(Y\sqrt H L^{3/2})$.
+The RH prime number theorem and partial summation give
+$\sum_m\Lambda(m)F(m/Y)=cY+O(\sqrt Y L^2)$.
+The numerator is therefore $cYH+O(Y\sqrt H L^{3/2})$.
+
+For the denominator write $C_2=\prod_{p>2}(1-(p-1)^{-2})$.
+By \cref{eq:series}, $\SSS(2k)=2C_2\sum_{d\mid k}h(d)$, where
+$h$ is supported on odd squarefree integers and
+$h(d)=\prod_{p\mid d}(p-2)^{-1}$ there. Mertens' bound gives
+$\sum_{d\le t}h(d)\ll\log(2t)$, and the Euler product gives
+$C_2\sum_d h(d)/d=1$. Counting multiples of $2d$ in the interval
+and bounding the Euler-sum tail by partial summation yields
+$\sum_N\SSS(N)=H+O(L)$. Thus $\sum_N N\SSS(N)=YH+O(YL+H^2)$.
+Dividing proves the mean estimate.
+
+The same expansion for $\SSS(N)^2$ has local coefficients
+$(1+1/(p-2))^2-1=2/p+O(p^{-2})$. Their squarefree products have
+partial sums $O(L^2)$ up to $2Y$, and the series after division by
+$d$ converges. Counting multiples gives $\sum_N\SSS(N)^2\ll H+L^2$.
+The proof of \cref{thm:disc} gives $0\le\Delta_N\le\mu_N(I)\ll1$.
+When $H/L^3\to\infty$, terms with $\Delta_N\ge c/2$ must therefore
+carry $\gg H$ of the sum of $\SSS(N)$. Cauchy--Schwarz and the
+second moment show that there are $\gg H$ such moduli.
+Now apply \cref{eq:single-goldbach-test}.
+\end{proof}
+
+For the existence of a Goldbach number in a short interval under
+RH, Chirre and Hagen obtain length $123\log^2 Y$
+\cite{ChirreHagen}. The mean above measures the margin for a fixed
+balanced test and gives a lower bound on the number of its prime
+representations on the selected moduli.
 
 \section{Certification on the balanced window}
 \label{sec:certificate}
@@ -14899,6 +14971,11 @@ in short intervals},
 \newblock in \emph{Topics in Number Theory}, Colloq. Math. Soc.
 J\'anos Bolyai \textbf{13}, North-Holland, Amsterdam, 1976,
 267--280.
+
+\bibitem{ChirreHagen}
+A.~Chirre and M.~V.~Hagen,
+\newblock \emph{On Goldbach numbers in short intervals},
+\newblock \url{https://arxiv.org/abs/2512.23534}.
 
 \bibitem{GoldstonYildirimShort}
 D.~A. Goldston and C.~Y. Y{\i}ld{\i}r{\i}m,
