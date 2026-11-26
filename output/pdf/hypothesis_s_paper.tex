@@ -243,6 +243,9 @@ second moment.
 when the signed prime counts are tested against short-period
 weights in the modulus, and removes the corresponding narrow
 rational arcs from the modulus second moment.
+\Cref{thm:criticalgriddualmajor} removes rational arcs with
+denominators up to $Y^{1-\xi}/X$ in the larger-prime
+Fourier variable and combines this with the modulus cutoff.
 \Cref{thm:criticalpowers} proves decay in density for the
 entire proper-power contribution through a fixed critical
 product cap and identifies the fixed rows needed for decay
@@ -10110,6 +10113,219 @@ norm by $O(Y^3L^{-D})$. The squared Fourier norm of the prime
 counts on the deleted arcs has the power saving just proved.
 The triangle inequality in $L^2(\mathfrak M_Y)$ gives the claim.
 
+\clearpage
+\subsection{Rational arcs in the larger-prime Fourier variable}
+
+Keep the notation $L=\log Y$ and $B=V/Y$. Take
+\begin{align*}
+ \mathcal B&=\{b\in\mathbb N:B/3\le b\le3B\},\\
+ P_I^-(\theta)&=\sum_{p\in I\,{\rm prime}}\log p
+                       \bigl(e(-p\theta)-e(p\theta)\bigr),
+ \qquad T_J(\theta)=\sum_{t\in J}\Lambda(t)e(t\theta).
+\end{align*}
+For $P\ge2$ let $\mathfrak A(V,P)$ be the arcs
+$|\theta-a/q|\le P/(qV)$, with $(a,q)=1$ and $q\le P$,
+viewed on $\mathbb R/\mathbb Z$. Write $\mathfrak a(V,P)$
+for their complement and use the sampling map
+\[
+ (\mathcal C F)_N=\sum_{b\in\mathcal B}
+         \int_{\mathbb R/\mathbb Z}F(\theta)e(-bN\theta)\,\ud\theta .
+\]
+
+\begin{theorem}[Deletion of larger-prime rational arcs in the second moment]
+\label{thm:criticalgriddualmajor}
+Fix $0<\eta<1/2$ and $0<\xi<1/10$.
+Suppose $2\le X\le Y^{1/2-\eta}$ and $Y^2/Q\le XV\le CY^2$,
+with $I\subset[X,2X)$ and $J\subset[V,2V)$ as before.
+Under Dirichlet GRH, put $P=Y^{1-\xi}/X$. Then
+\begin{equation}
+ \sum_{\substack{Y\le N\le2Y\\2\mid N}}
+    \left|B_N^{\rm p}(I,J)
+      -\bigl(\mathcal C[
+        1_{\mathfrak a(V,P)}P_I^- T_J]\bigr)_N\right|^2
+      \ll_{C,Q,\eta,\xi}Y^{3-\xi}.
+ \label{eq:criticalgriddualmajor}
+\end{equation}
+Every retained $\theta$ has a rational approximation
+$a/q$ with $P<q\le\lceil V/P\rceil$ and
+$|\theta-a/q|\le P/(qV)$. In particular, for log-power
+$X$, the denominator lies between $Y^{1-\xi}/X$ and
+$O_C(Y^{1+\xi})$.
+
+If $X\le Y^\kappa$ with $\kappa$ as in
+\cref{thm:criticalgridperiodicmoduli}, set
+\[
+ D_Y(u)=\sum_{\substack{Y\le N\le2Y\\2\mid N}}e(Nu),\qquad
+ Z_{I,J}(\alpha)
+   =\int_{\mathfrak a(V,P)} P_I^-(\theta)T_J(\theta)
+        \sum_{b\in\mathcal B}D_Y(\alpha-b\theta)\,\ud\theta .
+\]
+Then for some $c=c(\xi,\kappa)>0$,
+\begin{equation}
+ \sum_{\substack{Y\le N\le2Y\\2\mid N}} |B_N^{\rm p}(I,J)|^2
+   =\int_{(\mathbb R/\mathbb Z)\setminus\mathfrak M_Y}
+          |Z_{I,J}(\alpha)|^2\,\ud\alpha
+      +O_{C,Q,\eta,\xi}(Y^{3-c}),
+ \label{eq:criticalgridjointminor}
+\end{equation}
+where $\mathfrak M_Y$ is the modulus arc set of
+\cref{thm:criticalgridperiodicmoduli}.
+\end{theorem}
+
+\begin{proof}
+With $\Lambda_{\rm p}$ in $T_J$, Fourier inversion gives
+the signed count with $bN\pm p\in J$. The condition
+$(p,N)=1$ can be dropped for this count, since when $p\mid N$
+the larger argument is a multiple of $p$ exceeding $p$.
+All its slopes lie in $\mathcal B$, as do those with $bN\in J$.
+Moving the endpoints from $bN\in J$ to $bN\pm p\in J$ costs
+$O(XL)$ at each modulus, since $p\le2X=o(Y)$.
+
+For any square-integrable periodic $F$, Cauchy--Schwarz over
+$b$ followed by the divisor bound gives
+\begin{equation}
+ \sum_{\substack{Y\le N\le2Y\\2\mid N}} |(\mathcal C F)_N|^2
+ \ll_\epsilon B V^\epsilon
+    \sum_{h\in\mathbb Z}|\widehat F(h)|^2
+ = O_\epsilon(B V^\epsilon\|F\|_2^2).
+ \label{eq:criticalgriddualsampling}
+\end{equation}
+In fact, only $h\le6V$ occur, each for at most $\tau(h)$
+pairs $(b,N)$. By $\|P_I^-\|_\infty\ll X$ and Parseval for
+the proper prime powers, replacing $\Lambda_{\rm p}$ by
+$\Lambda$ in $T_J$ costs $O_\epsilon(B X^2 V^{1/2+\epsilon}L^3)$
+in squared norm. Here
+$\sum_{t\in J}|\Lambda(t)-\Lambda_{\rm p}(t)|^2\ll\sqrt V L^3$
+by counting the bases of the proper powers. With $\epsilon=\xi/8$,
+the endpoint and prime-power errors are both $O(Y^{3-\xi})$
+in squared norm, by $XV\le CY^2$ and $X\le Y^{1/2-\eta}$.
+
+The arcs of $\mathfrak A(V,P)$ are disjoint for large $Y$,
+since $2P^2<V$. Write $\Delta_q=P/(qV)$,
+$v_J(\beta)=\int_J e(t\beta)\,\ud t$, and use the major-arc
+model $M(a/q+\beta)=\mu(q)v_J(\beta)/\varphi(q)$.
+We claim the squared approximation bound
+\begin{equation}
+ \int_{\mathfrak A(V,P)}|T_J(\theta)-M(\theta)|^2\,\ud\theta
+       \ll P^2 L^4 .
+ \label{eq:criticalgriddualgrherror}
+\end{equation}
+For each reduced residue $r\bmod q$, let $\nu_r$ be the
+measure on $J$ having von Mangoldt weights in that class
+minus $\varphi(q)^{-1}1_J(t)\,\ud t$. The Fourier transform
+here uses $e(t\beta)$. The transform of
+$x\mapsto\nu_r((x,x+h])$ has absolute value
+$|\widehat\nu_r(\beta)|\,|\sin(\pi h\beta)/(\pi\beta)|$.
+For $h=(2\Delta_q)^{-1}$ this multiplier is $\gg h$
+throughout $|\beta|\le\Delta_q$. Plancherel gives
+\[
+ \sum_{r\bmod q}^{*}\int_{-\Delta_q}^{\Delta_q}
+          |\widehat\nu_r(\beta)|^2\,\ud\beta
+ \ll h^{-2}\int_{\mathbb R}\sum_{r\bmod q}^{*}
+                        |\nu_r((x,x+h])|^2\,\ud x
+ \ll V\Delta_q L^4.
+\]
+Indeed $1\le h\le V/2$. Where $(x,x+h]$ lies inside $J$,
+the integral is $\ll VhL^2$ by Prachar's bound under GRH
+\cite{PracharShort,GoldstonYildirimShort}. The portions crossing
+an endpoint have total length $O(h)$. On these portions
+character orthogonality and
+$\psi(t,\chi)=1_{\chi=\chi_0}t+O(\sqrt V L^2)$ for $t\asymp V$
+give a sum of squared errors over the unit classes of $O(VL^4)$,
+uniformly for the two endpoints of the clipped interval.
+Changing endpoint inclusion affects only the weights at those
+endpoints and obeys the same bound.
+
+By finite additive Parseval, summing
+$|\sum_r^*e(ar/q)\widehat\nu_r(\beta)|^2$ over all $a\bmod q$
+costs $q$ times the sum over $r$. For reduced $a$, the main
+term in this expression for the unit part of $T_J$ is
+$\mu(q)v_J(\beta)/\varphi(q)$. The nonunit part of $T_J$
+has absolute value $O(L^2)$, since its prime-power bases
+divide $q$. Its squared mass over these arcs is
+$O(q\Delta_q L^4)$ for each $q$. Thus the total error for
+each $q$ is $O(qV\Delta_q L^4)=O(PL^4)$, proving
+\cref{eq:criticalgriddualgrherror}. By
+\cref{eq:criticalgriddualsampling}, sampling the error after
+multiplication by $P_I^-$ costs $O_\epsilon(BV^\epsilon X^2P^2L^4)$
+in squared norm.
+
+It remains to bound the sampled model. Put
+\[
+ k_q(u)=\int_{-\Delta_q}^{\Delta_q}v_J(\beta)e(-u\beta)\,\ud\beta .
+\]
+Its supremum is $O(1)$ by the bounded sine integral, and
+$|k_q'(u)|\ll \Delta_q$. In fact, writing $k_q$ as the
+integral of $\sin(2\pi\Delta_q v)/(\pi v)$ between the
+translated endpoints of $J$ shows that its derivative is
+bounded by the sum of
+$O(\min(\Delta_q,|u-j|^{-1}))$ for the two endpoints $j$.
+Hence its total variation for $0\le u\le 6V$ is $O(L)$.
+
+For a fixed $p$ the sampled model at order $q$, before its
+factor $\mu(q)/\varphi(q)$, is
+\[
+ \sum_{b\in\mathcal B}\bigl[
+     c_q(bN+p)k_q(bN+p)-c_q(bN-p)k_q(bN-p)\bigr].
+\]
+Changing both arguments of $k_q$ to $bN$ costs
+$O(\varphi(q)Bp\Delta_q)$. The remaining signed sum is
+$O(L\sigma(q))$, where $\sigma(q)=\sum_{d\mid q}d$.
+To see this, use $c_q(u)=\sum_{d\mid(q,u)}d\mu(q/d)$.
+For each $d\mid q$, the opposite congruences in $b$ are
+both unsolvable or each gives a single class modulo $d/(d,N)$.
+Their counts differ by at most one on any integer interval.
+Thus the signed Ramanujan sums have partial sums bounded
+by $\sigma(q)$, and summation by parts gives the claim.
+Now $\sigma(q)/\varphi(q)\le\tau(q)^2$ and
+$\sum_{q\le P}\tau(q)^2\ll P(\log(2P))^3$. Summing in $q$
+and in $p$ bounds the full sampled model at each modulus by
+\[
+ O(XPL^4 + X^2BP L/V)=O(XP L^4).
+\]
+With $P=Y^{1-\xi}/X$, the squared model and
+\cref{eq:criticalgriddualgrherror} after sampling both give
+$O_{C,Q,\eta,\xi}(Y^{3-\xi})$, using $\epsilon=\xi/8$ in
+\cref{eq:criticalgriddualsampling}. This proves
+\cref{eq:criticalgriddualmajor}.
+
+Dirichlet approximation at cutoff $\lceil V/P\rceil$
+gives the stated rational approximation on the retained arcs.
+The sequence in \cref{eq:criticalgriddualmajor} has Fourier
+transform $Z_{I,J}(\alpha)$ by interchanging the finite sums
+and the integral. By Parseval its difference from $S_{I,J}$
+has squared norm $O(Y^{3-\xi})$. Since
+$|B_N^{\rm p}(I,J)|\ll_C YL$, Cauchy--Schwarz changes the
+integral of the square on $(\mathbb R/\mathbb Z)\setminus\mathfrak M_Y$
+by $O_{C,Q,\eta,\xi}(Y^{3-\xi/3})$. Apply
+\cref{eq:criticalgridmodulusarcs} to obtain
+\cref{eq:criticalgridjointminor}.
+\end{proof}
+
+The kernel in \cref{eq:criticalgridjointminor} can also be
+restricted to pairs with $\|2(\alpha-b\theta)\|\le Y^{-1+2s}$
+for any fixed $0<s<\min(\kappa,\xi)/100$, where $\|\cdot\|$
+is the distance to the nearest integer. Use a smooth weight
+$0\le w_Y\le1$ supported in $[Y,2Y]$ and equal to one beyond
+distance $A=Y^{1-s}$ from both endpoints, with
+$\|w_Y^{(j)}\|_\infty\ll_j A^{-j}$. In $Z_{I,J}$ replace
+$D_Y$ by $D_Y^w(u)=\sum_{2\mid N}w_Y(N)e(Nu)$.
+By Parseval and the trivial bound on $B_N^{\rm p}$ the squared
+cost of smoothing the original sequence is $O(A Y^2 L^2)$,
+and \cref{eq:criticalgriddualmajor} transfers it to the
+sequence sampled on $\mathfrak a(V,P)$, with its stated error.
+For the weighted kernel, summation by parts with $j$ consecutive
+differences of step two gives
+\[
+ |D_Y^w(u)|\ll_j Y(1+A\|2u\|)^{-j}.
+\]
+Off the indicated pairs this is $O_j(Y^{1-js})$. Since
+$|P_I^-T_J|\ll XV$ and $\#\mathcal B\ll B$, the omitted
+integral is $O(Y^{-10})$ uniformly in $\alpha$ on choosing
+$j$ large in terms of $s$. Cauchy--Schwarz now proves
+\cref{eq:criticalgridjointminor} with this restricted weighted
+kernel and a possibly smaller power saving.
+
 \section{Conditional bounds from uniform prime-pair discrepancies}
 \label{sec:pairconditional}
 
@@ -10422,7 +10638,8 @@ boundary in \cref{thm:criticalmeangrid}.
 
 The file \texttt{formalization/SignedProgressionLocal.lean}
 checks the local root and slope conditions used in
-\cref{eq:criticalgridvarianceflip}.
+\cref{eq:criticalgridvarianceflip} and the reflection
+of slope residues in \cref{thm:criticalgriddualmajor}.
 
 The file \texttt{formalization/TypeIIDeterminant.lean}
 checks the common-divisor test and the transfer through

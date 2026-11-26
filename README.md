@@ -9,7 +9,7 @@ This repository contains the English research manuscript and the code and data f
 - [Lean verification of the additive frequency denominator and cofactor](formalization/AdditiveDenominator.lean)
 - [Lean verification of the complementary divisor cutoff and sign](formalization/ComplementaryDivisor.lean)
 - [Lean verification of the determinant divisibility in the Type II form](formalization/TypeIIDeterminant.lean)
-- [Lean verification of the signed local progression roots](formalization/SignedProgressionLocal.lean)
+- [Lean verification of the signed progression roots and slope reflection](formalization/SignedProgressionLocal.lean)
 - [Lean verification of the product variation in a grid cell](formalization/ProductGridCell.lean)
 - [Lean verification of the prime-exponent injection for the divisor moment](formalization/DivisorMoment.lean)
 - [Lean verification of the dyadic interval boundary count](formalization/DyadicIntervalBoundary.lean)
@@ -34,6 +34,8 @@ This repository contains the English research manuscript and the code and data f
 - [Lean verification of the signed progression rows](formalization/CriticalArithmetic.lean)
 
 ## Research checkpoint · 26 November 2026
+
+Theorem 13.13 applies Prachar's short-interval variance to the larger-prime Fourier sum. Sampling on the lines $h=bN$ then permits deletion of the rational arcs of denominators up to $P=Y^{1-\xi}/X$, with squared error $O(Y^{3-\xi})$ under Dirichlet GRH. Opposite slope residues cancel the Ramanujan main terms. On the small-input grid this combines with Theorem 13.12 to leave a second-moment integral restricted in both the modulus and larger-prime Fourier variables. After smoothing in the modulus, the kernel is restricted to $\|2(\alpha-b\theta)\|\le Y^{-1+2s}$ for small fixed $s>0$, with a power-saving error.
 
 Theorem 13.12 uses the GRH form of the Assing–Blomer–Li progression estimate to bound the signed prefix sum over all even moduli against any bounded periodic weight of period at most $Y^\kappa$, with an absolute $\kappa>0$. The bound is $O(Y^{2-\kappa})$ on every subinterval of $[Y,2Y]$ for smaller input $X\le Y^\kappa$ at the critical product scale. Parseval then places the second moment on the complement of narrow arcs about the rationals with denominator at most $Y^{\kappa/4}$ in the modulus Fourier variable, with error $O(Y^{3-3\kappa/4})$.
 

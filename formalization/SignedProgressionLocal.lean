@@ -32,7 +32,26 @@ theorem signed_progression_constant (modulus slope lift : Int) :
     modulus ∣ 2 * (-slope + lift * modulus) ↔ modulus ∣ 2 * slope := by
   simpa [signedProgressionValue] using signed_progression_root modulus slope 0 1 lift
 
+theorem slope_residue_reflection (modulus n offset b period : Int)
+    (hPeriod : modulus ∣ n * period) :
+    modulus ∣ n * b + offset ↔ modulus ∣ n * (period - b) - offset := by
+  have hSum : (n * b + offset) + (n * (period - b) - offset) = n * period := by
+    rw [Int.mul_sub]
+    omega
+  constructor
+  · intro hFirst
+    have hSecond : n * (period - b) - offset = n * period - (n * b + offset) := by
+      omega
+    rw [hSecond]
+    exact Int.dvd_sub hPeriod hFirst
+  · intro hSecond
+    have hFirst : n * b + offset = n * period - (n * (period - b) - offset) := by
+      omega
+    rw [hFirst]
+    exact Int.dvd_sub hPeriod hSecond
+
 #print axioms signed_progression_root
 #print axioms signed_progression_constant
+#print axioms slope_residue_reflection
 
 end HypothesisS
