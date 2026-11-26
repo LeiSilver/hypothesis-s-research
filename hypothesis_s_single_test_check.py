@@ -1,7 +1,7 @@
 """Exact finite checks for the divisor identities and cutoffs of the single test."""
 
 from fractions import Fraction
-from math import ceil, floor, gcd, isqrt, lcm, prod
+from math import ceil, factorial, floor, gcd, isqrt, lcm, prod
 
 
 def factors(n):
@@ -236,6 +236,37 @@ def check_upper_mark_sieve():
     print("Certified the upper-range lower coefficient in (0.97510, 0.97511) and width below 0.03086.")
 
 
+def check_presifted_large_factor():
+    kappa, eta = Fraction(1, 2000), Fraction(1, 64000)
+    eps, beta = Fraction(1, 1000), Fraction(121, 200)
+    b = Fraction(1, 2) - 2*kappa
+    u = (1-b)/(1-beta) - 1
+    log_upper = sum((-1)**(j-1)*u**j/j for j in range(1, 8))
+    coefficient = 1-eps-(1+eps)*(b + 2*log_upper/(1-8*kappa))
+    first_term = Fraction(3, 2)**13/factorial(13)
+    ratio = Fraction(9, 4)/(14*15)
+    if not (0 < u < 1 and coefficient > Fraction(1, 50)
+            and 8*first_term/(1-ratio) < Fraction(1, 10000)
+            and 29*eta < kappa and 8*(1-beta) > 1
+            and (1-b)*(1-8*kappa)/2 < b):
+        raise AssertionError("explicit logarithmic-moment and sieve levels")
+
+    checked = 0
+    for n in range(48, 101, 2):
+        for q in (11, 13):
+            if n % q == 0:
+                continue
+            for a in (1, 2, 3, 6):
+                rho = prod(1 if n % p == 0 else 2 for p in factors(a))
+                for d in (1, 5, 7, 35):
+                    hits = sum(k*(n-q*k) % a == 0 and (n-q*k) % d == 0
+                               for k in range(a*d))
+                    if hits != rho:
+                        raise AssertionError(("two sieve levels", n, q, a, d))
+                    checked += 1
+    print(f"Certified the 121/200 large-factor example and {checked} disjoint sieve densities.")
+
+
 def main():
     limit = 256
     divisors = [tuple(d for d in range(1, n + 1) if n % d == 0)
@@ -316,6 +347,7 @@ def main():
     check_marked_divisors()
     check_twist_profile()
     check_upper_mark_sieve()
+    check_presifted_large_factor()
 
 
 if __name__ == "__main__":

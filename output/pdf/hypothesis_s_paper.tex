@@ -2193,6 +2193,184 @@ and the proper-power estimate of \cref{prop:single-test-rough-pairs}
 give $|P_N/c-1|\le\varepsilon/2$ outside a set of this size.
 The two sides of \eqref{eq:single-test-upper-mark} then give the claim.
 
+\begin{proposition}[A positive large-factor mass at a lower sifting cutoff]
+\label[proposition]{prop:single-test-presifted-large-factor}
+Fix $3/5<\beta<1-\tfrac12 e^{-1/4}$ and
+\[
+ 0<\nu<G(\beta)=\tfrac12-2\log\frac{1}{2(1-\beta)} .
+\]
+There exists $\eta_0(\beta,\nu)>0$ such that, for each fixed
+$0<\eta<\eta_0$, unconditionally,
+\begin{equation}
+ \liminf_{\substack{N\to\infty\\2\mid N}}
+ \sum_{\substack{p\ {\rm prime},\ (p,N)=1\\
+       P^-(N-p)>N^\eta,\ P^+(N-p)>N^\beta}} W(p)
+ \ \ge\ \frac{ce^{-\gamma}\nu}{\eta}.
+ \label{eq:single-test-presifted}
+\end{equation}
+Here $W$ is supported in the fixed window, $c=4/45$, and $P^+$
+is the greatest prime factor. In particular the bound holds for
+$\beta=121/200$, $\nu=1/50$ and $\eta=1/64000$.
+With the positive weight $w_+$
+of \cref{prop:single-test-upper-mark} on the largest prime, the
+same lower bound holds multiplied by $w_+(\beta)>0$.
+\end{proposition}
+
+\begin{proof}
+Write $n=N-p$, $L=\log N$, $y=N^\eta$, and give each unit
+prime sample the weight $A(p)=F(p/N)\log p$. Put
+\[
+ B_N=\frac{cN\SSS(N)e^{-\gamma}}{\log y}.
+\]
+We count the logarithms of the prime divisors of $n$ on the
+samples with $P^-(n)>y$. Choose small fixed $\kappa,\epsilon>0$,
+put $D_0=N^\kappa$, $b=1/2-2\kappa$, and take $\eta$ sufficiently
+small in terms of them. We use the fundamental lemma of the
+sieve in dimensions one and two \cite[Lemma~6.11]{OperaCribro}:
+at level $D_0$ the upper and lower sieve weights for primes up
+to $y$ have local main terms within relative $\epsilon$ of the
+sifting product, once $\kappa/\eta$ is sufficiently large. The
+coefficients are bounded by one and the upper divisor sum is
+nonnegative. The dimension bounds here are uniform: the inverse
+products over any prime interval are bounded by the corresponding
+one- or two-dimensional Mertens products with bounded local
+corrections, as in \cref{prop:single-test-twisted-sieve}
+and \eqref{eq:uniformsieve}.
+
+For the base count, on the unit prime sequence the local
+density is $1/(\ell-1)$ at $\ell\nmid N$ and zero otherwise.
+Its product through $y$ is $(1+o(1))\SSS(N)e^{-\gamma}/\log y$.
+Bombieri--Vinogradov and partial summation supply the remainders
+at level $D_0$ as in \cref{prop:single-test-twisted-sieve}.
+The lower sieve gives total rough mass at least
+$(1-\epsilon-o(1))B_N$. Since $\log n=L+O(1)$ throughout the
+window, the logarithmic moment is at least
+$(1-\epsilon-o(1))B_NL$. When writing $\log n$ as a sum of
+prime divisor logarithms, exponents beyond the first contribute
+$o(B_N L)$: on rough samples their total is bounded by
+$L^2\sum_{q>y}\sum_{j\ge2}N/q^j\ll NL^2/y$.
+
+For $y<q\le N^b$ prime, sift $n/q$ on the progression
+$p\equiv N\bmod q$, restricting to $q\nmid N$. The base mass
+is $cN/(q-1)$ up to its progression remainder. The sifting
+product is the same as for $n$, since $q>y$. After the upper
+sieve, taking the sum over $q$ with weight $\log q$ costs
+$o(B_N L)$ in total progression error. Indeed all moduli $qd$
+have size at most $N^{b+\kappa}$, and for a given modulus the
+sum of $\log q$ over its prime divisors is at most $L$.
+The maximum over reduced residues and interval endpoints in
+Bombieri--Vinogradov applies before this summation. The unit
+condition removes at most the diagonal sample in the window.
+Using $\sum_{q\le N^b}\log q/(q-1)=bL+O(1)$ over primes, this
+range accounts for at most $(1+\epsilon+o(1))bB_N L$.
+
+For $N^b<q\le N^\beta$ set $t=\log q/L$, $x=N/q$, $n=qk$.
+We need $k$ rough at $y$ and $N-qk$ prime. On $k$ with weight
+$F(k/x)$ first apply an upper sieve of level $D_0$ to
+$k(N-qk)$ up to $y$. Denote its nonnegative divisor sum by
+$U(k)$ and the coefficients by $\lambda_a^+$. For $\ell\le y$
+there are $\rho(\ell)=2$ excluded residues, except for
+$\ell\mid N$ where there is one. Here $\ell<q$ and $q\nmid N$.
+With $\rho$ extended multiplicatively on squarefree integers,
+\[
+ V_0=\sum_a\lambda_a^+\rho(a)/a
+ \le (1+\epsilon+o(1))
+       \frac{\SSS(N)e^{-2\gamma}}{(\log y)^2}.
+\]
+The fundamental lemma also gives $V_0\asymp\SSS(N)/(\log y)^2$.
+This product follows by dividing each local factor by
+$(1-1/\ell)^2$ and using \eqref{eq:series}; primes dividing $N$
+above $y$ affect its logarithm by $O(L/y)$.
+
+Now sieve $N-qk$ for primes between $y$ and $\sqrt{D_1}$,
+where $D_1=x^{1-8\kappa}$. Choose $\kappa$ small enough and
+then $\eta$ small enough that $y<\sqrt{D_1}<q$ throughout.
+For a squarefree $d\le D_1$ supported on these primes,
+\[
+ \sum_{d\mid N-qk} F(k/x)U(k)
+ =\frac{cx V_0}{d}+O\left(\sum_{a\le D_0}\mu^2(a)2^{\omega(a)}\right).
+\]
+Indeed $(a,d)=1$, and each of the $\rho(a)$ residues modulo $a$
+can be combined with the single residue for $k\bmod d$.
+The weighted interval count has error $O(1)$ per residue.
+Summed through $D_1$, the error is $O(D_0D_1\log N)$, which
+saves a fixed power of $N$ relative to $x$, since $x\ge N^{1-\beta}$.
+The upper linear sieve on this nonnegative sequence has level
+$D_1$, ratio two, upper function $e^\gamma$, and local product
+$(1+o(1))\log y/\log\sqrt{D_1}$; primes outside the indicated
+interval are omitted. The dimension-one upper product condition
+holds uniformly for this subset of the primes. Thus
+\cite[Lemma~2.5]{MatomakiZunigaSwitching}, followed by
+$\log p\le L$, bounds the mass at $q$ by
+\[
+ (1+\epsilon+o(1))\,\frac{B_N}{q}\,
+             \frac{2}{(1-8\kappa)(1-t)} .
+\]
+All little-oh terms here are uniform in $q$ at fixed parameters.
+Multiplying by $\log q$ and summing by the prime number theorem
+bounds the fraction of $B_NL$ in this range by
+$(1+\epsilon+o(1))\,2\log((1-b)/(1-\beta))/(1-8\kappa)$.
+
+Subtract both ranges from the logarithmic moment. As
+$\kappa,\epsilon\downarrow0$, the resulting lower coefficient
+tends to $G(\beta)$. Fix them so the coefficient exceeds $\nu$,
+then choose $\eta_0$ as required by the two sieves.
+Each surviving $n$ has a unique prime factor $q>N^\beta$,
+and $\log n\ge\log q$. Division by $N\SSS(N)$ proves
+\eqref{eq:single-test-presifted}. The weighted assertion follows
+from monotonicity of $w_+$.
+
+For the explicit example take $\kappa=1/2000$ and
+$\epsilon=1/1000$. We detail the small-prime weights so the
+choice $\eta=\kappa/32$ does not depend on an unspecified
+constant in the fundamental lemma. Sift primes up to $\sqrt L$
+exactly, at a level cost $\exp(O(\sqrt L))$. Partition the
+remaining primes up to $y$ into blocks
+$(y^{2^{-j-1}},y^{2^{-j}}]$, $j\ge0$, clipped at $\sqrt L$.
+Within each use inclusion--exclusion up to $h_j=12+2j$ terms
+in the sense of allowing divisors with at most $h_j$ prime
+factors. Write $U_j$ for this upper divisor sum and $D_j$ for
+the sum of indicators of intersections of order exactly $h_j+1$.
+Bonferroni gives $0\le U_j-{\bf1}_{\rm survives}\le D_j$.
+Use $\prod_j U_j$ above and
+$\prod_j U_j-\sum_jD_j\prod_{i\ne j}U_i$ below. The corrected
+supports are disjoint in their prime counts, so every coefficient
+has modulus at most one. Including the exact small-prime factor,
+the level is at most $\exp(O(\sqrt L))y^{29}\le D_0$, since
+$\sum_j(12+2j)2^{-j}=28$.
+
+Under the product of the local residue densities $g(\ell)$,
+each block has $\sum g(\ell)\le3/2$ and survival probability
+at least $e^{-2}$ for sufficiently large $N$. This follows
+uniformly from Mertens' theorem since in these blocks
+$g(\ell)\le 2/\ell+O(\ell^{-2})$ and $\ell>\sqrt L$.
+The expectation of $D_j$ is at most $(3/2)^{h_j+1}/(h_j+1)!$.
+The sum of the relative errors per block is thus bounded by
+\[
+ T=e^2\sum_{j\ge0}(3/2)^{13+2j}/(13+2j)!<10^{-4}.
+\]
+Independence across blocks bounds the upper product ratio by
+$e^T$ and the lower ratio from below by $1-T$. This supplies
+the required relative error $\epsilon$ in both dimensions.
+With the stated parameters $b=499/1000$ and
+\[
+ 1-\epsilon-(1+\epsilon)
+ \left(b+\frac{2}{1-8\kappa}\log\frac{1-b}{1-\beta}\right)>1/50 .
+\]
+The checker verifies this last strict inequality using a rational
+upper bound for the logarithm.
+\end{proof}
+
+The cutoff in \eqref{eq:single-test-presifted} leaves a
+specific loss before reaching the prime-pair criterion. Write
+$M_N(u)=\sum_p W(p){\bf1}_{P^-(N-p)>u}
+w_+(\log P^+(N-p)/L)$ on the unit samples. For $y<N^{1/5}$
+the difference $M_N(y)-M_N(N^{1/5})$ is exactly the sum on
+$y<P^-(N-p)\le N^{1/5}$ with the same nonnegative weight.
+The second mass is $M_N^+$ in \cref{prop:single-test-upper-mark};
+if $P_N=0$ it is at most $4cI_2+o(1)$. A lower bound on the
+mass retained at $N^{1/5}$ above this last threshold remains open.
+
 \section{Certification on the balanced window}
 \label{sec:certificate}
 
@@ -16340,6 +16518,12 @@ J. Maynard,
 Fixed residue classes},
 \newblock Mem. Amer. Math. Soc. \textbf{306} (2025), no.~1542.
 \newblock \url{https://arxiv.org/abs/2006.06572}.
+
+\bibitem{OperaCribro}
+J. Friedlander and H. Iwaniec,
+\newblock \emph{Opera de Cribro},
+\newblock AMS Colloquium Publications \textbf{57} (2010).
+\newblock \url{https://doi.org/10.1090/coll/057}.
 
 \bibitem{MatomakiZunigaSwitching}
 K. Matom\"aki and S. Zuniga-Alterman,
