@@ -292,6 +292,12 @@ the denominator period and reflecting the nonzero Farey
 harmonics. The longer-divisor remainder then has a physical
 representation with complementary factors $\ll Y^{1-\beta}$
 in \cref{prop:criticalgriduncappedtail}.
+\Cref{thm:criticalgridbalancedmobius} gives a pointwise power
+saving for the physical signed sum across
+$Y^{1-1/32}\le d\le Y^{1+1/32}$ for log-power
+smaller inputs. After the Type~I deletion,
+\cref{prop:criticalgridbalancedmobius} thus restricts
+the prime count to $d>Y^{1+1/32}$.
 \Cref{thm:criticalpowers} proves decay in density for the
 entire proper-power contribution through a fixed critical
 product cap and identifies the fixed rows needed for decay
@@ -13416,6 +13422,309 @@ Finally $n\ll V$ and $V/T_*=Y^{1-\beta}$.
 \end{proof}
 
 \clearpage
+\subsection{Cancellation for M\"obius divisors near the modulus scale}
+
+For $q\ge2$, write $\bar x$ for the inverse of a unit
+$x\bmod q$, and write $e_q(t)=e(t/q)$. We first give
+the inverse-residue estimate used below. Its argument
+uses the small-multiplier method for modular hyperbolas
+\cite{CillerueloGaraevHyperbolas} and the inverse-energy
+approach to bilinear sums \cite{BourgainGaraevRings}.
+
+\begin{lemma}[A M\"obius sum with an inverse phase]
+\label{lem:criticalgridinverse-mobius}
+Let $Y^{967/1000}\le D\le 2Y^{1033/1000}$ and
+$Y^{967/1000}\le q\le2Y$. Let $q\mid F$, with $F\le Y^4$, and
+let $(a,q)=1$. Uniformly over intervals $L\subset[D,2D]$,
+\[
+ \left|\sum_{\substack{d\in L\\(d,F)=1}}
+                  \mu(d)e_q(a\bar d)\right|
+ \ll D Y^{-1/28}.
+\]
+\end{lemma}
+
+\begin{proof}
+For $1\le M<q/2$ let $J_q(M)$ count quadruples of
+units in $(M,2M]$ with
+$\bar x_1+\bar x_2=\bar x_3+\bar x_4\bmod q$.
+If $r(\lambda)$ counts the ordered pairs with inverse
+sum $\lambda$, then $J_q(M)=\sum_\lambda r(\lambda)^2$
+and $r(\lambda)\ll M$. We show that
+\begin{equation}
+ J_q(M)\ll_\epsilon q^\epsilon M^2
+                    (1+M^{3/2}/\sqrt q).
+ \label{eq:criticalgridinverseenergy}
+\end{equation}
+Let $T=\lfloor\sqrt{q M}\rfloor$. For residues
+$\lambda$ of additive order at most $T$, the gcd
+$g=(q,\lambda)$ satisfies $g\ge q/T$.
+The equation $\lambda xy\equiv x+y\bmod q$ imposes
+$g\mid x+y$. Hence the number of pairs with any such
+$\lambda$ is
+$O(\sum_{g\mid q,\ g\ge q/T}(M^2/g+M))$.
+Multiplying this bound by $\max_\lambda r(\lambda)\ll M$
+gives the bound in \cref{eq:criticalgridinverseenergy}
+on these residues.
+
+For larger additive order, the pigeonhole principle
+on the multiples of $\lambda$ gives integers
+$1\le t\le T$ and $0<|u|\ll q/T$ with $t\lambda\equiv u\bmod q$.
+The nonzero condition follows from the order bound.
+Each pair satisfies
+\[
+ uxy-t(x+y)=kq,\qquad
+ (ux-t)(uy-t)=t^2+ukq.
+\]
+There are $O(1+M^{3/2}/\sqrt q)$ possible $k$, by
+the sizes of $u,t,x,y$. For nonzero right-hand side
+in the second identity, the divisor bound gives
+$O_\epsilon(q^\epsilon)$ pairs since the right-hand
+side has polynomial size in $q$. If it vanishes,
+one of $x,y$ equals $t/u$ and the other is fixed
+modulo $q$ by the original inverse sum. This accounts
+for at most two pairs. Thus $r(\lambda)$ has the
+bound in parentheses times $O_\epsilon(q^\epsilon)$.
+Summing against $r(\lambda)$ and using
+$\sum_\lambda r(\lambda)\ll M^2$ proves
+\cref{eq:criticalgridinverseenergy}.
+
+For $U,V_1<q/2$ and bounded coefficients on
+$(U,2U]\times(V_1,2V_1]$, both restricted to units,
+let $S$ be the corresponding bilinear sum of
+$e_q(a\bar u\bar v)$. Applying Cauchy--Schwarz
+in $u$ and then to the pairs $(v,v')$ gives
+\begin{align*}
+ |S|^4
+ &\ll U^2 V_1^2
+   \sum_{v,v'}\left|\sum_u e_q(a\bar u(\bar v-\bar v'))\right|^2\\
+ &\ll U^2 V_1^2\sqrt{q J_q(U) J_q(V_1)} .
+\end{align*}
+For the last bound expand the square and use
+Cauchy--Schwarz and Parseval for the distributions
+of the inverse differences. Multiplication by
+$a$ permutes the residues. The same estimate
+applies to subintervals by setting coefficients
+to zero. In particular, allowing divisor-bounded
+coefficients at a cost $Y^\epsilon$, we obtain
+\begin{equation}
+ \left(\frac{|S|}{UV_1}\right)^8
+ \ll_\epsilon Y^\epsilon\left(
+     \frac{q}{(UV_1)^2}
+     +\frac{\sqrt q}{\sqrt{UV_1}\min(U,V_1)^{3/2}}
+     +\frac1{\sqrt{UV_1}}\right).
+ \label{eq:criticalgridinversebilinear}
+\end{equation}
+
+Take $R=\lfloor Y^{21/100}\rfloor$. Write $\mu_{\le R}$
+and $\mu_{>R}$ for the two restrictions of $\mu$.
+Since $\mu*1$ is the convolution identity, for $d>R$,
+\begin{equation}
+ \mu(d)=-(\mu_{\le R}*\mu_{\le R}*1)(d)
+                        +(\mu_{>R}*\mu_{>R}*1)(d).
+ \label{eq:criticalgridinversemobiusidentity}
+\end{equation}
+For the first term, fix the two factors at most $R$.
+The third factor varies in an interval and is restricted
+to be coprime with $F$. Remove the extra restrictions
+away from $q$ by inclusion--exclusion. Each resulting
+sum is an incomplete inverse exponential sum with
+unit numerator. Completion and the Weil bound
+\cite[(9.6)]{KnightlyLiKuznetsov} bound it by
+$O_\epsilon(Y^\epsilon(\sqrt q+D/q))$, since each
+full period is a Ramanujan sum of absolute value
+at most one for a unit numerator. The number of terms in the
+inclusion--exclusion is at most $\tau(F)$, which
+is absorbed by $Y^\epsilon$. The first term is
+therefore $O_\epsilon(Y^{92/100+\epsilon})$.
+
+In the second term, keep the first factor $u>R$ and
+combine the second and third into $v>R$, with coefficient
+$\sum_{c\mid v,\ c>R}\mu(c)$. The unit restrictions
+separate over $u,v$. Split them into dyadic intervals.
+For boxes meeting $uv\in L$ we have $UV_1\asymp D$,
+$\min(U,V_1)\ge Y^{209/1000}$ for large $Y$ and
+$2\max(U,V_1)<q$. The right-hand side of
+\cref{eq:criticalgridinversebilinear} is at most
+$O_\epsilon(Y^{-29/100+\epsilon})$.
+To impose $uv\in L$, write it as an interval
+condition on $\log(uv/(UV_1))\in[0,\log 4]$.
+Convolve the interval indicator on a fixed larger
+circle with a smooth probability density at scale
+$Y^{-1/20}$. This costs
+$O_\epsilon(DY^{-1/20+\epsilon})$ by the divisor
+bound, since only products within $O(DY^{-1/20})$
+of an endpoint change. The Fourier coefficients of the
+smoothed interval have absolute sum $O(\log Y)$,
+by their $O(1/|j|)$ bound from the first derivative
+and $O(Y^{1/20}/j^2)$ bound from the second derivative.
+Each Fourier character of the product separates as a
+weight in $u$ times a weight in $v$, both of absolute
+value one. Thus the box costs
+$O_\epsilon(DY^{-29/800+\epsilon})$.
+Summing the dyadic boxes and combining both parts of
+\cref{eq:criticalgridinversemobiusidentity}
+give the asserted bound.
+\end{proof}
+
+\begin{theorem}[Power saving near the modulus scale]
+\label{thm:criticalgridbalancedmobius}
+Keep the critical scale conditions of
+\cref{thm:criticalgridcoprimetypeii}, with
+$2\le X\le(\log Y)^A$ for a fixed $A>0$.
+Let $\gamma=1/32$, and choose the exponent of
+$z=(\log Y)^K$ so that $K>A$. In the physical sum
+\cref{eq:criticalgridtransitionphysical} replace the
+restriction on $d$ by any interval inside
+$[Y^{1-\gamma},Y^{1+\gamma}]$.
+For some $\delta>0$ its absolute value is
+$O(Y^{1-\delta})$ at each even modulus, uniformly over
+the divisor interval and over $I,J$.
+In particular its squared norm is $O(Y^{3-2\delta})$
+over the even moduli.
+\end{theorem}
+
+\begin{proof}
+Put $\omega=1/100000$ and $Z=Y^\omega$. Use the
+truncations of the squarefree and roughness expansions
+as in \cref{thm:criticalgridpoisson}, with $s\le Z$
+and $\ell$ the products of at most
+$\lfloor\log Z/\log z\rfloor-1$ distinct primes
+at most $z$. The resulting screen has at most
+$Z^2$ terms with $H=\operatorname{lcm}(s^2,\ell)\le Z^3$.
+The original screen gives zero for $p\mid N$, since
+$p\le2X<z$ for large $Y$. Keep only $(p,N)=1$ before
+making the replacements. For each such $p$, sign and
+modulus, the large square divisors affect at most
+$O_\epsilon(B/Z+Y^\epsilon V^{1/3})$ samples by
+\cref{eq:largesquareprogression}. In the roughness
+expansion the error is supported on multiples
+of products of exactly $\lfloor\log Z/\log z\rfloor$
+primes at most $z$. The sum of the reciprocals
+of these products is bounded by the corresponding
+power of $\sum_{\ell_0\le z,\ \ell_0\ {\rm prime}}1/\ell_0$
+divided by the factorial of the number of factors.
+This is $O(Y^{-c})$ for some $c>0$ depending on
+$K,\omega$. Count each progression of multiples
+in the unit class modulo $N$ by $O(B/\ell+1)$.
+There are at most $Z$ products, so the roughness
+error affects $O(BY^{-c}+Z)$ samples.
+
+Replace $1_J(n)$ by $u_Y(n/V)$ from convolution at
+scale $Y^{-\omega}$, as for
+\cref{thm:criticalgridpoisson}. The endpoint intervals
+have length $O(VY^{-\omega})$ and meet each
+progression in $O(BY^{-\omega}+1)$ samples.
+All discrepancy weights are $O_\epsilon(Y^\epsilon)$
+by the divisor bound. Since $XB\asymp Y$ and
+$V^{1/3}=Y^{2/3+o(1)}$, the total error at each
+modulus saves a power after summing prime weights,
+whose sum is $O(X)$.
+
+For fixed $H$ and a dyadic block
+$D<d\le2D$, write $g=(d,H)$, $d=g d'$ and
+$r=H/g$. The nonzero $\mu(d)$ terms have $g$
+squarefree and $(d',H)=1$. The criterion $H\mid dm$
+reduces to $r\mid m$, so write $m=r m'$ and
+$n=H d'm'$. If $(H,N)>1$, there are no terms.
+Otherwise for each $d'$ coprime to $N$ the slope
+condition is equivalent to
+\[
+ m'\equiv \sigma p\,\overline H\,\overline{d'}
+                                \pmod N.
+\]
+Every positive $m'$ in these classes with nonzero
+weight gives a slope in $\mathcal B$, by
+$V(1-o(1))\le H d'm'\le V(2+o(1))$.
+Thus we may complete the whole progression.
+
+Set $D'=D/g$, $M'=V/(Dr)$ and
+$G_{d'}(t)=u_Y((d'/D')t)\log(r M't)$, supported in
+a fixed compact subset of $(0,\infty)$.
+Poisson summation in the two $m'$ progressions gives
+\begin{equation}
+ \frac{M'}{N}\sum_{k\ne0}\widehat G_{d'}(kM'/N)
+ \left[e_N(kp\overline H\,\overline{d'})
+       -e_N(-kp\overline H\,\overline{d'})\right].
+ \label{eq:criticalgridinversecompletion}
+\end{equation}
+The $k=0$ term cancels exactly. Derivatives of
+order $j$ of $G_{d'}$ are $O_j(Y^{j\omega}\log Y)$,
+so repeated integration by parts permits the cutoff
+$|k|\le Y^{2\omega}N/M'$ with negligible error
+after all sums. For retained $k\ne0$,
+$|k|\le Y^{33/1000}$, using $D\ll Y^{1+\gamma}$,
+$r\le Z^3$ and $V=Y^{2+o(1)}$.
+The reduced modulus $q=N/(k,N)$ is at least
+$Y^{967/1000}$, and the numerator after reduction
+is a unit because $(pH,N)=1$.
+The scale $D'$ lies in the range of
+\cref{lem:criticalgridinverse-mobius}. Apply that lemma
+with $F=[H,N]$ to sum the $d'$ weights.
+The transform in \cref{eq:criticalgridinversecompletion}
+has supremum $O(\log Y)$ and variation
+$O(Y^\omega\log Y)$ in $d'$ on the block.
+This follows by differentiating $u_Y((d'/D')t)$
+under the integral. Partial summation therefore
+bounds the $d'$ sum for either phase by
+$O(D'Y^{-1/28+\omega}\log Y)$.
+
+The number of retained frequencies times $M'/N$
+is $O(Y^{2\omega})$. Sum over $g\mid H$,
+the $Z^2$ screen terms, the dyadic blocks and the
+prime weights. Using $D'\ll Y^{1+\gamma}$, the
+result is $O_\epsilon(Y^{1+\gamma-1/28+5\omega+\epsilon})$
+at each modulus. The exponent is strictly less than
+one. Combining with the pointwise screen and endpoint
+errors proves the theorem.
+\end{proof}
+
+\begin{proposition}[Deleting the modulus-scale range from the prime count]
+\label[proposition]{prop:criticalgridbalancedmobius}
+Under the conditions of \cref{thm:criticalgridbalancedmobius},
+$B_N^{\rm p}(I,J)$ equals the physical sum in
+\cref{eq:criticalgridtransitionphysical} restricted to
+$d>Y^{1+\gamma}$, with pointwise error
+$O(Y^{1-\delta})$ at each even modulus for some
+$\delta>0$.
+The retained complementary factor satisfies
+$m\ll VY^{-1-\gamma}$.
+\end{proposition}
+
+\begin{proof}
+For $n=bN\pm p$ in the prime count one has
+$s_z(n)\Lambda(n)=\Lambda_{\rm p}(n)$, since
+$n>z$ and the screen removes proper powers.
+Expand $\Lambda(n)=\sum_{d\mid n}\mu(d)\log(n/d)$.
+To estimate $d\le Y^{1-\gamma}$, truncate the
+screen as in \cref{thm:criticalgridbalancedmobius}.
+The same pointwise progression bounds give a
+power-saving error on the centered range $bN\in J$.
+For each screen pair and each $d$ the condition is
+$[d,H]\mid bN\pm p$. If $([d,H],N)>1$ both
+signs have no solutions, since $(p,N)=1$.
+Otherwise the two signs give one class each,
+with discrepancy $O(1)$ on intervals of $b$.
+Replacing $\log((bN\pm p)/d)$ by $\log(bN/d)$
+costs $O(p/V)$ per term. The total cost is
+$O_\epsilon(XB(X/V)Y^\epsilon)$ by the
+divisor bound on the number of patterns at each
+sampled integer. Partial summation against
+$\log(bN/d)$ costs $O(\log Y)$ per pattern.
+There are at most $Z^2 Y^{1-\gamma}$ patterns.
+The prime weights have sum $O(X)$, so this
+part saves a power by $2\omega<\gamma$.
+
+Moving the sharp endpoints from $bN$ to $bN\pm p$
+changes $O(1)$ values of $b$ per prime and costs
+$O_\epsilon(XY^\epsilon)$ by the divisor bound.
+The screen gives zero whenever $p\mid bN$, so
+the unit conventions agree with those in the
+physical sum. Now \cref{thm:criticalgridbalancedmobius}
+deletes the range $Y^{1-\gamma}<d\le Y^{1+\gamma}$.
+The remaining factor bound follows from $dm\ll V$.
+\end{proof}
+
+\clearpage
 \section{Conditional bounds from uniform prime-pair discrepancies}
 \label{sec:pairconditional}
 
@@ -13647,6 +13956,10 @@ explicit and removes a portion of its zero mode.
 give physical congruence sums on both sides of the
 transition cutoff, with complementary factors $\ll Y^{1-\beta}$
 above it.
+\Cref{thm:criticalgridbalancedmobius,prop:criticalgridbalancedmobius}
+prove cancellation for the modulus-scale physical block and
+retain only $d>Y^{1+1/32}$ in the prime counts with
+log-power smaller inputs.
 \Cref{prop:criticalgridarcsharpness} shows that a power saving
 for arbitrary arc functions cannot follow from their size,
 their energy, and the conductor cutoffs alone.
@@ -13827,6 +14140,11 @@ The file \texttt{formalization/TransitionPeriod.lean}
 checks the prime-power exponent bound, the scaled inverse
 congruences and the reflected progression identity used
 in \cref{thm:criticalgriduncappedtransition}.
+
+The file \texttt{formalization/InverseMobius.lean}
+checks the modular and factorization identities for
+the inverse-sum energy bound and the screen congruence
+used in \cref{lem:criticalgridinverse-mobius,thm:criticalgridbalancedmobius}.
 
 The file \texttt{formalization/PrefixPersistence.lean} checks
 the finite sum version of the large-prefix estimate used in
@@ -14009,6 +14327,19 @@ R.~C. Vaughan,
 \newblock \emph{An elementary method in prime number theory},
 \newblock Acta Arith. \textbf{37} (1980), 111--115.
 \newblock \url{https://bibliotekanauki.pl/articles/1393102.pdf}.
+
+\bibitem{CillerueloGaraevHyperbolas}
+J. Cilleruelo and M. Z. Garaev,
+\emph{Concentration of points on two and three dimensional modular
+hyperbolas and applications},
+Geom. Funct. Anal. \textbf{21} (2011), 892--904.
+\href{https://arxiv.org/abs/1007.1526}{arXiv:1007.1526}.
+
+\bibitem{BourgainGaraevRings}
+J. Bourgain and M. Z. Garaev,
+\emph{Kloosterman sums in residue rings},
+Acta Arith. \textbf{164} (2014), 43--64.
+\href{https://doi.org/10.4064/aa164-1-4}{doi:10.4064/aa164-1-4}.
 
 \bibitem{KnightlyLiKuznetsov}
 A.~Knightly and C.~Li,

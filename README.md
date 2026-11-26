@@ -4,6 +4,7 @@ This repository contains the English research manuscript and the code and data f
 
 - [Manuscript (PDF)](output/pdf/hypothesis_s_paper.pdf)
 - [LaTeX source](output/pdf/hypothesis_s_paper.tex)
+- [Lean verification of the inverse-residue and screen identities](formalization/InverseMobius.lean)
 - [Lean verification of the shortened local period and signed progression reflection](formalization/TransitionPeriod.lean)
 - [Lean verification of the reconstructed divisibility condition and divisor regrouping](formalization/DoubleZeroReconstruction.lean)
 - [Lean verification of the double completion phase and branch representative](formalization/DoubleCompletion.lean)
@@ -44,6 +45,10 @@ This repository contains the English research manuscript and the code and data f
 - [Lean verification of the signed progression rows](formalization/CriticalArithmetic.lean)
 
 ## Research checkpoint · 27 November 2026
+
+Theorem 13.32 proves a power-saving pointwise bound at every even modulus for the physical signed Type II sum on $Y^{1-1/32}\le d\le Y^{1+1/32}$ for log-power smaller inputs. Completing the complementary factor cancels the zero frequency and leaves Möbius sums with inverse phases. Lemma 13.31 bounds these sums for general moduli, using a reciprocal additive-energy estimate and a convolution identity for the Möbius function.
+
+Proposition 13.33 combines this estimate with a direct Type I bound. It reduces the prime count to $d>Y^{1+1/32}$, so $m\ll VY^{-1-1/32}$, with power-saving pointwise error at every even modulus. The resulting longer-divisor sum still requires cancellation.
 
 Theorem 13.29 reconstructs the entire completed transition block $A_*<d\le BY^\beta$ as its physical signed Type II sum, with power-saving squared error when $(5/2)\beta+\varepsilon+16\rho<\xi/2$. A shorter local period forces a shared divisor of $d$ and $j$ to divide every surviving nonzero denominator frequency. At zero denominator frequency, pairing the opposite Farey harmonics yields an even periodic coefficient whose two signed slope counts have equal means.
 
@@ -147,6 +152,7 @@ With Elan installed, run the Lean check from the repository root.
 
 ```sh
 elan toolchain install leanprover/lean4:v4.35.0
+elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/InverseMobius.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/TransitionPeriod.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/DoubleZeroReconstruction.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/DoubleCompletion.lean
