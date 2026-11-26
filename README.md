@@ -4,6 +4,7 @@ This repository contains the English research manuscript and the code and data f
 
 - [Manuscript (PDF)](output/pdf/hypothesis_s_paper.pdf)
 - [LaTeX source](output/pdf/hypothesis_s_paper.tex)
+- [Lean verification of the clipped Fourier line and its sampling period](formalization/CriticalFourierWindow.lean)
 - [Lean verification of the local progression density cases](formalization/ProgressionLocalDensity.lean)
 - [Lean verification of the truncated inclusion-exclusion bound](formalization/TruncatedInclusionExclusion.lean)
 - [Lean verification of coprime factors of squarefree values](formalization/SquarefreeFactors.lean)
@@ -24,6 +25,8 @@ This repository contains the English research manuscript and the code and data f
 - [Lean verification of the signed progression rows](formalization/CriticalArithmetic.lean)
 
 ## Research checkpoint · 26 November 2026
+
+Theorem 9.11 removes small-denominator rational arcs from the screened Type II forms through every fixed product cap $xy\le CN^2$. Under Dirichlet GRH the normalized operator error saves a power of $N$ uniformly over the even moduli. With one Type II weight, the deleted arcs have radius $P/(qY)$ for $q\le P=N^\lambda$, where $Y$ is the larger packet scale. With both weights replaced on supports $x,y\ge N^{1/2+\eta}$, the deleted arcs have radius $P/(qX)$, where $X$ is the smaller scale. The complementary integrals still require cancellation.
 
 Theorem 9.9 replaces both von Mangoldt weights by screened Type II weights through $xy\le CN^2$ on supports $x,y\ge N^{1/2+\eta}$ for any fixed $\eta>0$ in the stated range. Under Dirichlet GRH the normalized operator error saves a power of $N$ uniformly over the even moduli. The proof samples Prachar's short-interval mean-square bound at the congruence-line centers and computes the matching Type I density, including nonunit residue classes.
 
@@ -71,6 +74,7 @@ With Elan installed, run the Lean check from the repository root.
 
 ```sh
 elan toolchain install leanprover/lean4:v4.35.0
+elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/CriticalFourierWindow.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/ProgressionLocalDensity.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/TruncatedInclusionExclusion.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/SquarefreeFactors.lean

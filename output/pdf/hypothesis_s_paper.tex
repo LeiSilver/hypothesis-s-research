@@ -13,6 +13,7 @@
 \setlength{\emergencystretch}{2em}
 \numberwithin{equation}{section}
 \newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
 \newcommand{\SSS}{\mathfrak S}
 \newcommand{\grh}{\mathrm{GRH}}
 \newcommand{\ud}{\mathrm d}
@@ -55,6 +56,9 @@ polylogarithmic height and prime-power data of polylogarithmic size.
 A sieve controls pairs far below $xy=N^2$ and in thin bands
 around sharp product cutoffs. Through $xy=CN^2$, norm decay
 is equivalent to decay of signed rectangle discrepancies.
+On the same range, screened Type II forms restricted to the
+complement of small-denominator rational arcs approximate
+the critical form with a uniform power-saving error.
 Under modulus-specific GRH a smooth upper product cutoff at
 $N^{2\log\log N+\kappa}$ costs $O(e^{-\kappa})$.
 A two-sided norm comparison lowers the product threshold to
@@ -3530,6 +3534,244 @@ errors also save powers since $2\theta<1/3$ and
 $X\gg N^{1/2+\eta}$. Summing the $O_C(L^2)$ packet
 pairs preserves a power saving, proving the replacement
 and \cref{eq:doublecriticaltypeii}.
+\end{proof}
+
+\subsection{Removing rational arcs from the critical forms}
+
+For $0<\rho<1/6$ write
+$A_\rho(t)=s_z(t)\mathcal L_{R,R}(t)$, where
+$R=\lfloor N^\rho\rfloor$ and $z=(\log N)^B$.
+The following estimate uses intervals up to the scale of
+the variable, including arbitrary subintervals of a packet.
+
+\begin{lemma}[Progression cancellation for a screened Type II weight]
+\label[lemma]{lem:criticalfourierprogressions}
+Fix $0<\rho<1/6$, $B>0$ and $c_0>1$.
+Under Dirichlet GRH there is $\delta=\delta(\rho,B)>0$
+such that if $N^{1/2}\le W\le c_0N^2$, $q\le N^{\rho/32}$,
+and $I\subset[W/c_0,c_0W]$ is an interval, then
+\begin{equation}
+ \sup_{a\bmod q}
+ \left|\sum_{\substack{t\in I\cap\mathbb N\\t\equiv a\bmod q\\(t,N)=1}}
+        A_\rho(t)\right|\ll_{\rho,B,c_0} WN^{-\delta}.
+ \label{eq:criticalfourierprog}
+\end{equation}
+The bound includes nonreduced residues and is uniform
+over the endpoints of $I$.
+\end{lemma}
+
+\begin{proof}
+On the given range $t>R,z$ for large $N$, so
+$A_\rho(t)=s_z(t)(\Lambda(t)-I_{R,R}(t))$.
+Replacing $s_z(t)\Lambda(t)$ by $\Lambda(t)$ costs
+$O_{c_0}(\sqrt W L^2)$, where $L=\log N$, by counting
+proper prime powers. Removing the restriction $(t,N)=1$
+in this prime term costs $O_{c_0}(L^2)$, since the prime
+bases involved divide $N$. The pointwise GRH progression
+estimate of \cref{thm:fullcriticaltypeii}, applied at the
+two endpoints, gives the main term
+$|I|\mathbf1_{(a,q)=1}/\varphi(q)$ with error
+$O_{c_0}(\sqrt W L^2)$. For $(a,q)>1$, only prime powers
+over primes dividing $q$ occur, which satisfy the same
+error bound with main term zero.
+
+Put $D=N^\xi$ with $\xi=\rho/128$. In the Type~I term
+truncate the squarefree sum at $D$ and use
+\cref{eq:truncrough,eq:truncroughrec} for $w_z$ with
+the same $D$. The square tail has total multiplicity
+$O_{c_0}(W\sum_{r>D}r^{-2})=O_{c_0}(W/D)$ over all
+$t$ in the ambient interval. The analogous bound for
+the roughness error is $O_{c_0}(W\sum_{b\in\mathcal E_{k+1}}b^{-1})$.
+The truncated sieve factors and the Type~I weight
+are $O_\varepsilon(N^\varepsilon)$ for every
+$\varepsilon>0$, by the divisor bound. Hence the error
+in their product saves a power of $N$ relative to $W$.
+
+Keep the two sieve divisors $r,b\le D$ and enforce
+$(t,N)=1$ using the squarefree divisors $j\mid N$.
+For the first Vaughan term take $\ell=1$ and for the
+second take $\ell\le R$ with coefficient $\Lambda(\ell)$.
+With $M_0=\operatorname{lcm}(r^2,b,j)$, count
+$t\equiv a\bmod q$ and $\operatorname{lcm}(M_0,d\ell)\mid t$
+by the Chinese remainder theorem. When compatible, the
+density is $1/\operatorname{lcm}(q,M_0,d\ell)$ with
+an $O(1)$ interval error. In the first term, the weighted
+error is $O_{c_0}(L)$ by partial summation against
+$\log(t/d)$. The same bound holds per term in the
+second sum since $\Lambda(\ell)\le L$.
+Summing the errors costs
+$O_{c_0,\varepsilon}(D^2R^2 L N^\varepsilon)$.
+
+The local progression calculation in the proof of
+\cref{thm:doublecriticaltypeii} applies with the residue
+$a$ in place of $\pm h$. For clarity, if the base
+congruences at $d=1$ are compatible, let
+$M=\operatorname{lcm}(q,M_0,\ell)$. The ratio of the
+updated density to $1/M$ after imposing $p\ell\mid t$
+is $0$, $1$ or $1/p$, and is $1/p$ for $p\nmid qM_0$.
+The ratios multiply on squarefree $d$.
+The Euler product divided by $\zeta(1+s)^{-1}$ has
+coefficient norm with weight $k^{1/4}$ at most
+$O_\nu(qrb j^{1/4+\nu})$.
+Thus the truncated signed sum in $d$ is
+$O_\nu(qrb j^{1/4+\nu}R^{-1/4})$ by the convolution
+argument of \cref{eq:typeimoebius}. The negative log
+moment gives the derivative at zero with the same error
+times $\log(2R)$. When $\ell=1$, a prime dividing $M_0$
+or $(a,q)$ gives local ratio one, so the derivative
+vanishes. For $M_0=1$ and $(a,q)=1$ the local ratio
+is zero at $p\mid q$ and the derivative divided by
+$M=q$ is $1/\varphi(q)$. This case occurs precisely
+at $r=b=j=1$, whose sieve coefficients are one.
+The Type~I density therefore has the same integrated
+main term $|I|\mathbf1_{(a,q)=1}/\varphi(q)$ as the
+prime term. In the second Vaughan term, the signed
+sum in $d$ has main term zero also for $\ell>1$.
+As in the proof of \cref{thm:doublecriticaltypeii},
+$\sum_{\ell\le R}\Lambda(\ell)/M\ll L/j$ and
+$\sum_{j\mid N,\ \mu^2(j)=1}j^{-3/4+\nu}\ll_\nu N^\nu$.
+These bounds give error
+$O_{c_0,\nu}(W q D^4 R^{-1/4} L N^\nu)$ after integration.
+With $\nu=\xi$, $q\le N^{\rho/32}$ and $W\ge N^{1/2}$,
+both Type~I errors save powers relative to $W$ for small
+enough $\varepsilon$. This proves \cref{eq:criticalfourierprog}.
+\end{proof}
+
+Write $e(v)=\exp(2\pi i v)$. For scale $W$ and $P\ge1$,
+define the rational arcs on $\mathbb R/\mathbb Z$ by
+\[
+ \mathfrak M(W,P)=
+ \bigcup_{\substack{1\le q\le P\\a\bmod q,\ (a,q)=1}}
+ \{\alpha:\|\alpha-a/q\|_{\mathbb R/\mathbb Z}\le P/(qW)\}.
+\]
+Their measure is at most $2P^2/W$, since $\varphi(q)\le q$.
+For a test weight $w$ supported on $[W/c_0,c_0W]$
+with supremum plus total variation at most $H/\sqrt W$,
+split into residues and apply partial summation to
+\cref{eq:criticalfourierprog}. For $\alpha=a/q+\beta$,
+with $q\le P\le N^{\rho/32}$ and $|\beta|\le P/(qW)$,
+this gives
+\begin{equation}
+ \left|\sum_{(t,N)=1} A_\rho(t)w(t)e(\alpha t)\right|
+ \ll_{\rho,B,c_0} H\sqrt W, N^{-\delta}P.
+ \label{eq:criticalfourierexp}
+\end{equation}
+Indeed the bound before restricting $\beta$ is
+$H\sqrt W\,N^{-\delta}q(1+|\beta|W)$.
+The estimate holds upon restricting $w$ to any interval,
+at the cost of a constant for the two endpoint jumps.
+
+For the packet pairs of \cref{thm:roughcriticaltypeii,thm:doublecriticaltypeii},
+write $X\le Y$ for the scales as before. Split into the
+congruence lines using the fixed geometric packet intervals
+and the product cutoffs. For a line $t=\epsilon n+v$ with
+$\epsilon\in\{-1,1\}$ and $v$ a nonzero signed multiple
+of $N$, let $f(n)$ and $g(t)$ include the arithmetic
+weights, unit restrictions and packet tests, with the
+appropriate conjugate on one test. In the sampled terms
+the larger test is constant on the line, evaluated at
+$|v|$. Impose the sharp product restrictions by selecting
+the smaller values $n$ in their permitted intervals $I_v$.
+There are at most two such intervals per physical line
+and one per sampled line. In the expanded coordinate
+keep the original packet in the physical terms and use
+a fixed multiplicative enlargement of the $|v|$-packet
+in the sampled terms. In both cases further restrict $t$
+to $|t-v|\le c_2 X$, for a fixed $c_2$ large enough to
+cover the entire smaller packet. This restriction retains
+every line term, since $|t-v|=n$ on the line. Then the
+sum on the line, with its original sign and normalization,
+uses the exact integral
+\begin{equation}
+ \int_{\mathbb R/\mathbb Z}
+  \left(\sum_{n\in I_v} f(n)e(-\epsilon n\alpha)\right)
+  \left(\sum_t g(t)e(t\alpha)\right)e(-v\alpha)\,\ud\alpha .
+ \label{eq:criticalfourierline}
+\end{equation}
+This follows from orthogonality for the integer
+$t-\epsilon n-v$. A union of intervals in $I_v$ uses
+disjoint endpoint conventions. The signs and the average
+over coincident packet centers are those of the original
+forms. The line set, the intervals $I_v$, and the frequency
+cutoffs depend only on the packet indices and the geometric
+cutoffs, so the resulting forms are sesquilinear.
+The full integral also equals the average over $\alpha=k/M$
+for $0\le k<M$ and any integer $M>2c_2X$. The geometric
+sum selects frequencies divisible by $M$, and the clipping
+ensures $|t-\epsilon n-v|\le2c_2X<M$, so only frequency
+zero is selected.
+
+Define $\mathcal K^{\mathrm{sf},z;\mathrm{minor}}_{N,C}$
+by taking \cref{eq:criticalfourierline} in the singly
+expanded form over the complement of $\mathfrak M(Y,P)$.
+Define $\mathcal K^{\mathrm{both},z;\mathrm{minor}}_{N,C}$
+in the doubly expanded form using the complement of
+$\mathfrak M(X,P)$ instead.
+
+\begin{theorem}[The critical form on the complementary arcs]
+\label{thm:criticalminorarc}
+Fix $C\ge1$, $0<\theta<1/6$, $B>0$ and $0<\eta<1/2$.
+Under Dirichlet GRH there are $\lambda,c>0$ such that
+for $P=N^\lambda$ and sufficiently large even $N$,
+\begin{align*}
+ \left|\mathcal B_{N,C}(F,G)
+       -\mathcal K^{\mathrm{sf},z;\mathrm{minor}}_{N,C}(F,G)\right|
+     &\ll_{C,\theta,B,\eta} N^{-c}\NN(F)\NN(G),\\
+ \left|\mathcal B_{N,C}(F,G)
+       -\mathcal K^{\mathrm{both},z;\mathrm{minor}}_{N,C}(F,G)\right|
+     &\ll_{C,\theta,B,\eta} N^{-c}\NN(F)\NN(G)
+\end{align*}
+where the second estimate is for tests supported in
+$x,y\ge N^{1/2+\eta}$. The first estimate holds for
+arbitrary test supports. Both estimates retain the sharp
+critical product cutoffs in their line integrands.
+\end{theorem}
+
+\begin{proof}
+On a contributing packet pair there are $O_C(Y/N)$
+lines, $XY\ll_C N^2$, and $Y\gg N$.
+Each test in physical coordinates, with its factor
+$t^{-1/2}$ or $n^{-1/2}$, has supremum plus total
+variation bounded by its log packet energy times
+$O(Y^{-1/2})$ or $O(X^{-1/2})$, respectively. This is
+Sobolev point evaluation and Cauchy--Schwarz for the
+derivative on a bounded log interval. The sampled
+larger weight is constant on its permitted interval,
+of size $O(Y^{-1/2}\NN(G_k))$ when $G_k$ is that packet.
+The extra interval restrictions alter the variation
+bound by at most a constant. The singular-series
+normalizer has bounded reciprocal.
+
+In the singly expanded case apply \cref{eq:criticalfourierexp}
+to the expanded factor, with $(W,\rho)=(Y,\theta)$.
+The smaller-variable sum is $O(\sqrt X)$ times its
+packet energy, by Chebyshev's bound for $\Lambda$.
+The integral over $\mathfrak M(Y,P)$, summed over the
+lines, is consequently
+\[
+ \ll_C (Y/N)(P^2/Y)\sqrt{XY}\,P N^{-\delta(\theta,B)}
+       \NN(F_j)\NN(G_k).
+\]
+In the doubly expanded case apply \cref{eq:criticalfourierexp}
+to the smaller factor, with $(W,\rho)=(X,\sigma)$.
+Here $X\gg N^{1/2+\eta}$ and the rational arcs are
+invariant under $\alpha\mapsto-\alpha$. The expanded
+variable has only $O(X)$ candidates in the clipped
+interval for $t$, so its sum is
+$O_\varepsilon(XN^\varepsilon/\sqrt Y)$ times its packet
+energy by the divisor bound. Summing its integrals
+over $\mathfrak M(X,P)$ and the lines gives
+\[
+ \ll_{C,\varepsilon} (Y/N)(P^2/X)(X/\sqrt Y)\sqrt X\,
+       P N^{-\delta(\sigma,B)+\varepsilon}\NN(F_j)\NN(G_k).
+\]
+Both bounds are $O(N^{-c_1})$ times the packet energy
+product for some $c_1>0$ by the product cap, on choosing
+$\lambda$ and $\varepsilon$ small enough in terms of the
+two progression savings, and $\lambda<\sigma/32$.
+Summing the $O_C(L^2)$ packet pairs preserves a power
+saving. Now apply \cref{thm:roughcriticaltypeii,thm:doublecriticaltypeii}
+to obtain the stated estimates.
 \end{proof}
 
 \section{Dirichlet-zero covariance when both variables are large}
@@ -8300,6 +8542,10 @@ are needed through these caps.
 factor below a prescribed log-power cutoff.
 \Cref{thm:doublecriticaltypeii} gives screened Type~II
 weights in both coordinates above $N^{1/2+\eta}$.
+\Cref{thm:criticalminorarc} removes rational arcs of
+power-sized denominator from the screened forms. On
+the doubly expanded range it does so at the inverse
+scale of the smaller coordinate.
 \Cref{thm:fixedrowmeansquare} bounds the mean square of the
 centered norm for bounded smaller inputs by
 $O_{A,C,\varepsilon}((\log Y)^{-2+\varepsilon})$ over even
@@ -8429,6 +8675,11 @@ by the next binomial coefficient in \cref{eq:truncrough}.
 The file \texttt{formalization/ProgressionLocalDensity.lean}
 checks the exponent changes and compatibility cases in the
 local progression densities of \cref{thm:doublecriticaltypeii}.
+
+The file \texttt{formalization/CriticalFourierWindow.lean}
+checks that the clipping retains every point on a signed
+line and that discrete frequency sampling detects exact
+line membership in \cref{eq:criticalfourierline}.
 
 The file \texttt{formalization/PrefixPersistence.lean} checks
 the finite sum version of the large-prefix estimate used in
