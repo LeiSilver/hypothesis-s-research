@@ -4,6 +4,7 @@ This repository contains the English research manuscript and the code and data f
 
 - [Manuscript (PDF)](output/pdf/hypothesis_s_paper.pdf)
 - [LaTeX source](output/pdf/hypothesis_s_paper.tex)
+- [Lean verification of the short-divisor residue injection and screening period](formalization/ShortTypeIResidues.lean)
 - [Lean verification of the common sampling period and conductor cofactor](formalization/ConductorPairSampling.lean)
 - [Lean verification of the Farey arc determinant and neighbor congruences](formalization/FareyArcPartition.lean)
 - [Lean verification of the reduced slope denominator and cofactor divisibility](formalization/ReducedSlopeModulus.lean)
@@ -37,6 +38,8 @@ This repository contains the English research manuscript and the code and data f
 - [Lean verification of the signed progression rows](formalization/CriticalArithmetic.lean)
 
 ## Research checkpoint · 26 November 2026
+
+Theorem 13.22 evaluates the retained arc coefficients at their rational centers and replaces the larger prime weights by screened Vaughan Type II terms, with power-saving squared error under Dirichlet GRH. The construction preserves the large-conductor, square-divisor, character-power and conductor-pair restrictions. The cutoff $UW\le P Y^{-\zeta}$ permits $W=1$ and Möbius divisors $d>P Y^{-\zeta}$, with complementary factors $m\ll (V/P)Y^\zeta$. The remaining second moment is a finite conductor-pair sum with these explicit bilinear coefficients.
 
 Theorem 13.20 evaluates the full-circle modulus pairing as a short sum of the product character. Under Dirichlet GRH it removes individual characters whose prescribed fixed powers have conductor at most $Y^{1/2+\xi/2}$, with squared error $O(Y^{3-\xi/16})$. The corresponding powers of every surviving product character have conductor exceeding $Y^{1+\xi/2}$. Proposition 13.21 constructs arbitrary functions on the retained prime-denominator arcs that satisfy the energy and pointwise bounds yet give a surviving second moment $\gg_\epsilon Y^{3-\epsilon}$ for each fixed $\epsilon>0$. The construction shows that a power saving needs further information about the actual prime coefficients.
 
@@ -120,6 +123,7 @@ With Elan installed, run the Lean check from the repository root.
 
 ```sh
 elan toolchain install leanprover/lean4:v4.35.0
+elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/ShortTypeIResidues.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/ConductorPairSampling.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/FareyArcPartition.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/ReducedSlopeModulus.lean

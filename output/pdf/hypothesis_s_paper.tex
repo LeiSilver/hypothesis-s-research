@@ -269,6 +269,9 @@ corresponding powers of every surviving product character.
 \Cref{prop:criticalgridarcsharpness} gives a lower bound for the
 remaining second moment when only the support and size of the arc
 coefficients are specified.
+\Cref{thm:criticalgridfrozenvaughan} inserts screened Vaughan
+coefficients into the retained conductor expansion and evaluates
+the arc integrals using their rational centers and exact lengths.
 \Cref{thm:criticalpowers} proves decay in density for the
 entire proper-power contribution through a fixed critical
 product cap and identifies the fixed rows needed for decay
@@ -11627,6 +11630,230 @@ $4\delta<\min(\epsilon,\xi/16)$ to prove the lower bound.
 \end{proof}
 
 \clearpage
+\subsection{Screened Type II coefficients at the rational centers}
+
+Use the scales and parameters of \cref{thm:criticalgridcommonconductors},
+and fix the set $\mathcal T$ in \cref{thm:criticalgridproductpowers}.
+Set $K=V/P$, $Q_0=\lfloor K\rfloor$, $R_*=Q_*Y^{-\xi/4}$ and
+$z=(\log Y)^A$ for fixed $A>0$. Retain the characters and
+conductors of \cref{thm:criticalgridsquarepart,thm:criticalgridproductpowers}.
+For a reduced residue $a\bmod q$, let $s_+,s_-$ be the two
+neighbor denominators of \cref{eq:criticalgridfareymask}.
+Define
+\begin{equation}
+ w_q(a)=f_q(s_+)+f_q(s_-),\qquad
+ f_q(s)=
+ \begin{cases}
+  1,&s\ge q,\\
+  \min(1,(K-q)/s),&s<q .
+ \end{cases}
+ \label{eq:criticalgridarclengthweight}
+\end{equation}
+Thus $w_q(a)/(Kq)$ is the length assigned to the arc
+centered at $a/q$. We use the notation $s_z(t)$ of
+\cref{thm:criticalgridcoprimetypeii}.
+
+\begin{theorem}[Screened Type II replacement on the retained arcs]
+\label{thm:criticalgridfrozenvaughan}
+Fix $0<\zeta<\xi$ and integers $U,W\ge1$ with
+$UW\le P Y^{-\zeta}$. For a retained character $\chi\bmod k$,
+replace its integrated coefficient by
+\begin{align}
+ \widetilde\gamma_{q,k}(\chi)
+  ={}&\frac{\chi(-1)\tau(\bar\chi)}{Kq\,\varphi(k)}
+    \sum_{a\bmod q}^* \chi(a) w_q(a) P_I^-(a/q)
+      \sum_{t\in J}s_z(t)\mathcal L_{U,W}(t)e(at/q).
+ \label{eq:criticalgridfrozenvaughancoeff}
+\end{align}
+Use this in the character expansion preceding
+\cref{thm:criticalgridglobalcharacters}, with the
+$\beta$ integral and the phase $e(-\beta bN)$ already removed.
+In other words, for each $q,b,N$ this coefficient multiplies
+$\chi((b/e_b)(N/d))$. Denote the resulting sum by
+$\widetilde W_N$, and its part at primitive conductor $c$
+by $\widetilde W_{c,N}$.
+Under Dirichlet GRH there is a $\delta>0$, uniform in
+$U,W,I,J$, such that
+\begin{equation}
+ \sum_{\substack{Y\le N\le2Y\\2\mid N}}
+            |B_N^{\rm p}(I,J)-\widetilde W_N|^2
+      \ll_{C,Q,\eta,\xi,\zeta,A,\mathcal T}Y^{3-\delta}.
+ \label{eq:criticalgridfrozenvaughanerror}
+\end{equation}
+The full second moment can be evaluated up to a power-saving
+error by the conductor-pair sum with
+$(c,c')<Y^{\xi/4}$ and $|c-c'|>Y^{1+3\xi/4}$.
+For $X\le Y^\kappa$, the same statement holds for the pair
+integrals on $(\mathbb R/\mathbb Z)\setminus\mathfrak M_Y$.
+For example, $W=1$ and $U=\lfloor P Y^{-\zeta}\rfloor$ retain
+only $t=dm$ with $d>P Y^{-\zeta}$ and $m\ll K Y^\zeta$,
+weighted by $\mu(d)\log m$ on the squarefree, $z$-rough support.
+\end{theorem}
+
+\begin{proof}
+Let $\mathcal S$ be the selected sampling map in the
+theorem, using the original $\beta$ phase and arbitrary
+input functions $H_q$ on the assigned arcs. Let
+$\mathcal S_0$ be the same map with that phase set to one.
+The proof of \cref{eq:criticalgridcommonsieve}, with $g=1$
+and the prescribed character selection, gives
+\begin{equation}
+ \|\mathcal S H\|_{\ell^2(N)}^2+
+ \|\mathcal S_0 H\|_{\ell^2(N)}^2
+   \ll_\epsilon BY^\epsilon\sum_{q>R_*}\|H_q\|_2^2 .
+ \label{eq:criticalgridselectedsampler}
+\end{equation}
+In fact for a dyadic conductor block $C_1<c\le2C_1$
+its sieve loss after extracting $B$ is
+$O((Y+C_1^2)/(K C_1))\ll1$.
+The argument applies separately at every Taylor degree $j$.
+Since $|V\beta|\le V/(K R_*)\ll_{C,Q}Y^{-7\xi/4}/X$
+on the retained arcs, in the bound for degree $j$ one
+can also insert a factor $(V/(K R_*))^{2j}$.
+Summing degrees $j\ge1$ with the absolutely summable scalar
+coefficients therefore bounds the squared norm of
+$(\mathcal S-\mathcal S_0)H$ by
+$O_\epsilon(BY^\epsilon (V/(K R_*))^2\sum_q\|H_q\|_2^2)$.
+
+Next let $G$ be any trigonometric polynomial with
+frequencies of absolute value $O(V)$. For each dyadic
+denominator block $S<q\le2S$ with $q>R_*$, the additive
+large sieve on the reduced fractions $a/q$ gives
+\[
+ \sum_{q,a}^* |G(a/q)|^2\ll (V+S^2)\|G\|_2^2.
+\]
+The same estimate holds with a common translation of the
+points. Thus on multiplying by the arc lengths and summing
+the blocks,
+\begin{equation}
+ \sum_{R_*<q\le Q_0}\frac{1}{Kq}
+              \sum_{a\bmod q}^*|G(a/q)|^2\ll\|G\|_2^2 .
+ \label{eq:criticalgridfrozendiscreteenergy}
+\end{equation}
+Here $S\gg R_*$ and $V\ll R_*^2$, so the block factor
+is $O(S/K)$ and the geometric sum is bounded.
+For freezing the values, write $G(a/q+\beta)-G(a/q)$
+as an integral of $G'$. Cauchy--Schwarz on this segment
+and the translated large sieve give
+\[
+ \sum_{q,a}^* |G(a/q+\beta)-G(a/q)|^2
+       \ll |\beta|^2 (V+S^2)\|G'\|_2^2 .
+\]
+Integration over $|\beta|\le1/(KS)$ and
+$\|G'\|_2\ll V\|G\|_2$ give a bound
+$O(V^2\|G\|_2^2/(K^3 S))$ per block.
+Summing gives $O(V^2\|G\|_2^2/(K^3 R_*))$.
+
+Take $G=P_I^- T_J$. Its energy is $O(X^2 V L)$.
+The preceding bounds and \cref{eq:criticalgridselectedsampler}
+show that discarding the phase and freezing $G$ cost a
+power saving in squared norm, since $BX^2V\ll_C Y^3$ and
+$V/(K R_*)\ll_{C,Q}Y^{-7\xi/4}/X$.
+Integrating the now constant prime polynomial over an
+assigned arc gives exactly \cref{eq:criticalgridarclengthweight}.
+The identity in \cref{prop:criticalgridfarey} for summation
+over $v\bmod k$ then gives
+\cref{eq:criticalgridfrozenvaughancoeff} with $\Lambda(t)$
+temporarily in place of the screened Type~II weight.
+
+For the arithmetic replacement, an error sequence $E(t)$
+on $J$ satisfies
+\begin{equation}
+ \left\|P_I^-(\theta)\sum_{t\in J}E(t)e(t\theta)\right\|_2^2
+                    \ll X^2\sum_{t\in J}|E(t)|^2
+ \label{eq:criticalgridfrozenerrorenergy}
+\end{equation}
+by $\|P_I^-\|_\infty\ll X$ and Parseval. Combining
+\cref{eq:criticalgridselectedsampler,eq:criticalgridfrozendiscreteenergy}
+with this estimate transfers any power saving in the
+coefficient energy to a power saving in the squared norm
+over the moduli. In particular, we may replace $\Lambda(t)$
+by $s_z(t)\Lambda(t)$, since on $J$ the difference consists
+only of proper prime powers, with squared weight
+$O(\sqrt V(\log V)^3)$.
+
+Write $\Lambda=I_{U,W}+\mathcal L_{U,W}$ on $J$, where
+the short Vaughan term vanishes since $t>W$. In
+$s_z(t) I_{U,W}(t)$ replace the squarefree divisor sum by
+its terms with square root at most $Z=Y^{\zeta/8}$.
+Replace the roughness inclusion--exclusion by terms with
+at most $m=\lfloor \log Z/\log z\rfloor-1$ primes at
+most $z$. The square truncation can change values on
+$O(V/Z+\sqrt V)$ integers in $J$. The roughness
+truncation agrees with the full expansion when $t$ has
+at most $m$ distinct prime factors at most $z$.
+The number of other integers is at most
+\[
+ \frac{V}{(m+1)!}
+       \left(\sum_{p\le z}\frac1p\right)^{m+1}+O(Z)
+              \ll_{A,\zeta} VY^{-c_0}
+\]
+for some $c_0>0$. Indeed every product of $m+1$ distinct
+primes in this range is at most $Z$, and the factorial
+dominates the reciprocal sum because
+$m+1\sim(\zeta/(8A))L/\log L$ and
+$\sum_{p\le z}1/p\ll\log z$. All the weights on the
+exceptional set are bounded by $Y^\epsilon$ for any
+$\epsilon>0$, using the divisor bound. Hence these
+truncation errors can be absorbed by
+\cref{eq:criticalgridfrozenerrorenergy}.
+
+The truncated Type~I weight is a sum of terms with a
+divisibility condition $d\mid t$ and a constant or
+logarithmic weight in $t$. The modulus $d$ is the least
+common multiple of a Vaughan divisor at most $UW$,
+a square at most $Z^2$, and a roughness divisor at most
+$Z$. Thus $d\le D=UW Z^3\le P Y^{-5\zeta/8}$.
+For fixed $d$, all three divisors divide $d$, so the
+aggregated coefficients are bounded by $Y^\epsilon$.
+For instance the Vaughan logarithm $\log(t/d_0)$ splits
+into $\log t-\log d_0$. Partial summation in the
+corresponding progression therefore bounds the Type~I
+exponential sum $T_{\rm I}(a/q)$ at $q>R_*$ by
+\[
+ |T_{\rm I}(a/q)|\ll_\epsilon
+             Y^\epsilon\sum_{d\le D}\|ad/q\|^{-1}.
+\]
+Here $\|x\|$ denotes distance to an integer.
+The residues $ad\bmod q$ are distinct and nonzero for
+$1\le d\le D<q$ and $(a,q)=1$. This gives the maximum
+bound $O_\epsilon(Y^\epsilon q\log(2q))$.
+For fixed $d$, put $g=(d,q)$. As $a$ varies, the nonzero
+residues $ad\bmod q$ have multiplicity at most $g$ and
+are multiples of $g$. Their reciprocal distances sum
+to $O(q\log(2q))$. Consequently
+\[
+ \sum_{a\bmod q}^* |T_{\rm I}(a/q)|^2
+       \ll_\epsilon Y^\epsilon D q^2
+\]
+by the maximum bound and the first absolute moment.
+Multiplying by $\|P_I^-\|_\infty^2$, weighting by
+$(Kq)^{-1}$ and summing $q\le Q_0$ gives
+$O_\epsilon(Y^\epsilon X^2 D K)$ for the frozen
+Type~I arc energy. The squared norm after applying
+$\mathcal S_0$ is thus $O_\epsilon(Y^{3+\epsilon} D/P)$.
+This saves a power of $Y$ and completes the
+replacement by the screened Type~II coefficient.
+Combining with \cref{thm:criticalgridproductpowers} and
+\cref{eq:criticalgridsquarepart} proves
+\cref{eq:criticalgridfrozenvaughanerror}.
+
+For the pair assertion, the screened Type~II polynomial
+has energy $O_\epsilon(X^2 VY^\epsilon)$ by the divisor
+bound, and its frozen arc energy satisfies the same
+estimate by \cref{eq:criticalgridfrozendiscreteenergy}.
+The proofs of the conductor-pair estimates in
+\cref{thm:criticalgridcommonconductors} therefore give
+power savings for the new coefficients, on the whole
+circle or on the indicated complement. Parseval and
+Cauchy--Schwarz transfer \cref{eq:criticalgridfrozenvaughanerror}
+to those squared integrals. On the complement use also
+\cref{eq:criticalgridmodulusarcs}. Finally $B_1(m)=\log m$,
+and $d>\lfloor P Y^{-\zeta}\rfloor$ implies $d>P Y^{-\zeta}$.
+The formula for $m$ follows from $dm<2V$.
+\end{proof}
+
+\clearpage
 \section{Conditional bounds from uniform prime-pair discrepancies}
 \label{sec:pairconditional}
 
@@ -11842,6 +12069,8 @@ between large primitive conductors, with complete twisted
 Kloosterman sums for their prime coefficients.
 \Cref{thm:criticalgridproductpowers} forces fixed powers of
 each surviving product character to have large conductor.
+\Cref{thm:criticalgridfrozenvaughan} expresses the remaining
+coefficients by screened Type~II weights on the rational centers.
 \Cref{prop:criticalgridarcsharpness} shows that a power saving
 for arbitrary arc functions cannot follow from their size,
 their energy, and the conductor cutoffs alone.
@@ -11991,6 +12220,10 @@ neighbor congruences used in \cref{prop:criticalgridfarey}.
 The file \texttt{formalization/ConductorPairSampling.lean}
 checks the cofactor bound and the simultaneous divisibility
 and quotient identities in \cref{eq:criticalgridpairgram}.
+
+The file \texttt{formalization/ShortTypeIResidues.lean}
+checks the short-divisor residue injection and the combined
+screening period in \cref{thm:criticalgridfrozenvaughan}.
 
 The file \texttt{formalization/PrefixPersistence.lean} checks
 the finite sum version of the large-prefix estimate used in
