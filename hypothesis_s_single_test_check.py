@@ -159,6 +159,43 @@ def check_marked_divisors():
     print(f"Verified the marked divisor expansion on {checked} unit samples.")
 
 
+def check_capped_factor_profile(mesh, scale, values, pair_lower, pair_upper):
+    # The stored pair densities run from s=2 to 5/2. Across a cell
+    # c_2(5(1-t)) decreases and 1/(t(1-t)) increases.
+    targets = {51200, 51293, 51296, 55800}
+    tails = {}
+    lower = upper = 0
+    for i in range(3*mesh//5-1, min(targets)-1, -1):
+        j = 3*mesh-5*i
+        left_den = i*(mesh-i)
+        right_den = (i+1)*(mesh-i-1)
+        lower += mesh*pair_lower[j-5]//left_den
+        upper += (mesh*pair_upper[j]+right_den-1)//right_den
+        if i in targets:
+            tails[i] = (Fraction(lower, scale), Fraction(upper, scale))
+
+    log_lo, log_hi = values[2, 5*mesh//2]  # log(3/2)
+    tri_lo, tri_hi = values[3, 5*mesh]
+    four_lo, four_hi = values[4, 5*mesh]
+    if 4*(log_lo-four_hi) <= Fraction(384, 100)*tri_hi:
+        raise AssertionError("necessary triple mass in the absence of prime and semiprime partners")
+
+    def margin(u, v):
+        # log(u/(1-u)) = 2 atanh(2u-1) for 0 <= 2u-1 < 1.
+        x = Fraction(2*u, mesh)-1
+        cap_lo = 2*sum(x**(2*j+1)/(2*j+1) for j in range(4))
+        cap_hi = cap_lo + 2*x**9/(9*(1-x*x))
+        j_lo, j_hi = tails[v]
+        return (4*(log_lo-cap_hi-tri_hi-four_hi+j_lo),
+                4*(log_hi-cap_lo-tri_lo-four_lo+j_hi))
+
+    if not (margin(51200, 51200)[0] > Fraction(20, 1000)
+            and margin(50000, 55800)[0] > Fraction(5, 1000)
+            and margin(51293, 51293)[0] > 0 > margin(51296, 51296)[1]):
+        raise AssertionError(("fifth-root cutoff margins", tails))
+    print("Certified the fifth-root mass bounds and the crossing in (0.51293, 0.51296).")
+
+
 def check_twist_profile():
     # Row k encloses c_k(i/mesh) in units of 1/scale. On each cell
     # bound the increasing numerator and the reciprocal separately.
@@ -180,6 +217,9 @@ def check_twist_profile():
             hi[i] = hi[i-1] + (upper[j]+j-2)//(j-1)
         for i in (*probes, *(x//2 for x in probes)):
             values[k, i] = (Fraction(lo[i], scale), Fraction(hi[i], scale))
+        if k == 2:
+            pair_lower = lo[2*mesh:5*mesh//2 + 1]
+            pair_upper = hi[2*mesh:5*mesh//2 + 1]
         if k in (2, 3):
             for j, i in enumerate(cells):
                 index = 5*(q-i)*mesh//q
@@ -188,6 +228,7 @@ def check_twist_profile():
         lower, upper = lo, hi
 
     gaps = []
+    check_capped_factor_profile(mesh, scale, values, pair_lower, pair_upper)
     for i in probes:
         lo2, hi2 = values[2, i]
         lo3, hi3 = values[3, i]

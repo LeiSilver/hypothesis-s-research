@@ -2958,6 +2958,129 @@ fixed $\beta$, the right side tends to $5/2-4\beta$ as
 $\eta\downarrow0$, proving the general assertion.
 \end{proof}
 
+\begin{proposition}[A large factor at the fifth-root cutoff]
+\label[proposition]{prop:single-test-capped-factors}
+Set $z=N^{1/5}$. For $1/2\le u,v\le3/5$, let $G_N(u,v)$ be
+the $W(p)$-mass on the unit prime samples of
+\cref{prop:single-test-twisted-sieve} with $P^-(n)>z$, $n=N-p$,
+satisfying one of the following conditions:
+$n$ is prime; $\Omega(n)=2$ and $P^+(n)>N^u$; or $\Omega(n)=3$
+and $P^+(n)>N^v$. Define
+\[
+ J(v)=\int_v^{3/5}\frac{\log(4-5t)}{t(1-t)}\,\ud t,\qquad
+ D(u,v)=\log\frac{u}{1-u}+c_3(5)+c_4(5)-J(v),
+\]
+where $c_j$ is the factor-count density in
+\cref{prop:single-test-twist-mean}. For fixed $u,v$, unconditionally,
+\begin{equation}
+ \liminf_{\substack{N\to\infty\\2\mid N}}
+       G_N(u,v)/c \ \ge\ 4\{\log(3/2)-D(u,v)\}.
+ \label{eq:single-test-capped-mass}
+\end{equation}
+At $u=v=0.512$ this lower bound exceeds $0.020$.
+Thus at the actual cutoff $N^{1/5}$ a positive mass has
+a prime factor above $N^{0.512}$, leaving at most two factors
+counted with multiplicity. The lower bound in
+\eqref{eq:single-test-capped-mass} for $u=v$ vanishes at a
+unique point in $(0.51293,0.51296)$.
+If all semiprimes are retained ($u=1/2$ up to a negligible
+boundary), one can take $v=0.558$ and the lower bound still
+exceeds $0.005$. In particular, if there is no rough prime
+or semiprime partner in the window, this latter mass must
+consist entirely of triples with a prime exceeding $N^{0.558}$.
+On any unbounded sequence of such failures of prime and semiprime
+representation, the total triple mass divided by $c\,c_3(5)$ has
+lower limit greater than $3.84$, against an upper limit of four.
+\end{proposition}
+
+\begin{proof}
+There are at most four factors since $n<N=z^5$. Write $S=S_N(z)$.
+The complement of $G_N$ in $S$ consists of products with two
+prime factors bounded by $N^u$, products with three bounded by
+$N^v$, and all products with four. A sample with a repeated
+prime factor costs in total $O(L^2\sum_{\ell>z}\ell^{-2})=o(1)$,
+where $L=\log N$ and $\ell$ ranges over primes: count integers
+$n$ divisible by $\ell^2$ and use $W(p)\ll L^2/N$.
+All remaining factors are distinct.
+
+For $j=2,3,4$ let $E_j(x)$ be the $W(p)$-mass of samples with
+$j$ distinct prime factors of $n$ in $(z,N^x]$. Define
+\[
+ d_j(x)=
+ \int_{\substack{t_i\in[1/5,x],\ \sum_i t_i=1}}
+          \frac{\ud t_1\cdots\ud t_{j-1}}{j!\,t_1\cdots t_j},
+ \qquad t_j=1-\sum_{i<j}t_i.
+\]
+For all fixed $x\in[1/2,1]$,
+\begin{equation}
+ E_j(x)\le 4c\,d_j(x)+o(1).
+ \label{eq:single-test-capped-product}
+\end{equation}
+Indeed give the product $n$ the weight $F(n/N)$ times its
+indicator for the stated prime ranges. Its total weight is
+$(c\,d_j(x)+o(1))N/L$. To see this, sum over ordered prime
+tuples and divide by $j!$. Repeated entries cost $O_j(N/z)$
+on this support. At fixed product $m$ of the first $j-1$
+factors replace the last prime by the measure $\ud r/\log r$
+using partial summation; when the support is nonempty,
+$r\asymp N/m$ and $r\ge z$. The error is
+$O_B((N/m)L^{-B})$, summable with arbitrary logarithmic saving
+since the reciprocal prime sums over the factor ranges are bounded.
+Changing variable to $w=mr/N$ gives the outer weight $NF(w)\,\ud w$.
+At fixed $w$ replace the other reciprocal prime measures by
+$\ud t_i/t_i$ with $t_i=\log r_i/L$. In each coordinate the
+last-factor cutoff imposes an interval and $L/\log(Nw/m)$
+has bounded variation there, so the same partial summation
+is uniform in the endpoints. The resulting slice has total
+coordinate $1+\log w/L$ in place of one. Its integral tends
+to $d_j(x)$ by dominated convergence since each $t_i\ge1/5$
+and the boundary faces have measure zero. This also handles
+the degenerate two-factor slice at $x=1/2$.
+
+For $b<1/2$, the product sequence has summed reduced-class
+errors $O_B(NL^{-B})$ through $N^b$, by
+\cite[Theorem~3.2]{LiuParkSong} with $j$ identical prime ranges.
+Partial summation at product endpoints $\asymp N$ inserts $F$.
+The difference between the unit-restricted and full total,
+divided by $\varphi(d)$ and summed over $d\le N^b$, costs
+$O(N^{4/5}L^2)$ because each prime divisor of a product is
+above $z$. As in \cref{prop:single-test-semiprime-mass}, sieve
+$N-n$ through $N^{b/2}$, omitting primes dividing $N$. The
+local density is $1/(\ell-1)$ and the upper linear-sieve
+factor times the local product is $(2/b+o(1))\SSS(N)/L$.
+Multiply by $L^2/(N\SSS(N))$ to majorize the two logarithms
+in $W$, using $F(n/N)=F(p/N)$. Let $b\uparrow1/2$. This proves
+\eqref{eq:single-test-capped-product} including cases of zero
+limiting density.
+
+For two factors, integrate over the smaller coordinate from
+$1-u$ to $1/2$ to obtain $d_2(u)=\log(u/(1-u))$.
+Without the upper cutoffs the other densities are $c_3(5)$
+and $c_4(5)$ by the simplex formula in
+\cref{prop:single-test-one-large-factor}. In a triple at most
+one coordinate exceeds $v\ge1/2$. Distinguishing that
+coordinate $t$ leaves the two-factor density
+$c_2(5(1-t))/(1-t)$ with $t\le3/5$ and
+$c_2(5(1-t))=\log(4-5t)$. Hence $d_3(v)=c_3(5)-J(v)$.
+The complementary mass is at most $4cD(u,v)+o(1)$.
+Subtract from the lower bound $4c\log(3/2)$ for the lower
+limit of $S$ in \eqref{eq:single-test-sifted-baseline}.
+
+The function $D(u,u)$ is strictly increasing and continuous.
+The checker encloses $c_3(5),c_4(5)$ by the existing
+outward-rounded recurrence. For $J$ it bounds the decreasing
+numerator and the increasing reciprocal $1/(t(1-t))$ separately
+on each cell of width $10^{-5}$. These enclosures verify both
+explicit margins and the opposite signs at the endpoints of the
+stated crossing interval.
+Finally, in the absence of prime and semiprime partners the
+rough mass consists of triples and quadruples. The latter cost at
+most $4c\,c_4(5)+o(1)$ by \eqref{eq:single-test-capped-product},
+including the negligible repeated factors. Dividing the remaining
+lower bound by $c\,c_3(5)$ gives
+$4(\log(3/2)-c_4(5))/c_3(5)>3.84$ by the same recurrence.
+\end{proof}
+
 \section{Certification on the balanced window}
 \label{sec:certificate}
 
