@@ -275,6 +275,9 @@ the arc integrals using their rational centers and exact lengths.
 \Cref{thm:criticalgridpoisson} removes large common factors of
 the M\"obius divisor and arc denominator and completes the
 complementary sum with no zero frequency.
+\Cref{thm:criticalgridflatdeletion} completes the denominator
+sum on the full assigned arcs and discards the short M\"obius
+range there.
 \Cref{thm:criticalpowers} proves decay in density for the
 entire proper-power contribution through a fixed critical
 product cap and identifies the fixed rows needed for decay
@@ -12050,6 +12053,225 @@ $dr/s_0\le |g_0j|$.
 \end{proof}
 
 \clearpage
+\subsection{Cancellation on the full assigned arcs}
+
+Keep all parameters and selections of
+\cref{thm:criticalgridpoisson}. Fix $\nu>0$ with
+$2\nu+9\rho<\xi$.
+On $R_*<q\le K/2$ the Farey weight in
+\cref{eq:criticalgridarclengthweight} equals two.
+Let $W_N^{\rm flat}$ denote the part of the completed
+sequence from these $q$ and $d\le P Y^\nu$ in
+\cref{eq:criticalgridpoisson}, with the original character
+restrictions.
+
+\begin{theorem}[Deleting short M\"obius divisors on full arcs]
+\label{thm:criticalgridflatdeletion}
+Under Dirichlet GRH, there is $\delta>0$, depending on the
+fixed parameters, such that
+\begin{equation}
+ \sum_{\substack{Y\le N\le2Y\\2\mid N}}|W_N^{\rm flat}|^2
+                \ll Y^{3-\delta}.
+ \label{eq:criticalgridflatdeletion}
+\end{equation}
+Consequently one may omit all these terms in the second
+moment conclusions of \cref{thm:criticalgridpoisson},
+including on the modulus minor arcs in the stated
+small-input range, with a power-saving error.
+\end{theorem}
+
+\begin{proof}
+The frozen arc energy of the part under consideration is
+$O_\epsilon(X^2 VY^\epsilon)$. Indeed, before imposing
+$(d,q)\le Y^\rho$, the truncated and smoothed coefficient
+with $d\le P Y^\nu$ is uniformly $O_\epsilon(Y^\epsilon)$
+and independent of $q$. Apply
+\cref{eq:criticalgridfrozendiscreteenergy,eq:criticalgridfrozenerrorenergy}.
+The proof of \cref{eq:criticalgridpoissongcd} applies to
+this shorter divisor sum and handles the restriction on
+$(d,q)$, and the Poisson tail is negligible.
+
+Choose a smooth $\omega$, between zero and one, supported
+in $(R_*,K/2)$ and equal to one outside endpoint intervals
+of total length $O(KY^{-\rho})$ within that interval.
+Take $\|\omega^{(j)}\|_\infty\ll_j (Y^\rho/R_*)^j$.
+Inserting $\omega(q)$ costs $O_\epsilon(Y^{3-\rho+\epsilon})$
+in squared norm. To see this, write $H_q$ for the input
+functions on these arcs. For a fixed $q$ and a group
+indexed by $d_N=(q,N)$ and $e_b=(b,q/d_N)$, the
+character argument $N/d_N$ runs over an interval of
+length at most $1+Y/d_N$, shorter than
+$k=q/(d_N e_b)\ge c>R_*$ for large $Y$.
+Complete this sum to a full residue system modulo $k$
+and apply multiplicative orthogonality, followed by
+\cref{eq:criticalgridcommoncoeff} with $j=0$.
+Cauchy--Schwarz over the divisor groups proves
+\[
+ \|(\mathcal S_0 H)_q\|_{\ell^2(N)}^2
+       \ll_\epsilon Y^\epsilon (B/K)\|H_q\|_2^2
+\]
+for the part at this denominator. Summing the at most
+$O(KY^{-\rho})$ affected denominators by Cauchy--Schwarz
+gives the claimed loss.
+
+Next restore all nonprincipal characters on the smoothed
+part. The small-conductor estimate in the proof of
+\cref{thm:criticalgridcommonconductors}, the square-divisor
+deletion, and the small-power-conductor deletion all apply
+to arbitrary inputs of the displayed arc energy. In each
+case one may use just the degree-zero term. Their proofs
+therefore give a power-saving squared cost for this
+restoration. The principal characters can also be restored
+with a power-saving squared cost. In fact, with
+$r_N=q/(q,N)$ the Cauchy--Schwarz principal bound in
+\cref{thm:criticalgridglobalcharacters} gives
+$O_\epsilon(Y^\epsilon K^{-1/2}(B/r_N)\|H_q\|_2^2)$
+per denominator at $N$. Use the fixed-$N$ bound
+$\sum_q1/r_N\ll \tau(N)\log(2Y)$ and the fixed-$q$ bound
+$\sum_{N\sim Y}1/r_N\ll (Y/q)\tau(q)$, as there.
+The squared cost is
+\[
+ O_\epsilon\!\left(
+   Y^\epsilon\frac{B^2Y}{K R_*}\sum_q\|H_q\|_2^2\right)
+ \ll_\epsilon Y^{3+\epsilon}\frac{V}{K R_*}.
+\]
+After restoration the sum over $a$ is the original additive
+sample, with factor $2e(-a bN/q)/(Kq)$.
+
+We now estimate that sum pointwise in $N$. Retain the
+notation $H,r,g_0,q',v,M$ of
+\cref{eq:criticalgridpoissonparameters} and put $D=dr$.
+The quantity $D$ is at most $P Y^{\nu+\rho}$.
+Replace the Poisson cutoff by a smooth factor
+$\vartheta(z_0/Y^{2\rho})$ at $z_0=M j/q'$, where
+$\vartheta$ is one for $|z_0|\le1$ and zero for $|z_0|\ge2$.
+This costs only the negligible tail in
+\cref{thm:criticalgridpoisson}. We may now sum up to
+$0<|j|\le 2Y^{\nu+3\rho}$. The local lower bound on $d$
+may be omitted here, since below that bound the support
+condition would require $0<|j|\le2Y^{-\rho}$.
+
+For each $s,\ell,d$, sum over $g\mid D$ with
+$g\le Y^{2\rho}$ and $(g,d)\le Y^\rho$, writing
+$q=g x$ with $(x,D/g)=1$. These conditions on $g$
+impose the original bound on $(q,d)$, since $d\mid D$
+and $(q,d)=((q,D),d)$. Set $v=D/g$.
+For $n=bN+\sigma p$, with $\sigma=\pm1$, expand the
+unit condition on $a\bmod gx$ by divisors $h\mid g$.
+If $(j,x)>1$ there are no unit numerators in the
+class $a\equiv-j\bar v\bmod x$. Otherwise for a divisor
+$h$ coprime to $x$, put $a=h a_1$. Summing $a_1$ over the
+lifts of $-j\overline{h v}\bmod x$ gives
+\begin{align}
+ &\sum_{\substack{a\bmod gx\\(a,gx)=1\\a\equiv-j\bar v\bmod x}}
+                 e(-an/(gx)) \notag\\
+ &\qquad=
+ \sum_{\substack{h\mid g,\ (h,x)=1\\t=g/h,\ t\mid n}}
+             \mu(h)t\,e\!\left(\frac{j(n/t)\overline{h v}}{x}\right).
+ \label{eq:criticalgridflatlifts}
+\end{align}
+Indeed the geometric sum over $t$ lifts vanishes unless
+$t\mid n$. For $k=h v=D/t$, additive reciprocity gives
+\[
+ e\!\left(\frac{j(n/t)\bar k}{x}\right)
+  = e\!\left(-\frac{j(n/t)\bar x}{k}\right)
+    e\!\left(\frac{j n}{D x}\right).
+\]
+
+For fixed $s,\ell,d,g,h,j,n$, with $t\mid n$, the remaining
+sum over $x$ is a smooth sum of the periodic function
+$1_{(x,kj)=1}e(-j(n/t)\bar x/k)$ of period $k|j|$.
+Its smooth weight is
+\[
+ W_n(x)=\frac{2M}{K g x}\omega(gx)
+         \widehat f_d(Mj/x)\,
+         \vartheta(Mj/(xY^{2\rho})) e(j n/(D x)).
+\]
+On its support $x\ge R_*/g$, $|Mj/x|\le2Y^{2\rho}$,
+and $|n|\ll V$. For every integer $i\ge0$,
+\[
+ \|W_n^{(i)}\|_1\ll_i
+  \frac{M}{K g}L^2 \left(\frac{gY^{2\rho}}{R_*}\right)^i.
+\]
+This follows by differentiating the weight, using compact
+support for $f_d$ to bound the derivatives of its Fourier
+transform. Completion in $x$ leaves only the zero Fourier
+coefficient up to $O_{A_0}(Y^{-A_0})$ for any fixed $A_0>0$.
+Indeed all complete coefficients are at most the period
+in absolute value, and the ratio governing the nonzero
+frequencies satisfies
+\[
+ \frac{k|j|\,gY^{2\rho}}{R_*}
+  \ll \frac{P}{R_*}Y^{2\nu+8\rho}
+  \ll_{C,Q} Y^{-7\xi/4+2\nu+8\rho}.
+\]
+Inversion permutes the units modulo $k$. The additional
+condition $(x,j)=1$ supplies a density
+$\prod_{p_0\mid j,\ p_0\nmid k}(1-1/p_0)$, independent of
+$n$, by the Chinese remainder theorem. Thus the zero-mode
+term, apart from this density and the factor $\mu(h)$, is
+\begin{equation}
+ 1_{t\mid n}\frac{c_k(jn/t)}{k}\, I(n),
+ \qquad I(n)=t\int_{\mathbb R} W_n(x)\,\ud x ,
+ \label{eq:criticalgridflatramanujan}
+\end{equation}
+where $c_k$ is the Ramanujan sum.
+
+As a function of $b$, the Ramanujan weight in
+\cref{eq:criticalgridflatramanujan} has period
+$D/(D,N)$. Its two signed versions have the same average
+on that period, by $b\mapsto-b$ and $c_k(-m)=c_k(m)$.
+Each absolute sum on a period is
+$O(|j|\tau(D))$. For this bound use
+\[
+ 1_{t\mid n}\frac{|c_k(jn/t)|}{k}
+            \le \frac{|j|}{D}(D,n).
+\]
+For each $f\mid D$ the condition $f\mid bN+\sigma p$
+holds on at most $(D/(D,N))(f,N)/f\le D/f$ positions
+per period. The divisor identity for $(D,n)$ then proves
+the period bound.
+
+The function $I(n)$ has supremum
+$O(L^2 M/(K h))$ and derivative
+$O(L^2(M/(K h))Y^{2\rho}/V)$ on the relevant
+interval. These bounds follow by differentiating only the
+last phase of $W_n$. One may replace $I(bN+\sigma p)$
+by $I(bN)$ at cost
+$O_\epsilon(Y^{2\rho+\epsilon}(M/(K h))|j|)$ in the
+summed contribution of the two signs. Indeed there are
+at most $O(B+1)$ periods involved, and
+$p(B+1)/V\ll 1$. The difference of the two Ramanujan
+weights has all partial sums $O(|j|\tau(D))$ by
+the period bound. Partial summation against $I(bN)$
+therefore gives the same estimate for the signed sum
+itself, using $BN\ll V$.
+
+Sum this bound using $M/K=P/(dr)\le P/d$,
+the divisor bound for $g,h$, and
+$\sum_{j\le 2Y^{\nu+3\rho}} j\ll Y^{2\nu+6\rho}$.
+There are at most $Z^2$ pairs $s,\ell$ and the prime
+weights sum to $O(X)$. Including the negligible errors
+from the two completions, the restored smoothed output
+at every $N$ is
+\[
+ O_\epsilon\!\left(XP\,Y^{2\nu+9\rho+\epsilon}\right)
+       =O_\epsilon\!\left(Y^{1-\xi+2\nu+9\rho+\epsilon}\right).
+\]
+This saves a power for the stated $\nu,\rho$.
+Combining the squared bound with the restoration
+and smoothing costs proves \cref{eq:criticalgridflatdeletion}.
+
+The remaining arc energy is bounded by the same estimates
+as in \cref{thm:criticalgridpoisson}, since the deleted block
+has arc energy $O_\epsilon(X^2 VY^\epsilon)$.
+The conductor-pair deletions thus apply to the new
+coefficients. Parseval and Cauchy--Schwarz transfer the
+squared error to any modulus Fourier subset, followed by
+\cref{eq:criticalgridmodulusarcs} when applicable.
+\end{proof}
+
+\clearpage
 \section{Conditional bounds from uniform prime-pair discrepancies}
 \label{sec:pairconditional}
 
@@ -12270,6 +12492,8 @@ coefficients by screened Type~II weights on the rational centers.
 \Cref{thm:criticalgridpoisson} completes the complementary
 factor at reduced denominators and restricts the lower
 M\"obius range to short nonzero inverse phases.
+\Cref{thm:criticalgridflatdeletion} removes that lower range
+where the Farey arcs are assigned their full length.
 \Cref{prop:criticalgridarcsharpness} shows that a power saving
 for arbitrary arc functions cannot follow from their size,
 their energy, and the conductor cutoffs alone.
@@ -12428,6 +12652,10 @@ The file \texttt{formalization/ComplementaryPoisson.lean}
 checks the common-divisor bound, reduction to a unit
 multiplier, inverse residue, and determinant divisibility
 in \cref{thm:criticalgridpoisson}.
+
+The file \texttt{formalization/FlatArcCancellation.lean}
+checks the reciprocity divisibilities and the reflection
+of the two slope weights used in \cref{thm:criticalgridflatdeletion}.
 
 The file \texttt{formalization/PrefixPersistence.lean} checks
 the finite sum version of the large-prefix estimate used in
