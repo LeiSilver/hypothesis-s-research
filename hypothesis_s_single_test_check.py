@@ -1,7 +1,7 @@
 """Exact finite checks for the divisor identities and cutoffs of the single test."""
 
 from fractions import Fraction
-from math import gcd, isqrt, lcm, prod
+from math import ceil, floor, gcd, isqrt, lcm, prod
 
 
 def factors(n):
@@ -134,6 +134,31 @@ def check_twist_divisors():
     print(f"Verified {checked} divisor coefficients and {local} local Euler corrections.")
 
 
+def check_marked_divisors():
+    checked = 0
+    ps = [factors(n) for n in range(501)]
+    for n_sum in range(40, 501, 2):
+        for n in range(5*n_sum//12 + 1, (7*n_sum-1)//12 + 1):
+            if gcd(n, n_sum) != 1:
+                continue
+            observed = {}
+            for d in range(2, n+1):
+                if n % d or len(set(ps[d])) != len(ps[d]):
+                    continue
+                marked = [r for r in ps[d] if r**5 > n_sum]
+                if len(marked) == 1:
+                    r = marked[0]
+                    observed[r] = observed.get(r, 0) + (-1)**(len(ps[d])-1)
+            expected = {r: 1 for r in set(ps[n])} if ps[n][0]**5 > n_sum else {}
+            if {r: v for r, v in observed.items() if v} != expected:
+                raise AssertionError(("one-large-prime expansion", n_sum, n, observed))
+            for r in expected:
+                if r**5 > n_sum**3 and len(ps[n//r]) > 1:
+                    raise AssertionError(("large marked prime cofactor", n_sum, n, r))
+            checked += 1
+    print(f"Verified the marked divisor expansion on {checked} unit samples.")
+
+
 def check_twist_profile():
     # Row k encloses c_k(i/mesh) in units of 1/scale. On each cell
     # bound the increasing numerator and the reciprocal separately.
@@ -143,6 +168,10 @@ def check_twist_profile():
     upper = lower.copy()
     probes = (438_440, 438_480, 500_000)
     values = {}
+    # The marked-prime integral uses c_2 and c_3 at 5(1-x).
+    q = 10_000
+    cells = range(q//5, 2*q//5 + 1)
+    marked_lo, marked_hi = [0]*len(cells), [0]*len(cells)
     for k in (2, 3, 4):
         lo, hi = [0]*points, [0]*points
         for i in range(k*mesh + 1, points):
@@ -151,6 +180,11 @@ def check_twist_profile():
             hi[i] = hi[i-1] + (upper[j]+j-2)//(j-1)
         for i in (*probes, *(x//2 for x in probes)):
             values[k, i] = (Fraction(lo[i], scale), Fraction(hi[i], scale))
+        if k in (2, 3):
+            for j, i in enumerate(cells):
+                index = 5*(q-i)*mesh//q
+                marked_lo[j] += lo[index]
+                marked_hi[j] += hi[index]
         lower, upper = lo, hi
 
     gaps = []
@@ -165,6 +199,19 @@ def check_twist_profile():
             and Fraction(2042, 10000) < gaps[2][0] <= gaps[2][1] < Fraction(2043, 10000)):
         raise AssertionError(("signed profile intervals", gaps))
     print("Certified the profile crossing in (4.3844, 4.3848) and the gap at 5 in (0.2042, 0.2043).")
+
+    loss_lo = loss_hi = 0
+    for j, i in enumerate(cells):
+        # Includes the cell width 1/q. Accumulators are in units of 1/scale.
+        weight = Fraction(2*q-5*i, 2*q)**5 * Fraction(q, i*(q-i))
+        if j:
+            loss_lo += floor(marked_lo[j]*weight)
+        if j+1 < len(cells):
+            loss_hi += ceil(marked_hi[j]*weight)
+    baseline = (1-Fraction(loss_hi, scale), 1-Fraction(loss_lo, scale))
+    if not (Fraction(9930, 10000) < baseline[0] <= baseline[1] < Fraction(9931, 10000)):
+        raise AssertionError(("one-large-prime baseline", baseline))
+    print("Certified the one-large-prime minorant constant in (0.9930, 0.9931).")
 
 
 def main():
@@ -244,6 +291,7 @@ def main():
     check_rough_pairs()
     check_sifted_twists()
     check_twist_divisors()
+    check_marked_divisors()
     check_twist_profile()
 
 

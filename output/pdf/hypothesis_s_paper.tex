@@ -1963,6 +1963,128 @@ Subtract the profile using $g(5)>0.2042$ in the notation of
 \cref{prop:single-test-twist-mean}.
 \end{proof}
 
+\begin{proposition}[A real minorant on moduli with one large prime factor]
+\label[proposition]{prop:single-test-one-large-factor}
+Keep $z=N^{1/5}$, $L=\log N$, $X=7N/12$ and the real
+progression discrepancies $E_N(d)$ of \cref{prop:single-test-twist-progressions}.
+From the retained squarefree moduli use only those having
+exactly one prime divisor $r>z$, with $z<r<N^{2/5}$ or
+$r>N^{3/5}$. Use the weight
+$w(t)=\operatorname{sgn}(2t-1)((|2t-1|-1/5)_+/(4/5))^5$ and put
+\[
+ R_N^{(1)}=\frac{1}{N\SSS(N)}
+       \sum_{d=sr\ {\rm as\ above}}\mu(s) w(\log r/L) E_N(d).
+\]
+There is an absolute constant $0.9930<C_*<0.9931$ such that,
+unconditionally at every sufficiently large even $N$,
+\begin{equation}
+ P_N\ \ge\ c C_*+ R_N^{(1)}-O(L^{-1/2}),\qquad c=4/45.
+ \label{eq:single-test-one-large-factor}
+\end{equation}
+In particular, failure of distinct prime representation in the
+window requires $R_N^{(1)}\le-0.9930c+O(L^{-1/2})$.
+\end{proposition}
+
+\begin{proof}
+For $n=N-p$ in the window use the real weight
+\[
+ H(n)={\bf1}_{P^-(n)>z}\sum_{r\mid n,\ r\ {\rm prime}}w(\log r/L),
+\]
+where $P^-$ is the least prime factor and each distinct prime
+divisor occurs once. At a prime $n$ the weight is at most one.
+For composite $n$ at most one prime divisor can exceed $\sqrt N$.
+If there is such a divisor $r$, there is a different prime divisor
+$q\le n/r<N/r$. Monotonicity and $w(1-t)=-w(t)$ give
+$w(\log q/L)\le-w(\log r/L)$, and all other terms are nonpositive.
+When no divisor exceeds $\sqrt N$ every term is nonpositive.
+This proves $H(n)\le{\bf1}_{n\ {\rm prime}}$, including prime
+powers. Expanding the roughness restriction gives the exact identity
+\[
+ H(n)=\sum_{\substack{sr\mid n,\ r>z\ {\rm prime}\\
+                         s\mid\prod_{\ell\le z,\ \ell\ {\rm prime}}\ell}}
+          \mu(s)w(\log r/L).
+\]
+Every nonzero term has the asserted unique $r$ because $w$
+vanishes on $[2/5,3/5]$. On the original rough samples with
+$r>N^{3/5}$, the cofactor $n/r<N^{2/5}=z^2$ is either one
+or a prime. This explains the upper endpoint of the deleted band.
+Inserting the identity in $\sum_p W(p)H(N-p)$, the prime
+and unit restrictions from \cref{prop:single-test-twisted-sieve}
+are understood. Since the coefficients have modulus at most
+one, the same absolute progression bounds as in
+\cref{prop:single-test-twist-progressions} remove the discrepancies
+at $d\le D$ and at the three-factor moduli.
+
+It remains to compute the full principal term. Let $A_N$ be
+the sum of $\mu(s)w(\log r/L)/\varphi(sr)$ over $sr\le X$ in
+the expansion with $(sr,N)=1$. With
+$b(e)={\bf1}_{(e,N)=1}\mu(e)/\varphi(e)$ one has
+\[
+ A_N=\sum_{em\le X} b(e)\frac{H(m)}{m}+O_A(L^{-A})
+\]
+for each fixed $A$. Indeed the small-prime coefficient
+$\mu(s)/\varphi(s)$ on the permitted unit divisors is, to
+total absolute error $O_A(L^{-A})$ up to $X$, the convolution
+of $b$ with $\mathbf1_{P^-(m)>z}/m$ (including $m=1$).
+This follows by taking prime value $v=1$ in the local comparison
+for \eqref{eq:single-test-twist-periodic}. At $p>z$, $p\nmid N$ the
+difference at $p^j$ has modulus $1/(p^j(p-1))$. Use the kernel
+$w(\log r/L)/r$ on primes $r>z$, whose absolute mass is $O(L)$.
+On the small-prime coefficient side the kernel can be changed to
+$\mathbf1_{r\nmid N}w(\log r/L)/(r-1)$ at cost $O_A(L^{-A})$.
+On the rough side its convolution gives $H(m)/m$, also when
+$r^2\mid m$.
+
+Write $a=1/5$. On the simplex $x_i\ge a$, $\sum_{i=1}^j x_i=t$,
+use the measure
+\[
+ \ud\lambda_{j,t}
+   =\frac{\ud x_1\cdots\ud x_{j-1}}{j!\,x_1\cdots x_j},
+ \qquad x_j=t-\sum_{i<j}x_i.
+\]
+For $j=1$ this is an atom of mass $1/t$ at $t$. Put
+$C(t)=\sum_{j=1}^4\int\sum_i w(x_i)\,\ud\lambda_{j,t}$
+for $t$ near one, and $C_*=C(1)$. For $K=\exp((\log L)^4)$
+and $1\le e\le K$, the reciprocal prime integrals in the proof of
+\eqref{eq:single-test-twist-periodic} give
+\[
+ \sum_{X/e<m\le X}\frac{H(m)}m
+ =\int_{\log(X/e)/L}^{\log X/L} C(t)\,\ud t+O_A(L^{-A})
+ =C_*\frac{\log e}{L}
+     +O_A\bigl((1+\log e)^2/L^2+L^{-A}\bigr).
+\]
+For the first equality, repeated primes in the reciprocal sums
+cost $O(z^{-1}L^4)$. The weight for the remaining ordered tuples
+is $\sum_i w(x_i)$ at $x_i=\log p_i/L$. Each one-variable weight
+has bounded variation, so partial summation in the prime number
+theorem allows the same successive replacements by $\ud x_i/x_i$.
+For the second equality $C$ is Lipschitz near one. Substituting
+$x_i=a+(t-ja)y_i$ leaves an integral on the fixed unit simplex
+which is uniformly Lipschitz in $t$, since $j\le4$. Applying the two
+logarithmic moments of $b$ from \cref{prop:single-test-twist-progressions}
+now gives $A_N=\SSS(N) C_*/L+O(L^{-3/2})$. In fact
+$\sum_{m\le X}|H(m)|/m\ll L$ controls the discarded $e>K$
+range there. Multiplication by $I_N/(N\SSS(N))$ proves the
+claimed formula for the minorant.
+
+At $t=1$ the one-prime integral equals one and the two-prime
+integral vanishes by antisymmetry. For $j=3,4$ all coordinates
+are at most $3/5$, so only $1/5\le x_i<2/5$ contributes.
+By symmetry one can distinguish one coordinate $x$, leaving
+the others with log-product density
+$c_{j-1}(5(1-x))/(1-x)$ as in
+\cref{prop:single-test-twist-progressions}. Thus
+\[
+ 1-C_*=\int_{1/5}^{2/5}
+ \left(1-\tfrac52x\right)^5
+ \frac{c_2(5(1-x))+c_3(5(1-x))}{x(1-x)}\,\ud x .
+\]
+The integrand is nonnegative and decreasing. The integer checker
+uses upper left and lower right endpoint sums of step $10^{-4}$
+with the outward-rounded recurrence of \cref{prop:single-test-twist-mean}
+for $c_2,c_3$. This gives the stated enclosure of $C_*$.
+\end{proof}
+
 \section{Certification on the balanced window}
 \label{sec:certificate}
 
