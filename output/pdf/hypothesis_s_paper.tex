@@ -14,6 +14,9 @@
 \numberwithin{equation}{section}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\crefname{proposition}{proposition}{propositions}
+\Crefname{proposition}{Proposition}{Propositions}
 \newcommand{\SSS}{\mathfrak S}
 \newcommand{\grh}{\mathrm{GRH}}
 \newcommand{\ud}{\mathrm d}
@@ -257,6 +260,9 @@ multiplicative large sieve to impose a lower bound near $Y$
 on every primitive conductor in the sum.
 \Cref{thm:criticalgridcommonconductors} raises this bound and
 removes pairs of conductors with a large common divisor.
+\Cref{thm:criticalgridsquarepart} removes conductors with large
+square divisors. \Cref{prop:criticalgridfarey} expresses the
+retained prime coefficients in complete twisted Kloosterman sums.
 \Cref{thm:criticalpowers} proves decay in density for the
 entire proper-power contribution through a fixed critical
 product cap and identifies the fixed rows needed for decay
@@ -11116,6 +11122,234 @@ of the square on $E$, using $|B_N^{\rm p}|\ll YL$.
 Then apply \cref{eq:criticalgridmodulusarcs}.
 \end{proof}
 
+\clearpage
+\subsection{Square divisors and complete sums on the retained arcs}
+
+For a positive integer $n$, let $s(n)=\prod_p p^{\lfloor v_p(n)/2\rfloor}$,
+so that $s(n)^2$ is its largest square divisor.
+Define
+\[
+ \mathcal D=\{c>Q_*Y^{-\xi/4}:s(c)<Y^{\xi/8}\}.
+\]
+
+\begin{theorem}[Removing conductors with large square divisors]
+\label{thm:criticalgridsquarepart}
+Under the hypotheses of \cref{thm:criticalgridcommonconductors},
+\begin{equation}
+ \sum_{\substack{Y\le N\le2Y\\2\mid N}}
+ \left|B_N^{\rm p}(I,J)-\sum_{c\in\mathcal D}W_{c,N}\right|^2
+ \ll_{C,Q,\eta,\xi}Y^{3-\xi/16}.
+ \label{eq:criticalgridsquarepart}
+\end{equation}
+The stated bounds of \cref{thm:criticalgridcommonconductors}
+for pairs with a large common divisor or bounded row and column
+degrees still hold after this restriction. For $X\le Y^\kappa$
+the resulting pair integrals on $(\mathbb R/\mathbb Z)
+\setminus\mathfrak M_Y$ give the original prime-prefix second
+moment up to $O(Y^{3-\min(3\kappa/4,\xi/64)})$.
+
+For every term retained in \cref{eq:criticalgridsquarepart},
+write $q=q_0q_1$ with $q_0=\prod_{p\parallel q,\,p\mid c}p$.
+Then $(q_0,q_1)=1$ and $q_1<Y^{7\xi/8}$.
+The local component of the inducing character at every prime
+dividing $q_0$ is nonprincipal.
+\end{theorem}
+
+\begin{proof}
+Put $A=Y^{\xi/8}$ and restrict to a dyadic interval
+$C_1<c\le2C_1$ of the retained conductors in
+\cref{thm:criticalgridcommonconductors}.
+Fix one degree of the separated power series in that proof.
+For a threshold group $s(c)=s\ge A$, the large-sieve bound
+preceding \cref{eq:criticalgridcommonsieve} applies with
+$g=s^2$ since each conductor in the group is divisible by $s^2$.
+For each $d,\ell$ it gives the factor $O(Y+C_1^2/s^2)$ in the
+squared norm of the sum over $m=N/(d\ell)$, multiplying
+$\sum_{\psi:\,s(c)=s}^*|a_{d,\ell}(\psi)|^2$.
+
+Apply Cauchy--Schwarz over $s\ge A$ with weights $s^{-3/2}$
+and over the pairs $d,\ell$ with $d\ell\mid N$ as in the preceding
+proof. The first weight sum is $O(A^{-1/2})$. Also
+$s\le\sqrt{2C_1}$, so
+\[
+ s^{3/2}(Y+C_1^2/s^2)
+ \ll Y C_1^{3/4}+C_1^2 A^{-1/2}.
+\]
+Each coefficient $a_{d,\ell}(\psi)$ occurs for exactly one
+$s$. Thus \cref{eq:criticalgridcommoncompressed}, summed over
+$d,\ell$, bounds the squared norm on this block by
+\[
+ O_\epsilon\!\left(
+ Y^\epsilon B\left(\frac{Y}{Q_* C_1^{1/4} A^{1/2}}
+                    +\frac{C_1}{Q_* A}\right)\sum_q\|F_q\|_2^2
+ \right).
+\]
+The bound is uniform in the degree of the power series, whose
+scalar coefficients are absolutely summable. Since
+$C_1\le Q_*$ and $Q_*\asymp_{C,Q}Y^{1+\xi}$, the expression
+in parentheses is $O(A^{-1})$. After summing the dyadic
+blocks and using $B\sum_q\|F_q\|_2^2\ll_C Y^3 L$,
+the squared norm of the terms with $s(c)\ge A$ is
+$O_\epsilon(Y^{3+\epsilon}/A)$. Combining with
+\cref{eq:criticalgridtopconductors} proves
+\cref{eq:criticalgridsquarepart}.
+
+The pair bounds of \cref{thm:criticalgridcommonconductors}
+use estimates that hold under any additional conductor
+restriction in \cref{eq:criticalgridcommoncompressed}.
+They therefore hold on $\mathcal D$. Parseval,
+Cauchy--Schwarz and $|B_N^{\rm p}|\ll YL$ transfer
+\cref{eq:criticalgridsquarepart} to the squared integral on the
+modulus minor arcs with an error $O(Y^{3-\xi/64})$.
+\Cref{eq:criticalgridmodulusarcs} gives the asserted bound.
+
+Write $a=v_p(c)$ and $b=v_p(q/c)$. If $a\ge2$ then
+$p^{a+b}$ divides $s(c)^3(q/c)^2$ at $p$, since
+$a\le3\lfloor a/2\rfloor$. If $a\le1$ and $b\ge1$, then
+$a+b\le2b$. Primes with $a=1,b=0$ belong to $q_0$.
+This proves $q_1\le s(c)^3(q/c)^2<Y^{7\xi/8}$.
+Primitivity modulo $c$ makes the indicated local components
+nonprincipal.
+\end{proof}
+
+\clearpage
+Write $K=V/P$ and $Q_0=\lfloor K\rfloor$.
+For $q\le Q_0$ and $0<|\beta|\le1/(Kq)$, define
+$M_{q,\beta}$ on residues $w\bmod q$ as follows.
+Choose $s$ in $(Q_0-q,Q_0]$ with
+$s\equiv-\operatorname{sgn}(\beta)w\pmod q$ and put
+\begin{equation}
+ M_{q,\beta}(w)
+   =1_{\,s\ge q\ \mathrm{or}\ Kq|\beta|s\le K-q}.
+ \label{eq:criticalgridfareymask}
+\end{equation}
+Take $M_{q,0}=1$, and write its Fourier expansion as
+$M_{q,\beta}(w)=\sum_{h\bmod q}\widehat M_{q,\beta}(h)e(hw/q)$.
+For a primitive character $\psi\bmod c$ with $c\mid q$, put
+\[
+ S_\psi(m,h;q)=\sum_{a\bmod q}^{*}
+             \psi(a)e\big((ma+h\bar a)/q\big),
+ \qquad
+ \tau(\chi)=\sum_{v\bmod k}^{*}\chi(v)e(v/k)
+ \quad(\chi\bmod k).
+\]
+Here $\bar a$ denotes the inverse of $a$ modulo $q$.
+
+\begin{proposition}[Fourier expansion of the assigned arc]
+\label[proposition]{prop:criticalgridfarey}
+For almost every $\beta$ on a translated $q$ arc with $q>P$,
+\[
+ F_q(a/q+\beta)=M_{q,\beta}(\bar a)
+                       P_I^-(a/q+\beta)T_J(a/q+\beta).
+\]
+There are no assigned arcs with $q>Q_0$. For $q\le K/2$
+the mask is identically one. For all $q$,
+$|\widehat M_{q,\beta}(h)|\ll (1+|h|_q)^{-1}$, where
+$|h|_q=\min_{n\equiv h\bmod q}|n|$.
+
+For $P<q\le Q_0$ and $k\mid q$, write $c$ for the conductor of $\chi\bmod k$,
+$\psi$ for the inducing primitive character and $u=k/c$. Then
+\begin{align}
+ \gamma_{q,k}(\chi;\beta)
+ &=\frac{\chi(-1)\tau(\bar\chi)}{\varphi(k)}
+   \sum_{\substack{p\in I\\p\ {\rm prime}}}
+         \sum_{t\in J}(\log p)\Lambda(t)
+         \sum_{h\bmod q}\widehat M_{q,\beta}(h)
+         \notag\\
+ &\hspace{3em}\times\sum_{\sigma=\pm1}\sigma\,
+          e\big(\beta(t-\sigma p)\big)
+          S_\psi(t-\sigma p,h;q),
+ \label{eq:criticalgridfareygamma}\\
+ \tau(\bar\chi)&=\mu(u)\bar\psi(u)\tau(\bar\psi).
+ \label{eq:criticalgridinducedgauss}
+\end{align}
+In particular, $u$ must be squarefree and $(u,c)=1$ for a
+nonzero coefficient. The harmonic $h=0$ has the exact form
+\begin{equation}
+ S_\psi(m,0;q)=\tau(\psi)
+     \sum_{\substack{d\mid z,\ (d,c)=1\\z/d\mid m}}
+        \mu(d)\psi(d)\frac{z}{d}\,
+                      \bar\psi\!\left(\frac{m}{z/d}\right),
+       \qquad z=q/c .
+ \label{eq:criticalgridfareyzeroharmonic}
+\end{equation}
+On the selection of
+\cref{thm:criticalgridsquarepart}, uniformly for $m,h$,
+\begin{equation}
+ |S_\psi(m,h;q)|\le 2^{\omega(q_0)}q^{1/2}q_1^{1/2}
+       \ll_\epsilon q^{1/2+\epsilon}Y^{7\xi/16}.
+ \label{eq:criticalgridfareyweil}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Dirichlet approximation of order $Q_0$ covers the circle
+by the reduced arcs of denominators at most $Q_0$, since
+$1/(Q_0+1)<1/K$. Work with periodic lifts to $\mathbb R$.
+For two distinct centers $a/q<a'/s$ with arcs overlapping in
+their interiors, the positive integer $a'q-as$ satisfies
+$K(a'q-as)<q+s\le2K$. It is therefore one, and $q+s>Q_0$.
+If a reduced fraction $m/n$ lies strictly between the centers,
+then
+\[
+ n=s(mq-an)+q(a'n-ms)\ge s+q .
+\]
+Consequently the two centers are neighbors in the Farey
+sequence of order $Q_0$. Conversely the neighbor on the
+side $\operatorname{sgn}\beta$ has denominator $s$ determined
+by the congruence in \cref{eq:criticalgridfareymask}.
+Indeed this congruence gives $a'=(as+\operatorname{sgn}\beta)/q$,
+and the determinant and $s+q>Q_0$ give adjacency by
+the same argument.
+
+No competing arc contains points on the other side of $a/q$:
+the radius of the neighbor is $1/(Ks)\le1/(qs)$, its
+distance from $a/q$. Its nearer endpoint has distance
+$(K-q)/(Kqs)$ and its farther endpoint has distance at least
+$1/(Kq)$. It wins the least-denominator assignment on its side
+of $a/q$ exactly when $s<q$ and $|\beta|$ exceeds that nearer
+distance, up to endpoints. This proves the mask identity.
+If $q\le K/2$, overlap with an arc of smaller denominator
+would require $K<q+s<2q$, which is impossible.
+For $\beta\ne0$, the retained $s$ form a union of at most two
+integer intervals in $(Q_0-q,Q_0]$. A geometric sum on each
+interval proves the claimed coefficient bound.
+
+In the character coefficient preceding
+\cref{thm:criticalgridglobalcharacters}, summing over the
+reduced residues $v\bmod k$ first gives
+\[
+ \sum_{v\bmod k}^{*}\bar\chi(v)e(-av/k)
+                  =\chi(-a)\tau(\bar\chi)
+ \qquad ((a,q)=1).
+\]
+Insert the mask Fourier expansion and the prime sums to obtain
+\cref{eq:criticalgridfareygamma}. To evaluate $\tau(\bar\chi)$,
+expand $\bar\chi(v)=\bar\psi(v)\sum_{d\mid(v,k)}\mu(d)$.
+Terms with $(d,c)>1$ vanish by the zero extension of $\psi$.
+For the others $d\mid u$, and on writing $v=dz$ the inner sum
+over $z\bmod k/d$ vanishes unless $k/d=c$. This follows by
+summing the additive phase over each set of lifts of a residue
+modulo $c$. The term $d=u$ gives \cref{eq:criticalgridinducedgauss},
+with both sides zero when $(u,c)>1$.
+The same argument gives \cref{eq:criticalgridfareyzeroharmonic}
+with additive frequency $m$ and modulus $q$. For each $d\mid z$
+coprime to $c$ the sum over the $z/d$ lifts vanishes unless
+$z/d\mid m$, when the remaining primitive Gauss sum has
+frequency $m/(z/d)$.
+
+Finally the Chinese remainder theorem factors $S_\psi$ into
+prime-power sums, scaling $m,h$ at each factor by the same unit.
+At $p\mid q_0$ use the prime-modulus bound
+\cite[Proposition~9.4]{KnightlyLiKuznetsov}. If both arguments
+vanish modulo $p$, the local sum is zero by nonprincipality.
+Thus every factor at $p\mid q_0$ has modulus at most $2\sqrt p$.
+The factors at the primes dividing $q_1$ cost at most $q_1$
+in total by the triangle inequality. This proves
+\cref{eq:criticalgridfareyweil}.
+\end{proof}
+
+\clearpage
 \section{Conditional bounds from uniform prime-pair discrepancies}
 \label{sec:pairconditional}
 
@@ -11325,6 +11559,10 @@ above that product when both inputs are power-sized.
 product range at every modulus under $\grh(N)$.
 On the factored family, \cref{thm:productfactored} also gives
 mean-square decay through the critical region for arbitrary inputs.
+\Cref{thm:criticalgridsquarepart,prop:criticalgridfarey}
+reduce the small-input prime-prefix second moment to interactions
+between large primitive conductors, with complete twisted
+Kloosterman sums for their prime coefficients.
 A uniform estimate through the retained range, including the
 critical region for general moduli, remains open.
 The conditional range in \cref{thm:pairconditional} specifies
@@ -11462,6 +11700,11 @@ the divisor constraint and conductor bound used in the
 coefficient grouping of \cref{thm:criticalgridprimitiveconductors},
 and the circular spacing numerator in
 \cref{thm:criticalgridcommonconductors}.
+
+The file \texttt{formalization/FareyArcPartition.lean}
+checks the determinant-one overlap criterion for integer $K$,
+the denominator bound for an intermediate fraction, and the
+neighbor congruences used in \cref{prop:criticalgridfarey}.
 
 The file \texttt{formalization/PrefixPersistence.lean} checks
 the finite sum version of the large-prefix estimate used in
@@ -11644,6 +11887,13 @@ R.~C. Vaughan,
 \newblock \emph{An elementary method in prime number theory},
 \newblock Acta Arith. \textbf{37} (1980), 111--115.
 \newblock \url{https://bibliotekanauki.pl/articles/1393102.pdf}.
+
+\bibitem{KnightlyLiKuznetsov}
+A.~Knightly and C.~Li,
+\newblock \emph{Kuznetsov's trace formula and the Hecke eigenvalues
+of Maass forms},
+\newblock Mem. Amer. Math. Soc. \textbf{224} (2013), no.~1055.
+\newblock \url{https://doi.org/10.1090/s0065-9266-2012-00673-3}.
 
 \bibitem{MontgomeryVaughanSieve}
 H.~L. Montgomery and R.~C. Vaughan,

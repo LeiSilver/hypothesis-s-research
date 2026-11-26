@@ -4,6 +4,7 @@ This repository contains the English research manuscript and the code and data f
 
 - [Manuscript (PDF)](output/pdf/hypothesis_s_paper.pdf)
 - [LaTeX source](output/pdf/hypothesis_s_paper.tex)
+- [Lean verification of the Farey arc determinant and neighbor congruences](formalization/FareyArcPartition.lean)
 - [Lean verification of the reduced slope denominator and cofactor divisibility](formalization/ReducedSlopeModulus.lean)
 - [Lean verification of the factorization and residue-class rule for periodic modulus weights](formalization/PeriodicModulus.lean)
 - [Lean verification of residue translations and the common denominator divisor](formalization/AdditivePairOrder.lean)
@@ -35,6 +36,8 @@ This repository contains the English research manuscript and the code and data f
 - [Lean verification of the signed progression rows](formalization/CriticalArithmetic.lean)
 
 ## Research checkpoint · 26 November 2026
+
+Theorem 13.18 discards conductors whose largest square divisor is at least $Y^{\xi/4}$, with squared error $O(Y^{3-\xi/16})$ in the prime-prefix counts. For each remaining approximation denominator $q$, the product of primes that divide $q$ exactly once and divide the conductor accounts for all but a factor less than $Y^{7\xi/8}$. Proposition 13.19 uses the adjacent Farey fractions to describe the least-denominator arc assignment and expands the assigned prime coefficients into complete twisted Kloosterman sums. The induced Gauss factor vanishes unless the inducing cofactor is squarefree and coprime to the conductor. The surviving second moment still requires cancellation between different conductors.
 
 Theorem 13.17 uses GRH short character sums and the wider spacing of reduced fractions whose denominators share a divisor. For $X\le Y^{1/2-\eta}$ it retains only primitive conductors $c>Q_*Y^{-\xi/4}$ with $Q_*=\lceil V/P\rceil$, and a squared error $O(Y^{3-\xi/8})$. In the second moment the pairs with $(c,c')\ge Y^{\xi/4}$ contribute the same error in signed sum. The pairs with $|c-c'|\le Y^{1+3\xi/4}$ enjoy the bound in absolute sum. Every surviving product of primitive characters has conductor $\gg Y^{2+\xi}$.
 
@@ -114,6 +117,7 @@ With Elan installed, run the Lean check from the repository root.
 
 ```sh
 elan toolchain install leanprover/lean4:v4.35.0
+elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/FareyArcPartition.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/ReducedSlopeModulus.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/PeriodicModulus.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/AdditivePairOrder.lean
