@@ -223,6 +223,8 @@ including the progression correction for identical zero labels.
 \Cref{thm:criticalmeangrid} reduces decay in density through
 the fixed critical caps to unclipped signed prime counts on
 $O(\log\log N)$ prefix rectangles at fixed precision.
+\Cref{thm:criticalgridvariance} cancels the local-density
+main terms in the second moment of these prime counts.
 \Cref{thm:criticalpowers} proves decay in density for the
 entire proper-power contribution through a fixed critical
 product cap and identifies the fixed rows needed for decay
@@ -9050,7 +9052,160 @@ grid convergence. The fixed-residue bound in
 saving for each fixed $a$, with constants depending
 on $a$.
 
-\clearpage
+\subsection{Local densities in the prime-count second moment}
+
+Fix $C\ge1$, $Q\ge2$ and $0<\eta<1$. Take
+$2\le X\le Y^{1-\eta}$ and $Y^2/Q\le XV\le CY^2$,
+and fix intervals $I\subset[X,2X)$ and $J\subset[V,2V)$.
+Use the count $B_N^{\rm p}(I,J)$ defined above.
+Write $B=V/Y$, so $B\gg_Q Y^\eta$. For odd primes
+$p,r\in I$ and positive integers $b_1,b_2$, put
+\[
+ \mathcal J(b_1,b_2)=[Y/2,Y]\cap
+   \{u:2b_1u\in J,\ 2b_2u\in J\}.
+\]
+Only $b_1,b_2\asymp B$ can give a nonempty interval.
+For $\boldsymbol\epsilon=(\epsilon_1,\epsilon_2)\in\{1,-1\}^2$,
+consider the forms
+$2b_1u+\epsilon_1p$ and $2b_2u+\epsilon_2r$.
+Let $\mathcal A(p,r)$ consist of the pairs with
+$p\nmid b_1$, $r\nmid b_2$, $p b_2\ne r b_1$ and
+$\mathcal J(b_1,b_2)\ne\varnothing$.
+For these pairs let $\nu_\ell$ count the classes modulo
+the prime $\ell$ where at least one form vanishes, and set
+\[
+ \mathcal S_{\boldsymbol\epsilon}(b_1,b_2;p,r)
+       =\prod_\ell\frac{1-\nu_\ell/\ell}{(1-1/\ell)^2}.
+\]
+Define the line-count discrepancy by
+\begin{align*}
+ D_{\boldsymbol\epsilon}(b_1,b_2;p,r)
+ ={}& \sum_{u\in\mathcal J(b_1,b_2)\cap\mathbb Z}
+      \Lambda_{\rm p}(2b_1u+\epsilon_1p)
+      \Lambda_{\rm p}(2b_2u+\epsilon_2r)\\
+ &-|\mathcal J(b_1,b_2)|\,
+     \mathcal S_{\boldsymbol\epsilon}(b_1,b_2;p,r),
+\end{align*}
+where $|\mathcal J(b_1,b_2)|$ denotes real length.
+
+\begin{theorem}[Cancellation in the local-density part of the second moment]
+\label{thm:criticalgridvariance}
+Under these scale conditions, with $c_\eta=\eta/100$,
+\begin{align}
+ \sum_{\substack{Y\le N\le2Y\\2\mid N}} |B_N^{\rm p}(I,J)|^2
+ ={}& \sum_{\substack{p,r\in I\\p,r\ {\rm odd\ primes}}}
+           \log p\,\log r
+     \sum_{(b_1,b_2)\in\mathcal A(p,r)}
+     \sum_{\boldsymbol\epsilon}
+        \epsilon_1\epsilon_2
+           D_{\boldsymbol\epsilon}(b_1,b_2;p,r)\notag\\
+ &\quad+O_{C,Q,\eta}(Y^{3-c_\eta}).
+ \label{eq:criticalgridvariance}
+\end{align}
+The signed sum of the local-density main terms is
+$O_{C,Q,\eta}(Y^{3-c_\eta})$. Both estimates hold
+unconditionally and are uniform in the endpoints of $I,J$.
+\end{theorem}
+
+\begin{proof}
+Expand the squared count and put $N=2u$.
+All larger prime arguments are $\asymp V$ and exceed
+$2X$ for large $Y$. A smaller prime equal to two
+gives zero on both branches. If $p\mid N$ or $p\mid b_1$,
+the first form is divisible by $p$ and exceeds $p$,
+so its prime weight vanishes. The same holds for $r$.
+Thus one can remove the unit restrictions within the
+prime products and impose $p\nmid b_1$, $r\nmid b_2$.
+The relation $p b_2=r b_1$ selects at most one $b_2$
+per $b_1$ for fixed $p,r$. Its total contribution in
+absolute value is $O(X^2 B Y(\log Y)^2)$ by Chebyshev's
+bound and the trivial estimate on the $u$ sum. Since
+$B\ll_C Y/X$, this is $O_{C,Q,\eta}(Y^{3-\eta/2})$.
+
+To evaluate the local-density contribution, put
+$D=\epsilon_1p b_2-\epsilon_2r b_1$, which is nonzero
+for all signs on admissible pairs. At two the factor
+is four, since $p,r$ are odd. If $\ell>2$ and
+$\ell\nmid b_1b_2 D$, the forms have distinct roots
+and $\nu_\ell=2$. At any odd prime put
+$a_\ell=2-\nu_\ell\in\{0,1,2\}$. Factoring out the
+factors for two distinct roots gives
+\[
+ \mathcal S_{\boldsymbol\epsilon}(b_1,b_2;p,r)
+     =4C_2\sum_{\substack{d\ {\rm odd}\\d\ {\rm squarefree}}}
+            u_d(\boldsymbol\epsilon;b_1,b_2),
+ \qquad
+ u_d(\boldsymbol\epsilon;b_1,b_2)=
+                \prod_{\ell\mid d}\frac{a_\ell}{\ell-2},
+\]
+where $C_2=\prod_{\ell>2}(1-1/(\ell-1)^2)$.
+The sum is supported on divisors of $|b_1b_2 D|$.
+For every $\rho>0$, the tail past $T\ge1$ is
+$O_{C,Q,\rho}(T^{-1/2}Y^\rho)$. Indeed
+$u_d\le 6^{\omega(d)}/d$ and $|b_1b_2 D|\ll_{C,Q}Y^3$
+on the range in question. Multiplying by $d^{1/2}T^{-1/2}$
+and summing gives the bound
+$T^{-1/2}\prod_{\ell\mid b_1b_2 D}(1+6/\sqrt\ell)$.
+Each factor at sufficiently large primes is bounded by
+an arbitrarily small fixed power of $\ell$.
+
+For the truncated sum extend $u_d$ to integer slopes
+$b_1,b_2$ by counting only the roots of the nonconstant
+forms modulo each odd $\ell$. On admissible pairs this
+agrees with the formula, since each form with zero
+slope has nonzero constant term there. The coefficients
+are periodic in $b_2$ modulo $d$, and satisfy
+\begin{equation}
+ u_d(\epsilon_1,\epsilon_2;b_1,b_2)
+      =u_d(\epsilon_1,-\epsilon_2;b_1,-b_2).
+ \label{eq:criticalgridvarianceflip}
+\end{equation}
+Negating both coefficients of the second form preserves
+its roots. The bound
+$\sum_{d\le T}6^{\omega(d)}/d\ll_\rho Y^\rho$
+for $T\le Y$ also controls the extended truncated sum.
+
+Write $|\mathcal J(b_1,b_2)|$ as an integral over
+$u\in[Y/2,Y]$. At fixed $u$ each $b_i$ ranges over
+an interval of length $O(B)$, independently of the
+signs. Keep $p\nmid b_1$. Temporarily include
+$p b_2=r b_1$ in the truncated sum, at cost
+$O_\rho(BY^\rho)$ since at most one $b_2$ per $b_1$
+is added. Take $\xi=\eta/20$ and $T=Y^\xi$.
+If $r\le Y^\xi$, keep $r\nmid b_2$ and use
+\cref{eq:criticalgridvarianceflip} to cancel the
+two choices of $\epsilon_2$ on each complete
+period of length $\operatorname{lcm}(d,r)\le T Y^\xi$.
+The incomplete periods, summed over $d\le T$ and
+over $b_1$, cost $O_\rho(BT Y^{\xi+\rho})$.
+If $r>Y^\xi$, omit $r\nmid b_2$ in the truncated
+calculation. At fixed $b_1$ this adds $O(B/r+1)$
+values, at cost $O_\rho((B/r+1)Y^\rho)$.
+With this restriction omitted, complete periods of
+length $d$ cancel by the same identity.
+
+In either case the signed truncated sum at fixed $u$
+is $O_{C,Q,\eta}(B^2Y^{-c_\eta})$ with
+$\rho=\eta/200$, using $B\gg_Q Y^\eta$.
+The tail $O_\rho(B^2 T^{-1/2}Y^\rho)$ satisfies the
+same estimate. Integration in $u$ and summation with
+the prime weights cost $O(Y X^2)$, and $XB\ll_C Y$.
+This bounds the whole signed main term by
+$O_{C,Q,\eta}(Y^{3-c_\eta})$. Substitution in the
+square expansion proves \cref{eq:criticalgridvariance}.
+\end{proof}
+
+Under Dirichlet GRH, critical decay in density would
+follow if the signed discrepancy sum in
+\cref{eq:criticalgridvariance} were
+$o_{C,Q}(Y^3/\log\log Y)$ uniformly on the boxes of
+\cref{thm:criticalmeangrid}. In fact these boxes
+have $Y^2/Q\le XV\le4CY^2$, so each squared normalized
+count has a denominator $\gg_Q Y^2$. Sum the second
+moments over the $O_{C,Q,M,K}(\log\log Y)$ tests
+that occur across the dyadic range and apply
+\cref{thm:criticalmeangrid}.
+
 \section{Conditional bounds from uniform prime-pair discrepancies}
 \label{sec:pairconditional}
 
@@ -9360,6 +9515,10 @@ moment in \cref{lem:maximalcriticalmeansquare}.
 The file \texttt{formalization/ProductGridCell.lean}
 checks the product variation in a cell meeting the cap
 boundary in \cref{thm:criticalmeangrid}.
+
+The file \texttt{formalization/SignedProgressionLocal.lean}
+checks the local root and slope conditions used in
+\cref{eq:criticalgridvarianceflip}.
 
 The file \texttt{formalization/PrefixPersistence.lean} checks
 the finite sum version of the large-prefix estimate used in

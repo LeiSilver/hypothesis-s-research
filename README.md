@@ -4,6 +4,7 @@ This repository contains the English research manuscript and the code and data f
 
 - [Manuscript (PDF)](output/pdf/hypothesis_s_paper.pdf)
 - [LaTeX source](output/pdf/hypothesis_s_paper.tex)
+- [Lean verification of the signed local progression roots](formalization/SignedProgressionLocal.lean)
 - [Lean verification of the product variation in a grid cell](formalization/ProductGridCell.lean)
 - [Lean verification of the prime-exponent injection for the divisor moment](formalization/DivisorMoment.lean)
 - [Lean verification of the dyadic interval boundary count](formalization/DyadicIntervalBoundary.lean)
@@ -28,6 +29,8 @@ This repository contains the English research manuscript and the code and data f
 - [Lean verification of the signed progression rows](formalization/CriticalArithmetic.lean)
 
 ## Research checkpoint · 26 November 2026
+
+Theorem 13.7 expands the second moment of the signed prime prefix counts over all even moduli in $[Y,2Y]$ into prime-pair discrepancies for two linear forms. The local-density main terms cancel after summing over one slope. The unconditional error is $O_{C,Q,\eta}(Y^{3-\eta/100})$ uniformly over the prefix endpoints for $X\le Y^{1-\eta}$ and $Y^2/Q\le XV\le CY^2$. Cancellation of the signed prime-pair discrepancies would give decay in density through fixed critical caps.
 
 Theorem 13.6 characterizes decay in density through all fixed critical product caps using $O(\log\log N)$ prime prefix counts per modulus at fixed precision. These signed counts use ordinary primes on both sides and have no product cutoff inside a prefix rectangle. The smaller variable ranges between a slowly growing lower bound and a fixed power of $\log N$. Lemma 13.5 gives the upper-support mean square with explicit dependence on the lower support threshold and allows a different product cap for each modulus. Cancellation of the remaining prefix counts is open.
 
@@ -83,6 +86,7 @@ With Elan installed, run the Lean check from the repository root.
 
 ```sh
 elan toolchain install leanprover/lean4:v4.35.0
+elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/SignedProgressionLocal.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/ProductGridCell.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/DivisorMoment.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/DyadicIntervalBoundary.lean
