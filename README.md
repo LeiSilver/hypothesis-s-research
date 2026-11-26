@@ -47,6 +47,8 @@ This repository contains the English research manuscript and the code and data f
 
 ## Research checkpoint · 27 November 2026
 
+Proposition 3.11 bounds the part of the remaining coprime correlation with $\max(d,e)\le N^{20/39-\eta}$ or $de\le N^{45/44-\eta}$ by $O_\eta(N^{1-\eta/2})$, at every even modulus under Dirichlet GRH for fixed $0<\eta<1/100$. In the surviving sum the complementary factors satisfy $\min(u,v)<N^{19/39+\eta}$ and $uv<N^{43/44+\eta}$. The pointwise one-sided estimate on this surviving sum remains open.
+
 Proposition 3.10 restores the common cutoff $R=\sqrt N/(\log N)^4$ on coprime summands for every sufficiently large even $N$ under Dirichlet GRH. Poisson summation and the Bettin–Chandee estimate bound the discrepancy of the two short divisor sums by $O_\epsilon(N^\epsilon R^{39/20})$. The resulting pointwise error in the fixed-test reduction is $O(N/(\log N)^2)$.
 
 Proposition 3.9 restricts the single-test reflected Möbius correlation to coprime summands at every even $N$. Taking $R=\sqrt N/(2^{\omega(N)/2}(\log N)^4)$ gives error $O(N/(\log N)^2)$ with $d,e>R$ and $(ud,ve)=1$. The [exact checker](hypothesis_s_single_test_check.py) verifies the short/long split and the periodic and unit-restricted densities on finite inputs. Run it with Python 3.

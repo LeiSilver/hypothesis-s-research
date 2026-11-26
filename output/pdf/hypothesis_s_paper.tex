@@ -1284,6 +1284,72 @@ new term saves a fixed power of $N$, and the mixed sum costs
 $O(N/L^2)$.
 \end{proof}
 
+\begin{proposition}[Deleting a range from the two long divisors]
+\label[proposition]{prop:single-test-delete-products}
+Assume Dirichlet GRH, take $R=\sqrt N/L^4$, and fix $0<\eta<1/100$.
+In the coprime residual sum of \cref{prop:single-test-uniform-coprime}
+one may retain only the solutions $ud+ve=N$ with
+\[
+ \max(d,e)>T=N^{20/39-\eta},\qquad de>Z=N^{45/44-\eta}.
+\]
+The deleted contribution is $O_\eta(N^{1-\eta/2})$ at each even
+$N$. In particular the retained complementary factors satisfy
+$\min(u,v)<N^{19/39+\eta}$ and $uv<N^{43/44+\eta}$. The total
+error in the formula for the fixed test is still $O_\eta(N/L^2)$.
+\end{proposition}
+
+\begin{proof}
+The deleted divisors satisfy $d,e>R$ and lie in the union
+of the square $\max(d,e)\le T$ and the region $de\le Z$.
+On the unit samples we can restrict $d,e$ to units modulo $N$.
+After inclusion--exclusion on $(m,N)=1$, use
+\cref{eq:single-test-physical-poisson} on these two regions and
+their intersection. The coefficients are now $\mu(d)\log(d/R)$
+and $\mu(e)\log(e/R)$.
+
+For the nonzero frequencies the square has
+$\mathcal K(D,E)\ll T^{39/20}$. For any box meeting the product
+region, $DE\le4Z$ and $\max(D,E)\ll Z/R$. Therefore
+\[
+ \mathcal K(D,E)\ll Z^{11/10}R^{-1/4}+ZR^{-1/8}.
+\]
+The sharp product condition can be imposed at a cost $O(\log N)$
+in this estimate. Indeed take the boundary at $\lfloor Z\rfloor+1/2$.
+In $\log(de/(DE))$ every integer product in a crossing box is
+at distance $\gg 1/Z$ from this boundary. Convolve the interval
+indicator on a fixed larger log interval with a smooth unit-mass
+kernel of radius $N^{-3}$, placing its other endpoint outside the
+box. The values at the integer products are exact. The transform
+is $O(\min(1,1/|\xi|,N^3/|\xi|^2))$ and has $L^1$ norm $O(L)$.
+Its characters again twist the separate divisor coefficients.
+This also applies to boxes clipped by the square. Including the
+coefficient sizes, divisor count and dyadic summation costs at most
+$O_\epsilon(N^\epsilon)$. The first exponents at $T$ and $Z$ are
+$(39/20)(20/39-\eta)$ and $(11/10)(45/44-\eta)-1/8$.
+The second product term has exponent $45/44-\eta-1/16$ up to
+logarithms. All three bounds save at least $\eta/2$ on taking
+$\epsilon$ sufficiently small.
+
+The zero frequencies summed over $s$ give $cN\varphi(N)/N$ times
+the sum of $\mu(d)\mu(e)\log(d/R)\log(e/R)/(de)$ over the deleted
+region, with $(de,N)=(d,e)=1$. For fixed $d$ the admissible $e$
+form an interval above $R$ before the coprimality restriction.
+Under RH,
+\[
+ \sum_{\substack{k\le x\\(k,b)=1}}\mu(k)
+       \ll_\epsilon b^\epsilon x^{1/2+\epsilon}.
+\]
+This follows from the Mertens bound by the convolution over
+integers supported on primes dividing $b$ used in
+\cref{prop:single-test-long-divisors}. Partial summation with
+$b=dN$ bounds the inner sum of $\mu(e)\log(e/R)/e$ by
+$O_\epsilon(N^\epsilon R^{-1/2})$, uniformly in its endpoints.
+The absolute outer sum of $\log(d/R)/d$ costs $O(L^2)$.
+The full zero frequency is thus $O_\epsilon(N^{3/4+\epsilon})$.
+This proves the deletion estimate. Finally $u<N/d$, $v<N/e$
+give the stated complementary ranges.
+\end{proof}
+
 \section{Certification on the balanced window}
 \label{sec:certificate}
 
