@@ -272,6 +272,9 @@ coefficients are specified.
 \Cref{thm:criticalgridfrozenvaughan} inserts screened Vaughan
 coefficients into the retained conductor expansion and evaluates
 the arc integrals using their rational centers and exact lengths.
+\Cref{thm:criticalgridpoisson} removes large common factors of
+the M\"obius divisor and arc denominator and completes the
+complementary sum with no zero frequency.
 \Cref{thm:criticalpowers} proves decay in density for the
 entire proper-power contribution through a fixed critical
 product cap and identifies the fixed rows needed for decay
@@ -11854,6 +11857,199 @@ The formula for $m$ follows from $dm<2V$.
 \end{proof}
 
 \clearpage
+\subsection{Completion in the complementary Type II factor}
+
+Use \cref{thm:criticalgridfrozenvaughan} with $W=1$
+and $U=\lfloor P Y^{-\zeta}\rfloor$. Fix
+$0<\rho<\min(\xi/100,\zeta/10)$ and put $Z=Y^{\rho/3}$.
+Let $\mathcal R$ consist of the squarefree products $\ell$
+of at most $\lfloor\log Z/\log z\rfloor-1$ primes at most
+$z$, including $\ell=1$. Take a smooth $u_Y$, supported in
+$[1/2,3]$, with $0\le u_Y\le1$ and
+$\|u_Y^{(j)}\|_\infty\ll_j Y^{j\rho}$. Choose it to coincide
+with $1_J(Vx)$ outside the $Y^{-\rho}$ neighborhoods of
+the two endpoints of $J/V$. For $d\le3V$, write
+$f_d(x)=u_Y(x)\log(Vx/d)$ on $x>0$ and extend by zero.
+Use the Fourier transform
+$\widehat f_d(y)=\int_{\mathbb R} f_d(x)e(-xy)\,\ud x$.
+
+\begin{theorem}[Completion with a reduced denominator]
+\label{thm:criticalgridpoisson}
+Under the hypotheses of \cref{thm:criticalgridfrozenvaughan},
+retain the same characters and conductors. For $q>R_*$, in
+the frozen coefficient \cref{eq:criticalgridfrozenvaughancoeff}
+replace the larger-input exponential sum by
+\begin{align}
+ {\cal P}_q(a)
+  =\sum_{\substack{s\le Z\\\ell\in\mathcal R}}\mu(s)\mu(\ell)
+    \sum_{\substack{U<d\le3V\\(d,q)\le Y^\rho\\d>(V/q)Y^{-4\rho}}}
+       \mu(d)\,M
+    \sum_{\substack{0<|j|\le Y^{2\rho}q'/M\\
+                        j\equiv-av\bmod q'}}
+                   \widehat f_d(Mj/q').
+ \label{eq:criticalgridpoisson}
+\end{align}
+The parameters inside the sums are
+\begin{equation}
+ \begin{gathered}
+ H=\operatorname{lcm}(s^2,\ell),\qquad r=H/(H,d),\qquad
+ g_0=(q,dr),\\
+ q'=q/g_0,\qquad v=dr/g_0,\qquad M=V/(dr).
+ \end{gathered}
+ \label{eq:criticalgridpoissonparameters}
+\end{equation}
+Here $g_0\le Y^{2\rho}$, and every displayed frequency $j$
+is a unit modulo $q'$. The replacement has squared error
+$O(Y^{3-\delta})$ in the even-modulus sequence for some
+$\delta>0$ depending on the fixed parameters. The
+conductor-pair moment assertions of
+\cref{thm:criticalgridfrozenvaughan} hold with these
+coefficients and a power-saving error.
+
+In the part $d\le P Y^\nu$ for fixed $\nu>0$, the frequency
+range is $|j|\le Y^{\nu+3\rho}$. After interchanging the
+$a,j$ sums in \cref{eq:criticalgridfrozenvaughancoeff}, the
+numerators $a$ lie in one class modulo $q'$, with at most
+$g_0$ lifts modulo $q$. In particular, when $g_0=1$ the
+unique numerator satisfies
+\begin{equation}
+ a\equiv-j\,\overline{dr}\pmod q,\qquad
+ \bar a\equiv-dr\,\bar j\pmod q.
+ \label{eq:criticalgridpoissoninverse}
+\end{equation}
+In this case the Farey weight depends on the residue
+$-dr\,\bar j$, while $P_I^-(a/q)$ has the inverse phases
+$e(\pm p j\,\overline{dr}/q)$.
+
+If $0<\nu<\xi/4$, then for fixed $(a,q)$ all contributing
+tuples in $d\le P Y^\nu$ have the same nonzero quotient
+$g_0j/(dr)$. If this quotient in lowest terms is $h/s_0$
+with $s_0>0$, then
+\begin{equation}
+ \frac{V}{q}Y^{-2\rho}\le s_0\le P Y^{\nu+\rho},
+ \qquad \frac{dr}{s_0}\le Y^{\nu+3\rho}.
+ \label{eq:criticalgridpoissonratio}
+\end{equation}
+The transform argument $Mj/q'$ then equals $Vh/(q s_0)$
+for every tuple in the group.
+\end{theorem}
+
+\begin{proof}
+A convolution of $1_J(Vx)$ with a smooth probability
+density supported on $[-Y^{-\rho},Y^{-\rho}]$ gives
+the stated $u_Y$. Smoothing changes the weights on
+$O(VY^{-\rho}+1)$ integers, and every screened Type~II
+weight is $O_\epsilon(Y^\epsilon)$. Truncate the square
+and roughness expansions as in the proof of
+\cref{thm:criticalgridfrozenvaughan}, now with $s\le Z$
+and $\ell\in\mathcal R$. By the square-divisor bound and
+the factorial estimate used there, this changes the
+weights on $O(VY^{-c_0})$ integers for some $c_0>0$.
+Both changes save a power in the squared norm by
+\cref{eq:criticalgridselectedsampler,eq:criticalgridfrozendiscreteenergy,eq:criticalgridfrozenerrorenergy}.
+The truncated screen is
+\[
+ s_z^{\,*}(t)=
+ \sum_{\substack{s\le Z\\s^2\mid t}}\mu(s)
+ \sum_{\substack{\ell\in\mathcal R\\ \ell\mid t}}\mu(\ell).
+\]
+
+We now remove the terms with $(q,d)>Y^\rho$ directly
+in the arc energy. Set $D_0=Y^\rho$ and
+$\lambda(g)=\sum_{h\mid g,\,h>D_0}\mu(g/h)$.
+Then $1_{(q,d)>D_0}=\sum_{g\mid(q,d)}\lambda(g)$, with
+$|\lambda(g)|\le\tau(g)$ and $\lambda(g)=0$ for $g\le D_0$.
+For fixed $g$ the corresponding polynomial is
+\[
+ A_g(\theta)=P_I^-(\theta)\sum_{t} u_Y(t/V)s_z^{\,*}(t)e(t\theta)
+             \sum_{\substack{d\mid t,\ d>U\\g\mid d}}\mu(d)\log(t/d).
+\]
+Its larger-input coefficients vanish unless $g\mid t$
+and are $O_\epsilon(Y^\epsilon)$, so
+$\|A_g\|_2^2\ll_\epsilon X^2 VY^\epsilon/g$ for $g\le Q_0$.
+For the denominators $S<q\le2S$ that are multiples of $g$,
+the reduced fractions have spacing at least $g/(4S^2)$
+by the determinant divisibility used in
+\cref{eq:criticalgridcommonsieve}. Apply the additive
+large sieve to $A_g$ on these fractions.
+Cauchy--Schwarz over the divisors of each $q$ and
+$|\lambda(g)|\le\tau(g)$ give
+\begin{align}
+ &\sum_{R_*<q\le Q_0}\frac1{Kq}
+  \sum_{a\bmod q}^*
+       \left|\sum_{\substack{g\mid q\\g>D_0}}\lambda(g)A_g(a/q)\right|^2
+ \notag\\
+ &\qquad\ll_\epsilon
+ X^2 VY^\epsilon\sum_S
+  \left(\frac{V}{KS}\sum_{D_0<g\le2S}\frac1g
+             +\frac{S}{K}\sum_{g>D_0}\frac1{g^2}\right)
+ \ll_\epsilon X^2 VY^\epsilon
+                   \left(\frac{V}{K R_*}+\frac1{D_0}\right).
+ \label{eq:criticalgridpoissongcd}
+\end{align}
+We absorb the logarithm into $Y^\epsilon$.
+Since $V/(K R_*)\ll_{C,Q}Y^{-7\xi/4}/X$, the removed
+terms save a power by \cref{eq:criticalgridselectedsampler}.
+
+For each remaining $s,\ell,d$ the screening condition is
+$H\mid dm$, or equivalently $r\mid m$. Put $m=rn$.
+Then $g_0\le(q,d) r\le Y^{2\rho}$, since $H\le Z^3$,
+and $(v,q')=1$. In particular $q'>1$. The inner sum on
+the $m$ progression becomes
+\[
+ \sum_{n\in\mathbb Z} f_d(n/M)e(av n/q')
+  =M\sum_{\substack{j\in\mathbb Z\\j\equiv-av\bmod q'}}
+                  \widehat f_d(Mj/q'),
+\]
+by Poisson summation. The congruence makes $j$ a unit
+modulo $q'$ and excludes $j=0$.
+The derivatives of $f_d$ have $L^1$ norms
+$O_j(LY^{j\rho})$. For each $J_0>2$ this implies
+$|\widehat f_d(y)|\ll_{J_0}L(1+|y|Y^{-\rho})^{-J_0}$.
+Consequently the sum of absolute omitted terms with
+$|j|>Y^{2\rho}q'/M$, including the prefactor $M$, is
+at most
+\[
+ O_{J_0}\bigl(LY^{-(J_0-2)\rho}(M+q'Y^\rho)\bigr).
+\]
+This follows by extracting the indicated power
+and summing the remaining inverse-square bound on all
+integers. Taking $J_0$ sufficiently large makes this a
+negligible error even after summation over $s,\ell,d$.
+If $d\le(V/q)Y^{-4\rho}$ then the upper frequency bound
+is at most $Y^{-\rho}<1$, so no term remains.
+This proves \cref{eq:criticalgridpoisson} and the squared
+error, using \cref{eq:criticalgridselectedsampler} also for
+the negligible uniform tail.
+
+The preceding changes have power-saving arc energy
+relative to $X^2 V$, and the starting frozen energy is
+$O_\epsilon(X^2 VY^\epsilon)$. Thus the new energy
+satisfies the same bound and the conductor-pair removals
+apply as in \cref{thm:criticalgridfrozenvaughan}.
+For $d\le P Y^\nu$, use $q'\le K$ and $r\le Y^\rho$
+in the frequency bound. Solving the frequency congruence
+for $a\bmod q'$ gives the one class and the lift bound.
+When $q'=q$ the inverse formula in
+\cref{eq:criticalgridpoissoninverse} then follows by
+multiplying by the two unit inverses.
+
+For the quotient assertion, each tuple satisfies
+$q\mid a\,dr+g_0j$ and $|g_0j|\le Y^{2\rho}q\,dr/V$.
+In the lower range $dr\le P Y^{\nu+\rho}$, so
+$|g_0j|\le Y^{\nu+3\rho}$. For any two such tuples
+the determinant of the pairs $(dr,g_0j)$ is divisible
+by $q$ and has magnitude at most $2P Y^{2\nu+4\rho}$.
+This is smaller than $q>R_*$ since
+$R_*/P\gg_{C,Q} XY^{7\xi/4}$. The determinant vanishes,
+which gives the common quotient. Its absolute value
+is at most $Y^{2\rho}q/V$, so its nonzero numerator
+in lowest terms implies $s_0\ge (V/q)Y^{-2\rho}$.
+Also $s_0\mid dr$, giving the upper bound, and
+$dr/s_0\le |g_0j|$.
+\end{proof}
+
+\clearpage
 \section{Conditional bounds from uniform prime-pair discrepancies}
 \label{sec:pairconditional}
 
@@ -12071,6 +12267,9 @@ Kloosterman sums for their prime coefficients.
 each surviving product character to have large conductor.
 \Cref{thm:criticalgridfrozenvaughan} expresses the remaining
 coefficients by screened Type~II weights on the rational centers.
+\Cref{thm:criticalgridpoisson} completes the complementary
+factor at reduced denominators and restricts the lower
+M\"obius range to short nonzero inverse phases.
 \Cref{prop:criticalgridarcsharpness} shows that a power saving
 for arbitrary arc functions cannot follow from their size,
 their energy, and the conductor cutoffs alone.
@@ -12224,6 +12423,11 @@ and quotient identities in \cref{eq:criticalgridpairgram}.
 The file \texttt{formalization/ShortTypeIResidues.lean}
 checks the short-divisor residue injection and the combined
 screening period in \cref{thm:criticalgridfrozenvaughan}.
+
+The file \texttt{formalization/ComplementaryPoisson.lean}
+checks the common-divisor bound, reduction to a unit
+multiplier, inverse residue, and determinant divisibility
+in \cref{thm:criticalgridpoisson}.
 
 The file \texttt{formalization/PrefixPersistence.lean} checks
 the finite sum version of the large-prefix estimate used in

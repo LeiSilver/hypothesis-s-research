@@ -4,6 +4,7 @@ This repository contains the English research manuscript and the code and data f
 
 - [Manuscript (PDF)](output/pdf/hypothesis_s_paper.pdf)
 - [LaTeX source](output/pdf/hypothesis_s_paper.tex)
+- [Lean verification of the reduced completion modulus and inverse residue](formalization/ComplementaryPoisson.lean)
 - [Lean verification of the short-divisor residue injection and screening period](formalization/ShortTypeIResidues.lean)
 - [Lean verification of the common sampling period and conductor cofactor](formalization/ConductorPairSampling.lean)
 - [Lean verification of the Farey arc determinant and neighbor congruences](formalization/FareyArcPartition.lean)
@@ -38,6 +39,8 @@ This repository contains the English research manuscript and the code and data f
 - [Lean verification of the signed progression rows](formalization/CriticalArithmetic.lean)
 
 ## Research checkpoint · 26 November 2026
+
+Theorem 13.23 removes terms where the Möbius divisor and arc denominator share a factor larger than $Y^\rho$, using the wider spacing of reduced fractions with a common denominator divisor. The complementary factor then admits Poisson completion with no zero frequency and with an explicit inverse congruence for the numerator. The new local cutoff is $d>(V/q)Y^{-4\rho}$. When $d\le P Y^\nu$, the surviving dual frequencies satisfy $0<|j|\le Y^{\nu+3\rho}$. For $\nu<\xi/4$, every such term at the same rational center has the same reduced frequency quotient $g_0j/(dr)$. These reductions preserve the conductor-pair moment formula with a power-saving error.
 
 Theorem 13.22 evaluates the retained arc coefficients at their rational centers and replaces the larger prime weights by screened Vaughan Type II terms, with power-saving squared error under Dirichlet GRH. The construction preserves the large-conductor, square-divisor, character-power and conductor-pair restrictions. The cutoff $UW\le P Y^{-\zeta}$ permits $W=1$ and Möbius divisors $d>P Y^{-\zeta}$, with complementary factors $m\ll (V/P)Y^\zeta$. The remaining second moment is a finite conductor-pair sum with these explicit bilinear coefficients.
 
@@ -123,6 +126,7 @@ With Elan installed, run the Lean check from the repository root.
 
 ```sh
 elan toolchain install leanprover/lean4:v4.35.0
+elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/ComplementaryPoisson.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/ShortTypeIResidues.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/ConductorPairSampling.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/FareyArcPartition.lean
