@@ -263,6 +263,12 @@ removes pairs of conductors with a large common divisor.
 \Cref{thm:criticalgridsquarepart} removes conductors with large
 square divisors. \Cref{prop:criticalgridfarey} expresses the
 retained prime coefficients in complete twisted Kloosterman sums.
+\Cref{thm:criticalgridproductpowers} removes characters with
+low-conductor powers and thereby raises the conductor of the
+corresponding powers of every surviving product character.
+\Cref{prop:criticalgridarcsharpness} gives a lower bound for the
+remaining second moment when only the support and size of the arc
+coefficients are specified.
 \Cref{thm:criticalpowers} proves decay in density for the
 entire proper-power contribution through a fixed critical
 product cap and identifies the fixed rows needed for decay
@@ -11350,6 +11356,277 @@ in total by the triangle inequality. This proves
 \end{proof}
 
 \clearpage
+\subsection{Product characters on the modulus interval}
+
+Use the conductor set $\mathcal D$ of
+\cref{thm:criticalgridsquarepart}. For each degree $j$ in
+the separated series of \cref{thm:criticalgridcommonconductors},
+write $a_{j,d,\ell}(\psi)$ for the coefficient in
+\cref{eq:criticalgridprimitivegroup} and set
+\[
+ A_{j,r}(\psi)=\sum_{d\ell=r}a_{j,d,\ell}(\psi),\qquad
+ \lambda_j=\frac{(-12\pi i)^j}{j!}.
+\]
+We take these coefficients to be zero for conductors outside
+$\mathcal D$. The retained sequence is
+\begin{equation}
+ W_N=\sum_{j\ge0}\lambda_j(N/(2Y))^j
+              \sum_{r\mid N}\sum_\psi^* A_{j,r}(\psi)\psi(N/r).
+ \label{eq:criticalgridpairseparated}
+\end{equation}
+In every nonzero summand of $a_{j,d,\ell}(\psi)$,
+the factor $\psi(\ell)$ forces $(\ell,c)=1$, while $\ell\mid e_0 k$.
+Thus $\ell\mid e_0(k/c)$ and $r\mid q/c$. In particular
+$r<Y^{\xi/4}$ and $rc\le Q_*$.
+
+\begin{theorem}[Deleting characters with low-conductor powers]
+\label{thm:criticalgridproductpowers}
+Under the hypotheses of \cref{thm:criticalgridcommonconductors},
+fix a finite set of positive integers $\mathcal T$. In
+\cref{eq:criticalgridpairseparated}, one may delete all
+primitive characters $\psi$ for which
+\begin{equation}
+ \operatorname{cond}(\psi^t)\le Y^{1/2+\xi/2}
+                 \qquad\text{for some }t\in\mathcal T .
+ \label{eq:criticalgridproductpowercut}
+\end{equation}
+This costs $O_{C,Q,\eta,\xi,\mathcal T}(Y^{3-\xi/16})$
+in the squared norm over even moduli. The conductor-pair
+deletions of \cref{thm:criticalgridcommonconductors} remain
+valid, and each surviving pair satisfies
+\begin{equation}
+ \operatorname{cond}\big((\psi\bar\psi')^t\big)
+                    > Y^{1+\xi/2}\qquad(t\in\mathcal T),
+ \label{eq:criticalgridproductpowerlower}
+\end{equation}
+with the product viewed modulo the least common multiple of
+the two conductors. In particular this excludes product
+characters of any fixed bounded order by a choice of
+$\mathcal T$. On the whole circle the remaining pair sum
+gives the original prime-prefix second moment up to
+$O_{C,Q,\eta,\xi,\mathcal T}(Y^{3-\xi/64})$.
+\end{theorem}
+
+\begin{proof}
+The conductor-pair estimates of
+\cref{thm:criticalgridcommonconductors} hold after any
+selection of primitive characters. Indeed, that selection
+only restricts the sums of squares of the coefficients in
+\cref{eq:criticalgridcommoncompressed} and
+\cref{eq:criticalgridcommonsieve}, where the character
+expansion and the sieves apply to arbitrary coefficients.
+For $r,r'$ in a summand let $D=\operatorname{lcm}(2,r,r')$.
+The even moduli divisible by $r$ and $r'$ are exactly $Dm$.
+For any $j,j'$ the modulus sum in the pairing is therefore
+\begin{equation}
+ \psi(D/r)\overline{\psi'(D/r')}
+ \sum_{Y/D\le m\le 2Y/D}
+    (Dm/(2Y))^{j+j'}(\psi\bar\psi')(m).
+ \label{eq:criticalgridpairgram}
+\end{equation}
+On the surviving conductor pairs, $\psi\bar\psi'$ is
+nonprincipal by \cref{thm:criticalgridcommonconductors}.
+Its modulus is at most $Q_*^2$.
+The GRH short character-sum bound used in
+\cref{eq:criticalgridcommoncoeff}, followed by divisor
+inclusion--exclusion for an imprimitive product and partial
+summation, bounds \cref{eq:criticalgridpairgram} by
+$O_\epsilon(Y^\epsilon\sqrt{Y/D})$ uniformly in $j,j'$.
+Here $D\ll Y^{\xi/2}$ and the power weight is monotone and bounded
+by one. Since $D\ge\sqrt{rr'}$, the absolute pair contribution
+after summing degrees and divisors is at most
+$O_\epsilon(Y^{1/2+\epsilon} U(\psi)U(\psi'))$, where
+\[
+ U(\psi)=\sum_{j\ge0}|\lambda_j|\sum_r r^{-1/4}|A_{j,r}(\psi)|.
+\]
+
+Put $R=Q_*Y^{-\xi/4}$. Cauchy--Schwarz over $d\ell=r$,
+\cref{eq:criticalgridcommoncompressed}, and the divisor count
+for $d\ell\mid q$ give, uniformly in $j$,
+\[
+ \sum_{\psi,r}^*|A_{j,r}(\psi)|^2
+ \ll_\epsilon Y^\epsilon\frac{BP}{V R}\sum_q\|F_q\|_2^2
+ \ll_{C,Q,\epsilon}Y^{1-7\xi/4+\epsilon}.
+\]
+Another Cauchy--Schwarz inequality uses
+$\sum_{r<Y^{\xi/4}}r^{-1/2}\ll Y^{\xi/8}$.
+Summing the scalar coefficients in $j$ yields
+$\sum_\psi^* U(\psi)^2\ll_\epsilon Y^{1-13\xi/8+\epsilon}$.
+Hence any set of ordered primitive-character pairs of row and
+column degrees at most $D_0$ contributes in absolute value
+\begin{equation}
+ O_\epsilon(D_0 Y^{3/2-13\xi/8+\epsilon}).
+ \label{eq:criticalgridpairdegreechars}
+\end{equation}
+
+For fixed $t$ and $c$, the preimage under the $t$-th power map
+of any specified character modulo $c$ has size at most
+$t^{\omega(c)+1}\ll_{t,\epsilon}Y^\epsilon$.
+This follows from the cyclic unit groups at odd prime powers
+and at most two cyclic factors at a power of two.
+For $\operatorname{cond}(\psi^t)=h$, the conductor $c$ is a
+multiple of $h$, and there are at most $\varphi(h)$ choices
+of inducing character modulo $h$. Thus the number of
+primitive $\psi$ with $c\le Q_*$ and
+$\operatorname{cond}(\psi^t)\le H$, summed also over
+$t\in\mathcal T$, is
+\[
+ \ll_{\mathcal T,\epsilon}
+    Y^\epsilon\sum_{h\le H}\varphi(h)\left\lfloor Q_*/h\right\rfloor
+ \ll_{\mathcal T,\epsilon}Y^\epsilon Q_*H.
+\]
+Take $H=Y^{1/2+\xi/2}$. In the square restricted to these
+characters discard the conductor pairs of
+\cref{thm:criticalgridcommonconductors} with its stated error.
+The remaining pairs have degrees at most
+$O_{\mathcal T,\epsilon}(Y^{3/2+3\xi/2+\epsilon})$.
+\Cref{eq:criticalgridpairdegreechars} bounds their absolute
+sum by $O(Y^{3-\xi/16})$ on choosing $\epsilon$ sufficiently
+small. This proves the squared error for deleting the entire
+family.
+
+For a retained pair, write $c_t=\operatorname{cond}(\psi^t)$
+and $c_t'=\operatorname{cond}((\psi')^t)$. Both exceed $H$,
+and $(c_t,c_t')$ divides $(c,c')<Y^{\xi/4}$.
+The local conductor argument of
+\cref{thm:criticalgridcommonconductors} with $c_t,c_t'$
+gives
+$\operatorname{cond}((\psi\bar\psi')^t)
+ \ge c_t c_t'/(c_t,c_t')^2>Y^{1+\xi/2}$.
+The moment approximation follows from Parseval,
+\cref{eq:criticalgridsquarepart}, the squared error just proved,
+and $|B_N^{\rm p}(I,J)|\ll YL$ by Cauchy--Schwarz.
+\end{proof}
+
+\clearpage
+\subsection{Sharpness of the arc estimates for arbitrary coefficients}
+
+The next construction uses arbitrary functions on the assigned
+arcs in place of the actual prime product. It includes a bound
+at each sampled modulus as well as the arc energy bound.
+
+\begin{proposition}[Large second moments on retained prime denominators]
+\label[proposition]{prop:criticalgridarcsharpness}
+Use the scale assumptions of \cref{thm:criticalgriddualmajor}.
+Let $E\subset\mathbb R/\mathbb Z$ have complement of measure
+at most $Y^{-\sigma}$ for some fixed $\sigma>0$.
+For each $\epsilon>0$ and all sufficiently large $Y$,
+there exist functions $F_q$ supported on their assigned arcs,
+with $F_q=0$ except at primes $V/(4P)\le q\le V/(3P)$,
+such that
+\[
+ \sum_q\|F_q\|_2^2\le X^2V,\qquad
+ |F_q(\theta)|\ll_{C,Q} XV,\qquad
+ \max_{\substack{Y\le N\le2Y\\2\mid N}}
+                        |(\mathcal C\sum_qF_q)_N|\le Y .
+\]
+All contributions have primitive conductor $c=q$ and satisfy
+the square-divisor condition of \cref{thm:criticalgridsquarepart}.
+Under Dirichlet GRH the retained pairs with
+$|c-c'|>Y^{1+3\xi/4}$ and $(c,c')<Y^{\xi/4}$ contribute
+$\gg_{C,Q,\eta,\xi,\sigma,\epsilon}Y^{3-\epsilon}$
+in signed sum to the second moment on $E$.
+The same lower bound holds after the character deletion in
+\cref{eq:criticalgridproductpowercut} for any fixed $\mathcal T$.
+\end{proposition}
+
+\begin{proof}
+Put $K=V/P$, and use the primes $K/4\le q\le K/3$. These
+denominators exceed $2Y$ and $3B$ for sufficiently large $Y$.
+They also exceed $P$ since $K/P\asymp_{C,Q}XY^{2\xi}$,
+and their arcs are complete by \cref{prop:criticalgridfarey}.
+Let $\mathcal H$ be the closed subspace of $L^2(\mathbb R/\mathbb Z)$
+supported on these arcs and satisfying
+$\sum_{a\bmod q}^* F(a/q+\beta)=0$ for almost every $\beta$.
+The orthogonal projection to $\mathcal H$ restricts to the arcs
+and subtracts the mean over $a$ on each translated vector.
+Write $T$ for the restriction of $\mathcal C$ to $\mathcal H$,
+with target indexed by the even $N$ in $[Y,2Y]$.
+Since $q$ exceeds $N$ and $b$, the reduced denominator in each
+sample is $q$. The zero-mean condition kills the principal
+coefficient, and all other characters modulo $q$ have conductor
+$q$. In particular these functions give only the specified
+primitive conductors.
+
+Let $M=TT^*$ on the finite target space. By additive Parseval
+and the contraction of the projection,
+\begin{align*}
+ \|T^*z\|_2^2
+ &\le\int_{\mathbb R/\mathbb Z}
+          \left|\sum_{N,b} z_N e(bN\theta)\right|^2\ud\theta\\
+ &\le \bigl(\max_{n\ll V}\tau(n)\bigr)\#\mathcal B
+                     \sum_N |z_N|^2 \ll_\delta B Y^\delta\|z\|_2^2
+                     \qquad(\delta>0).
+\end{align*}
+For the diagonal entry $M_{NN}$, project the kernel
+$\sum_b e(bN\theta)$ on each arc.
+For fixed $\beta$, put $D_N(\beta)=\sum_b e(bN\beta)$.
+Summing its projected square over the $q-1$ unit numerators
+gives exactly
+\begin{equation}
+ q\,\#\mathcal B-\frac{q}{q-1}|D_N(\beta)|^2
+                   \gg q B.
+ \label{eq:criticalgridarcrownorm}
+\end{equation}
+Indeed, additive orthogonality over all $q$ residues gives
+$q\,\#\mathcal B$, since the $bN$ are distinct modulo $q$.
+The zero residue accounts for $|D_N(\beta)|^2$.
+The sum over the other residues is $-D_N(\beta)$, so subtracting
+their mean costs a further $|D_N(\beta)|^2/(q-1)$.
+The last inequality uses $\#\mathcal B=o(q)$.
+Integration over each $\beta$ interval gives $\gg B/K$ per
+prime. The prime number theorem now gives $M_{NN}\gg B/L$.
+
+Choose independent random signs $z_N=\pm1$.
+For $Z_N=(Mz)_N$, the expected squared norm of $Z$ is
+$\operatorname{tr}(M^2)\gg YB^2/L^2$, using the diagonal lower
+bound. At each $\alpha$ the expected square of
+$\sum_N Z_Ne(N\alpha)$ is at most $O(Y\|M\|^2)$, by
+independence and the operator norm. Thus its expected integral
+on $E$ is still $\gg YB^2/L^2$ if $2\delta<\sigma$.
+The random-sign bound
+\[
+ \mathbb P\bigl(|(Mz)_N|>t\|M\|\bigr)\le 4 e^{-t^2/4}
+\]
+follows by applying the exponential moment inequality
+$\cosh x\le e^{x^2/2}$ to the real and imaginary parts.
+For a sufficiently large constant $C_0$ the signs with
+$\max_N |Z_N|>C_0\|M\|\sqrt L$ have probability $O(Y^{-10})$.
+Their contribution to the expected integral is negligible
+since $\|Z\|_2^2\ll Y\|M\|^2$. There is therefore a choice
+of signs with $\max_N |Z_N|\ll_\delta B Y^\delta\sqrt L$
+and integral on $E$ at least a constant times $YB^2/L^2$.
+
+Take $F=(Y/(B Y^{2\delta}))T^*z$, with $F_q$ its restriction
+to the $q$ arcs. Its energy is $O_\delta(Y^{3-3\delta}/B)$,
+which is at most $X^2 V$ for large $Y$ by the product assumptions.
+Before scaling, its pointwise size is $O(BY)$, by projecting
+the sum of the $N$ kernels and bounding the kernel and its mean.
+The stated pointwise bounds now follow from $XV\asymp Y^2$
+and the bound on $\max_N |Z_N|$.
+The scaled second moment on $E$ is $\gg Y^{3-4\delta}/L^2$.
+The proof of \cref{thm:criticalgridproductpowers} gives the
+same $O_{\mathcal T}(Y^{3-\xi/16})$ squared norm for the
+deleted characters of these functions, since it uses only
+the arc energy and GRH. The triangle inequality in $L^2(E)$
+leaves a lower bound of the same order if $4\delta<\xi/16$.
+
+For these functions the individual-conductor estimate in the
+proof of \cref{thm:criticalgridcommonconductors} applies directly:
+\[
+ \sum_q\|W_q\|_2^2
+ \ll_{\epsilon_1}Y^{\epsilon_1}(BP/V)\sum_q\|F_q\|_2^2.
+\]
+The proof of this estimate uses the arc energy and the GRH
+slope bound, both available for these functions.
+The pairs with $|q-q'|\le Y^{1+3\xi/4}$ consequently contribute
+$O(Y^{3-\xi/8})$ in absolute sum on $E$. This includes the
+diagonal, and distinct primes have common divisor one.
+Choose $\delta$ smaller if necessary with
+$4\delta<\min(\epsilon,\xi/16)$ to prove the lower bound.
+\end{proof}
+
+\clearpage
 \section{Conditional bounds from uniform prime-pair discrepancies}
 \label{sec:pairconditional}
 
@@ -11563,6 +11840,11 @@ mean-square decay through the critical region for arbitrary inputs.
 reduce the small-input prime-prefix second moment to interactions
 between large primitive conductors, with complete twisted
 Kloosterman sums for their prime coefficients.
+\Cref{thm:criticalgridproductpowers} forces fixed powers of
+each surviving product character to have large conductor.
+\Cref{prop:criticalgridarcsharpness} shows that a power saving
+for arbitrary arc functions cannot follow from their size,
+their energy, and the conductor cutoffs alone.
 A uniform estimate through the retained range, including the
 critical region for general moduli, remains open.
 The conditional range in \cref{thm:pairconditional} specifies
@@ -11705,6 +11987,10 @@ The file \texttt{formalization/FareyArcPartition.lean}
 checks the determinant-one overlap criterion for integer $K$,
 the denominator bound for an intermediate fraction, and the
 neighbor congruences used in \cref{prop:criticalgridfarey}.
+
+The file \texttt{formalization/ConductorPairSampling.lean}
+checks the cofactor bound and the simultaneous divisibility
+and quotient identities in \cref{eq:criticalgridpairgram}.
 
 The file \texttt{formalization/PrefixPersistence.lean} checks
 the finite sum version of the large-prefix estimate used in
