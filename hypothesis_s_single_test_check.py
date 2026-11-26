@@ -214,6 +214,28 @@ def check_twist_profile():
     print("Certified the one-large-prime minorant constant in (0.9930, 0.9931).")
 
 
+def check_upper_mark_sieve():
+    # For decreasing integrands, left endpoints bound each cell above.
+    mesh, scale = 500_000, 2**54
+    intervals = []
+    for j in (1, 2):
+        lower = upper = 0
+        for i in range(mesh//5, 2*mesh//5 + 1):
+            numerator = scale * (2*mesh-5*i)**5 * mesh**j
+            denominator = (2*mesh)**5 * i * (mesh-i)**j
+            if i > mesh//5:
+                lower += numerator//denominator
+            if i < 2*mesh//5:
+                upper += (numerator+denominator-1)//denominator
+        intervals.append((Fraction(lower, scale), Fraction(upper, scale)))
+    (lo1, hi1), (lo2, hi2) = intervals
+    lower, upper = 1+lo1-4*hi2, 1+hi1-4*lo2
+    if not (Fraction(97510, 100000) < lower <= upper < Fraction(97511, 100000)
+            and 4*hi2 < Fraction(3086, 100000)):
+        raise AssertionError(("upper-range sieve coefficients", intervals))
+    print("Certified the upper-range lower coefficient in (0.97510, 0.97511) and width below 0.03086.")
+
+
 def main():
     limit = 256
     divisors = [tuple(d for d in range(1, n + 1) if n % d == 0)
@@ -293,6 +315,7 @@ def main():
     check_twist_divisors()
     check_marked_divisors()
     check_twist_profile()
+    check_upper_mark_sieve()
 
 
 if __name__ == "__main__":

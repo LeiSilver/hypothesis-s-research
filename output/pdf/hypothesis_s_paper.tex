@@ -2085,6 +2085,114 @@ with the outward-rounded recurrence of \cref{prop:single-test-twist-mean}
 for $c_2,c_3$. This gives the stated enclosure of $C_*$.
 \end{proof}
 
+\begin{proposition}[Keeping only the upper range of the large prime factor]
+\label[proposition]{prop:single-test-upper-mark}
+In \cref{prop:single-test-one-large-factor} let $R_N^+$ be the
+part of $R_N^{(1)}$ with $r>N^{3/5}$. Thus $d=sr$ has a unique
+such prime, $s<N^{2/5}$ is squarefree with all prime factors at
+most $N^{1/5}$, $d\le7N/12$, and $(d,N)=1$. Put
+\[
+ k(t)=(1-5t/2)^5,\qquad
+ I_j=\int_{1/5}^{2/5}\frac{k(t)}{t(1-t)^j}\,\ud t
+ \quad(j=1,2).
+\]
+At each sufficiently large even $N$, unconditionally,
+\begin{equation}
+ c(1+I_1-4I_2)+R_N^+-o(1)
+ \ \le\ P_N\ \le\
+ c(1+I_1)+R_N^++O((\log N)^{-1/2}).
+ \label{eq:single-test-upper-mark}
+\end{equation}
+Here $0.97510<1+I_1-4I_2<0.97511$ and $4I_2<0.03086$.
+If $P_N=0$ then
+$-1-I_1-o(1)\le R_N^+/c\le-0.97510+o(1)$.
+\end{proposition}
+
+\begin{proof}
+Write $L=\log N$, $z=N^{1/5}$ and $w_+(t)=\max(w(t),0)$.
+Let $H_+(n)$ be the rough-integer weight in
+\cref{prop:single-test-one-large-factor} formed with $w_+$,
+and set $M_N^+=\sum_p W(p)H_+(N-p)$ on the same unit samples.
+The exact divisor expansion and principal-term calculation there
+apply to $w_+$, which is Lipschitz and of bounded variation.
+In the integral at $t=1$ the one-factor term equals one. For
+three or four factors every coordinate is at most $3/5$, so those
+terms vanish. With two factors, only the larger one contributes,
+giving $I_1$ on writing the smaller log coordinate as $t$.
+Every modulus that occurs exceeds $N^{3/5}$, hence exceeds both
+the short cutoff and the maximum three-factor modulus for all
+sufficiently large $N$. This gives
+\[
+ M_N^+=c(1+I_1)+R_N^++O(L^{-1/2}).
+\]
+
+On prime samples $w_+(\log(N-p)/L)=1+O(1/L)$ and is at most
+one. Their total mass is bounded by \eqref{eq:uniformsieve}.
+On a composite sample with nonzero weight, $n=N-p=qr$ with
+$r>N^{3/5}$ prime and $z<q<N^{2/5}$ prime, since $n/r<z^2$
+and $n$ is rough. This description is unique. Let $U_N$ be
+their nonnegative mass with the factor $w_+(\log r/L)$ included.
+Then $M_N^+-U_N\le P_N\le M_N^+-U_N+O(1/L)$. We prove
+$U_N\le4cI_2+o(1)$.
+
+Fix a prime $q$ in this range with $q\nmid N$, put $x=N/q$
+and $t=\log q/L$. Start with the prime variable $r$, giving
+it the weight $F(r/x)\log r$. Apply the upper linear sieve to
+exclude divisors of $N-qr$. For squarefree $d$ coprime to $Nq$
+the excluded progression is $r\equiv N\bar q\bmod d$, with
+main term $cx/\varphi(d)$. Sift only by primes coprime to $Nq$.
+For any fixed $0<b<1/2$ the sum of absolute remainders through
+$x^b$ is $O_{A,b}(x/(\log x)^A)$ by Bombieri--Vinogradov
+and partial summation. The maximum over the residue and the
+interval endpoint makes the bound uniform in $q,N$. The local
+dimension-one product through $y=x^{b/2}$ is
+$(1+o_b(1))e^{-\gamma}\SSS(Nq)/\log y$, with the uniform
+dimension bound as in \cref{prop:single-test-twisted-sieve}.
+Indeed $Nq$ has $O(L)$ prime divisors and those above $y$
+give a logarithmic tail $O(L/y)$.
+Every prime $N-qr$ on the support exceeds $y$. The upper linear
+sieve at $s=\log(x^b)/\log y=2$, with upper function value
+$e^\gamma$ \cite[Lemma~2.5 and (2.4)]{MatomakiZunigaSwitching},
+therefore gives
+\[
+ \sum_{\substack{r\ {\rm prime}\\ N-qr\ {\rm prime}}}
+ F(r/x)\log r
+ \ \le\ (2/b+o_b(1))\,\frac{cx\SSS(Nq)}{\log x}.
+\]
+The sieve applies to this nonnegative sequence with the indicated
+divisibility sets; its level and cutoff are measured in $x$.
+
+Since $F(p/N)=F(r/x)$, $\log r=\log x+O(1)$ on the support,
+and $\SSS(Nq)/\SSS(N)=1+O(1/q)$, restoring the logarithmic
+weights and normalization costs at most
+$(1+O(1/L))L^2/(N\SSS(N)\log x)$. Also
+$w_+(\log r/L)\le w_+(1-t)=k(t)$.
+Consequently the contribution at $q$ is at most
+$(2/b+o_b(1))c\,k(t)/(q(1-t)^2)$, uniformly throughout the
+range. Partial summation with the prime number theorem converts
+the sum over $q$ (enlarged to all primes in the range) to
+$I_2+o(1)$ after removing the constant prefactor.
+First take the upper limit over even $N$, then let $b\uparrow1/2$.
+This proves the asserted uniform asymptotic upper bound.
+
+Both rational integrands defining $I_j$ decrease on the interval:
+their logarithmic derivatives on its interior are
+$-5/(2/5-t)-1/t+j/(1-t)<0$. The integer checker encloses
+them by endpoint sums of step $1/500000$, proving the quoted
+bounds. Combining the estimates gives \eqref{eq:single-test-upper-mark}.
+\end{proof}
+
+For comparison, under Dirichlet GRH, for each fixed $\varepsilon>0$
+all but $O_\varepsilon(\sqrt Y(\log Y)^9)$ even $N\in[Y,2Y]$
+satisfy
+\[
+ -I_1-\varepsilon \ \le\ R_N^+/c\ \le\ 4I_2-I_1+\varepsilon
+\]
+for sufficiently large $Y$. Indeed \eqref{eq:single-test-deviation}
+and the proper-power estimate of \cref{prop:single-test-rough-pairs}
+give $|P_N/c-1|\le\varepsilon/2$ outside a set of this size.
+The two sides of \eqref{eq:single-test-upper-mark} then give the claim.
+
 \section{Certification on the balanced window}
 \label{sec:certificate}
 
