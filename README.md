@@ -4,6 +4,7 @@ This repository contains the English research manuscript and the code and data f
 
 - [Manuscript (PDF)](output/pdf/hypothesis_s_paper.pdf)
 - [LaTeX source](output/pdf/hypothesis_s_paper.tex)
+- [Lean verification of the complementary divisor cutoff and sign](formalization/ComplementaryDivisor.lean)
 - [Lean verification of the determinant divisibility in the Type II form](formalization/TypeIIDeterminant.lean)
 - [Lean verification of the signed local progression roots](formalization/SignedProgressionLocal.lean)
 - [Lean verification of the product variation in a grid cell](formalization/ProductGridCell.lean)
@@ -30,6 +31,8 @@ This repository contains the English research manuscript and the code and data f
 - [Lean verification of the signed progression rows](formalization/CriticalArithmetic.lean)
 
 ## Research checkpoint · 26 November 2026
+
+Theorem 13.9 permits cutoffs $UW\le B/H$ in the small-input second moment, with $B=V/Y$ and $H=\exp(A(\log\log Y)^2/\log\log\log Y)$. With $W=1$ and $U=\lfloor B/H\rfloor$, each retained factorization carries the weight $\mu(d)\log m$ with $d>B/H$ and $m\ll YH$. The coprimality conditions persist and the modulus for the two distinguished divisors exceeds $(B/H)^2$. The mean-square replacement and the discarded terms cost $O(Y^3(\log Y)^{-D})$ for any fixed $D$ with the stated choice of screening and cutoffs. A wider subpower loss gives a pointwise replacement at every modulus. These estimates are unconditional.
 
 Theorem 13.8 replaces both larger prime weights in the second moment of the signed prefix counts by screened Vaughan Type II weights. For $X\le Y^{1/2-\eta}$ each expanded value has two factors above $\lfloor (V/Y)^{1/2-\kappa}\rfloor$. The four factors across the pair may be required to be pairwise coprime and coprime to the slopes, smaller primes, modulus, and the determinant of the two linear forms. The single-count replacement has a uniform power saving at every modulus. The discarded terms in the second moment cost $O(Y^3(\log Y)^{-D})$ for any fixed $D$ with the stated screening. These estimates are unconditional.
 
@@ -89,6 +92,7 @@ With Elan installed, run the Lean check from the repository root.
 
 ```sh
 elan toolchain install leanprover/lean4:v4.35.0
+elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/ComplementaryDivisor.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/TypeIIDeterminant.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/SignedProgressionLocal.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/ProductGridCell.lean

@@ -228,6 +228,9 @@ main terms in the second moment of these prime counts.
 \Cref{thm:criticalgridcoprimetypeii} replaces both larger
 prime weights there by Type~II weights with pairwise
 coprime factors on the small-input range.
+\Cref{thm:criticalgridlongmobius} permits a M\"obius
+divisor cutoff within a subpower factor of the full
+length of the slope interval.
 \Cref{thm:criticalpowers} proves decay in density for the
 entire proper-power contribution through a fixed critical
 product cap and identifies the fixed rows needed for decay
@@ -9404,6 +9407,189 @@ modulo $d_1$ and $-\epsilon_2r\overline b_2$ modulo
 $d_2$. The period $d_1d_2$ exceeds $B^{1-2\kappa}$.
 \end{proof}
 
+\subsection{Long M\"obius divisors in the small-input second moment}
+
+Keep $2\le X\le Y^{1/2-\eta}$ and the critical scale
+conditions of \cref{thm:criticalgridcoprimetypeii}.
+Write $L=\log Y$, $u=\log L$ and $v=\log u$.
+For integers $U,W\ge1$ use
+$A_{U,W,z}(t)=s_z(t)\mathcal L_{U,W}(t)$ in the same
+signed count, and denote it by $B_N^{U,W,z}(I,J)$.
+Write $\mathcal T_{U,W,z}^{\rm cop}$ for its squared
+sum with the restrictions \cref{eq:criticalgridcoprimeconditions}.
+
+\begin{theorem}[Type II cutoffs near the length of the slope interval]
+\label{thm:criticalgridlongmobius}
+Fix $D>0$. For suitable constants $K,A>0$ put
+\[
+ z=L^K,\qquad H=\exp(Au^2/v).
+\]
+For sufficiently large $Y$, uniformly for integers
+$U,W\ge1$ with $UW\le B/H$ and for all the indicated
+endpoints, one has
+\begin{align}
+ \sum_{\substack{Y\le N\le2Y\\2\mid N}}
+       |B_N^{\rm p}(I,J)-B_N^{U,W,z}(I,J)|^2
+       &\ll_{C,Q,\eta,D} Y^3 L^{-D},
+       \label{eq:criticalgridlongmobiuserror}\\
+ \sum_{\substack{Y\le N\le2Y\\2\mid N}} |B_N^{\rm p}(I,J)|^2
+       &=\mathcal T_{U,W,z}^{\rm cop}
+                    +O_{C,Q,\eta,D}(Y^3 L^{-D}).
+       \label{eq:criticalgridlongmobiusmoment}
+\end{align}
+In particular take $W=1$ and $U=\lfloor B/H\rfloor$.
+The two factorizations have weights $\mu(d_i)\log m_i$
+with $d_i>B/H$, $m_i\ll YH$, and the coprimality
+conditions of \cref{thm:criticalgridcoprimetypeii}.
+The corresponding simultaneous congruence for $N$
+has modulus $d_1d_2>(B/H)^2$. All these estimates
+hold unconditionally.
+\end{theorem}
+
+\begin{proof}
+Choose $K$ large enough for the coprimality errors
+of \cref{thm:criticalgridcoprimetypeii}, which used
+only $|A(t)|\le\tau(t)\log t$ after the Type~I
+deletion. We give the signed Type~I estimate with the
+new parameters. The short Vaughan term vanishes since
+$W\le B$ while the larger arguments are $\asymp V$.
+As before $s_z(t)\Lambda(t)=\Lambda_{\rm p}(t)$
+there, and $p\nmid b$ may be imposed in the prime
+count for a smaller prime $p$ coprime to $N$.
+
+Take $D_0=H^{1/3}$ and truncate the squarefree
+expansion at $D_0$. For the roughness expansion use
+\cref{eq:truncrough} with
+$k=\lfloor\log D_0/(2\log(2z))\rfloor$, so that all
+divisors in its error are at most $D_0$.
+Given any fixed $J_0>0$, we can choose $A$ large enough
+that the reciprocal sum in the error satisfies
+\begin{equation}
+ \sum_{a\in\mathcal E_{k+1}}a^{-1}
+    \le \frac{(\sum_{\ell\le z,\ \ell\ {\rm prime}}\ell^{-1})^{k+1}}
+             {(k+1)!}
+       \ll_{K,J_0} L^{-J_0}.
+ \label{eq:criticalgridsubpowerrough}
+\end{equation}
+Indeed $\sum_{\ell\le z}\ell^{-1}\ll\log\log(3z)$
+by Chebyshev's bound and partial summation. Here
+$k\sim (A/(6K))u/v$, and the logarithm of
+$k/(e\sum_{\ell\le z}\ell^{-1})$ is $(1+o(1))v$.
+The factorial bound then gives the claimed log saving.
+
+Fix $p$ and a sign. On $bN\in J$ the unit
+progression $t=bN\pm p$ meets the square-truncation
+error on $O_\varepsilon(B/D_0+Y^\varepsilon V^{1/3})$
+values per modulus by \cref{eq:largesquareprogression}.
+It meets the roughness-truncation error on at most
+$O(B\sum_{a\in\mathcal E_{k+1}}1/a+D_0)$ values
+per modulus, counting multiples in each unit
+progression. Since $B\gg_Q Y^{1/2+\eta}$ and
+$Y/V^{2/3}\ll_Q Y^{-2\eta/3}$, the union of the bad
+sets contains $O_{C,Q,\eta,K,J_0}(YB L^{-J_0})$
+pairs $(N,b)$ for this $p$ and sign. Take $A$ as
+in \cref{eq:criticalgridsubpowerrough}.
+
+The Type~I truncation error $E(t)$ on this set
+has $|E(t)|\ll L\tau(t)^4$. Indeed each sieve
+factor and its truncated sum is bounded by
+$\tau(t)$, and the Type~I weight by
+$O(L\tau(t)^2)$. For any fixed positive integer
+$j$ the moment over $(N,b)$ satisfies
+\[
+ \sum_{N,b}\tau(bN\pm p)^j
+ \ll \sum_{t\asymp V}\tau(t)^j\tau(t\mp p)
+ \ll_{C,Q,j} V L^{A_j}.
+\]
+The first inequality uses the divisor bound on
+the number of representations of $bN=t\mp p$.
+The second is Cauchy--Schwarz and the divisor
+moments of \cref{lem:criticalmeanmoving}.
+Thus Cauchy--Schwarz on the bad set and the moment
+with $j=16$ give
+$\sum_{N,b}|E(bN\pm p)|^2\ll YB L^{A_3-J_0/2}$
+for an absolute $A_3$. To sum over $p,b$ inside the
+signed count, use weighted Cauchy--Schwarz with
+weights $\log p$ and total mass $O(XB)$ for each
+$N$. The sum of the squared errors over $N$ is
+$O(Y^3 L^{A_3-J_0/2})$ because $XB\ll_C Y$.
+This can be made smaller than any fixed log power
+by the choice of $J_0$.
+
+For the truncated Type~I terms, each divisor pattern
+imposes $d\mid bN\pm p$. In the domain $p\nmid b$ one
+has $(d,Np)=1$ whenever there is a solution.
+The difference of the counts for the two signs is
+$O(1)$ on every interval, as in the proof of
+\cref{thm:criticalgridcoprimetypeii}. Replacing the
+two logarithms by a common logarithm at $bN$
+costs $O_\varepsilon(B(X/V)Y^\varepsilon)$ per
+row by the divisor bound. Partial summation costs
+$O(L)$ per pattern, and there are $O(D_0^2 UW)$
+patterns. Their signed contribution is therefore
+$O(BL/D_0)$ per smaller prime apart from the
+logarithm replacement error. This bound is smaller
+than $B$ times any fixed inverse log power.
+Summing the prime weights and including the
+truncation errors proves \cref{eq:criticalgridlongmobiuserror}.
+
+Use that estimate with exponent $2D+4$ and
+Cauchy--Schwarz to replace the original square
+by the Type~II square with error $O(Y^3 L^{-D})$.
+The trivial bound for the original count is
+$O(XBL)$, so its modulus mean-square norm is
+$O(Y^{3/2}L)$. The Type~II count obeys the same
+bound by the replacement estimate.
+The coprimality and nondegeneracy deletions in
+\cref{thm:criticalgridcoprimetypeii} apply to
+$A_{U,W,z}$ with the same divisor bound, proving
+\cref{eq:criticalgridlongmobiusmoment}.
+
+If $W=1$ then $B_1(m)=\log m$. For
+$U=\lfloor B/H\rfloor$, each divisor $d_i>U$
+satisfies $d_i>B/H$ and therefore
+$m_i=t_i/d_i\ll V H/B=YH$. The combined modulus
+assertion follows by the same Chinese remainder
+calculation as before.
+\end{proof}
+
+There is also an individual-modulus version with
+$H=\exp(A L/u)$ in place of $\exp(Au^2/v)$.
+For each fixed $K>0$ choose a sufficiently large
+fixed $A$. The cutoffs $UW\le B/H$ then give
+\[
+ |B_N^{\rm p}(I,J)-B_N^{U,W,z}(I,J)|
+    \ll_{C,Q,\eta,K}Y\exp(-cL/u)
+\]
+at every even modulus, for some $c>0$. In this
+case set $D_0=H^{1/3}$ and use the uniform bound
+$\tau(t)\ll_C\exp(C_1 L/u)$ for $t\ll_C Y^2$.
+For primes at most $\sqrt L$, the contribution
+to $\log\tau(t)$ is $O(\sqrt L\log L)$. Above
+$\sqrt L$, the sum of the prime exponents is
+$O_C(L/u)$ and $\log(a+1)\le a\log 2$ for each
+exponent $a$. The reciprocal roughness tail is
+at most $\exp(-(A/(6K)+o(1))L/u)$ by the same factorial
+bound. The large-square and roughness counting
+errors, multiplied by the uniform divisor bound,
+are therefore $O(B\exp(-cL/u))$ per row on
+choosing $A$ sufficiently large. The truncated
+signed counts cost $O(BL/D_0)$ as before. This
+proves the stated pointwise estimate.
+
+For the choice $W=1$, on a squarefree $t$ free
+of primes at most $z$, the long-divisor weight
+also has the exact expression
+\begin{equation}
+ \mathcal L_{U,1}(t)
+   =\mu(t)\sum_{\substack{m\mid t\\ Um<t}}\mu(m)\log m .
+ \label{eq:criticalgridcomplementarymobius}
+\end{equation}
+The condition $Um<t$ is the original strict
+cutoff $t/m>U$, and $\mu(t/m)=\mu(t)\mu(m)$
+on these factorizations.
+
+\clearpage
 \section{Conditional bounds from uniform prime-pair discrepancies}
 \label{sec:pairconditional}
 
@@ -9721,6 +9907,10 @@ checks the local root and slope conditions used in
 The file \texttt{formalization/TypeIIDeterminant.lean}
 checks the common-divisor test and the transfer through
 an invertible slope in \cref{thm:criticalgridcoprimetypeii}.
+
+The file \texttt{formalization/ComplementaryDivisor.lean}
+checks the strict cutoff and the sign identity for the
+complementary divisor in \cref{eq:criticalgridcomplementarymobius}.
 
 The file \texttt{formalization/PrefixPersistence.lean} checks
 the finite sum version of the large-prefix estimate used in
