@@ -4,6 +4,7 @@ This repository contains the English research manuscript and the code and data f
 
 - [Manuscript (PDF)](output/pdf/hypothesis_s_paper.pdf)
 - [LaTeX source](output/pdf/hypothesis_s_paper.tex)
+- [Lean verification of the reduced slope denominator and cofactor divisibility](formalization/ReducedSlopeModulus.lean)
 - [Lean verification of the factorization and residue-class rule for periodic modulus weights](formalization/PeriodicModulus.lean)
 - [Lean verification of residue translations and the common denominator divisor](formalization/AdditivePairOrder.lean)
 - [Lean verification of the additive frequency denominator and cofactor](formalization/AdditiveDenominator.lean)
@@ -34,6 +35,8 @@ This repository contains the English research manuscript and the code and data f
 - [Lean verification of the signed progression rows](formalization/CriticalArithmetic.lean)
 
 ## Research checkpoint · 26 November 2026
+
+Theorem 13.14 groups the retained larger-prime frequencies by approximation denominator $q$. Pólya–Vinogradov and character orthogonality bound the nonprincipal terms. On disjoint low-denominator arcs, Dirichlet GRH bounds the remaining principal terms by cancellation between the two opposite prime classes. The sum of the absolute interactions on any set of denominator pairs with row and column degrees $O(Y^{\xi/2})$ is $O(Y^{3-\xi/4})$. This deletes all equal and nearby denominators, as well as pairs with $\max(q,q')/(q,q')\le Y^{\xi/4}$. The bound is uniform on measurable subsets of the modulus Fourier variable, so it applies inside the simultaneous cutoff of Theorem 13.13.
 
 Theorem 13.13 applies Prachar's short-interval variance to the larger-prime Fourier sum. Sampling on the lines $h=bN$ then permits deletion of the rational arcs of denominators up to $P=Y^{1-\xi}/X$, with squared error $O(Y^{3-\xi})$ under Dirichlet GRH. Opposite slope residues cancel the Ramanujan main terms. On the small-input grid this combines with Theorem 13.12 to leave a second-moment integral restricted in both the modulus and larger-prime Fourier variables. After smoothing in the modulus, the kernel is restricted to $\|2(\alpha-b\theta)\|\le Y^{-1+2s}$ for small fixed $s>0$, with a power-saving error.
 
@@ -105,6 +108,7 @@ With Elan installed, run the Lean check from the repository root.
 
 ```sh
 elan toolchain install leanprover/lean4:v4.35.0
+elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/ReducedSlopeModulus.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/PeriodicModulus.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/AdditivePairOrder.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/AdditiveDenominator.lean

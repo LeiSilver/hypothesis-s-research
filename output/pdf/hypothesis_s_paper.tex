@@ -246,6 +246,9 @@ rational arcs from the modulus second moment.
 \Cref{thm:criticalgriddualmajor} removes rational arcs with
 denominators up to $Y^{1-\xi}/X$ in the larger-prime
 Fourier variable and combines this with the modulus cutoff.
+\Cref{thm:criticalgriddenominatorpairs} bounds the pairs
+of nearby or closely related approximation denominators
+and gives a second-moment formula using separated denominators.
 \Cref{thm:criticalpowers} proves decay in density for the
 entire proper-power contribution through a fixed critical
 product cap and identifies the fixed rows needed for decay
@@ -10326,6 +10329,238 @@ $j$ large in terms of $s$. Cauchy--Schwarz now proves
 \cref{eq:criticalgridjointminor} with this restricted weighted
 kernel and a possibly smaller power saving.
 
+\clearpage
+\subsection{Correlations between approximation denominators}
+
+Use the parameters of \cref{thm:criticalgriddualmajor}.
+Partition $\mathfrak a(V,P)$ measurably by assigning each
+$\theta$ to the least denominator $P<q\le\lceil V/P\rceil$
+for which it has an approximation
+$|\theta-a/q|\le\Delta_q=P/(qV)$ with $(a,q)=1$.
+For a fixed $q$ the intervals about its numerators are disjoint.
+Write $F_q$ for $P_I^-T_J$ on the piece assigned to $q$,
+extended by zero on the circle. Define
+\[
+ Z_q(\alpha)=
+   \sum_{\substack{Y\le N\le2Y\\2\mid N}}
+                     (\mathcal C F_q)_N e(\alpha N).
+\]
+Then the $Z_{I,J}$ of \cref{eq:criticalgridjointminor}
+is $\sum_q Z_q$.
+
+For each $q,N,b$, set
+\[
+ d=(N,q),\qquad r=q/d,\qquad e_b=(b,r),\qquad k=r/e_b.
+\]
+Thus $k$ is the reduced denominator of $bN/q$.
+The principal part of the sampling contribution of $b$ is
+obtained by replacing $e(-abN/q)$ by $\mu(k)/\varphi(k)$
+at each $a\bmod q$ with $(a,q)=1$. For $H\ge1$ set
+\begin{align*}
+ C_{q,N}^{\star}
+    &=1_{qr\le PH}\int_{-\Delta_q}^{\Delta_q}
+       \sum_{a\bmod q}^{*} F_q(a/q+\beta)
+       \sum_{b\in\mathcal B}
+          \frac{\mu(k)}{\varphi(k)}e(-\beta bN)\,\ud\beta,\\
+ Z_q^{\star}(\alpha)
+    &=\sum_{\substack{Y\le N\le2Y\\2\mid N}}
+                            C_{q,N}^{\star}e(\alpha N).
+\end{align*}
+
+\begin{theorem}[Pairs with nearby or related denominators]
+\label{thm:criticalgriddenominatorpairs}
+Let $H=Y^\xi$. Let $\Gamma$ be any set of ordered pairs
+of approximation denominators. If its row and column degrees
+are $O(Y^{\xi/4})$, then unconditionally and
+uniformly for measurable $E\subset\mathbb R/\mathbb Z$,
+\begin{align}
+ \int_E\left|\sum_q Z_q(\alpha)\right|^2\,\ud\alpha
+  ={}&\sum_{(q,q')\notin\Gamma}
+             \int_E Z_q(\alpha)\overline{Z_{q'}(\alpha)}\,\ud\alpha
+   \notag\\[-2pt]
+  &+\sum_{(q,q')\in\Gamma}
+            \int_E Z_q^{\star}(\alpha)
+                          \overline{Z_{q'}^{\star}(\alpha)}\,\ud\alpha
+    +O_{C,Q,\eta,\xi}(Y^{3-\xi/8}).
+ \label{eq:criticalgriddenominatorpairs}
+\end{align}
+
+Under Dirichlet GRH, the whole contribution on $\Gamma$
+can be dropped even when its degrees are $O(Y^{\xi/2})$.
+More precisely,
+\begin{equation}
+ \sum_{(q,q')\in\Gamma}
+   \left|\int_E Z_q(\alpha)\overline{Z_{q'}(\alpha)}\,\ud\alpha\right|
+       \ll_{C,Q,\eta,\xi} Y^{3-\xi/4}.
+ \label{eq:criticalgridoffdenominator}
+\end{equation}
+This covers all pairs with $|q-q'|\le Y^{\xi/4}$ or
+$\max(q,q')/(q,q')\le Y^{\xi/4}$. For $X\le Y^\kappa$,
+\cref{eq:criticalgridjointminor} gives the original second
+moment from the surviving pairs on
+$E=(\mathbb R/\mathbb Z)\setminus\mathfrak M_Y$, with a
+power-saving error.
+\end{theorem}
+
+\begin{proof}
+We prove the following bounds for each $q$:
+\begin{equation}
+ \|Z_q-Z_q^\star\|_2^2
+   \ll_\epsilon Y^\epsilon(1+B/H)\|F_q\|_2^2,\qquad
+ \|Z_q^\star\|_2^2
+   \ll_\epsilon Y^\epsilon B\|F_q\|_2^2 .
+ \label{eq:criticalgriddenominatorenergy}
+\end{equation}
+At a fixed $q$ and $\beta$, put $g_a=F_q(a/q+\beta)$
+on the unit classes modulo $q$. Fix a group with
+$(N,q)=d$ and $(b,r)=e_0$, and write $N=dn$, $b=e_0b_0$,
+and $k=r/e_0$. The additive character in this group is
+$e(-a b_0 n/k)$, with $b_0,n$ units modulo $k$.
+Reduce the $g_a$ to coefficients $g_c^{(k)}$ modulo $k$
+by summing in each fiber. Each fiber has at most $q/k$
+elements. Thus for $G(v)=\sum_c^* g_c^{(k)}e(-cv/k)$,
+finite additive Parseval yields
+\[
+ \sum_{v\bmod k}^{*}|G(v)|^2\le q\sum_a^*|g_a|^2 .
+\]
+Its mean over the units is
+$G_0=(\mu(k)/\varphi(k))\sum_a^*g_a$ and hence
+$|G_0|^2\le (q/\varphi(k)^2)\sum_a^*|g_a|^2$.
+
+To treat the nonconstant part of $G$, separate $e(-\beta bN)$
+using its power series in
+$(-2\pi i\,6V\beta)(b/(3B))(N/(2Y))$. Since
+$V|\beta|\le P/q<1$, the resulting scalar coefficients have
+bounded absolute sum, uniformly in $\beta$.
+For each term of degree $j$, the normalized weight in $b_0$
+is $(e_0b_0/(3B))^j\le1$ and monotone on the slope interval.
+The sum of this weight against a nonprincipal character
+modulo $k$ is $O(\sqrt{k}\tau(k)\log(2k))$
+by partial summation and P\'olya--Vinogradov. For an
+imprimitive character, inclusion--exclusion of the primes
+removed from its inducing character costs at most $\tau(k)$.
+This bound also applies to the conjugate characters.
+
+Multiplicative Parseval on the units bounds the squared norm
+of $\sum_{b_0}(e_0b_0/(3B))^j(G(b_0n)-G_0)$ over one set
+of unit residues $n\bmod k$ by
+$O(k\tau(k)^2\log^2(2k))$ times the squared unit norm of
+$G-G_0$. There are at most $1+Y/(dk)$ representatives of
+each such class in the $n$ interval. The $N$ weights have
+absolute value at most one. Summing the power series by
+the triangle inequality in $\ell^2$, and then integrating
+over $\beta$ by Cauchy--Schwarz, gives the bound
+\[
+ \ll \Delta_q q (k+Y/d)\tau(k)^2\log^2(2k)\,\|F_q\|_2^2
+\]
+for the squared norm over $N$ in this group. Here
+$\int_{-\Delta_q}^{\Delta_q}\sum_a^* |g_a|^2\,\ud\beta
+=\|F_q\|_2^2$. Now $\Delta_q q=P/V$,
+$k\le q\le\lceil V/P\rceil$, and $P/B\ll_Q1$.
+Summing over at most $\tau(q)^2$ groups costs $Y^\epsilon$,
+by the divisor bound with a sufficiently small exponent.
+The nonprincipal part therefore has squared norm
+$O_\epsilon(Y^\epsilon\|F_q\|_2^2)$.
+
+For the principal part of the same group, use at most
+$O(B/e_0)$ slopes and $O(Y/d)$ moduli when the group is
+nonempty. The pointwise bound on $G_0$ and Cauchy--Schwarz
+over $\beta$ bound the squared norm by
+\[
+ \ll \Delta_q\,\frac{Y}{d}
+       \left(\frac{B}{e_0}\right)^2
+       \frac{q}{\varphi(k)^2}\|F_q\|_2^2
+ \ll B\,\frac{P}{q}\,\frac1r\,\tau(k)^2\|F_q\|_2^2 ,
+\]
+where $q=d e_0 k$ and $k/\varphi(k)\le\tau(k)$.
+Since $P/q<1$, this is $O_\epsilon(Y^\epsilon B\|F_q\|_2^2)$
+in total and saves $H^{-1}$ when $qr>PH$, after summing
+the divisor groups. This proves
+\cref{eq:criticalgriddenominatorenergy} by Parseval in $N$.
+
+The disjoint partition gives
+$\sum_q\|F_q\|_2^2\le\|P_I^-T_J\|_2^2\ll X^2VL$, using
+$\|P_I^-\|_\infty\ll X$ and
+$\sum_{t\in J}\Lambda(t)^2\ll VL$.
+Restriction to $E$ is a contraction. If $\Gamma$ has maximum
+row and column degree $D$, then for any two collections of
+$L^2(E)$ vectors $U_q,V_q$,
+\[
+ \sum_{(q,q')\in\Gamma}|\langle U_q,V_{q'}\rangle|
+ \le D\left(\sum_q\|U_q\|_2^2\sum_q\|V_q\|_2^2\right)^{1/2}.
+\]
+Apply this with at least one factor $Z_q-Z_q^\star$.
+Since $B\gg_Q Y^{1/2+\eta}>H$, the error after expanding
+the product on $\Gamma$ is
+$O_\epsilon(DY^\epsilon B H^{-1/2}X^2VL)$.
+Using $BX^2V=(XV)^2/Y\ll_C Y^3$, $D\ll Y^{\xi/4}$ and
+$H=Y^\xi$ proves \cref{eq:criticalgriddenominatorpairs}.
+
+Now use GRH. A nonzero $Z_q^\star$ requires $q\le PH=Y/X$.
+All arcs centered at reduced fractions of denominator
+at most $PH$ are pairwise disjoint, since their summed
+radii are smaller than the rational spacing whenever
+$2P^2H<V$, which holds here. Thus for $P<q\le PH$
+the least-denominator rule assigns each whole $q$ arc to
+$q$, up to endpoints. In particular
+\[
+ \sum_{a\bmod q}^{*}g_a
+  =\sum_{p\in I\,{\rm prime}}\log p
+     \sum_{t\in J}\Lambda(t)\left[
+       c_q(t-p)e(\beta(t-p))-c_q(t+p)e(\beta(t+p))\right].
+\]
+Expand $c_q$ by divisors $\ell\mid q$. For $(p,\ell)=1$,
+GRH and partial summation estimate the two progression
+sums of $\Lambda(t)e(\beta t)$ with the same main term
+$v_J(\beta)/\varphi(\ell)$ and error $O(\sqrt V L^2)$,
+since $V|\beta|\le1$. The factors $e(\mp\beta p)$ leave
+a main-term difference of size $O(p)$, which is
+$O(\sqrt V)$. When $(p,\ell)>1$, only powers of $p$ can
+occur and the same bound holds. Summing the divisor
+weights and the smaller-prime weights gives
+\[
+ \left|\sum_{a\bmod q}^{*}g_a\right|
+     \ll X\sigma(q)\sqrt V L^2 .
+\]
+For $r=q/(N,q)$, group the slopes by $e_0\mid r$.
+Each nonempty group has $O(B/e_0)$ slopes and
+$1/\varphi(k)\le\tau(k)/k$ with $k=r/e_0$. This gives
+$\sum_b 1/\varphi(k)\ll_\epsilon Y^\epsilon B/r$.
+Integrating in $\beta$ in the definition of $C_{q,N}^\star$
+now gives $|C_{q,N}^\star|\ll_\epsilon
+Y^\epsilon P X B/(\sqrt V\,r)$. For a given $r\mid q$,
+the number of moduli in this group is $O(Yr/q)$, unless it
+is zero. Hence
+\[
+ \sum_q\|Z_q^\star\|_2^2
+  \ll_\epsilon Y^\epsilon P^2 X^2 B
+       \sum_{P<q\le PH}\frac{\tau(q)}q
+  \ll_\epsilon Y^{3-2\xi+\epsilon},
+\]
+using $P^2X^2=Y^{2-2\xi}$ and $B\ll_C Y$, with the
+divisor factors and logarithms absorbed by starting with
+a smaller $\epsilon$.
+Together with \cref{eq:criticalgriddenominatorenergy}
+this gives $\sum_q\|Z_q\|_2^2\ll_\epsilon
+Y^{3-\xi+\epsilon}$. The degree bound with
+$D\ll Y^{\xi/2}$ proves \cref{eq:criticalgridoffdenominator}.
+The nearby pairs have degree $O(Y^{\xi/4})$. For pairs
+with a large common divisor write $q'=g u$ with $g\mid q$
+and $u\le Y^{\xi/4}$, giving degree $O(\tau(q)Y^{\xi/4})$
+in either orientation. This is $O(Y^{\xi/2})$ by the divisor
+bound.
+\end{proof}
+
+In the principal part of \cref{eq:criticalgriddenominatorpairs},
+each retained modulus satisfies $q\mid rN$ with $r\le H$.
+If both principal parts contribute at the same modulus $N$,
+then the divisors $(N,q)$ and $(N,q')$ are at least $P/H$,
+and their least common multiple divides $N$. In particular
+\[
+ \frac{\max(q,q')}{(q,q')}
+ \le \frac{2YH^2}{P}.
+\]
+
 \section{Conditional bounds from uniform prime-pair discrepancies}
 \label{sec:pairconditional}
 
@@ -10661,6 +10896,10 @@ The file \texttt{formalization/PeriodicModulus.lean}
 checks the factorization of the modulus and the congruence
 used to hold the periodic weight constant in
 \cref{thm:criticalgridperiodicmoduli}.
+
+The file \texttt{formalization/ReducedSlopeModulus.lean}
+checks the effective denominator of $bN/q$ and the
+cofactor divisibility in \cref{thm:criticalgriddenominatorpairs}.
 
 The file \texttt{formalization/PrefixPersistence.lean} checks
 the finite sum version of the large-prefix estimate used in
