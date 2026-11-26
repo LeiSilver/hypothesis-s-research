@@ -75,8 +75,11 @@ At a fixed modulus, sufficiently high pairs of supports have
 vanishing mean norm over a common logarithmic translation.
 For each fixed $A$, the restriction to $x,y\le N(\log N)^A$
 has rapidly vanishing mean-square norm over the moduli. Global
-Dirichlet GRH extends this to $x,y\le N^{1+\eta}$ for every
-fixed $0<\eta<1/3$, with a power saving. For inputs above
+Dirichlet GRH bounds the sum of the squared norms on
+this range by $Y^{1/2}$ times a log power for even
+$N\in[Y,2Y]$. For $x,y\le N^{1+\eta}$ the sum is
+$O_{\eta,\varepsilon}(Y^{1/2+3\eta/2+\varepsilon})$
+when $0<\eta<1/3$. For inputs above
 $N^\delta$, the power saving holds through the exact product
 cutoff $xy\le N^{2+\gamma}$ for $0<\gamma<\delta/2$ and
 every fixed $0<\delta<1$.
@@ -7655,6 +7658,207 @@ Summing over the three orientations and the
 $O((\log Y)^2)$ packet pairs proves the sharp-cutoff
 assertion of \cref{thm:powerproduct}.
 
+\subsection{Quantitative exceptional sets for the operator norm}
+
+The maximal estimate above also gives quantitative
+exceptional sets. We first keep track of the completed
+main term in mean square. For $2\le X\le V$, put $P=eV$,
+fix $I_0\subset[X/e,eX]$ and $J\subset[V/e,eV]$, and set
+\[
+ D_\sigma(h)=\sup_{I\subset I_0}
+       |\Delta_\sigma(h;I,J)| .
+\]
+The supremum is over intervals with arbitrary endpoint
+inclusion. Use $\SSS(|h|)$ in the definition of
+$\Delta_\sigma$ for negative $h$, and keep the convention
+that the singular series is zero for odd $h$.
+
+\begin{lemma}[Maximal line discrepancies in mean square]
+\label[lemma]{lem:maximalcriticalmeansquare}
+Under Dirichlet GRH, there is an absolute $A_0>0$
+such that, uniformly in the packet intervals and the sign,
+\begin{equation}
+ \sum_{0<|h|\le 2P}D_\sigma(h)^2
+ \ll P X^{3/2}(\log(2P))^{A_0}.
+ \label{eq:maximalcriticalmeansquare}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Bounded $X$ follows from the trivial line count and
+$\SSS(|h|)\ll\log(2P)$. Otherwise use the translated
+dyadic grids in the proof of \cref{eq:dyadicintervalarc},
+with $M$ the largest power of two at most $X$.
+Their finest cells have length between one and two,
+so rounding an interval leaves $O(1)$ points and
+$O(1)$ length on each line and costs $O((\log(2P))^2)$.
+For each translation, decompose the rounded interval
+into $O(\log(2X))$ whole dyadic blocks. Use the same
+arcs as in \cref{eq:dyadicintervalarc}, with
+$Q=\lfloor\sqrt X/8\rfloor$. The arithmetic coefficient
+and the coefficient of the truncated main term are both
+additive over these blocks. Cauchy--Schwarz first over
+the blocks in the decomposition, then averaging over
+the grid translation, gives
+\[
+ \mathbb E_u \sum_{0<|h|\le2P}
+      \sup_{I\in\mathcal C(u)}
+        |R_\sigma(h;I,J)-M_\sigma(h;I,J)|^2
+  \ll P X^{3/2}(\log(2P))^{A_1}
+\]
+for an absolute $A_1$, where $\mathcal C(u)$ consists
+of consecutive unions of whole fine cells within $I_0$
+and $M_\sigma$ is the truncated main-term coefficient.
+The estimate
+\cref{eq:dyadicintervalarc} applies to all the Fourier
+coefficients by Bessel, so both signs of $h$ are included.
+
+To complete the main term on an arbitrary rounded
+interval, the bound from the two Fourier tails is
+\[
+ |M_\sigma(h;I,J)-\SSS(|h|)L_\sigma(h;I,J)|
+ \ll X T_Q(h),\qquad
+ T_Q(h)=\sum_{q\ge1}\min(1,q/Q)|A_q(h)|,
+\]
+where $A_q(h)=\mu(q)^2c_q(h)/\varphi(q)^2$.
+Indeed the full integral has size $O(X)$, and the
+tail past $2Q/(qX)$ has size $O(Xq/Q)$.
+For squarefree $q$ use
+$|c_q(h)|\le\gcd(q,|h|)\le\sum_{d\mid(q,h)}d$
+and $q/\varphi(q)\ll\log(2q)$. If $d\le Q$, its
+contribution to the part $q>Q$ is
+$O((\log(2Q))^2/Q)$ by summing
+$d^{-1}\sum_{k>Q/d}k^{-2}(\log(2dk))^2$.
+For $d>Q$ it is $O((\log(2d))^2/d)$.
+For $q\le Q$, summing over $q=dk$ after inserting $q/Q$
+costs at most $O((\log(2Q))^3/Q)$ per divisor.
+Consequently
+\[
+ T_Q(h)\ll \frac{\tau(|h|)(\log(2P))^3}{Q},
+ \qquad
+ \sum_{0<|h|\le2P}T_Q(h)^2\ll
+          \frac{P(\log(2P))^9}{Q^2}.
+\]
+The last step uses $\tau(n)^2\le d_4(n)$ and
+$\sum_{n\le 2P}d_4(n)\ll P(\log(2P))^3$, by summing
+over three of the four factors. For the divisor inequality
+one can map a pair $(a,b)$ of prime exponents in $[0,k]$
+injectively to
+$(\min(a,b),\,a-\min(a,b),\,b-\min(a,b),\,k-\max(a,b))$,
+a tuple of nonnegative exponents with sum $k$.
+The squared completion cost is therefore
+$O(PX^2(\log(2P))^9/Q^2)$, within
+\cref{eq:maximalcriticalmeansquare}. The rounding error
+also lies within this bound. Since the original interval
+supremum is independent of $u$, averaging the resulting
+upper bounds gives the claim.
+\end{proof}
+
+For the packet estimate, let $Y\le N\le 2Y$, $N$ even,
+and let $r_N$ be the normalized norm on a fixed pair
+of packets at the scales $X,V$, with or without a sharp
+product cutoff. A pair with any contributing line has
+$P\ge Y/2$. Define
+\[
+ m_Y(P)=\max_{0<|h|\le 2P}
+          \#\{N\in[Y,2Y]:2\mid N,\ N\mid h\}.
+\]
+An orientation of the form is a sum over $O(P/Y)$
+nonzero signed multiples $h$ of $N$. On each line the
+product cutoff selects at most two intervals in the
+smaller variable. Partial summation as in the proof
+of \cref{eq:sharprounding} costs $O((XP)^{-1/2})$ on
+unit tests. Removing the unit condition on that line
+costs $O((\log(2P))^4)$ in the unweighted count because
+one coordinate must be a prime power over a prime dividing
+$N$, and that coordinate determines its partner.
+The normalization by $\SSS(N)$ costs a bounded factor.
+Cauchy--Schwarz over the shifts and
+\cref{eq:maximalcriticalmeansquare} give
+\begin{equation}
+ \sum_{\substack{Y\le N\le 2Y\\2\mid N}}r_N^2
+ \ll m_Y(P)\frac{P\sqrt X}{Y}(\log(2P))^{A_2}
+ \label{eq:quantitativepacketavg}
+\end{equation}
+for an absolute $A_2$. Indeed the factor before the sum
+over $h$ is $O(m_Y(P)(P/Y)/(XP))$ from line multiplicity,
+Cauchy--Schwarz, and the test weight, respectively.
+The mean square of the unit-condition errors is
+$O((P/(XY))(\log(2P))^8)$ and is absorbed when there
+are contributing lines. The two difference orientations
+and the reflection satisfy the same estimate.
+
+\begin{theorem}[Quantitative norm estimates over the even moduli]
+\label{thm:quantitativenormexceptions}
+Assume Dirichlet GRH. For every fixed $B\ge0$ there is
+$A_B>0$ such that
+\begin{equation}
+ \sum_{\substack{Y\le N\le2Y\\2\mid N}}
+      E_N\bigl(N(\log N)^B\bigr)^2
+       \ll_B Y^{1/2}(\log Y)^{A_B}.
+ \label{eq:squarerootnormexceptions}
+\end{equation}
+For a fixed $R\ge1$ the same bound holds for $E_N(RN)$
+with an absolute logarithmic exponent and a constant
+depending on $R$. In addition, for fixed $0<\eta<1/3$
+and every $\varepsilon>0$,
+\begin{equation}
+ \sum_{\substack{Y\le N\le2Y\\2\mid N}} E_N(N^{1+\eta})^2
+      \ll_{\eta,\varepsilon} Y^{1/2+3\eta/2+\varepsilon}.
+ \label{eq:quantitativepowerrect}
+\end{equation}
+For fixed $C\ge1$, $0<\delta<1$ and $0\le\gamma<\delta/2$,
+let $E_N^{\rm sh}(\delta,\gamma;C)$ be the normalized
+norm restricted to tests with $x,y\ge N^\delta$ and with
+the sharp multiplier $\mathbf1_{xy\le CN^{2+\gamma}}$.
+Then
+\begin{equation}
+ \sum_{\substack{Y\le N\le2Y\\2\mid N}}
+     E_N^{\rm sh}(\delta,\gamma;C)^2
+       \ll_{\delta,\gamma,C,\varepsilon}
+                   Y^{1+\gamma-\delta/2+\varepsilon}.
+ \label{eq:quantitativepowerproduct}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+For the rectangular bounds, let $Y R_Y$ be a common
+upper support bound for this dyadic range of moduli,
+with $R_Y\ll (\log Y)^B$, $R_Y\ll_R1$, or
+$R_Y\ll_\eta Y^\eta$, respectively.
+Cut off either test smoothly below $\sqrt Y$, using
+a transition of fixed logarithmic width.
+On the discarded terms $xy\ll Y^{3/2}R_Y$, so
+\cref{thm:subcritical} gives a uniform norm error
+$O(Y^{-1/4}R_Y^{1/2}+Y^{-1/2+\varepsilon})$.
+Its squared sum is $O(Y^{1/2}R_Y+Y^{2\varepsilon})$.
+The cutoff multipliers have bounded energy norms.
+
+On the remaining packets use \cref{eq:quantitativepacketavg}.
+Here $P\sqrt X/Y\ll Y^{1/2}R_Y^{3/2}$.
+For the logarithmic and fixed windows,
+$m_Y(P)\le 2P/Y\ll R_Y$, since the quotient $h/N$
+determines $N$ for each fixed $h$.
+For the power window use $m_Y(P)\le\max_{0<|h|\le2P}
+\tau(|h|)\ll_\varepsilon Y^\varepsilon$.
+The $O((\log Y)^2)$ packet pairs cost only logarithms
+by the triangle inequality in the modulus mean-square
+norm. This proves \cref{eq:squarerootnormexceptions,eq:quantitativepowerrect}.
+
+With the sharp product multiplier the contributing
+scales satisfy $X\gg Y^\delta$ and $XP\ll_C Y^{2+\gamma}$.
+Thus $P\sqrt X/Y\ll_C Y^{1+\gamma-\delta/2}$.
+Use the divisor bound for $m_Y(P)$ and sum the packet
+bounds as before to obtain \cref{eq:quantitativepowerproduct}.
+\end{proof}
+
+In particular, for fixed $B,D>0$, the number of even
+$N\in[Y,2Y]$ for which $E_N(N(\log N)^B)>(\log Y)^{-D}$
+is $O_{B,D}(Y^{1/2}(\log Y)^{A_B+2D})$.
+By \cref{thm:macroscopiclines}, the bounded-window version
+also controls simultaneous interval discrepancies on the
+individual sum and difference lines of each modulus.
+
 \section{Removing proper prime powers at a fixed modulus}
 \label{sec:ppcut}
 
@@ -8907,6 +9111,10 @@ line membership in \cref{eq:criticalfourierline}.
 The file \texttt{formalization/DyadicIntervalBoundary.lean}
 checks the endpoint assignment and uniqueness at each
 scale used in \cref{lem:sampledshorttypeii}.
+
+The file \texttt{formalization/DivisorMoment.lean}
+checks the prime-exponent injection for the divisor
+moment in \cref{lem:maximalcriticalmeansquare}.
 
 The file \texttt{formalization/PrefixPersistence.lean} checks
 the finite sum version of the large-prefix estimate used in
