@@ -877,6 +877,115 @@ $\SSS(N)$ in the class. The second estimate and Cauchy--Schwarz
 give $\gg H/q$ distinct integers, as claimed.
 \end{proof}
 
+\subsection{The frequency contribution at an individual even integer}
+
+Put $e(x)=\exp(2\pi i x)$, $L=\log Y$ and
+$Q=\lfloor\sqrt Y/L^4\rfloor$. On the unit circle remove the arcs
+$|\alpha-a/q|\le Q/(qY)$ at reduced fractions of denominator
+$q\le Q$, and denote the complement by $\mathfrak m$. For
+$1\le s\le2$ put
+\[
+ S_s(\alpha)=\sum_m\Lambda(m) f(m/(sY))e(m\alpha),\qquad
+ D_N=\int_{\mathfrak m} S_{N/Y}(\alpha)^2 e(-N\alpha)\,\ud\alpha .
+\]
+The symmetry $\alpha\mapsto-\alpha$ makes $D_N$ real. This is the
+fixed reflected test in the classical circle-method treatment of
+the Goldbach exceptional set \cite[Section~3]{BhowmikGrimmelt}.
+
+\begin{proposition}[A pointwise reduction for the reflected test]
+\label[proposition]{prop:single-test-minor}
+Assume Dirichlet GRH. Uniformly for even $N\in[Y,2Y]$,
+\[
+ N\SSS(N)\bigl(\Delta_N-4/45\bigr)=D_N+O(Y/L).
+\]
+Every $\alpha\in\mathfrak m$ has a reduced approximant $a/q$
+with $Q<q\le\lceil Y/Q\rceil$ and $|\alpha-a/q|\le Q/(qY)$
+on the circle. Moreover,
+\begin{equation}
+ \sum_{\substack{Y\le N\le2Y\\2\mid N}}|\Delta_N-4/45|^2
+      \ll \sqrt Y\,L^9 .
+ \label{eq:single-test-deviation}
+\end{equation}
+In particular at most $O(\sqrt Y\,L^9)$ of these moduli have
+$\Delta_N<2/45$. At any remaining candidate for failure of a
+distinct prime representation in the support of $f$, one must
+have $D_N=-(4/45)N\SSS(N)+O(Y/L)$.
+\end{proposition}
+
+\begin{proof}
+Fourier inversion gives $N\SSS(N)\Delta_N$ as the full-circle
+coefficient of $S_{N/Y}^2$ up to $O(L^2)$. Indeed $f$ is
+symmetric about $1/2$ and the only nonunit prime powers that can
+pair on this support are equal. For the disjoint removed arcs
+write $\beta=\alpha-a/q$, $v_s(\beta)=\int f(x/(sY))e(x\beta)\,\ud x$,
+$M=\mu(q)v_s(\beta)/\varphi(q)$ and $E=S_s(a/q+\beta)-M$.
+The interval estimates \cref{eq:arcintegrated,eq:arcmeansquare}
+apply to $f(x/(sY))$ by integrating its interval indicators of
+superlevel sets. More generally they hold, up to an absolute
+factor, for compactly supported weights on this range of bounded
+supremum and total variation, by integration against their
+derivative measures.
+
+Summing \cref{eq:arcintegrated} at bandwidth $Q/(qY)$ gives
+$\int_{\mathfrak m^c}|E|^2\ll Q^2L^4$. Plancherel on the real
+line and $\sum_{q\le Q}1/\varphi(q)\ll L$ give
+$\int_{\mathfrak m^c}|M|^2\ll YL$. The $L^1$ error in replacing
+$S_s^2$ by $M^2$ there is thus
+$O(\sqrt Y QL^{5/2}+Q^2L^4)=O(Y/L)$, independently of $s$.
+The complete coefficient of the main terms is
+$\SSS(N)\int f(x/(sY))f((N-x)/(sY))\,\ud x$. To complete the
+integrals and singular series, use \cref{eq:almosttails} with
+$P\asymp Y$, since $|v_s(\beta)|\ll\min(Y,|\beta|^{-1})$.
+The cost at each $N$ is $O_\epsilon(Y^{1+\epsilon}/Q)$:
+on a dyadic range $R<q\le2R$ use
+$\sum(q,N)\le2R\tau(N)$, $|c_q(N)|\le(q,N)$ and
+$1/\varphi(q)^2\ll_\epsilon q^{-2+\epsilon}$.
+Summing the ranges on either side of $Q$ gives the stated cost
+after adjusting $\epsilon$. At $s=N/Y$ the complete integral
+equals $4N/45$. This proves the pointwise formula. Dirichlet
+approximation with parameter $\lceil Y/Q\rceil$ gives the
+assertion about $\mathfrak m$.
+
+For the second moment, keep $s$ fixed first. Let $G_s$ equal
+$S_s^2$ on $\mathfrak m$ and $S_s^2-M^2$ on the removed arcs.
+On $\mathfrak m$ the approximant above has $Y|\beta|\le1$.
+By \cref{eq:arcmeansquare} and $q\le2\sqrt Y L^4$,
+$|S_s|\ll Y^{3/4}L^4$ there, including the main term
+$O(Y/\varphi(q))$ with $q>Q$. Parseval gives
+$\int_0^1|S_s|^2\ll YL$, hence
+$\int_{\mathfrak m}|S_s|^4\ll Y^{5/2}L^9$.
+
+On the arcs of denominator $q$, the pointwise bound for
+$|E|^2$ is $O(qY(1+Q/q)^2L^4)$, and its integral summed over
+the reduced numerators is $O(QL^4)$. Their product, summed over
+$q\le Q$, bounds $\int_{\mathfrak m^c}|E|^4$ by $O(YQ^3L^9)$.
+For $|ME|^2$, integrate first up to $|\beta|=1/Y$ and then over
+dyadic bands of increasing $Y|\beta|$. Using
+\cref{eq:arcintegrated} and the decay of $v_s$ gives
+$O(qY^2L^4/\varphi(q)^2)$ per denominator. Indeed the innermost
+band has $|v_s|\ll Y$ and integrated squared error $O(qL^4)$.
+The outer bands contribute a convergent geometric sum.
+Using $\sum_{q\le Q}q/\varphi(q)^2\ll L^3$ gives $O(Y^2L^7)$
+for all the mixed terms. Thus $\int |G_s|^2\ll Y^{5/2}L^9$.
+
+The derivative $\partial_s f(x/(sY))$ exists almost everywhere in
+$s$ and has uniformly bounded supremum and total variation in $x$.
+The fourth-moment estimates also apply to this weight. The mixed
+estimate allows either weight in either factor. Cauchy--Schwarz then bounds
+$\int|\partial_sG_s|^2$ by $O(Y^{5/2}L^9)$ as well. If $b_j(s)$
+is the $j$th Fourier coefficient of $G_s$, absolute continuity gives
+$\sup_s |b_j(s)|^2\le2|b_j(1)|^2+2\int_1^2|b'_j(s)|^2\,\ud s$.
+Bessel's inequality and integration in $s$ now control the sum
+of these squared suprema by $O(Y^{5/2}L^9)$. This permits taking
+$s=N/Y$ in each coefficient. The uniform completion error has
+squared sum $O_\epsilon(Y^{3+2\epsilon}/Q^2)$, which is smaller
+on taking $\epsilon<1/8$. Divide by $(N\SSS(N))^2\gg Y^2$
+to obtain \cref{eq:single-test-deviation}. The count of small
+margins follows by Chebyshev's inequality. If $r_N=0$,
+\cref{eq:single-goldbach-test} gives
+$N\SSS(N)\Delta_N\le H_N(\log N)^2=o(Y/L)$, proving the last claim.
+\end{proof}
+
 \section{Certification on the balanced window}
 \label{sec:certificate}
 
@@ -15124,6 +15233,11 @@ J\'anos Bolyai \textbf{13}, North-Holland, Amsterdam, 1976,
 A.~Chirre and M.~V.~Hagen,
 \newblock \emph{On Goldbach numbers in short intervals},
 \newblock \url{https://arxiv.org/abs/2512.23534}.
+
+\bibitem{BhowmikGrimmelt}
+G.~Bhowmik and L.~Grimmelt,
+\newblock \emph{The exceptional set of the Goldbach problem},
+\newblock \url{https://arxiv.org/abs/2607.27282}.
 
 \bibitem{GoldstonYildirimShort}
 D.~A. Goldston and C.~Y. Y{\i}ld{\i}r{\i}m,
