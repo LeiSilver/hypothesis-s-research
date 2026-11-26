@@ -15,6 +15,7 @@
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
 \crefname{proposition}{proposition}{propositions}
 \Crefname{proposition}{Proposition}{Propositions}
 \newcommand{\SSS}{\mathfrak S}
@@ -1550,6 +1551,117 @@ The sifted mass is $O(N U^2\SSS(N)/L^2+N^{99/100})$.
 After restoring the weight bound $L^2/(N\SSS(N))$, the power
 error is $O(L^{-2})$. This proves the quadratic estimate.
 For the stated moving threshold take $\theta=4\log L/L$.
+\end{proof}
+
+\begin{proposition}[Positive sifted mass and a single multiplicative twist]
+\label[proposition]{prop:single-test-twisted-sieve}
+Use $W$ and $P_N$ from \cref{prop:single-test-rough-pairs}. In the
+following sums $p$ ranges over primes in the open test window with
+$(p,N)=1$, and $n=N-p$. For $|v|=1$, let $h_{z,v}$ be completely
+multiplicative, taking the value zero on primes at most $z$ and
+the value $v$ on larger primes. Set
+\[
+ S_N(z)=\sum_p W(p)h_{z,1}(n),\qquad
+ J_N(z,v)=\sum_p W(p)h_{z,v}(n).
+\]
+For each fixed $1/5\le a<1/4$ and $z=N^a$, unconditionally,
+\begin{equation}
+ \liminf_{\substack{N\to\infty\\2\mid N}} S_N(N^a)
+ \ \ge\ 4c\log\bigl(1/(2a)-1\bigr),\qquad c=4/45 .
+ \label{eq:single-test-sifted-baseline}
+\end{equation}
+For $v=\exp(i\pi/3)$ one has the pointwise minorant
+\[
+ P_N\ \ge\ \tfrac12 S_N(z)+\Re J_N(z,v).
+\]
+In particular, at $a=1/5$ it suffices for a uniform positive
+prime-pair margin to show that the lower limit of $\Re J_N(z,v)$
+over even $N$ exceeds $-2c\log(3/2)$.
+\end{proposition}
+
+\begin{proof}
+First use the unnormalized nonnegative weights $F(p/N)\log p$.
+At a squarefree sieve modulus $d$ coprime to $N$ the condition is
+$p\equiv N\bmod d$. Its main term is $cN/\varphi(d)$. The
+Bombieri--Vinogradov theorem, with the maximum over reduced
+residues and interval endpoints, and partial summation against
+$F$ bound the sum of absolute remainders for $d\le N^b$ by
+$O_{A,b}(N/L^A)$ for each fixed $b<1/2$ and $A>0$.
+Removing primes dividing $N$ costs at most $O(N^b L)$ in this
+sum since their logarithms sum to at most $L=\log N$.
+Moduli sharing a prime with $N$ now have zero mass. Thus the
+local densities are $g(\ell)=1/(\ell-1)$ for primes $\ell\nmid N$
+and zero otherwise. The dimension-one product bound is uniform
+in $N$: dropping primes dividing $N$ only reduces the inverse
+product over odd primes, and the factors at the other primes
+differ from $(1-1/\ell)^{-1}$ by relative $1+O(\ell^{-2})$.
+Moreover Mertens' formula and \eqref{eq:series} give
+\[
+ \prod_{\ell\le z}(1-g(\ell))
+ =(1+o(1))\frac{e^{-\gamma}\SSS(N)}{\log z}.
+\]
+In extending the singular product past $z$, the primes dividing
+$N$ there contribute $O(L/(z\log z))$ to its logarithm.
+
+Take $2a<b<1/2$. The lower linear sieve
+\cite[Lemma~2.5]{MatomakiZunigaSwitching} gives the main term
+$cN\prod_{\ell\le z}(1-g(\ell))(f(b/a)+o_{a,b}(1))$ as a
+lower bound, where $f(s)=2e^\gamma\log(s-1)/s$ for $2<s<4$.
+One can use the cutoff $\lfloor z\rfloor+1/2$ in the strict
+inequality version of the sieve. Since $\log n=L+O(1)$ throughout
+the window, restoring this logarithm and the normalizing factor
+gives a lower limit of at least $2c\log(b/a-1)/b$. Letting
+$b\uparrow1/2$ proves \eqref{eq:single-test-sifted-baseline}.
+
+Every surviving $n$ has $1\le k=\Omega(n)\le4$, counting factors
+with multiplicity, because $z^5\ge N>n$. The values of
+$1/2+\Re(v^k)$ at $k=1,2,3,4$ are $1,0,-1/2,0$. The minorant
+therefore differs from $P_N$ by precisely half the mass of
+survivors with three prime factors, subtracted from $P_N$.
+\end{proof}
+
+\begin{corollary}[A cubic twist near the fourth-root cutoff]
+\label[corollary]{cor:single-test-cubic-twist}
+Let $a=1/4-\delta$ with $0<\delta\le1/100$, $z=N^a$, and
+$w=\exp(2\pi i/3)$. Put
+\[
+ K_N=\frac{S_N(z)+2\Re(\overline w J_N(z,w))}{3}.
+\]
+For every sufficiently large even $N$,
+\[
+ 0\le K_N-P_N\ll(\delta+L^{-1})^3
+\]
+with an absolute constant. For each sufficiently small fixed
+$\delta>0$, the sifted mass is $\gg\delta$ for all sufficiently
+large even $N$. Consequently a failure of prime representation in
+the window at such an $N$ forces
+\[
+ -\tfrac12\ \le\ \frac{\Re(\overline w J_N(z,w))}{S_N(z)}
+ \ \le\ -\tfrac12+O(\delta^2).
+\]
+\end{corollary}
+
+\begin{proof}
+The cubic projection gives weight one to $k=1,4$ and zero to
+$k=2,3$. For $k=4$ write $n=r_1r_2r_3s$ in increasing order
+with repetitions allowed. All factors belong to
+$(N^{1/4-\delta},N^{1/4+3\delta}]$ since the other three each
+exceed $z$. Put $d=r_1r_2r_3\le n^{3/4}$. For fixed $d$ from
+such a triple, $s$ ranges over an interval of length $H\asymp N/d$.
+Both $s$ and $N-ds$ must be prime, and $(d,N)=1$.
+Sift both forms as in \eqref{eq:uniformsieve}. At primes
+dividing $dN$ only one residue is excluded. The extra factors
+from $d$ are bounded since it has at most three distinct prime
+divisors. As $H\gg N^{1/4}$ and both prime values exceed
+$H^\kappa$ for a sufficiently small absolute $\kappa$, the
+count is $O(H\SSS(N)/L^2)$. After normalization this costs
+$O(1/d)$ for the triple. Partial summation using
+$\pi(x)\ll x/\log x$ bounds the reciprocal prime sum in the
+indicated band by $O(\delta+L^{-1})$. Summing $1/d$ over
+triples costs at most its cube. Finally
+$\log(1/(2a)-1)=\log((1+4\delta)/(1-4\delta))\ge8\delta$.
+The baseline and the identity defining $K_N$ give the ratio bound
+when $P_N=0$, with $N$ sufficiently large in terms of $\delta$.
 \end{proof}
 
 \section{Certification on the balanced window}
@@ -15699,6 +15811,12 @@ J. Maynard,
 Fixed residue classes},
 \newblock Mem. Amer. Math. Soc. \textbf{306} (2025), no.~1542.
 \newblock \url{https://arxiv.org/abs/2006.06572}.
+
+\bibitem{MatomakiZunigaSwitching}
+K. Matom\"aki and S. Zuniga-Alterman,
+\newblock \emph{Weighted sieves with switching},
+\newblock Math. Proc. Cambridge Philos. Soc. \textbf{179} (2025).
+\newblock \url{https://doi.org/10.1017/S0305004125000258}.
 
 \bibitem{BFI1987}
 E. Bombieri, J. B. Friedlander and H. Iwaniec,

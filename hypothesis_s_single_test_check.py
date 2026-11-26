@@ -57,6 +57,40 @@ def check_rough_pairs():
     print(f"Verified {checked} rough-pair corrections and {levels} overlap sieve densities.")
 
 
+def check_sifted_twists():
+    # In the basis 1, v the primitive roots satisfy v*v = sign*v - 1.
+    def twice_real_power(k, sign):
+        a, b = 1, 0
+        for _ in range(k):
+            a, b = -b, a + sign*b
+        return 2*a + sign*b
+
+    samples = [(p, m) for p in range(29, 250) if len(factors(p)) == 1
+               for m in range(25, 300, 2) if gcd(p, m) == 1 and 5*(p+m) < 12*p < 7*(p+m)]
+    # The fourth power survives even the 6/25 cutoff at this scale.
+    fourth_power = 101**4
+    nearby_prime = next(p for p in range(fourth_power+2, fourth_power+1000, 2)
+                        if len(factors(p)) == 1)
+    samples.append((nearby_prime, fourth_power))
+    for numerator, denominator in [(1, 5), (6, 25)]:
+        classes = set()
+        for p, m in samples:
+            ps = factors(m)
+            sifted = int(min(ps)**denominator > (p+m)**numerator)
+            k = len(ps)
+            sixth = sifted * twice_real_power(k, 1)
+            rotated_cubic = sifted * twice_real_power(k-1, -1)
+            prime = int(k == 1)
+            if sifted + sixth != 2*prime - sifted*int(k == 3):
+                raise AssertionError(("sixth-root minorant", p, m))
+            if sifted + rotated_cubic != 3*(prime + sifted*int(k == 4)):
+                raise AssertionError(("cubic projection", p, m))
+            classes.add(k if sifted else 0)
+        if classes != set(range(5)):
+            raise AssertionError(("missing sifted factor count", classes))
+    print(f"Verified both twist identities on {len(samples)} prime shifts at each of two cutoffs.")
+
+
 def main():
     limit = 256
     divisors = [tuple(d for d in range(1, n + 1) if n % d == 0)
@@ -132,6 +166,7 @@ def main():
             and Fraction(1, 2)+delta < square-Fraction(1, 100)):
         raise AssertionError("three-factor ranges or strip overlap")
     check_rough_pairs()
+    check_sifted_twists()
 
 
 if __name__ == "__main__":
