@@ -304,6 +304,9 @@ fixed $\theta<1/3$, with a logarithmically small
 squared error. \Cref{prop:criticalgridrough-tail}
 then restricts the complementary divisor to a prime
 or a product of two distinct primes.
+\Cref{prop:criticalgridrough-endpoint} reaches the
+one-third threshold for the density criterion and
+leaves at most five prime factors in each retained value.
 \Cref{thm:criticalpowers} proves decay in density for the
 entire proper-power contribution through a fixed critical
 product cap and identifies the fixed rows needed for decay
@@ -13737,8 +13740,8 @@ The remaining factor bound follows from $dm\ll V$.
 \label{thm:criticalgridrough-tail}
 Assume Dirichlet GRH and the scale conditions of
 \cref{thm:criticalgridbalancedmobius}. Fix $0<\theta<1/3$
-and $J_0>0$. In the physical representation of
-\cref{prop:criticalgridbalancedmobius}, the screen
+and $J_0>0$. Let $\sqrt{2V}\le D_*\le Y^{1+1/32}$.
+In the physical sum with $d>D_*$, the screen
 $s_z(n)$ with sufficiently large fixed $K$ can be replaced
 by $s_{Y^\theta}(n)$ with squared error
 $O(Y^3(\log Y)^{-J_0})$ over the even moduli, uniformly
@@ -13746,8 +13749,8 @@ over the intervals $I,J$.
 \end{theorem}
 
 \begin{proof}
-Write $L=\log Y$ and $D_*=Y^{1+1/32}$. The difference
-of the two screens selects squarefree $n$ whose least
+Write $L=\log Y$. The difference of the two screens
+selects squarefree $n$ whose least
 prime factor $\ell$ satisfies $z<\ell\le Y^\theta$.
 Write $n=\ell t$. Then $\mu^2(t)=1$ and
 $P^-(t)>\ell$, where $P^-$ denotes the least prime
@@ -13928,7 +13931,8 @@ H\"older proves the asserted squared-norm bound.
 \newpage
 \begin{proposition}[A remaining sum with at most two complementary primes]
 \label[proposition]{prop:criticalgridrough-tail}
-Take $\theta=21/64$ in \cref{thm:criticalgridrough-tail}.
+Take $\theta=21/64$ and $D_*=Y^{1+1/32}$ in
+\cref{thm:criticalgridrough-tail}.
 Up to squared error $O(Y^3(\log Y)^{-J_0})$ for each
 fixed $J_0>0$, the prime count
 $B_N^{\rm p}(I,J)$ is the physical count on squarefree
@@ -13969,6 +13973,104 @@ $O_{C,Q,M}(Y(\log Y)^{-J_0}\log\log Y)$, by the test
 count and the uniformity in the endpoints. The
 difference of the two maxima thus tends to zero in
 mean square after averaging over these moduli.
+
+\begin{proposition}[Five prime factors suffice for the density criterion]
+\label[proposition]{prop:criticalgridrough-endpoint}
+Retain the hypotheses of \cref{thm:criticalgridrough-tail}
+and put $w=(2C)^{1/6}Y^{1/3}$. Define $R_N(I,J)$ by
+the physical sum of \cref{prop:criticalgridbalancedmobius}
+with screen $s_w$ and cutoff $d>\sqrt{2V}$.
+Then, uniformly over $I,J$,
+\[
+ \frac1Y\sum_{\substack{Y\le N\le2Y\\2\mid N}}
+ \left|\frac{B_N^{\rm p}(I,J)-R_N(I,J)}
+                 {\SSS(N)\sqrt{XV}}\right|^2=o(1).
+\]
+The same conclusion holds for the difference of the
+normalized prefix maxima in \cref{thm:criticalmeangrid}.
+In $R_N(I,J)$, each nonzero weight is at a value $n$
+with two to five prime factors. Each contributing
+complementary divisor is a prime or the product of
+two distinct primes. The weight on a five-prime
+value is $-3\log n$.
+\end{proposition}
+
+\begin{proof}
+Fix $21/64\le\theta<1/3$. In changing the screen
+from $s_{Y^\theta}$ to $s_w$ the only deleted values
+are squarefree $n$ with a prime factor
+$Y^\theta<\ell\le w$ and all prime factors greater
+than $Y^\theta$. These values have at most six prime
+factors, so their divisor weight is $O(\log Y)$.
+
+Fix $N,p,\sigma$ with $(p,N)=1$, and fix such a prime
+$\ell$. If $\ell\mid N$, then $\ell\nmid bN+\sigma p$
+since $\ell>p$. Otherwise $n=\ell h$ implies
+$h\equiv \sigma p\,\overline\ell\bmod N$, a unit class.
+The interval for $h$ lies in $J/\ell$, so its
+progression parameter lies in an interval of length
+at most $O(B/\ell)$. Pad the interval to length
+$H\asymp B/\ell$. We have $\log H\asymp\log Y$
+uniformly in $\theta$ and $\ell$. The roughness of $n$
+forces $h$ to avoid all primes up to $H^c$ for the
+small fixed $c$ from \cref{eq:uniformsieve}.
+The one-class application of that sieve gives
+\[
+ \#\{h\}\ll \frac{B}{\ell}\,
+                    \frac{N}{\varphi(N)\log Y}.
+\]
+Indeed primes not dividing $N$ each exclude one
+residue of the progression parameter, while primes
+dividing $N$ exclude none. Mertens' bound gives the
+displayed main bound and the error $H^{2/5}$ is smaller.
+
+Sum first over $\ell$, then over $p$ with weight
+$\log p$, and use $\SSS(N)\asymp N/\varphi(N)$.
+The pointwise difference of the physical sums, divided
+by $\SSS(N)\sqrt{XV}$, is at most a constant times
+\[
+ \sum_{\substack{Y^\theta<\ell\le w\\\ell\ {\rm prime}}}
+        \frac1\ell
+ \ll_C (1/3-\theta)+\frac{1}{\log Y}.
+\]
+For the last inequality apply Chebyshev's bound by
+partial summation. It bounds the reciprocal sum by
+a constant times $\log\log w-\log(\theta\log Y)$
+plus $O(1/\log Y)$. The displayed estimate follows
+uniformly for $\theta\ge21/64$.
+
+The interval from $\sqrt{2V}$ to $Y^{1+1/32}$ lies
+in the range of \cref{thm:criticalgridbalancedmobius}.
+Its pointwise bound permits lowering the divisor cutoff
+in \cref{prop:criticalgridbalancedmobius} to $\sqrt{2V}$.
+Now \cref{thm:criticalgridrough-tail} shows that for
+each fixed $\theta$ the first replacement, from the
+prime prefix to the sum with screen $s_{Y^\theta}$,
+costs $O(Y^3(\log Y)^{-J_0})$ in squared norm for
+every fixed $J_0$.
+For the normalized prefix maxima the corresponding mean
+squared error tends to zero by summing over the
+$O(\log\log Y)$ tests, using their endpoint uniformity.
+The bound for the second replacement holds at every
+modulus uniformly over the tests. The limit superior
+of either averaged squared error is thus
+$O_C((1/3-\theta)^2)$. The endpoint sum with screen
+$s_w$ is independent of $\theta$, so letting
+$\theta$ increase to $1/3$ proves the claims.
+
+Finally $n\le2V\le2CY^2=w^6$. Six primes greater
+than $w$ would exceed this bound. Any complementary
+divisor with three prime factors would exceed
+$w^3\ge\sqrt{2V}$, whereas the cutoff $d>\sqrt{2V}$
+gives $m<\sqrt{2V}$. The term at $m=1$ is zero,
+so prime $n$ has zero weight. When $n$ has five
+prime factors, the complement of every singleton
+or pair contains at least three primes, hence passes
+the divisor cutoff. Each prime logarithm occurs
+once in the singleton sum and four times in the
+pair sum. Inserting their signs and $\mu(n)=-1$
+gives $-3\log n$.
+\end{proof}
 
 \clearpage
 \section{Conditional bounds from uniform prime-pair discrepancies}
@@ -14210,6 +14312,9 @@ log-power smaller inputs.
 reduce those counts in mean square to squarefree values
 with at most six prime factors and complementary
 divisors with one or two prime factors.
+\Cref{prop:criticalgridrough-endpoint} lowers the maximum
+number of prime factors from six to five in the density
+criterion.
 \Cref{prop:criticalgridarcsharpness} shows that a power saving
 for arbitrary arc functions cannot follow from their size,
 their energy, and the conductor cutoffs alone.
@@ -14398,8 +14503,10 @@ used in \cref{lem:criticalgridinverse-mobius,thm:criticalgridbalancedmobius}.
 
 The file \texttt{formalization/LeastPrimeSplit.lean}
 checks the disjoint splitting of divisors at the
-extracted prime and the logarithm multiplicity in the
-six-prime weight of \cref{prop:criticalgridrough-tail}.
+extracted prime. It also checks the logarithm multiplicities
+in the five- and six-prime weights and the product inequality
+used for the factor count in
+\cref{prop:criticalgridrough-tail,prop:criticalgridrough-endpoint}.
 
 The file \texttt{formalization/PrefixPersistence.lean} checks
 the finite sum version of the large-prefix estimate used in

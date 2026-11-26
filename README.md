@@ -4,7 +4,7 @@ This repository contains the English research manuscript and the code and data f
 
 - [Manuscript (PDF)](output/pdf/hypothesis_s_paper.pdf)
 - [LaTeX source](output/pdf/hypothesis_s_paper.tex)
-- [Lean verification of the least-prime divisor split and six-factor logarithm weight](formalization/LeastPrimeSplit.lean)
+- [Lean verification of the least-prime divisor split, logarithm weight, and factor-count inequality](formalization/LeastPrimeSplit.lean)
 - [Lean verification of the inverse-residue and screen identities](formalization/InverseMobius.lean)
 - [Lean verification of the shortened local period and signed progression reflection](formalization/TransitionPeriod.lean)
 - [Lean verification of the reconstructed divisibility condition and divisor regrouping](formalization/DoubleZeroReconstruction.lean)
@@ -50,6 +50,8 @@ This repository contains the English research manuscript and the code and data f
 Theorem 13.34 uses Dirichlet GRH and the dispersion estimates of Fouvry and Fouvry–Radziwiłł to remove squarefree values with a prime factor at most $Y^\theta$ from the long-divisor remainder for any fixed $\theta<1/3$. The squared error over the even moduli is $O(Y^3(\log Y)^{-J_0})$ for every fixed $J_0$, with a sufficiently large fixed exponent in the initial roughness screen.
 
 Proposition 13.35 takes $\theta=21/64$. The remaining values have at most six prime factors, and the complementary divisors are primes or products of two distinct primes. The weight on the six-prime values is exactly $4\log n$. The critical decay-in-density criterion can use these remaining counts in place of the original prime prefixes.
+
+Proposition 13.36 reaches the one-third threshold in the criterion. A uniform one-class sieve bounds the additional contribution of primes between $Y^\theta$ and $(2C)^{1/6}Y^{1/3}$. Taking $\theta$ to $1/3$ after the large-$Y$ limit leaves counts on two to five prime factors with cutoff $d>\sqrt{2V}$, with a vanishing normalized mean-square error also for the prefix maximum. The weight on five-prime values is exactly $-3\log n$.
 
 Theorem 13.32 proves a power-saving pointwise bound at every even modulus for the physical signed Type II sum on $Y^{1-1/32}\le d\le Y^{1+1/32}$ for log-power smaller inputs. Completing the complementary factor cancels the zero frequency and leaves Möbius sums with inverse phases. Lemma 13.31 bounds these sums for general moduli, using a reciprocal additive-energy estimate and a convolution identity for the Möbius function.
 

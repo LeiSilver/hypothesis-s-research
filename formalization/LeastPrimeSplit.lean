@@ -57,8 +57,36 @@ theorem six_factor_log_weight (xs : List Int) (hLength : xs.length = 6) :
   rw [pair_log_sum, hLength]
   omega
 
+theorem five_factor_log_weight (xs : List Int) (hLength : xs.length = 5) :
+    -(-xs.sum + pairLogSum xs) = -3 * xs.sum := by
+  rw [pair_log_sum, hLength]
+  omega
+
+private theorem product_at_least_threshold_power (w : Nat) (xs : List Nat)
+    (hFactors : ∀ p ∈ xs, w ≤ p) : w ^ xs.length ≤ xs.prod := by
+  induction xs with
+  | nil => simp
+  | cons p ps ih =>
+    have hp := hFactors p (by simp)
+    have hTail := ih (fun q hq => hFactors q (List.mem_cons_of_mem p hq))
+    rw [List.length_cons, Nat.pow_succ, List.prod_cons, Nat.mul_comm (w ^ ps.length) w]
+    exact Nat.mul_le_mul hp hTail
+
+theorem product_exceeds_threshold_power (w p : Nat) (ps : List Nat)
+    (hw : 0 < w) (hp : w < p) (hFactors : ∀ q ∈ ps, w ≤ q) :
+    w ^ (p :: ps).length < (p :: ps).prod := by
+  have hTail := product_at_least_threshold_power w ps hFactors
+  rw [List.length_cons, Nat.pow_succ, List.prod_cons]
+  calc
+    w ^ ps.length * w < w ^ ps.length * p :=
+      Nat.mul_lt_mul_of_pos_left hp (Nat.pow_pos hw)
+    _ = p * w ^ ps.length := Nat.mul_comm _ _
+    _ ≤ p * ps.prod := Nat.mul_le_mul_left p hTail
+
 #print axioms divisor_split_at_prime
 #print axioms divisor_split_branches_disjoint
 #print axioms six_factor_log_weight
+#print axioms five_factor_log_weight
+#print axioms product_exceeds_threshold_power
 
 end HypothesisS
