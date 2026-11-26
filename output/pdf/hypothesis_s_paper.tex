@@ -281,6 +281,9 @@ range there.
 \Cref{thm:criticalgridclippeddeletion} extends the deletion to
 clipped arcs by pairing the inverse-numerator branches and
 bounding the resulting difference in their Farey lengths.
+\Cref{thm:criticalgriddoublecompletion} factors the remaining
+complete coefficient into two Kloosterman sums and removes
+part of the resulting zero mode.
 \Cref{thm:criticalpowers} proves decay in density for the
 entire proper-power contribution through a fixed critical
 product cap and identifies the fixed rows needed for decay
@@ -12551,6 +12554,365 @@ moment, on the whole circle or on the modulus minor arcs.
 \end{proof}
 
 \clearpage
+\subsection{Two complete sums for the remaining long divisors}
+
+Take the cutoff $d>A_*=Y^{1-\varepsilon}/X$ of
+\cref{thm:criticalgridclippeddeletion}. Fix
+$0<\varepsilon<\xi$ and choose the parameters of
+\cref{thm:criticalgridpoisson} with $9\rho<\varepsilon$.
+Use the taper $\omega$ and the even cutoff $\vartheta$
+from the proof of \cref{thm:criticalgridclippeddeletion}.
+Write $\phi_\rho$ for the smoothing of $\phi$ used there
+and define, for $q$ on the taper,
+\[
+ a_h(q)=\int_0^1
+   \left[\phi_\rho\!\left(\frac{qt}{K-q}\right)+
+         \phi_\rho\!\left(\frac{q(1-t)}{K-q}\right)\right]
+   e(-ht)\,\ud t,\qquad H_*=\lceil Y^{4\rho}\rceil.
+\]
+For a positive integer $F$ put
+\[
+ S(A,B;F)=\sum_{y\bmod F}^{*}e((Ay+B\bar y)/F)
+\]
+with $S(A,B;1)=1$.
+
+\begin{theorem}[Double completion for the long-divisor remainder]
+\label{thm:criticalgriddoublecompletion}
+Assume Dirichlet GRH. In the total even-modulus sequence,
+the long-divisor remainder of
+\cref{thm:criticalgridclippeddeletion} can be replaced, with
+$O(Y^{3-\delta})$ squared error for some $\delta>0$, by the
+sum described below.
+
+Retain the screen parameters $s,\ell$, the divisor $d>A_*$,
+and $r$ from \cref{eq:criticalgridpoissonparameters}. Put
+$D=dr$, $M=V/D$, and sum over $g\mid D$ with
+$g\le Y^{2\rho}$ and $(g,d)\le Y^\rho$. For $v=D/g$
+sum over $1\le j\le 6 K Y^{3\rho}$.
+Factor $D=D_0D_1$ by putting all prime powers of $D$
+at primes dividing $gj$ into $D_0$. Factor $j=j_0j_1$
+by putting all prime powers of $j$ at primes dividing
+$D$ into $j_0$, and put $J_0=D_0j_0$.
+
+For each $n=bN+\sigma p$ in the signed sampling sum,
+the arc contribution at these fixed screen and divisor
+parameters is
+\begin{align}
+ &2\operatorname{Re}\sum_{\substack{|h|\le H_*\\ k\in\mathbb Z}}
+       \frac{\widehat\Phi_{h,n}(k/(Dj))}{Dj}\,
+       C_0(k,h,n)
+       S\!\left(k\overline{D_0j},-j n\overline{D_0};D_1\right)
+       \notag\\[-2pt]
+ &\hspace{8em}\times
+       S\!\left(k\overline{J_0D_1},
+                          h v\overline{g j_0};j_1\right).
+ \label{eq:criticalgriddoublecomplete}
+\end{align}
+Here $\Phi_{h,n}$ is supported on $x>0$ and equals
+\[
+ \frac{M}{K g x}\omega(gx)a_h(gx)\widehat f_d(Mj/x)
+   \vartheta(Mj/(xY^{2\rho}))\,
+   e\!\left(\frac{j n/D-h v/(g j)}{x}\right).
+\]
+The finite coefficient $C_0$ is defined in
+\cref{eq:criticalgriddoublecompletebad} below and satisfies
+$|C_0(k,h,n)|\le gJ_0$. The sampling sum uses the same
+weights $\mu(s)\mu(\ell)\mu(d)\sigma\log p$ and the same
+$\mathcal B$ and $I$ as before. The series in $k$ is
+absolutely convergent for each choice of the other parameters.
+It can be cut to $|k|\le Y^{8\rho}D^2/V$ with negligible
+error in the sampling sum.
+
+If $\lambda>0$ and $\varepsilon+\lambda+2\rho<\xi$,
+one can omit all terms with $k=0$, $h\ne0$ and
+$D_0\le Y^\lambda$ with a power-saving squared error.
+If in addition $\beta>0$ and
+\begin{equation}
+ \tfrac52\beta+\varepsilon+\lambda+16\rho<\xi/2 ,
+ \label{eq:criticalgriddoubletransitioncondition}
+\end{equation}
+one can omit the terms with $k\ne0$, $d\le B Y^\beta$
+and $D_0\le Y^\lambda$ as well. Thus in this divisor
+range with small $D_0$, only $k=h=0$ remains.
+Both omissions apply in the full second moment and
+in the modulus minor-arc integral when it is available.
+\end{theorem}
+
+\begin{proof}
+First sum with $d>A_*$ as in
+\cref{thm:criticalgridclippeddeletion}. The same frozen
+arc energy estimate $O_\epsilon(X^2 VY^\epsilon)$ holds
+for this divisor range. Thus the endpoint taper,
+smooth Farey weight and restoration of all characters
+have the squared costs proved there.
+Write $u$ for the inverse numerator modulo $q$.
+The Fourier series of $w^\#(q,u)$ as a function of $u/q$
+has coefficients $a_h(q)$. Its total variation on a
+period is $O(1)$, and the total variation of its
+first derivative in $u/q$ is $O(q/(K-q))$.
+Indeed each summand is monotone, and $\phi'$ has
+bounded variation, which the convolution preserves.
+The endpoint contribution to the derivative variation
+has that same bound. Consequently
+\begin{equation}
+ |a_h(q)|\ll (1+|h|)^{-1},\qquad
+ \sum_{|h|>H_*}|a_h(q)|\ll \frac{q}{(K-q)H_*}.
+ \label{eq:criticalgridfrozenmaskdecay}
+\end{equation}
+On the taper $w_q(a)\gg Y^{-\rho}$, so truncating the
+Fourier series gives a relative error $O(Y^{-2\rho})$.
+Apply \cref{eq:criticalgridselectedsampler} before
+restoring the characters to bound its squared cost.
+The restored sampler now uses
+$\omega(q)\sum_{|h|\le H_*}a_h(q)e(hu/q)/(Kq)$.
+
+As in \cref{thm:criticalgridflatdeletion}, replacing the
+sharp cutoff in $j$ by $\vartheta$ adds a negligible tail.
+The local lower bound on $d$ may then be omitted, since
+below it the support would require $0<|j|\le2Y^{-\rho}$.
+On its support $|j|\le 6 K Y^{3\rho}$.
+The negative-$j$ part is the conjugate of the positive part,
+using $a\mapsto-a$ and the real even Farey weight
+with its symmetric Fourier truncation.
+
+For fixed $s,\ell,d,g,j$ write $q=gx$. We impose
+$(x,vj)=1$, as required by $(q,D)=g$ and the Poisson
+congruence. The inverse branch may still be written as
+$u=(Lx-v)/j$ for $1\le L\le gj$, now using $u$ modulo
+$gx$. Indeed replacing $L$ by $L+gj$ adds $gx$ to $u$.
+Thus the branch parametrization does not need $x>v$.
+The conditions are that $u$ be integral and a unit
+modulo $g$. It is a unit modulo $x$ since $(x,vj)=1$.
+The integer $m=(av+j)/x$ then satisfies
+\cref{eq:criticalgridclippedclasses}. Changing the lift of
+$a$ adds a multiple of $D$ to $m$.
+As in \cref{thm:criticalgridclippeddeletion},
+$m\equiv j\bar x\bmod D_1$ and $m\equiv m_0\bmod D_0$.
+The latter class is determined by the branch and by
+$x\bmod D_0j$. Since
+\[
+ e(-an/q)e(hu/q)=e(-mn/D)e(hL/(gj))
+                   e\!\left(\frac{j n/D-h v/(g j)}{x}\right),
+\]
+the weight in the completion in $x$ is $\Phi_{h,n}$.
+It is smooth with compact support. The arithmetic factor
+has period $Dj$, so Poisson summation on its residue
+classes gives the terms in \cref{eq:criticalgriddoublecomplete}
+with normalized complete coefficients. Repeated integration
+by parts also gives absolute convergence.
+
+For the quantitative frequency bound, the derivatives of
+$a_h(gx)$ of order $i$ on the taper are
+$O_i((Y^{4\rho}/x)^i)$, by the same differentiation of the
+length ratios as in \cref{thm:criticalgridclippeddeletion}.
+On the support of the smooth cutoff $Mj/x\le2Y^{2\rho}$.
+The phase adds the scale $|h|v/(g jx)$ to the bound
+$Y^{4\rho}$ for the differentiated factors.
+After multiplying the derivative scale by the period,
+the resulting bound is
+\[
+ \frac{Dj}{x}\left(Y^{4\rho}+\frac{|h|v}{g jx}\right)
+ \ll Y^{6\rho}\frac{D^2}{V}+\frac{|h|D^2}{q^2}
+ \ll Y^{6\rho}\frac{D^2}{V}.
+\]
+The last estimate uses $|h|\le H_*$,
+$V/R_*^2\ll_{C,Q}Y^{-3\xi/2}/X$, and $q>R_*$.
+Thus integration by parts bounds the transform at $k\ne0$
+by
+\[
+ \ll_i \frac{M}{K g}(\log Y)^2
+                  \left(\frac{Y^{6\rho}D^2}{V|k|}\right)^i .
+\]
+Past $Y^{8\rho}D^2/V$ the ratio is $O(Y^{-2\rho})$.
+The normalized complete coefficient has a polynomial
+bound, as does the number of all the other summation
+indices. Summing the tail using sufficiently many
+integrations by parts therefore proves the frequency cutoff.
+
+We describe the CRT factorization of the complete coefficient.
+The three relatively prime factors of $Dj$ are
+$D_1,j_1,J_0$. The units $x\bmod D_1$ occur freely,
+and their contribution is the first Kloosterman sum.
+For the other factors write $x_b\bmod J_0$ and
+$L_b\bmod g j_0$ for the classes away from $j_1$.
+An admissible pair $(x_b,L_b)$ satisfies
+$(x_b,j_0D_0/g)=1$, $j_0\mid L_bx_b-v$, and
+$(u_b,g)=1$, where
+\[
+ u_b=\overline{j_1}(L_bx_b-v)/j_0\pmod{D_0}.
+\]
+Here the division by $j_0$ is made first.
+There is one $m_0\bmod D_0$ solving
+$m_0 x_b\equiv j\bmod D_0/g$ and
+$m_0 u_b\equiv L_b\bmod D_0$.
+These conditions are independent of the lift of $L_b$.
+In fact adding $g j_0$ to $L_b$ adds
+$g x_b\overline{j_1}$ to $u_b$. Multiplication by $m_0$
+gives $g j_0\bmod D_0$ using the first congruence.
+They are likewise independent of the lift of $x_b$,
+since $J_0=D_0j_0$. Existence and uniqueness follow
+from the branch inverse as in \cref{eq:criticalgridclippedclasses},
+by choosing a lift via the Chinese remainder theorem.
+
+For each such pair, $x_1=x\bmod j_1$ ranges over all units
+and $L\bmod j_1$ equals $v\bar x_1$.
+The complete coefficient in $x_1$ is therefore the
+second Kloosterman sum in \cref{eq:criticalgriddoublecomplete}.
+The remaining factor is
+\begin{equation}
+ C_0(k,h,n)=\sum_{(x_b,L_b)\ {\rm admissible}}
+ e\!\left(-\frac{m_0 n\overline{D_1}}{D_0}
+          +\frac{k x_b\overline{j_1D_1}}{J_0}
+          +\frac{h L_b\overline{j_1}}{g j_0}\right).
+ \label{eq:criticalgriddoublecompletebad}
+\end{equation}
+For each $x_b$ there are at most $g$ possible $L_b$,
+which proves its bound.
+The Weil bound for the two classical sums
+\cite[(9.6)]{KnightlyLiKuznetsov} consequently bounds
+their product with $C_0/(Dj)$ by
+\[
+ O_\epsilon\!\left(
+    \frac{gY^\epsilon}{\sqrt{D_1 j_1}}\,
+      \sqrt{(k,n,D_1)(k,h,j_1)}
+ \right).
+\]
+
+We finish by estimating the proposed zero-mode deletion.
+At $k=0$ the two complete sums have absolute values
+$|c_{D_1}(n)|$ and $|c_{j_1}(h)|$, respectively, since
+the other multipliers are units. By
+\cref{eq:criticalgridfrozenmaskdecay},
+$|\widehat\Phi_{h,n}(0)|\ll (M/(K g))(\log Y)^2/(1+|h|)$.
+Thus the absolute sum of these terms over $b\in\mathcal B$
+for each $p,\sigma,d,g,j,h$ is
+\[
+ \ll_\epsilon
+   \frac{P Y^\epsilon}{d(1+|h|)}
+   \left(\frac{B(p,D_1,N)}{D_1}+D_0\right)
+     \frac{(h,j_1)}{j_1}.
+\]
+Here we used the period bound
+\cref{eq:criticalgridclippedperiod} for the Ramanujan
+factor and $M/K\le P/d$.
+For $D_0\le Y^\lambda$, the parentheses are at most
+$Y^{\lambda+\rho}(1+B(p,d)/d)$.
+Indeed $D_1\ge dY^{-\lambda}$ and
+$(p,D_1,N)\le(p,d)(p,r)\le Y^\rho(p,d)$.
+
+The number of possible $j_0\le 6 K Y^{3\rho}$ for each
+fixed $D$ is $O_\epsilon(Y^\epsilon)$.
+For a fixed small $t>0$, Rankin's bound is
+$(6 K Y^{3\rho})^t\prod_{p_0\mid D}(1-p_0^{-t})^{-1}$.
+The product is $Y^{o(1)}$, since there are $O(\log Y)$
+distinct primes and their sum of $p_0^{-t}$ is
+$O_t((\log Y)^{1-t})$ for $0<t<1$.
+For each $h\ne0$, summing $(h,j_1)/j_1$ over $j_1$
+costs at most $O(\tau(|h|)\log Y)$ by the divisor
+identity for the gcd. Thus the $j$ and nonzero $h$
+sums, including the displayed harmonic weight, cost
+$O_\epsilon(Y^\epsilon)$ apart from the uniform
+$Y^{\lambda+\rho}$ factor already extracted.
+Finally
+\[
+ \sum_{A_*<d\le3V}\frac{(p,d)}{d^2}\ll A_*^{-1},
+ \qquad \sum_{d\le3V}\frac1d\ll\log Y
+\]
+uniformly for prime $p$, by splitting into multiples of $p$
+and the other integers. Summing also over $g$, the screen
+pairs and the prime weights gives
+\[
+ \ll_\epsilon XP Y^{\lambda+2\rho+\epsilon}
+                       (1+B/A_*)
+ \ll_{C,Q,\epsilon}Y^{1-\xi+\varepsilon+\lambda+2\rho+\epsilon}.
+\]
+This is a power-saving pointwise bound on the removed
+zero-mode sum.
+
+For the nonzero modes, split $d$ into dyadic blocks
+$T\le d<2T$. On such a block the cutoffs above give
+\[
+ j\ll (T/P)Y^{3\rho},\qquad |k|\ll Y^{10\rho}T^2/V .
+\]
+For fixed $k,h$ write out $C_0$ by branches and the
+first Kloosterman factor by units $y\bmod D_1$.
+Their combined phase in $n=bN+\sigma p$ is
+$e(-n\gamma_y)$, where
+\[
+ \gamma_y=\frac{m_0\overline{D_1}}{D_0}
+                   +\frac{j\overline{D_0}\bar y}{D_1}.
+\]
+As $y$ varies, the frequencies $N\gamma_y$ modulo one
+are on a translated lattice of spacing $(D_1,N)/D_1$,
+with multiplicity at most $(D_1,N)$.
+The sum of the absolute geometric progression bounds
+over $y$ is therefore $O(D_1\log(2D_1)+B(D_1,N))$.
+This estimate allows one position closest to an integer
+to use the trivial interval bound $O(B)$.
+
+The transform $\widehat\Phi_{h,n}(k/(Dj))$ has absolute
+bound $O((P/(Dg))(\log Y)^2/(1+|h|))$.
+Its derivative in $n$ costs at most a factor
+$O(Y^{2\rho}/V)$, since the phase derivative in the
+integrand is $2\pi i j/(D x)$ and $Mj/x\le2Y^{2\rho}$.
+Partial summation in $b$ therefore costs
+$O_\epsilon((P/(Dg))Y^{2\rho+\epsilon}/(1+|h|))$
+times the preceding geometric bound, using $BN\ll V$.
+With at most $gJ_0$ branches, normalization by $Dj$
+and Weil's bound for the second Kloosterman sum give,
+for fixed $p,\sigma,d,g,j,h,k$, the bound
+\[
+ O_\epsilon\!\left(
+ \frac{P Y^{2\rho+\epsilon}}{d(1+|h|)}
+       \left(1+\frac{B(D_1,N)}{D_1}\right)
+                     \frac{(k,j_1)^{1/2}}{\sqrt{j_1}}
+ \right).
+\]
+For $k\ne0$ and $J\ge1$ the elementary estimate
+\[
+ \sum_{1\le j_1\le J}\frac{(k,j_1)^{1/2}}{\sqrt{j_1}}
+       \ll \tau(|k|)\sqrt J
+\]
+follows by expanding the gcd bound over divisors of
+$k$ and summing over multiples. After counting the
+possible $j_0$ by Rankin's bound as above, the $j$ sum
+thus costs $O_\epsilon(Y^{3\rho/2+\epsilon}\sqrt{T/P})$.
+The harmonic weight absorbs the sum over $h$ into
+$Y^\epsilon$.
+
+If $D_0\le Y^\lambda$ then
+\[
+ (D_1,N)/D_1 \le Y^{\lambda+\rho}(d,N)/d .
+\]
+The bound $\sum_{T\le d<2T}(d,N)\ll T\tau(N)$
+follows by counting multiples of divisors of $N$.
+Hence, after summing $d,g$, the screen pairs and the
+prime weights, the nonzero-$k$ bound on the block is
+\[
+ O_\epsilon\!\left(
+ X\sqrt{PT}\,Y^{5\rho+\epsilon}
+       (1+Y^{10\rho}T^2/V)
+       (1+(B/T)Y^{\lambda+\rho})\right).
+\]
+Here $Z^2=Y^{2\rho/3}$ accounts for the screen pairs.
+On the specified range
+$A_*/2\le T\le B Y^\beta$, one has
+$P/B\asymp_{C,Q}Y^{-\xi}$, $T^2/V\ll_{C,Q}Y^{2\beta}$
+and $B/T\ll_{C,Q}Y^\varepsilon$.
+The sum over the blocks is
+\[
+ O_\epsilon\!\left(
+        Y^{1-\xi/2+(5/2)\beta+\varepsilon+\lambda+16\rho+\epsilon}\right),
+\]
+which saves a power by \cref{eq:criticalgriddoubletransitioncondition}.
+
+The two pointwise bounds give the required squared
+errors on the modulus interval. Parseval and
+Cauchy--Schwarz give the asserted effect on the second
+moment after the replacements.
+\end{proof}
+
+\clearpage
 \section{Conditional bounds from uniform prime-pair discrepancies}
 \label{sec:pairconditional}
 
@@ -12775,6 +13137,9 @@ M\"obius range to short nonzero inverse phases.
 where the Farey arcs are assigned their full length.
 \Cref{thm:criticalgridclippeddeletion} removes a lower
 M\"obius range across all retained arc denominators.
+\Cref{thm:criticalgriddoublecompletion} makes the two
+Kloosterman factors of the long-divisor remainder
+explicit and removes a portion of its zero mode.
 \Cref{prop:criticalgridarcsharpness} shows that a power saving
 for arbitrary arc functions cannot follow from their size,
 their energy, and the conductor cutoffs alone.
@@ -12941,6 +13306,11 @@ of the two slope weights used in \cref{thm:criticalgridflatdeletion}.
 The file \texttt{formalization/ClippedArcCancellation.lean}
 checks the branch identity, reflected congruence, and inverse
 displacement used in \cref{thm:criticalgridclippeddeletion}.
+
+The file \texttt{formalization/DoubleCompletion.lean}
+checks the cleared phase identity and the congruence
+used to change a branch representative in
+\cref{thm:criticalgriddoublecompletion}.
 
 The file \texttt{formalization/PrefixPersistence.lean} checks
 the finite sum version of the large-prefix estimate used in

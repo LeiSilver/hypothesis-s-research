@@ -4,6 +4,7 @@ This repository contains the English research manuscript and the code and data f
 
 - [Manuscript (PDF)](output/pdf/hypothesis_s_paper.pdf)
 - [LaTeX source](output/pdf/hypothesis_s_paper.tex)
+- [Lean verification of the double completion phase and branch representative](formalization/DoubleCompletion.lean)
 - [Lean verification of the clipped-arc inverse branches and their reflection](formalization/ClippedArcCancellation.lean)
 - [Lean verification of reciprocity and the reflected slope period](formalization/FlatArcCancellation.lean)
 - [Lean verification of the reduced completion modulus and inverse residue](formalization/ComplementaryPoisson.lean)
@@ -41,6 +42,8 @@ This repository contains the English research manuscript and the code and data f
 - [Lean verification of the signed progression rows](formalization/CriticalArithmetic.lean)
 
 ## Research checkpoint · 26 November 2026
+
+Theorem 13.26 gives a double completion for the long-divisor remainder. The clipped Farey lengths can be replaced by a short inverse-numerator Fourier series. The completed coefficient splits into a finite cofactor sum and two classical Kloosterman sums, with denominator frequencies restricted to $|k|\le Y^{8\rho}(dr)^2/V$ up to negligible error. At zero denominator frequency both Kloosterman sums are Ramanujan sums. When the Farey harmonic is nonzero and the shared-prime cofactor is at most $Y^\lambda$, their total contribution has power-saving squared norm for $\varepsilon+\lambda+2\rho<\xi$. In the range $d\le BY^\beta$ with that cofactor bound, the nonzero denominator frequencies can also be removed when $(5/2)\beta+\varepsilon+\lambda+16\rho<\xi/2$.
 
 Theorem 13.25 discards $d\le P Y^\nu$ across all retained arc denominators, including clipped Farey arcs, when $\nu+9\rho<\xi$. Completing the denominator sum after a CRT decomposition gives a Ramanujan coefficient times a phase from the small cofactor. Reflection pairs the two signs, and the difference of Farey arc lengths has a power-saving bound. Since $\rho$ can be arbitrarily small, the conductor-pair second moment can keep only $d\gg B Y^{-\varepsilon}$ in both coefficients for every fixed $\varepsilon>0$.
 
@@ -132,6 +135,7 @@ With Elan installed, run the Lean check from the repository root.
 
 ```sh
 elan toolchain install leanprover/lean4:v4.35.0
+elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/DoubleCompletion.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/ClippedArcCancellation.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/FlatArcCancellation.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/ComplementaryPoisson.lean
