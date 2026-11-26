@@ -168,6 +168,10 @@ including on a tapered upper product range.
 \Cref{thm:microscopicconcentration} gives a lower bound
 for the norm from concentration in a shrinking interval of
 zero ordinates, with a consequence for central nonvanishing.
+\Cref{thm:nearcriticalcovariance} brings the covariance formula
+closer to the physical scale $N$. It also gives a mixed
+microscopic covariance estimate across that scale and a
+local pair-correlation consequence of hypothesis S.
 \Cref{thm:almostall} bounds the entire supported norm on a growing
 window for almost all even moduli.
 \Cref{thm:mixedpower} bounds mixed windows with upper scales
@@ -4252,6 +4256,211 @@ then concerns central values at a single prime conductor.
 For an example of the mollified-moment theory of
 nonvanishing at prime conductors, see \cite{KMNNonvanishing}.
 
+\subsection{Covariance across the transition at the modulus}
+
+Put $L=\log N$ and $\ell=\log L$. For fixed $a,b\in
+C_c^\infty((0,\infty))$ define
+\[
+ Y_{\chi,a}(t)=
+       \sum_{\gamma\in\mathcal Z_\chi}\widehat a(L(\gamma-t)),
+ \qquad
+ \widehat a(v)=\int_{\mathbb R}a(u)e^{iuv}\,\ud u.
+\]
+We use the same convention for $b$.
+
+\begin{theorem}[A covariance formula close to the modulus]
+\label{thm:nearcriticalcovariance}
+Assume $\grh(N)$. For every fixed $D>0$ there is $A_D>0$
+such that the error in \cref{eq:zeroform} is
+$O_D(L^{-D}\NN(F)\NN(G))$ for both tests supported in
+\begin{equation}
+ r\ge L+A_D\ell^2/\log\ell .
+ \label{eq:nearcriticalsupport}
+\end{equation}
+In particular this permits physical supports beginning at
+$N\exp(A_D\ell^2/\log\ell)$.
+
+For every fixed $B>0$, uniformly for
+$|t|,|s|\le L^B$ and fixed $a,b$ as above,
+\begin{align}
+ \mathbf E_N Y_{\chi,a}(t)\overline{Y_{\chi,b}(s)}
+   &=\int_0^\infty \min(u,1)a(u)\overline{b(u)}
+                     e^{-i(t-s)Lu}\,\ud u \notag\\
+   &\quad+O_{a,b,B}\!\left(
+     \frac{(\ell^3+\|T_N\|)(1+|t|)(1+|s|)}{L}\right).
+ \label{eq:transitionmicroscopic}
+\end{align}
+Thus hypothesis S gives the indicated microscopic limit
+uniformly for $|t|,|s|\le L^\beta$ at each fixed
+$0\le\beta<1/2$, including tests crossing $u=1$.
+\end{theorem}
+
+\begin{proof}
+Use the Mellin calculation of \cref{eq:modelresidue},
+but move the contour to $-\lambda$ with
+$\lambda=(\log\ell)/\ell$. For sufficiently large $N$,
+$0<\lambda<1/8$. Uniformly on this line,
+\begin{equation}
+ \SSS(N)|H_N(-\lambda+i\tau)|\le L^{o(1)}.
+ \label{eq:movingcontoureuler}
+\end{equation}
+Indeed, the Euler factors at $p\nmid N$ have an absolutely
+summable deviation from one, uniformly for $\lambda\le1/8$.
+The factors at $p\mid N$ have logarithmic absolute value
+at most $p^{-1+\lambda}$.
+The proof of \cref{eq:conductortail} shows
+$\sum_{p\mid N}(p^\lambda-1)/p=o(\ell)$ for this choice of
+$\lambda$. Also $\sum_{p\mid N}p^{-1}=O(\log\ell)$,
+by Mertens' theorem up to $L$ and counting the prime
+divisors above $L$. Finally $\SSS(N)\ll\ell$.
+
+For $\Re z=-\lambda$ and $|\Im z|\le1$ the integrand
+in the shifted Mellin formula, apart from $R^{z}$ and
+$\SSS(N)H_N(z)$, is bounded in absolute value by
+\[
+ \frac{O(D_0^2\|F_j\|_{H^1}\|G_k\|_{H^1})}
+      {\lambda^2+(\Im z)^2},\qquad D_0=e^{k-j},\quad j\le k .
+\]
+Here $\zeta(1+z)$ contributes at most $O(1+|z|^{-1})$,
+and the two integrations by parts for $\widetilde J(z)$
+give the other factor $|z|^{-1}$. At $|\Im z|\ge1$ the
+zeta product is $O((1+|\Im z|)^{3/4}\log^2(2+|\Im z|))$
+uniformly in $\lambda$, by the functional equation and
+truncation of the two Dirichlet sums at length
+$O(1+|\Im z|)$. The same two integrations by parts
+give integrable decay there. The residue at zero is
+unchanged, so the error in \cref{eq:modelresidue} becomes
+\[
+ O\bigl(L^{o(1)}\lambda^{-1}D_0^2 R^{-\lambda}
+                   \|F_j\|_{H^1}\|G_k\|_{H^1}\bigr)
+ \qquad (R=e^j/N).
+\]
+
+Choose a fixed $B_0$ sufficiently large in terms of $D$.
+For $|j-k|\le B_0\ell$ one has $D_0^2\le L^{2B_0}$.
+On supports \eqref{eq:nearcriticalsupport},
+$R^{-\lambda}\le L^{-A_D+o(1)}$. Taking $A_D$
+sufficiently large makes the row and column sums of
+the near-packet errors $O_D(L^{-D})$, including the
+$O_{B_0}(\ell)$ packets per row. The arithmetic diagonal
+error and the difference between $b_N$ and $L-c_N$
+remain power savings at these supports.
+For the far packets use \cref{eq:Mpacket} in energy
+and the exponentially decaying kernel of
+\cref{eq:archdensity}, as in the proof of
+\cref{eq:zeroform}. Their Schur sums are
+$O(\SSS(N)L e^{-3B_0\ell/8})$ or smaller.
+The explicit-formula replacement of $\ell_\chi$ by
+$-Z_\chi$ still has a power-saving error because both log
+supports lie above $L$. This proves the first assertion.
+
+For the mixed statistic use
+$F(r)=L^{-1}a(r/L)e^{-itr}$ and
+$G(r)=L^{-1}b(r/L)e^{-isr}$. Their supports are contained
+in a fixed interval of positive scales times $L$, and
+$\NN(F)\ll_a(1+|t|)/\sqrt L$, with the analogous bound
+for $G$. The explicit formula replaces their character
+vectors by the negative zero sums with power-saving
+error in the resulting pairing, since the lower
+scaled support endpoint is positive. Write
+$h=A_1\ell^2/\log\ell$ with $A_1$ as in
+\cref{eq:nearcriticalsupport} for $D=1$. Split each test
+with smooth cutoffs into a lower piece supported in
+$r\le L-h$, an upper piece in $r\ge L+h$, and a middle
+piece in $[L-2h,L+2h]$. The cutoffs transition on
+intervals of length $h$ and leave each energy bound valid
+up to a constant.
+
+In the lower--lower pairing the model is zero, since
+the physical variables are below $Ne^{-h}$.
+The diagonal gives $\int rF_-\overline{G_-}\,\ud r$
+with power-saving error by the diagonal calculation
+preceding \cref{eq:modelresidue}. In the upper--upper
+pairing the combined diagonal and model give
+$\mathcal W_N(F_+,G_+)$ with error
+$O(L^{-1}\NN(F_+)\NN(G_+))$ by the first part of the proof.
+This archimedean term is
+$b_N\int F_+\overline{G_+}\,\ud r+O_{a,b,B}(\ell/L)$.
+Indeed the remaining symbol has logarithmic growth.
+In its weighted Fourier integral, shift by $t$ or $s$
+in each factor and use Cauchy--Schwarz. Each demodulated
+upper test has $H^1$ norm $O_{a,b}(L^{-1/2})$.
+Also $b_N=L+O(\ell)$.
+
+For a lower--upper pair the diagonal is zero and the
+model is $O(\SSS(N)L e^{-c h}\NN(F)\NN(G))$ by
+\cref{eq:Mpacket}. When one input is a middle piece,
+the diagonal costs $O_{a,b}(h/L)$ since each weight has
+amplitude $O_{a,b}(L^{-1})$ and the diagonal mass in a
+unit log packet at $r\asymp L$ is $O(L)$.
+For the model on such a pair, the packets with separation
+at most $h$ have $1+(\max(j,k)-L)_+=O(h)$.
+Their model bound, after summation over the separation,
+is $O(\SSS(N)h\NN(F)\NN(G))$.
+The other packets again have exponentially small Schur sum.
+Restoring the two integrals on either side of $r=L$
+costs $O_{a,b}(h/L)$. The sum of the resulting main terms is
+the integral in \cref{eq:transitionmicroscopic}.
+Finally $\mathcal A=\B+\mathcal D+\mathcal M$ and
+$|\B|\le\|T_N\|\NN(F)\NN(G)$. Since
+$\SSS(N)h\ll\ell^3$, this proves the estimate.
+\end{proof}
+
+Under hypothesis S, the pair law \eqref{eq:necessarypair}
+extends to shrinking height windows for every continuous
+compactly supported gap test. More precisely, fix
+$0\le\beta<1/2$ and a nonnegative $f\in C_c^\infty(\mathbb R)$.
+Put $f_H(t)=f((t-t_0)/H)$ with $0<H\le1$ and $LH\to\infty$.
+Uniformly for $|t_0|\le L^\beta$, one has
+\begin{equation}
+ \frac1H\nu_{N,f_H}
+  \ \longrightarrow\
+  \frac{\int f}{2\pi}
+      \left[\delta_0+
+         \left(1-\left(\frac{\sin\pi x}{\pi x}\right)^2\right)
+        \ud x\right].
+ \label{eq:fullpairshrinking}
+\end{equation}
+Here convergence is tested against each continuous compactly
+supported function of the gap variable.
+
+To prove this, take first an even real Schwartz test
+$\Phi$ with compact Fourier support, using $\mathcal F$
+as in \cref{thm:restrictedzeropairs}. Split $\mathcal F\Phi$
+smoothly into a part supported in $(-1,1)$ and an even part
+supported away from zero. The first part is covered by
+\cref{eq:restrictedpairlaw}. For the other part $\Phi_1$,
+take $a=\mathcal F\Phi_1$ on the positive axis and a real
+$b\in C_c^\infty((0,\infty))$ equal to one on its support.
+The transfer calculation in \cref{eq:restrictedgaptransfer}
+with the two Schwartz kernels $\widehat a(2\pi x)$ and
+$\widehat b(2\pi x)$ yields
+\[
+ \frac1H\int\Phi_1\,\ud\nu_{N,f_H}
+   =\frac1{\pi H}\Re\int f_H(t)
+         \mathbf E_N Y_{\chi,a}(t)\overline{Y_{\chi,b}(t)}
+            \,\ud t+O_{f,a,b,\beta}((LH)^{-1}).
+\]
+Indeed the unweighted kernel product gives
+$\int_0^\infty a(u)b(u)e^{-2\pi iux}\,\ud u$,
+whose real part is $\Phi_1(x)/2$. The two decay bounds
+in the proof of \cref{eq:restrictedgaptransfer} use the
+Schwartz absolute values and hold for these kernels.
+Apply \cref{eq:transitionmicroscopic} at $t=s$.
+Hypothesis S gives $\|T_N\|=O(\ell)$, so the error tends
+to zero even on $|t_0|\le L^\beta$.
+The main term is $(\int f)/(2\pi)$ times
+$\int_{\mathbb R}\min(|u|,1)\mathcal F\Phi_1(u)\,\ud u$.
+Adding the first part gives the sine-kernel functional.
+For general compactly supported tests take their even
+part and approximate by band-limited Schwartz tests using
+convolution with a Schwartz approximate identity of
+compact Fourier support. The approximation is uniform with
+weight $(1+|x|)^2$. It is valid for these measures since the
+bin-count estimate in the proof of \cref{eq:restrictedgaptransfer}
+gives $\nu_{N,f_H}([j,j+1])/H\ll_{f,\beta}1+\log(2+|j|)$
+for $LH\ge1$. This proves \cref{eq:fullpairshrinking}.
+
 \section{Norm decay for almost all moduli on growing windows}
 \label{sec:almostall}
 
@@ -6232,6 +6441,10 @@ than the indicated microscopic threshold.
 limiting proportion of central zeros an obstruction
 on the full norm scale, and gives a uniform shrinking
 window bound under hypothesis S.
+\Cref{thm:nearcriticalcovariance} supplies a logarithmic
+error closer to the physical scale $N$ and gives, under
+hypothesis S, the full local gap law
+\eqref{eq:fullpairshrinking} on shrinking height windows.
 Known variance obstructions of the type studied by Fiorilli and
 Martin and by Hayani occur at $N\asymp\log\log x$
 \cite{FiorilliMartin,Hayani}. These support scales lie beyond
@@ -6296,6 +6509,9 @@ The file \texttt{formalization/ZeroConcentration.lean}
 checks the finite lower bound from nonnegative weights
 and its transfer through a signed error in
 \cref{thm:microscopicconcentration}.
+The file \texttt{formalization/PairHeightSymmetry.lean}
+checks the interchange of the two zero-label sums and the
+height symmetrization used in \cref{eq:fullpairshrinking}.
 The file \texttt{formalization/CriticalArithmetic.lean}
 verifies the two congruence branches and the reduced
 proper-power threshold in \cref{thm:criticalpowers}.

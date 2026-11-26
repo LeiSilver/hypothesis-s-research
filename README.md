@@ -4,6 +4,7 @@ This repository contains the English research manuscript and the code and data f
 
 - [Manuscript (PDF)](output/pdf/hypothesis_s_paper.pdf)
 - [LaTeX source](output/pdf/hypothesis_s_paper.tex)
+- [Lean verification of the pair-height symmetry](formalization/PairHeightSymmetry.lean)
 - [Lean verification of the finite zero-concentration inequalities](formalization/ZeroConcentration.lean)
 - [Lean verification of the bin bound for short zero gaps](formalization/ZeroGapBins.lean)
 - [Lean verification of the local conductor partition](formalization/ConductorInclusionExclusion.lean)
@@ -14,6 +15,8 @@ This repository contains the English research manuscript and the code and data f
 - [Lean verification of the signed progression rows](formalization/CriticalArithmetic.lean)
 
 ## Research checkpoint · 26 November 2026
+
+Under Dirichlet GRH, Theorem 10.12 lowers the support threshold for the zero covariance formula to $N\exp(A_D(\log\log N)^2/\log\log\log N)$, with operator error $O((\log N)^{-D})$. It gives a mixed microscopic estimate across the transition and, under Hypothesis S, the sine-kernel gap law in shrinking height windows with $H\log N\to\infty$.
 
 Theorem 10.11 bounds the mean square of the zero count in a window of radius $c_0/(K\log N)$ in terms of the high-support covariance norm. A mean square of central-zero multiplicities bounded below by a positive constant forces $\|T_N\|\gg\log N$. Under Hypothesis S the proportion of odd characters with vanishing central value is $O(1/\log\log N)$.
 
@@ -41,6 +44,7 @@ With Elan installed, run the Lean check from the repository root.
 
 ```sh
 elan toolchain install leanprover/lean4:v4.35.0
+elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/PairHeightSymmetry.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/ZeroConcentration.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/ZeroGapBins.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/ConductorInclusionExclusion.lean
@@ -51,6 +55,6 @@ elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/Criti
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/CriticalArithmetic.lean
 ```
 
-The Lean modules cover the finite zero-concentration inequalities, the zero-gap bin bound, the conductor partition and finite moment identity, congruence line geometry, prefix identities, and the prime-power threshold. Their axiom audits use only `propext`, `Classical.choice` and `Quot.sound`. The manuscript supplies the analytic proofs of the sieve and operator estimates.
+The Lean modules cover pair-height symmetry, the finite zero-concentration inequalities, the zero-gap bin bound, the conductor partition and finite moment identity, congruence line geometry, prefix identities, and the prime-power threshold. Their axiom audits use only `propext`, `Classical.choice` and `Quot.sound`. The manuscript supplies the analytic proofs of the sieve and operator estimates.
 
 The manuscript's reproducibility section lists the commands for the finite certificates. The scripts and rational witness data are at the repository root. The manuscript acknowledges assistance from OpenAI Codex.
