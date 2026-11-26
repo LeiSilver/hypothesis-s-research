@@ -1062,6 +1062,105 @@ attains $-(4/45)N_j\SSS(N_j)+O(N_j/\log N_j)$, by the major-arc
 calculation in \cref{prop:single-test-minor}. Thus these distribution
 bounds alone allow the full loss of the main term at isolated moduli.
 
+\subsection{The reflected correlation of two long M\"obius divisor sums}
+
+For $2\le R\le\sqrt N$ use the truncated divisor sum of
+Goldston and Y{\i}ld{\i}r{\i}m \cite{GoldstonYildirimDivisor},
+\[
+ \begin{aligned}
+ \Lambda_R(n)&=\sum_{d\mid n,\ d\le R}\mu(d)\log(R/d),\\
+ U_R(n)&=\Lambda(n)-\Lambda_R(n)
+       =-\sum_{d\mid n,\ d>R}\mu(d)\log(d/R)\quad(n>1).
+ \end{aligned}
+\]
+The last equality uses $\sum_{d\mid n}\mu(d)=0$. Thus the
+remainder retains the exact M\"obius signs of the prime weights.
+
+\begin{proposition}[Two long divisors in the single-test remainder]
+\label[proposition]{prop:single-test-long-divisors}
+Assume Dirichlet GRH. Write $F=f^2$, $c=4/45$ and $L=\log N$.
+For every sufficiently large even $N$ and $2\le R\le\sqrt N$,
+\[
+ N\SSS(N)(\Delta_N-c)=
+ \sum_{1<m<N-1} F(m/N) U_R(m)U_R(N-m)
+ +O_\epsilon\bigl(N^{1+\epsilon}/R+\sqrt N R L^2+R^2\bigr).
+\]
+At $R=\sqrt N/L^4$ the error is $O(N/L^2)$. The sum then runs
+over $ud+ve=N$ with $d,e>R$, $u,v\ll\sqrt N L^4$ and weight
+$F(ud/N)\mu(d)\mu(e)\log(d/R)\log(e/R)$. A lower bound
+$-(c-\eta)N\SSS(N)$ for this sum with fixed $\eta>0$ would imply
+a positive fixed-test margin at every modulus where it holds.
+\end{proposition}
+
+\begin{proof}
+Put $b_d=\mu(d)\log(R/d)$ for $d\le R$ and zero otherwise.
+The expansion $1_{d\mid m}=d^{-1}\sum_{q\mid d}c_q(m)$ gives
+$\Lambda_R(m)=\sum_{q\le R}a_q c_q(m)$, where
+$a_q=\sum_{q\mid d}b_d/d$. Set $a_q=0$ for $q>R$ and
+$b_q^*=\mu(q)/\varphi(q)$. We first compare the two correlations
+involving $\Lambda_R$ to their periodic means.
+
+For the mixed sum $\sum_m F(m/N)\Lambda(m)\Lambda_R(N-m)$,
+each divisor $d$ imposes $m\equiv N\bmod d$. Its weighted prime
+sum equals $cN\,1_{(N,d)=1}/\varphi(d)+O(\sqrt N L^2)$ by
+partial summation under GRH. In a nonunit class only powers
+of primes dividing $d$ can contribute, with total weight $O(L^2)$.
+The main term for each $d$ averages the divisor indicator with
+$m$ uniform on units modulo $d$. For $q\mid d$ those units reduce
+uniformly to units modulo $q$, on which $c_q(N-m)$ has average
+$b_q^*c_q(N)$ by its additive character expansion. Since
+$\sum_d|b_d|\le\sum_{d\le R}\log(R/d)\ll R$, the mixed sum equals
+\[
+ cN\sum_q a_q b_q^*c_q(N)+O(\sqrt N R L^2).
+\]
+Reflection gives the other mixed sum since $F(u)=F(1-u)$.
+For $\Lambda_R(m)\Lambda_R(N-m)$ the two divisor conditions
+give either no solution or one class modulo their least common
+multiple. Summing $F(m/N)$ on a class differs from its integral
+times the class density by $O(1)$, uniformly by bounded variation.
+The total error is $O(R^2)$. In the periodic mean, additive
+orthogonality pairs equal reduced frequencies in $c_q(m)c_{q'}(N-m)$,
+giving zero for $q\ne q'$ and $c_q(N)$ otherwise. The main term
+of this sum is therefore $cN\sum_q a_q^2c_q(N)$.
+
+It remains to control
+$\sum_q (b_q^*-a_q)^2c_q(N)$, since
+$\sum_q(b_q^*)^2 c_q(N)=\SSS(N)$.
+Both coefficients vanish for nonsquarefree $q$. For squarefree
+$q\le R$ put $Z=R/q$. Then
+\[
+ a_q=\frac{\mu(q)}q\sum_{\substack{k\le Z\\(k,q)=1}}
+                  \frac{\mu(k)}k\log(Z/k).
+\]
+Without the coprimality condition the sum is
+$1+O_\delta(Z^{-1/2+\delta})$ for each $0<\delta<1/2$.
+Indeed the RH bound $\sum_{k\le t}\mu(k)\ll_\delta t^{1/2+\delta}$
+\cite{SoundMobius} controls the two tails by partial summation,
+using a smaller exponent to absorb logarithms. The limiting
+sums $\sum\mu(k)/k=0$ and $\sum-\mu(k)\log(k)/k=1$ follow from
+the value and derivative of $1/\zeta(s)$ at $1$.
+To remove the primes dividing $q$, convolve $\mu$ with the
+indicator of integers $\ell$ supported on these primes. This
+sums the unrestricted estimate at $Z/\ell$ with weight $1/\ell$.
+The main series is $\prod_{p\mid q}(1-1/p)^{-1}=q/\varphi(q)$.
+Both its tail and the summed errors are
+$O_\delta(Z^{-1/2+\delta}\prod_{p\mid q}(1-p^{-1/2-\delta})^{-1})$.
+The product is $O_\delta(q^\delta)$ by treating finitely many
+small primes separately. It follows that
+\[
+ |b_q^*-a_q|\ll_\delta q^{-1+\delta}(q/R)^{1/2-\delta}.
+\]
+On $q\le R$ the squared difference times $|c_q(N)|$ sums to
+$\ll_\delta R^{-1+2\delta}\sum_{q\le R}(q,N)/q
+\ll R^{-1+2\delta}\tau(N)\log(2R)$.
+On $q>R$ the dyadic tail estimate in the proof of
+\cref{prop:single-test-minor} applies. Taking $\delta$ small gives
+$O_\epsilon(N^\epsilon/R)$ for the full coefficient error.
+Finally expand $U_R(m)U_R(N-m)$ and use the $O(L^2)$ unit-condition
+error for the original $\Lambda$ product. Substitution proves
+the formula with all $m$ in the residual sum.
+\end{proof}
+
 \section{Certification on the balanced window}
 \label{sec:certificate}
 
@@ -15314,6 +15413,17 @@ A.~Chirre and M.~V.~Hagen,
 G.~Bhowmik and L.~Grimmelt,
 \newblock \emph{The exceptional set of the Goldbach problem},
 \newblock \url{https://arxiv.org/abs/2607.27282}.
+
+\bibitem{GoldstonYildirimDivisor}
+D.~A.~Goldston and C.~Y.~Y{\i}ld{\i}r{\i}m,
+\newblock \emph{Higher correlations of divisor sums related to primes I:
+triple correlations},
+\newblock \url{https://arxiv.org/abs/math/0111212}.
+
+\bibitem{SoundMobius}
+K.~Soundararajan,
+\newblock \emph{Partial sums of the M\"obius function},
+\newblock \url{https://arxiv.org/abs/0705.0723}.
 
 \bibitem{GoldstonYildirimShort}
 D.~A. Goldston and C.~Y. Y{\i}ld{\i}r{\i}m,
