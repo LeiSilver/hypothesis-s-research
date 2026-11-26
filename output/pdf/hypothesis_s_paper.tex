@@ -1161,6 +1161,58 @@ error for the original $\Lambda$ product. Substitution proves
 the formula with all $m$ in the residual sum.
 \end{proof}
 
+\begin{proposition}[Coprime complementary factors at every even modulus]
+\label[proposition]{prop:single-test-coprime-tail}
+In \cref{prop:single-test-long-divisors} one can restrict the sum
+to $(m,N)=1$ with error
+\[
+ O_\epsilon\bigl(N^{1+\epsilon}/R+\sqrt N R L^2+2^{\omega(N)}R^2\bigr).
+\]
+In particular $R=\sqrt N/(L^4\,2^{\omega(N)/2})=N^{1/2-o(1)}$
+gives error $O(N/L^2)$ for every sufficiently large even $N$.
+In the resulting sum over $ud+ve=N$, every factor on the left
+is a unit modulo $N$ and $(ud,ve)=1$. In particular, fixing $u,v$
+restricts $d$ to the single class $N\overline u\bmod v$ when $v>1$.
+\end{proposition}
+
+\begin{proof}
+Set $\kappa=\varphi(N)/N$ and retain only divisors $(d,N)=1$
+in the short sums. This is exact on the unit samples. Write
+$a'_q=\sum_{q\mid d,\,(d,N)=1} b_d/d$. Only $(q,N)=1$ occur.
+For a mixed sum we may extend the prime coordinate to all $m$:
+the extra prime powers have a base dividing $N$, with $O(\omega(N))$
+samples on the balanced support. The other short sum has absolute
+weight at most $\tau(N-m)L$, giving cost $O_\epsilon(N^\epsilon)$.
+The mixed mean in the preceding proof now uses $a'_q$.
+
+For the two short sums insert
+$1_{(m,N)=1}=\sum_{s\mid(m,N)}\mu(s)$ in the CRT count.
+The period of the two divisor conditions is coprime to $N$.
+The restriction multiplies its density by $\kappa$ and costs
+$O(2^{\omega(N)})$ per divisor pair in the bounded-variation
+estimate. Thus the two short sums have main term
+$cN\kappa\sum_{(q,N)=1}(a'_q)^2c_q(N)$ with error
+$O(2^{\omega(N)}R^2)$.
+
+For $(q,N)=1$ the limiting coefficient for $a'_q$ is
+$b_q^*/\kappa$. Indeed the coprimality restriction on $k$
+in the preceding proof now removes all primes of $qN$.
+The coefficient error for $q\le R$ is at most
+$O_\delta(q^{-1}(qN)^\delta(q/R)^{1/2-\delta})$.
+The Euler product gives
+\[
+ \kappa^{-1}\sum_{(q,N)=1}(b_q^*)^2 c_q(N)=\SSS(N):
+\]
+the primes dividing $N$ contribute $p/(p-1)$ to the singular
+series, including the factor two. Completing the square leaves
+$\kappa\sum_{(q,N)=1}(a'_q-b_q^*/\kappa)^2c_q(N)$.
+The same dyadic estimates, with $\kappa^{-1}\ll_\delta N^\delta$
+and sufficiently small $\delta$, bound it by $O_\epsilon(N^\epsilon/R)$.
+This proves the error estimate. The stated choice of $R$ uses
+$2^{\omega(N)}\le\tau(N)=N^{o(1)}$. Finally $(m,N)=1$ gives
+$(m,N-m)=1$, hence the coprimalities in the claim.
+\end{proof}
+
 \section{Certification on the balanced window}
 \label{sec:certificate}
 
