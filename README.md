@@ -4,6 +4,7 @@ This repository contains the English research manuscript and the code and data f
 
 - [Manuscript (PDF)](output/pdf/hypothesis_s_paper.pdf)
 - [LaTeX source](output/pdf/hypothesis_s_paper.tex)
+- [Lean verification of signed residue counts in complete and incomplete blocks](formalization/ResidueBlocks.lean)
 - [Lean verification of the finite prefix estimate](formalization/PrefixPersistence.lean)
 - [Lean verification of the centered product collar](formalization/CenteredProduct.lean)
 - [Lean verification of the finite Euler-factor residue calculation](formalization/EulerOrthogonality.lean)
@@ -20,6 +21,8 @@ This repository contains the English research manuscript and the code and data f
 - [Lean verification of the signed progression rows](formalization/CriticalArithmetic.lean)
 
 ## Research checkpoint · 26 November 2026
+
+Theorems 9.5 and 9.6 give a Type II approximation to the full critical product restriction $xy\le CN^2$. On separated inputs the Type I terms cancel by the difference of two residue counts. On the remaining packets Dirichlet GRH gives a Type I main term equal to the continuous singular-series model, with a uniform power-saving error in the normalized operator norm. For any fixed $0<\theta<1/6$, the resulting form retains only Type II weights with both factors exceeding $\lfloor N^\theta\rfloor$ in the expanded coordinate.
 
 Theorem 13.4 gives an unconditional mean-square estimate for each bounded smaller input range, averaged over all even moduli. Up to $xy\le C_0N^2(\log Y)^B$ for $N\in[Y,2Y]$, the average squared normalized norm is $O((\log Y)^{B-2+\varepsilon})$. The same estimate holds for the progression correction to the identical zero labels. The proof converts the first-moment progression estimate of Bombieri, Friedlander and Iwaniec into a maximal estimate for the signed prefixes.
 
@@ -61,6 +64,7 @@ With Elan installed, run the Lean check from the repository root.
 
 ```sh
 elan toolchain install leanprover/lean4:v4.35.0
+elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/ResidueBlocks.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/PrefixPersistence.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/CenteredProduct.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/EulerOrthogonality.lean

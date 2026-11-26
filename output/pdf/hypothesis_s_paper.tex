@@ -154,6 +154,12 @@ on $O(\log N)$ dyadic pairs at fixed precision.
 \Cref{thm:criticalcenteredrows} expresses the separated part
 of the critical restriction in terms of the differences of
 von Mangoldt weights on the two sides of multiples of $N$.
+\Cref{thm:criticaltypeii} bounds the Type~I terms of those
+differences uniformly in the modulus and leaves an explicit
+bilinear form on the separated critical range.
+\Cref{thm:fullcriticaltypeii} uses Dirichlet GRH to remove the
+Type~I terms and the continuous model throughout each fixed
+critical product cap.
 \Cref{thm:shiftmean} bounds the mean norm of translated pairs of
 high-support windows at a single modulus.
 \Cref{thm:upperproduct} gives a uniform upper cutoff on the product
@@ -2555,6 +2561,301 @@ normalized norm, where the last term covers the unit
 restriction as in the proof of that theorem.
 Take the upper limit in $N$ at fixed $K$, then let $K$
 tend to infinity. This proves the equivalence.
+\end{proof}
+
+\subsection{Cancellation of the Type I progression terms}
+
+For $U,V\ge1$, put
+\[
+ B_V(m)=\sum_{\substack{\ell\mid m\\\ell>V}}\Lambda(\ell),
+ \qquad
+ \mathcal L_{U,V}(t)=\sum_{\substack{dm=t\\d>U,\;m>V}}
+                             \mu(d)B_V(m).
+\]
+Here $\mu(d)$ is the M\"obius function. Let
+$\mathcal R^{\mathrm{II}}_{N,C,A;Q,U,V}$ be the form in
+\cref{eq:criticalcenteredform} with the additional condition
+$nbN>N^2/Q$ and with the difference of von Mangoldt
+weights replaced by
+$\mathcal L_{U,V}(bN+n)-\mathcal L_{U,V}(bN-n)$.
+
+\begin{theorem}[A bilinear form on separated critical inputs]
+\label{thm:criticaltypeii}
+Fix $C\ge1$. Uniformly for $2\le A\le N/8$,
+$Q\ge2$, $AQ\le N$ and $1\le U,V\le N/4$, one has
+\begin{align}
+ &\left|\mathcal B_{N,C}(F,G)
+          -\mathcal R^{\mathrm{II}}_{N,C,A;Q,U,V}(F,G)\right|
+   \notag\\
+ &\qquad\ll_C
+   \left(Q^{-1/2}+\frac{A}{N}
+                   +\frac{A\sqrt Q\,UV\log N}{N}
+                   +N^{-c}\right)\NN(F)\NN(G)
+   \label{eq:criticaltypeii}
+\end{align}
+for $F$ supported in $x\le A$, for some absolute $c>0$.
+In particular, for each fixed $0<\kappa<1$ and any
+$2\le A\le N^{1-\kappa}$ take
+$U=V=\lfloor N^{\kappa/4}\rfloor$ and $Q=N^{\kappa/6}$.
+The error is then $O_{C,\kappa}(N^{-c_\kappa})$ on
+unit tests. Both factors of each larger integer in the
+remaining bilinear form exceed $\lfloor N^{\kappa/4}\rfloor$.
+The estimates hold for the physical form without GRH.
+\end{theorem}
+
+\begin{proof}
+Use \cref{thm:criticalcenteredrows} to sample at $bN$.
+For the original von Mangoldt weights the terms
+$nbN\le N^2/Q$ cost $O_C(Q^{-1/2}+N^{-c})$ in norm.
+Indeed, on unit log packets with scales $X,P$ for
+$n,bN$ respectively, the values $bN\pm n$ lie at
+scale comparable to $P$, since $n\le A\le N/8$.
+Their physical product with $n$ is at most $2N^2/Q$.
+The unsigned packet estimates in the proof of
+\cref{thm:subcritical} apply to these two arithmetic
+branches. Those estimates use only the supremum of the
+larger weight, which here is at most
+$O(P^{-1/2}\NN(G_k))$ for a larger packet $G_k$.
+The same geometric row and column sums give the stated
+bound for the centered terms.
+
+Use Vaughan's identity \cite{VaughanElementary},
+with $*$ denoting Dirichlet convolution and
+$f_{\le R}(n)=f(n)\mathbf1_{n\le R}$:
+\[
+ \Lambda=\Lambda_{\le V}+\mu_{\le U}*\log
+       -\mu_{\le U}*\Lambda_{\le V}*\mathbf1
+       +\mu_{>U}*\Lambda_{>V}*\mathbf1 .
+\]
+It follows by inserting $\log=\Lambda*\mathbf1$ and
+$\mu*\mathbf1=\mathbf1_{\{1\}}$. The last term equals
+$\mathcal L_{U,V}$, since $B_V(m)$ vanishes for $m\le V$.
+On the retained band $bN>N^2/(AQ)\ge N$. Consequently
+$bN\pm n>V$ and the first term vanishes.
+The middle terms are the two Type~I forms.
+
+Fix a larger packet at scale $P$ and fix a smaller
+integer $n$ coprime to $N$. For a divisor $d$ coprime
+to $N$, the conditions $d\mid bN+n$ and $d\mid bN-n$
+each select one residue of $b$ modulo $d$.
+On every interval of consecutive integers the counts in
+two residues differ by at most one, by dividing the
+length by $d$ and counting the final incomplete block.
+Divisors with $(d,N)>1$ contribute to neither branch.
+The band $N^2/Q<nbN\le CN^2$ clips the $b$ interval
+and leaves the same count bound on each prefix.
+Partial summation thus bounds the signed divisor sum
+against the larger weight by $O(P^{-1/2}\NN(G_k))$ for
+each $d$, using the supremum and total variation of
+$z$ on the larger packet.
+
+In $\mu_{\le U}*\log$ the divisor weights include
+$\log((bN\pm n)/d)$. Replace these by $\log(bN/d)$.
+The error in each logarithm is $O(n/P)$.
+For each $d\le U$, the number of sampled integers on
+the packet is $O(1+P/N)$ in either branch. Therefore
+the error from the logarithms for that divisor is
+$O(P^{-1/2}\NN(G_k))$, since
+$(n/P)(1+P/N)\ll1$ on the retained packets.
+The common weight $z(y)\log(y/d)$ has supremum and
+total variation $O_C(P^{-1/2}(\log N)\NN(G_k))$ there.
+Indeed $P\ll_C N^2$ and $1\le d\le U\le N/4$,
+and the derivative of $\log(y/d)$ is $1/y$.
+The signed progression count gives this bound per
+divisor, and summing costs $O_C(ULP^{-1/2}\NN(G_k))$
+with $L=\log N$.
+
+For the other Type~I term set
+$\alpha(d)=\sum_{a\ell=d,\;a\le U,\;\ell\le V}\mu(a)\Lambda(\ell)$.
+Its divisor coefficient satisfies
+$|\alpha(d)|\le\sum_{\ell\mid d}\Lambda(\ell)=\log d$.
+With $d\le UV$, the sum of the absolute coefficients
+is $O(UV L)$. The same progression count bounds
+this Type~I term by $O(UV L P^{-1/2}\NN(G_k))$
+for the fixed $n$.
+
+The first-argument weights sum in absolute value to
+$O(\sqrt A\,\NN(F))$ by Sobolev point evaluation and
+Chebyshev's estimate. The singular series is bounded
+below by an absolute positive constant. The retained
+larger packets have $P\gg N^2/(AQ)$, so
+$\sum_P P^{-1/2}\ll \sqrt{AQ}/N$.
+Summing the Type~I errors, using the bounded packet
+multiplier norms, costs $O_C(A\sqrt Q\, UV L/N)$.
+This and the model and subcritical errors give
+\cref{eq:criticaltypeii}. For the stated parameters
+all the range conditions hold for sufficiently large
+$N$ and each error is a power saving.
+\end{proof}
+
+\subsection{The Type I main term on all critical packets}
+
+Fix $0<\theta<1/6$ and keep $U=V=\lfloor N^\theta\rfloor$.
+For tests supported in $x,y\ge N^{2/3}$, localize them to the unit log packets
+of \cref{sec:cutoff}. Define $\mathcal H^{\mathrm{II}}_{N,C}$
+on each packet pair from the normalized arithmetic
+part of $\mathcal B_{N,C}$ by replacing the von Mangoldt
+weight in the coordinate with larger packet center by
+$\mathcal L_{U,V}$. If the centers coincide, average the two
+choices. Sum over the packets using their original test
+weights, including the cutoff $xy\le CN^2$.
+
+Fix a smooth cutoff in $\log x$ that equals one for
+$x\le N^{2/3}$ and vanishes for $x\ge 2N^{2/3}$,
+with a fixed profile on the transition after translation.
+Write $F_-$ for the corresponding lower piece, and
+$F_+=F-F_-$, with the analogous convention for $G$.
+With $A=2N^{2/3}$ and $Q=N^{1/3-2\theta}$, put
+\begin{align*}
+ \mathcal K_{N,C}(F,G)={}&
+  \mathcal R^{\mathrm{II}}_{N,C,A;Q,U,V}(F_-,G)
+ +\overline{\mathcal R^{\mathrm{II}}_{N,C,A;Q,U,V}(G_-,F_+)}\\
+ &+\mathcal H^{\mathrm{II}}_{N,C}(F_+,G_+).
+\end{align*}
+
+\begin{theorem}[A Type II approximation to the full critical restriction]
+\label{thm:fullcriticaltypeii}
+Under global Dirichlet GRH, for each fixed $C\ge1$ and
+sufficiently large even $N$,
+\begin{equation}
+ |\mathcal B_{N,C}(F,G)-\mathcal K_{N,C}(F,G)|
+     \ll_{C,\theta} N^{-c_\theta}\NN(F)\NN(G)
+ \label{eq:fullcriticaltypeii}
+\end{equation}
+for some $c_\theta>0$. In particular, decay of $U_N(C)$
+is equivalent to decay of the norm of $\mathcal K_{N,C}$.
+Every replacement weight $\mathcal L_{U,V}(t)$ uses only
+factorizations with both factors above $\lfloor N^\theta\rfloor$.
+\end{theorem}
+
+\begin{proof}
+We first calculate the expected Type~I weight on a line
+of shift $h=bN$. For a positive integer $\ell$ coprime to
+$h$ define the Dirichlet series
+\[
+ D_{h,\ell}(s)=
+ \sum_{\substack{d\ge1\\(d,h)=1}}
+    \frac{\mu(d)\varphi(\ell)}{\varphi(d\ell)}d^{-s}
+     =\zeta(1+s)^{-1}E_{h,\ell}(s)
+     \qquad(\Re s>0).
+\]
+At $p\nmid h\ell$ the local factor of $D_{h,\ell}$
+is $1-p^{-s}/(p-1)$. At $p\mid\ell$ it is $1-p^{-1-s}$,
+and at $p\mid h$ it is one. The absolute sum of the
+Dirichlet coefficients $e_{h,\ell}(k)$ of $E_{h,\ell}$
+against $k^{1/4}$ is $O_\nu(h^\nu)$ for every $\nu>0$,
+uniformly in $\ell$. Indeed at $p\nmid h\ell$ the
+coefficient of $p^{-js}$ for $j\ge1$ is $-p^{-j}/(p-1)$,
+so the absolute local sum is $1+O(p^{-7/4})$.
+At $p\mid \ell$ the factor is one. At $p\mid h$
+the absolute local sum is $(1-p^{-3/4})^{-1}$.
+For all sufficiently large primes this is at most
+$p^\nu$, and the finitely many small factors are bounded
+in terms of $\nu$.
+
+Under the Riemann hypothesis for $\zeta$,
+$\sum_{m\le t}\mu(m)=O(t^{3/4})$ by the classical
+M\"obius sum estimate~\cite{SoundararajanMobius}.
+Partial summation gives
+$\sum_{m\le t}\mu(m)/m=O(t^{-1/4})$, since the full
+sum equals $1/\zeta(1)=0$ by Abel's theorem.
+Convolving with $e_{h,\ell}$ shows that
+\begin{equation}
+ \sum_{\substack{d\le U\\(d,h)=1}}
+       \frac{\mu(d)\varphi(\ell)}{\varphi(d\ell)}
+      \ll_\nu h^\nu U^{-1/4}.
+ \label{eq:typeimoebius}
+\end{equation}
+Indeed the sum over $k\le U$ of the convolution is
+bounded by $U^{-1/4}\sum_k |e_{h,\ell}(k)|k^{1/4}$.
+In the case $\ell=1$, partial summation of
+\cref{eq:typeimoebius} also gives
+\[
+ -\sum_{\substack{d\le U\\(d,h)=1}}
+      \frac{\mu(d)\log d}{\varphi(d)}
+ =D'_{h,1}(0)+O_\nu(h^\nu U^{-1/4}\log(2U)).
+\]
+The decay of the partial sums justifies the derivative
+at zero. The simple pole of $\zeta(1+s)$ gives
+$D'_{h,1}(0)=E_{h,1}(0)=\SSS(h)$, by comparing the local
+factors in \cref{eq:series} at even $h$.
+
+Suppose now the packet scales are $X\le Y$, with $X$
+the scale of the coordinate that keeps its von Mangoldt
+weight. On a line of shift $h$, the Type~I main weight
+for the larger value $y$ is
+\begin{equation}
+ \sum_{\substack{d\le U\\(d,h)=1}}
+       \frac{\mu(d)}{\varphi(d)}\log(y/d)
+ -
+ \sum_{\substack{d\le U,\;\ell\le V\\(d\ell,h)=1}}
+        \frac{\mu(d)\Lambda(\ell)}{\varphi(d\ell)} .
+ \label{eq:typeimain}
+\end{equation}
+This is $\SSS(h)+O_\nu(h^\nu U^{-1/4}L)$, where
+$L=\log N$. For the second sum use
+\cref{eq:typeimoebius} with each $\ell$, then use
+$\sum_{\ell\le V}\Lambda(\ell)/\varphi(\ell)\ll\log(2V)$
+by Chebyshev's bound and $\varphi(p^k)\ge p^k/2$.
+The first sum uses \cref{eq:typeimoebius} at $\ell=1$
+and the evaluated derivative. The logarithms of all
+positive physical arguments are $O_C(L)$.
+
+To justify \cref{eq:typeimain}, apply the Dirichlet GRH
+progression estimate
+$\psi(t;d,a)=t/\varphi(d)+O(\sqrt t\log^2(2dt))$
+for reduced residues, from the explicit formula and
+character orthogonality. In each Type~I divisor term
+the constraint $d\mid y$ selects one residue for the
+smaller integer, reduced exactly when $(d,h)=1$.
+If it is nonreduced, the smaller prime powers have
+base dividing $d$ and total weight $O_C(L^2)$.
+Enforcing the unit condition modulo $N$ on the reduced
+terms also removes smaller prime powers of weight
+$O_C(L^2)$. On the reflection line the possible equality
+of the two coordinates is already excluded by this unit
+condition for $N\ge4$.
+
+On each line the product cutoff leaves at most two
+intervals in the smaller variable. Partial summation
+uses the supremum and total variation of the product
+of the physical tests, bounded by
+$O((XY)^{-1/2}\NN(F_j)\NN(G_k))$. Multiplication by
+$\log(y/d)$ in the first Type~I term costs at most
+$O_C(L)$, including variation, since $y$ is in a packet
+of fixed logarithmic width. The second Type~I term has
+coefficient of absolute value at most $\log d$ on
+$d\le UV$, as in \cref{thm:criticaltypeii}. Thus the
+total progression error per line is
+\[
+ O_C\bigl((XY)^{-1/2} UV\sqrt X L^3
+                         \NN(F_j)\NN(G_k)\bigr).
+\]
+The short term $\Lambda_{\le V}$ of Vaughan's identity
+vanishes here. There are $O(Y/N)$ relevant lines on
+a packet with nonzero form, since $Y\gg N$.
+The product cap implies $XY\ll_C N^2$. Hence the
+normalized progression errors on this packet are
+$O_C(UV L^3/\sqrt X)$ times its energy product.
+
+The error in replacing \cref{eq:typeimain} by
+$\SSS(h)$ costs at most
+$O_{C,\nu}(N^{2\nu}U^{-1/4}L\sqrt{XY}/N)$ times the
+energy product. Here $h\ll_C Y\ll_C N^2$, and the
+length of each clipped line is $O(X)$ in the smaller
+coordinate. The main weight $\SSS(h)$ gives precisely
+the continuous integral of that line with its sign.
+Thus it cancels the corresponding part of
+$\mathcal B_{N,C}$. Since $X\gg N^{2/3}$ and
+$U=V=\lfloor N^\theta\rfloor$ with $\theta<1/6$, both errors save a power
+of $N$ on taking $\nu>0$ small. There are $O_C(L^2)$
+relevant packet pairs. This proves the claimed
+approximation by $\mathcal H^{\mathrm{II}}_{N,C}$ on
+the two upper test pieces. Apply \cref{thm:criticaltypeii}
+to the other two terms of the cutoff decomposition,
+using symmetry for the case with a lower second piece.
+With $A=2N^{2/3}$ and $Q=N^{1/3-2\theta}$ all of those errors
+also save a power of $N$.
 \end{proof}
 
 \section{Dirichlet-zero covariance when both variables are large}
@@ -7312,6 +7613,12 @@ the ordinary-prime form.
 \Cref{thm:criticalcenteredrows} characterizes decay through
 every fixed cap by the individual macroscopic line counts
 and the centered arithmetic form on separated inputs.
+\Cref{thm:criticaltypeii} removes the Type~I terms on
+all separated ranges $x\le N^{1-\kappa}$ for fixed
+$\kappa>0$, leaving the Type~II contribution.
+\Cref{thm:fullcriticaltypeii} gives the same reduction
+through every fixed critical product cap, using Dirichlet
+GRH for the progression estimates in the two upper pieces.
 \Cref{thm:fixedrowmeansquare} bounds the mean square of the
 centered norm for bounded smaller inputs by
 $O_{A,C,\varepsilon}((\log Y)^{-2+\varepsilon})$ over even
@@ -7425,6 +7732,9 @@ identity used in \cref{eq:eulerorthogonality}.
 The file \texttt{formalization/CenteredProduct.lean} checks
 the boundary collar for shifting the product test in
 \cref{thm:criticalcenteredrows}.
+The file \texttt{formalization/ResidueBlocks.lean} checks
+the two-residue count bound through the incomplete period
+used in \cref{thm:criticaltypeii}.
 
 The file \texttt{formalization/PrefixPersistence.lean} checks
 the finite sum version of the large-prefix estimate used in
@@ -7592,6 +7902,18 @@ E. Bombieri, J. B. Friedlander and H. Iwaniec,
 \newblock \emph{Primes in arithmetic progressions to large moduli. II},
 \newblock Math. Ann. \textbf{277} (1987), 361--393.
 \newblock \url{https://doi.org/10.1007/BF01458321}.
+
+\bibitem{VaughanElementary}
+R.~C. Vaughan,
+\newblock \emph{An elementary method in prime number theory},
+\newblock Acta Arith. \textbf{37} (1980), 111--115.
+\newblock \url{https://bibliotekanauki.pl/articles/1393102.pdf}.
+
+\bibitem{SoundararajanMobius}
+K.~Soundararajan,
+\newblock \emph{Partial sums of the M\"obius function},
+\newblock J. Reine Angew. Math. \textbf{631} (2009), 141--152.
+\newblock \url{https://arxiv.org/abs/0705.0723}.
 
 \bibitem{MaynardIII}
 J. Maynard,
