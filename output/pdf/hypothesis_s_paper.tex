@@ -179,6 +179,9 @@ formula at log-power supports outside a sparse set of moduli.
 \Cref{thm:divisorgridcovariance} gives a covariance formula with
 an explicit divisor-sum correction for every even modulus,
 including supports through the transition at $N$.
+\Cref{thm:upperfinitezeros} replaces the entire upper product
+contribution by a sum over bounded ordinates and separated
+zero pairs, with no lower restriction on either physical input.
 \Cref{thm:almostall} bounds the entire supported norm on a growing
 window for almost all even moduli.
 \Cref{thm:mixedpower} bounds mixed windows with upper scales
@@ -4847,6 +4850,132 @@ again a power saving. Applying \cref{eq:divisorgriderror}
 with the stated parameters proves \cref{eq:divisorgridcovariance}.
 \end{proof}
 
+\subsection{Low ordinates and separated pairs on the upper product range}
+
+Fix the cutoff $\theta$ from \cref{eq:fullzeroell}, with values in
+$[0,1]$. For $T\ge2$ and $u\ge0$, define
+\[
+ \mathcal Q_{N;T,u}(F,G)=
+ \frac{2}{\varphi(N)}
+ \sum_{\chi\ {\rm odd}}
+ \sum_{\substack{\gamma,\gamma'\in\mathcal Z_\chi\\
+                  |\gamma|,|\gamma'|\le T\\
+                  |\gamma-\gamma'|>u/L}}
+       \widehat{\theta F}(\gamma)
+       \overline{\widehat{\theta G}(\gamma')}.
+\]
+Write $\mathcal Q_{N;T,u,H}$ for the form obtained by
+multiplying the test-variable kernel of this form by
+$\Theta((r+s-H)/L)$, as in \cref{eq:uppertailmask}.
+
+\begin{theorem}[Finite zero pairs for the full upper product contribution]
+\label{thm:upperfinitezeros}
+Assume $\grh(N)$. Uniformly for sufficiently large even $N$,
+$H\ge5L$, $2\le T\le L^6$ and $u\ge0$, one has
+\begin{equation}
+ \frac{\|T_N^{\rm tail}(H)-\mathcal Q_{N;T,u,H}\|}{\SSS(N)}
+ \ll_{\Theta,\theta} e^{-H/L}
+           \left(L(1+u)+\frac{L^2}{\sqrt T}\right).
+ \label{eq:upperfinitezeros}
+\end{equation}
+The norm uses the full test space, including pairs with
+one physical input bounded independently of $N$.
+For any fixed $0<\eta<1$, at $H=(1+\eta)L\log L$ one can
+take $T=L^{2-\eta}$ and $u=L^{\eta/2}$ with normalized
+error $O_{\Theta,\theta}(L^{-\eta/2})$.
+More generally at $H=L(\log L+\kappa)$ with $\kappa\ge1$
+one can take
+\[
+ T=\max(2,L^2\tau^2e^{-2\kappa}),\qquad u=e^{\kappa/2},
+ \qquad 3\le\tau\le L,
+\]
+with normalized error $O_{\Theta,\theta}(e^{-\kappa/2}+\tau^{-1})$.
+\end{theorem}
+
+\begin{proof}
+We first bound the imprimitive Euler correction in character
+mean square. For a compact test $B$ supported in $r\ge0$, put
+\[
+ V_\chi(B)=
+ \sum_{\substack{p\mid N,\ a\ge1}}
+       \frac{\log p}{p^{a/2}}B(a\log p)\chi^*(p^a).
+\]
+Then
+\begin{equation}
+ \|V_\chi(B)\|_\chi\ll \|B\|_{H^1}.
+ \label{eq:eulerorthogonality}
+\end{equation}
+In fact, if $p^\nu\Vert N$, the coefficient $\chi^*(p^a)$
+is zero unless the local character at $p$ is principal.
+In that case it is the value at $p^a$ of the character
+modulo $N/p^\nu$ obtained from the other local components.
+Discard all terms with $p^a>N^{1/4}$ at pointwise cost
+$O(LN^{-1/8}\|B\|_\infty)$ by summing each geometric series.
+Discard the terms over $p^\nu>N^{1/4}$ at the same cost
+in character mean square. There are at most four such
+primes, and the odd-character proportion with principal
+local component is at most $2/\varphi(p^\nu)$.
+Also $\varphi(p^\nu)\ge p^\nu/2$ and
+$\sum_{a\ge1}p^{-a/2}\ll1$.
+
+For any two remaining powers $p^a,q^b$ in the square,
+the character average is restricted to characters trivial
+on the local components at $p,q$. The resulting odd
+characters are those modulo $M$ obtained by removing those
+prime-power factors of $N$, removing a factor only once
+when $p=q$. Thus $M\ge N^{1/2}$. Neither the difference of
+distinct powers nor the sum of any two powers is divisible
+by $M$, since their absolute values are smaller than $M$
+for large $N$. Odd-character orthogonality leaves only
+the equal-power contribution with weight $1/\varphi(p^\nu)$.
+Its sum is bounded by
+\[
+ \|B\|_\infty^2 \sum_{p^\nu\Vert N}
+     \frac{(\log p)^2}{(p-1)\varphi(p^\nu)}
+ \ll \|B\|_\infty^2,
+\]
+using the convergent sum $\sum_{p}(\log p)^2/(p-1)^2$.
+This proves \cref{eq:eulerorthogonality}.
+
+Since $\ell_\chi(\theta F)=\ell_\chi(F)$, the positive-support
+explicit formula gives, for $\theta F$,
+\[
+ \bigl\|\ell_\chi(F)+Z_\chi(\theta F)\bigr\|_\chi
+       \ll_\theta \|F\|_{H^1}.
+\]
+The trivial-zero term is bounded by Cauchy--Schwarz since
+the support of $\theta$ is bounded away from $0$.
+Here and in the remaining packet estimates we use the
+unweighted $H^1$ norm. For a test on an interval of length
+$O(L)$, \cref{eq:zeroslow,eq:zeroshigh} give a bound
+$O_\theta(L)$ for the operator taking the test to its full
+or truncated zero vector in character norm. Deleting
+ordinates above $T$ costs $O_\theta(L/\sqrt T)$ in that
+operator, since $T\le L^6$. Expanding the two character
+factors as in \cref{eq:split}, their paired replacement
+on such intervals costs $O_\theta(L+L^2/\sqrt T)$
+in unweighted norm. The short-gap part of the truncated
+pairing, including equal ordinates, has bound
+$O_\theta((1+u)L)$ by the absolute estimate in the proof
+of \cref{thm:shortgapdeletion}.
+
+These estimates apply on the positive log axis because
+the arithmetic and zero inputs are both multiplied by
+$\theta$. Use the length-$L$ packets and Fourier separation
+of the product mask from the proof of \cref{eq:uppercharacter}.
+On the pair with centers $jL,kL$, the modulation costs are
+integrable against the Fourier coefficient of the mask.
+The conversion to energy contributes $O(e^{-j-k})$.
+Only $j+k+2>H/L$ occurs and the geometric Schur sum gives
+$O_{\Theta,\theta}(e^{-H/L})$ times the unweighted block
+bound. The subtraction of $\mathcal D_H+\mathcal M_H$
+costs $O_\Theta(\SSS(N)L e^{-H/L})$ by
+\cref{eq:uppermodel}, including on log supports below $0$.
+Since $\SSS(N)\gg1$, adding these estimates proves
+\cref{eq:upperfinitezeros}. The choices of $T,u$ give the
+two asserted errors by direct substitution.
+\end{proof}
+
 \section{Norm decay for almost all moduli on growing windows}
 \label{sec:almostall}
 
@@ -6838,6 +6967,8 @@ that depends on the small prime divisors of the modulus.
 threshold with arbitrarily few exceptional moduli.
 \Cref{thm:divisorgridcovariance} uses partial divisor sums to give the
 uniform covariance center above every fixed positive power of $N$.
+\Cref{thm:upperfinitezeros} confines the upper product term to
+a height cutoff that decreases as the product threshold increases.
 Known variance obstructions of the type studied by Fiorilli and
 Martin and by Hayani occur at $N\asymp\log\log x$
 \cite{FiorilliMartin,Hayani}. These support scales lie beyond
@@ -6911,6 +7042,9 @@ in the proof of \cref{thm:primorialmodel}.
 The file \texttt{formalization/DivisorGrid.lean} checks the finite
 shift cutoff and the right-endpoint grid index for rational
 samples in \cref{thm:divisorgridcovariance}.
+The file \texttt{formalization/EulerOrthogonality.lean} checks
+the size of the residual modulus and the diagonal residue
+identity used in \cref{eq:eulerorthogonality}.
 The file \texttt{formalization/CriticalArithmetic.lean}
 verifies the two congruence branches and the reduced
 proper-power threshold in \cref{thm:criticalpowers}.
