@@ -36,6 +36,8 @@ This repository contains the English research manuscript and the code and data f
 
 ## Research checkpoint · 26 November 2026
 
+Theorem 13.16 regroups the residual terms by primitive inducing character before applying the dual multiplicative large sieve. This removes every conductor $c\le Y^{1-\xi/4}$ and every term with $d(k/c)\ge Y^{5\xi/8}$ from the expansion of Theorem 13.15. The squared error for the original count is $O(Y^{3-\xi/16})$, and the previous power saving for nearby denominator pairs persists.
+
 Theorem 13.15 sums over approximation denominators before estimating the second moment. Under Dirichlet GRH the entire principal-character contribution, all denominators $q\le Y^{1+\xi/4}$ and the nonprincipal terms with small effective character sums can be removed with squared error $O(Y^{3-\xi/4})$ for $X\le Y^{\xi/8}$. Among the remaining denominator pairs, those with gaps at most $Y^{1-\xi/2}$ have total absolute contribution $O(Y^{3-\xi/4})$.
 
 Theorem 13.14 groups the retained larger-prime frequencies by approximation denominator $q$. Pólya–Vinogradov and character orthogonality bound the nonprincipal terms. On disjoint low-denominator arcs, Dirichlet GRH bounds the remaining principal terms by cancellation between the two opposite prime classes. The sum of the absolute interactions on any set of denominator pairs with row and column degrees $O(Y^{\xi/2})$ is $O(Y^{3-\xi/4})$. This deletes all equal and nearby denominators, as well as pairs with $\max(q,q')/(q,q')\le Y^{\xi/4}$. The bound is uniform on measurable subsets of the modulus Fourier variable, so it applies inside the simultaneous cutoff of Theorem 13.13.

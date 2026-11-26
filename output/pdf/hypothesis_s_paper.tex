@@ -252,6 +252,9 @@ and gives a second-moment formula using separated denominators.
 \Cref{thm:criticalgridglobalcharacters} removes the entire
 principal-character contribution and restricts the nonprincipal
 terms to larger denominators and conductors.
+\Cref{thm:criticalgridprimitiveconductors} uses the dual
+multiplicative large sieve to impose a lower bound near $Y$
+on every primitive conductor in the sum.
 \Cref{thm:criticalpowers} proves decay in density for the
 entire proper-power contribution through a fixed critical
 product cap and identifies the fixed rows needed for decay
@@ -10742,6 +10745,181 @@ since $|B_N^{\rm p}|\ll YL$. Apply
 \cref{eq:criticalgridmodulusarcs} for the stated choice of $E$.
 \end{proof}
 
+\clearpage
+\subsection{The primitive conductors of the remaining characters}
+
+Keep the parameters and the expansion of
+\cref{thm:criticalgridglobalcharacters}. Write
+$c=\operatorname{cond}(\chi)$ and $u=k/c$ for a
+nonprincipal character $\chi\bmod k$, so $q=d e_b c u$.
+
+\begin{theorem}[A lower cutoff for primitive conductors]
+\label{thm:criticalgridprimitiveconductors}
+Suppose $X\le Y^{\xi/8}$ as in
+\cref{thm:criticalgridglobalcharacters}.
+In $A_{q,N}$ one can additionally require
+\begin{equation}
+     c>Y^{1-\xi/4},\qquad d u<Y^{5\xi/8}.
+     \label{eq:criticalgridprimitivecut}
+\end{equation}
+Writing $A_{q,N}^{\mathrm{ret}}$ for this restriction, under
+Dirichlet GRH one has
+\begin{equation}
+ \sum_{\substack{Y\le N\le 2Y\\2\mid N}}
+       \left|B_N^{\rm p}(I,J)-\sum_q A_{q,N}^{\mathrm{ret}}\right|^2
+       \ll_{C,Q,\eta,\xi}Y^{3-\xi/16}.
+ \label{eq:criticalgridprimitiveconductors}
+\end{equation}
+The deletion from $\sum_q A_{q,N}$ itself is unconditional.
+The remaining parameters satisfy $d e_b u\ll_C Y^{5\xi/4}$.
+The conclusion \cref{eq:criticalgridwidegap} also holds for
+the Fourier transforms of $A_{q,N}^{\mathrm{ret}}$.
+\end{theorem}
+
+\begin{proof}
+Write $Q_*=\lceil V/P\rceil$, and set $K_0=R_0/(3B)$.
+Whenever the slope set with $e_b=e_0$ is nonempty,
+$e_0\le3B$. The retained condition $q>R_0$ forces
+$dk=q/e_0>K_0$. In particular
+\begin{equation}
+  K_0\gg_C X Y^{\xi/4},\qquad Q_*\ll_C Y^{1+\xi}.
+  \label{eq:criticalgridprimitivegeometry}
+\end{equation}
+
+In the separated power series for $e(-\beta bN)$, fix
+a term of degree $j\ge0$. For $q=d e_0 k$, define
+\[
+ v_{d,e_0,k}(\chi)=
+ \left(
+  \sum_{\substack{b\in\mathcal B\\e_0\mid b}}
+    (b/(3B))^j\,\chi(b/e_0)
+ \right)
+ \int_{-\Delta_q}^{\Delta_q}(V\beta)^j
+                       \gamma_{q,k}(\chi;\beta)\,\ud\beta .
+\]
+Set the coefficient to zero when it does not satisfy
+the conditions being imposed on $(q,d,e_0,\chi)$.
+The slopes with $\chi(b/e_0)\ne0$ lie in the required
+group, since $r=e_0 k$ and $(b/e_0,k)=1$.
+P\'olya--Vinogradov for the inducing character and
+inclusion--exclusion give
+$O(\sqrt c\,\tau(k)\log(2k))$ for the slope sum,
+uniformly in $j$ by partial summation.
+Multiplicative Parseval for $\gamma$ and the bound for
+$G$ in \cref{thm:criticalgriddenominatorpairs} give
+\begin{align}
+ \sum_{\chi\bmod k,\ \chi\ne\chi_0}
+     \frac{k}{\operatorname{cond}(\chi)}
+                  |v_{d,e_0,k}(\chi)|^2
+ &\ll_\epsilon
+       Y^\epsilon\,\Delta_q q\,\frac{k}{\varphi(k)}
+                                  \|F_q\|_2^2 \notag\\
+ &\ll_\epsilon Y^\epsilon (P/V)\|F_q\|_2^2 .
+ \label{eq:criticalgridprimitivecoeff}
+\end{align}
+Here Cauchy--Schwarz is applied in $\beta$, and
+$|V\beta|\le1$. All bounds are uniform in $j$, so
+the summable scalar coefficients $(-12\pi i)^j/j!$
+can be restored at the end. The corresponding
+factor $(N/(2Y))^j$ is bounded by one.
+
+Let $\psi$ be the primitive character inducing $\chi$.
+Writing $N=d n$ imposes $(n,e_0k)=1$. Expand this unit
+condition as $\sum_{\ell\mid(n,e_0k)}\mu(\ell)$ and put
+$n=\ell m$ in each term. The coefficient of $\psi(m)$
+for fixed $d,\ell$ is then
+\begin{equation}
+ a_{d,\ell}(\psi)=\mu(\ell)\psi(\ell)
+       \sum_{\substack{e_0,k\\ d e_0 k\le Q_*\\
+                 \ell\mid e_0k,\ c\mid k}}
+                         v_{d,e_0,k}(\chi),
+ \label{eq:criticalgridprimitivegroup}
+\end{equation}
+where $\chi$ is the character modulo $k$ induced by $\psi$.
+The coefficients vanish unless $dk>K_0$.
+There are at most $\tau(N)^2$ pairs $(d,\ell)$ with
+$d\ell\mid N$, so Cauchy--Schwarz over these pairs costs
+$Y^\epsilon$ after decreasing the starting exponents.
+
+We give the coefficient bound for a set of conductors
+and an additional lower restriction $du\ge U$, where
+$U\ge1$. Weighted Cauchy--Schwarz in
+\cref{eq:criticalgridprimitivegroup} uses the weight $1/k$.
+For fixed $c$ the weight sum is at most
+\begin{align}
+ \sum_{\substack{e_0,k:\ d e_0 k\le Q_*\\
+                   c\mid k,\ dk>K_0,\ d(k/c)\ge U}}\frac1k
+ &\le \frac{Q_*}{d c^2}
+       \sum_{u\ge\max(1,K_0/(dc),U/d)}\frac1{u^2}\notag\\
+ &\ll \frac{Q_*}{d c^2}
+            \min(1,dc/K_0,d/U).
+ \label{eq:criticalgridprimitiverepeats}
+\end{align}
+We have dropped the additional condition $\ell\mid e_0k$
+in this upper bound only. Multiplying by $\sum k|v|^2$
+introduces the weight $(k/c)|v|^2$ from
+\cref{eq:criticalgridprimitivecoeff} and leaves the factor
+$Q_*\min(1/K_0,1/(Uc))$. For a dyadic range $C_1<c\le2C_1$,
+summing over primitive characters gives
+\begin{equation}
+ \sum_{\psi}^{*}|a_{d,\ell}(\psi)|^2
+  \ll_\epsilon Y^\epsilon
+           \min(K_0^{-1},(U C_1)^{-1})
+                \sum_{\substack{q\\d\ell\mid q}}\|F_q\|_2^2 .
+ \label{eq:criticalgridprimitivecompressed}
+\end{equation}
+Indeed $Q_*P/V\ll1$ and, for fixed $d,q$, at most
+$\tau(q)$ pairs $(e_0,k)$ have $d e_0 k=q$. For a fixed
+pair, inducing gives a one-to-one correspondence with
+the corresponding characters modulo $k$. The same estimate
+with factor $K_0^{-1}$ holds for all $c\le T$.
+
+The dual multiplicative large sieve for primitive characters
+\cite[Chapter~19]{MontgomeryVaughanMNTII} bounds the square summed
+over $m\in[Y/(d\ell),2Y/(d\ell)]$ by
+$O(Y/(d\ell)+1+C_1^2)\sum_\psi^*|a_{d,\ell}(\psi)|^2$
+for the dyadic range. The usual weight $\varphi(c)/c$
+on this coefficient sum can be bounded by one.
+Summing over $d,\ell$ costs $Y^\epsilon$, since
+$d\ell\mid q$ in \cref{eq:criticalgridprimitivecompressed}.
+Restoring the separated power series therefore yields
+the squared bound
+\begin{equation}
+ \ll_\epsilon Y^\epsilon(Y+C_1^2)
+           \min(K_0^{-1},(U C_1)^{-1})\sum_q\|F_q\|_2^2
+ \label{eq:criticalgridprimitivedual}
+\end{equation}
+for the sum of terms in this range over all approximation
+denominators. The bound for all $c\le T$ is the same
+with factor $(Y+T^2)/K_0$.
+
+Take $U=1$ for the small-conductor deletion.
+For $c\le\sqrt Y$, \cref{eq:criticalgridprimitivegeometry}
+and $\sum_q\|F_q\|_2^2\ll_C Y^2XL$ give a squared bound
+$O_\epsilon(Y^{3-\xi/4+\epsilon})$.
+For $\sqrt Y<c\le Y^{1-\xi/4}$ the dyadic factors
+$(Y+C_1^2)/C_1$ are $O(Y^{1-\xi/4})$.
+Thus the squared cost of all these ranges is
+$O_\epsilon(Y^{3-\xi/4+\epsilon}X)$, absorbing the
+dyadic partition in $\epsilon$.
+Finally put $U=Y^{5\xi/8}$ and retain $c>Y^{1-\xi/4}$
+while deleting $du\ge U$. Such terms have $c\le Q_*/U$
+because $q=d e_0 c u$. The dyadic factors
+$(Y+C_1^2)/(U C_1)$ are now
+$O(Y^{\xi/4}/U+Q_*/U^2)=O_C(Y^{1-\xi/4})$.
+The same squared cost follows.
+With $X\le Y^{\xi/8}$ and a sufficiently small fixed
+$\epsilon$ these costs prove
+\cref{eq:criticalgridprimitiveconductors} using
+\cref{eq:criticalgridglobalcharacters}. The bound for
+$d e_b u$ follows directly from $q\le Q_*$ and the
+conductor cutoff. Finally the individual-$q$ estimate
+\cref{eq:criticalgridglobalcomponent} holds for any
+subset of characters in a divisor group. It gives
+\cref{eq:criticalgridwidegap} for this smaller selection
+by the same degree bound.
+\end{proof}
+
 \section{Conditional bounds from uniform prime-pair discrepancies}
 \label{sec:pairconditional}
 
@@ -11083,7 +11261,9 @@ checks the effective denominator of $bN/q$ and the
 cofactor divisibility in \cref{thm:criticalgriddenominatorpairs}.
 It also checks that $r=q/(q,N)$ divides every $m$ such that
 $q\mid Nm$, the divisor grouping used in
-\cref{thm:criticalgridglobalcharacters}.
+\cref{thm:criticalgridglobalcharacters}. The same file checks
+the divisor constraint and conductor bound used in the
+coefficient grouping of \cref{thm:criticalgridprimitiveconductors}.
 
 The file \texttt{formalization/PrefixPersistence.lean} checks
 the finite sum version of the large-prefix estimate used in
@@ -11272,6 +11452,12 @@ H.~L. Montgomery and R.~C. Vaughan,
 \newblock \emph{The large sieve},
 \newblock Mathematika \textbf{20} (1973), 119--134.
 \newblock \url{https://doi.org/10.1112/S0025579300004708}.
+
+\bibitem{MontgomeryVaughanMNTII}
+H.~L. Montgomery and R.~C. Vaughan,
+\newblock \emph{Multiplicative Number Theory II}, Cambridge
+University Press, 2026, Chapter~19.
+\newblock \url{https://doi.org/10.1017/9781009445030.005}.
 
 \bibitem{AssingBlomerLi}
 E.~Assing, V.~Blomer, and J.~Li,

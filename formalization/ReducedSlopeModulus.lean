@@ -89,8 +89,27 @@ theorem modulus_dvd_iff_reduced_cofactor_dvd (q n m : Nat) (hq : 0 < q) :
       ⟨hCoprime.dvd_of_dvd_mul_left,
         fun h => Nat.dvd_trans h (Nat.dvd_mul_left m (n / d))⟩
 
+theorem grouped_sieve_divisibility (d e k ℓ : Nat) (hd : 0 < d) :
+    ℓ ∣ e * k ↔ d * ℓ ∣ d * e * k := by
+  simpa only [Nat.mul_assoc] using
+    (Nat.mul_dvd_mul_iff_left hd : d * ℓ ∣ d * (e * k) ↔ ℓ ∣ e * k).symm
+
+theorem conductor_bound_from_cofactor (d e k c cutoff : Nat)
+    (hc : c ∣ k) (he : 0 < e) (hCut : cutoff ≤ d * (k / c)) :
+    cutoff * c ≤ d * e * k := by
+  have hk : k / c * c = k := Nat.div_mul_cancel hc
+  have hde : d ≤ d * e := by
+    simpa only [Nat.mul_one] using
+      Nat.mul_le_mul_left d (show 1 ≤ e from he)
+  calc
+    cutoff * c ≤ d * (k / c) * c := Nat.mul_le_mul_right c hCut
+    _ = d * k := by rw [Nat.mul_assoc, hk]
+    _ ≤ d * e * k := Nat.mul_le_mul_right k hde
+
 #print axioms slope_reduced_denominator
 #print axioms modulus_dvd_reduced_cofactor_product
 #print axioms modulus_dvd_iff_reduced_cofactor_dvd
+#print axioms grouped_sieve_divisibility
+#print axioms conductor_bound_from_cofactor
 
 end HypothesisS
