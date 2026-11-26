@@ -225,6 +225,9 @@ the fixed critical caps to unclipped signed prime counts on
 $O(\log\log N)$ prefix rectangles at fixed precision.
 \Cref{thm:criticalgridvariance} cancels the local-density
 main terms in the second moment of these prime counts.
+\Cref{thm:criticalgridcoprimetypeii} replaces both larger
+prime weights there by Type~II weights with pairwise
+coprime factors on the small-input range.
 \Cref{thm:criticalpowers} proves decay in density for the
 entire proper-power contribution through a fixed critical
 product cap and identifies the fixed rows needed for decay
@@ -9206,6 +9209,201 @@ moments over the $O_{C,Q,M,K}(\log\log Y)$ tests
 that occur across the dyadic range and apply
 \cref{thm:criticalmeangrid}.
 
+\subsection{Coprime Type II factors in the second moment}
+
+Keep the setup of \cref{thm:criticalgridvariance} and
+assume $0<\eta<1/2$ and $2\le X\le Y^{1/2-\eta}$.
+For fixed $0<\kappa<1/2$ and $K>0$ define
+\[
+ R=\lfloor B^{1/2-\kappa}\rfloor,\qquad
+ z=(\log Y)^K,\qquad A(t)=s_z(t)\mathcal L_{R,R}(t).
+\]
+Here $s_z(t)=\mu^2(t)w_z(t)$, as in
+\cref{thm:doublecriticaltypeii}. Define the signed
+count with this weight by
+\[
+ B_N^{\mathrm{II},z}(I,J)=
+ \sum_{\substack{p\in I\ {\rm prime}\\(p,N)=1}}\log p
+ \sum_{\substack{bN\in J\\b\ge1,\ p\nmid b}}
+           \bigl(A(bN+p)-A(bN-p)\bigr).
+\]
+In the expansion of its squared sum over even moduli,
+write $t_1=b_1N+\epsilon_1p$ and
+$t_2=b_2N+\epsilon_2r$ for the two arguments.
+Let $\mathcal T^{\rm cop}$ be this signed expansion
+with the additional restrictions
+\begin{equation}
+ p b_2\ne r b_1,\qquad
+ (t_1,t_2)=1,\qquad (t_1t_2,b_1b_2pr)=1 .
+ \label{eq:criticalgridcoprimeconditions}
+\end{equation}
+Thus each summand retains the weight
+$\epsilon_1\epsilon_2\log p\log r\, A(t_1)A(t_2)$.
+
+\begin{theorem}[Coprime Type II factors for small inputs]
+\label{thm:criticalgridcoprimetypeii}
+Uniformly for the stated scales and endpoints, for each
+fixed $K>0$ and some $c>0$,
+\begin{equation}
+ B_N^{\rm p}(I,J)=B_N^{\mathrm{II},z}(I,J)
+                  +O_{C,Q,\eta,\kappa,K}(Y^{1-c})
+ \label{eq:criticalgridtypeiireplacement}
+\end{equation}
+at every even $N\in[Y,2Y]$. Given $D>0$, one can
+choose $K$ sufficiently large that
+\begin{equation}
+ \sum_{\substack{Y\le N\le2Y\\2\mid N}}
+           |B_N^{\rm p}(I,J)|^2
+     =\mathcal T^{\rm cop}
+        +O_{C,Q,\eta,\kappa,D}(Y^3(\log Y)^{-D}).
+ \label{eq:criticalgridcoprimemoment}
+\end{equation}
+Both estimates are unconditional. On expanding $A(t_i)$
+every term has four pairwise coprime factors
+$d_1,m_1,d_2,m_2>R$, each squarefree and free of primes
+at most $z$. Their product is coprime to
+$N b_1b_2pr(\epsilon_1p b_2-\epsilon_2r b_1)$.
+\end{theorem}
+
+\begin{proof}
+Fix $N$ and a smaller prime $p$ coprime to $N$.
+The interval $bN\in J$ has $O(B)$ candidate integers,
+and the larger arguments are $\asymp V$. They exceed
+$z$ and $R$ for large $Y$. Hence $s_z(t)\Lambda(t)$
+equals $\Lambda_{\rm p}(t)$ there, and the short
+term $\Lambda_{\le R}$ in Vaughan's identity vanishes.
+On the original prime terms one may impose $p\nmid b$,
+since a larger argument divisible by $p$ cannot be prime.
+It remains to estimate the signed row sum of
+$s_z(bN\pm p) I_{R,R}(bN\pm p)$ with this restriction.
+
+Put $L=\log Y$ and take $D_0=Y^{\kappa/64}$. Truncate
+the squarefree divisor sum at $D_0$, and use the
+roughness truncation \cref{eq:truncrough,eq:truncroughrec}
+with the same $D_0$. On either unit progression
+the square tail changes the coefficient only on
+$O_\varepsilon(B/D_0+Y^\varepsilon V^{1/3})$ values,
+by \cref{eq:largesquareprogression}. This has a power
+saving relative to $B$ because
+$Y/V^{2/3}\ll_Q Y^{-2\eta/3}$. For the roughness tail,
+a divisor $a\le D_0$ in the error of \cref{eq:truncrough}
+selects at most $O(B/a+1)$ values by the Chinese
+remainder theorem, and selects none if $(a,N)>1$.
+The weighted count of these errors, including their
+multiplicity, is $O_\varepsilon(Y^\varepsilon
+ (B Y^{-c'}+D_0))$ for some $c'>0$, using
+\cref{eq:truncroughrec} and the divisor bound.
+The truncated sieve factors and both Type~I weights
+are $O_\varepsilon(Y^\varepsilon)$ for every
+$\varepsilon>0$, so both truncations have cost
+$O(BY^{-c''})$ for a suitable $c''>0$.
+
+Each divisor pattern in the truncated Type~I terms
+imposes $d\mid bN\pm p$ for a positive integer $d$.
+If $(d,Np)>1$ there are no admissible solutions.
+Otherwise each sign imposes one residue modulo $d$.
+Among integers in that class, the restriction $p\nmid b$
+removes a class modulo $p d$, by the Chinese remainder
+theorem. On every interval in the $b$ variable the
+two signs have equal density $(1-1/p)/d$, with count
+errors $O(1)$. In the logarithmic Type~I term replace
+$\log((bN\pm p)/a)$ by the common weight $\log(bN/a)$,
+where $a$ is its Vaughan divisor. The pointwise change
+is $O(X/V)$ and the total row error is
+$O_\varepsilon(B(X/V)Y^\varepsilon)$, since the number
+of divisor patterns holding at a point is
+$O_\varepsilon(Y^\varepsilon)$. Partial summation
+with the common weight costs $O(L)$ per pattern.
+The other Type~I coefficients are bounded by $L$.
+There are $O(D_0^2 R^2)$ patterns, so the signed row
+cost is $O(D_0^2 R^2L+BY^{-c''})$, possibly reducing
+$c''$. It saves a power since
+$D_0^2R^2/B\le Y^{\kappa/32} B^{-2\kappa}$ and
+$B\gg_Q Y^{1/2+\eta}$. The prime weights in $I$
+sum to $O(X)$, and $XB\ll_C Y$. This proves
+\cref{eq:criticalgridtypeiireplacement}.
+
+The raw prime count is $O(XBL)$ by the candidate count.
+Squaring \cref{eq:criticalgridtypeiireplacement} and
+summing over the moduli replaces its second moment by
+that of $B_N^{\mathrm{II},z}$ with a power-saving error
+relative to $Y^3$. The contribution of $p b_2=r b_1$
+also saves a power, since for each $b_1$ there is
+at most one $b_2$ and each coefficient $A(t_i)$ is
+$O_\varepsilon(Y^\varepsilon)$.
+
+We bound the other deletions using a divisor moment.
+Fix $p,r$ and both signs. In the domain of even $N$
+and $b_1,b_2$ under consideration, one has
+\begin{equation}
+ \sum_{N,b_1,b_2}|A(t_1)A(t_2)|^2
+                 \ll_{C,Q} YB^2 L^{A_1}
+ \label{eq:criticalgridtypeiimoment}
+\end{equation}
+for an absolute $A_1$. Indeed
+$|\mathcal L_{R,R}(t)|\le\tau(t)\log t$. For the
+first marginal, each value $b_1N=t_1-\epsilon_1p$
+can occur at most $\tau(t_1-\epsilon_1p)$ times.
+Ignoring the other $b$ conditions apart from
+$b_2\ll B$, Cauchy--Schwarz and the divisor moments
+of \cref{lem:criticalmeanmoving} give
+\[
+ \sum_{N,b_1,b_2}\tau(t_1)^4
+ \ll B\sum_{t\asymp V}\tau(t)^4\tau(t-\epsilon_1p)
+ \ll BV L^{A_2}
+\]
+with an absolute $A_2$. Apply the same bound for
+$t_2$ and use Cauchy--Schwarz to deduce
+\cref{eq:criticalgridtypeiimoment}, since $V=YB$.
+
+On the retained nondegenerate pairs, a prime common
+to $t_1,t_2$ divides the nonzero integer
+\[
+ \Delta=\epsilon_1p b_2-\epsilon_2r b_1
+                = b_2t_1-b_1t_2 ,
+\]
+which is $O_C(Y)$. Every such common prime exceeds
+$z$ on the screened support and is coprime to $N$.
+For each such prime $\ell$ and each $N$, the two
+divisibility conditions leave one residue modulo
+$\ell$ for each $b_i$, so there are
+$O((B/\ell+1)^2)$ candidates. Summing over
+$z<\ell\ll_C Y$ gives at most
+$O_{C,Q}(Y(B^2/z+BL+Y))$ triples.
+The same bound covers $\ell\mid(t_1,b_2)$ or
+$\ell\mid(t_2,b_1)$, by using a zero residue for
+the corresponding slope. The factors $(t_1,b_1p)$
+and $(t_2,b_2r)$ are already one, by the restrictions
+on the smaller primes and slopes. A cross divisor
+$r\mid t_1$ on the screened support requires $r>z$
+and contributes $O(YB(B/r+1))$ triples. The same
+holds for $p\mid t_2$.
+
+Thus the discarded subset has cardinality at most
+$O_{C,Q}(YB^2(z^{-1}+L/B+Y/B^2))$ where the weights
+are nonzero. By \cref{eq:criticalgridtypeiimoment}
+and Cauchy--Schwarz its weighted contribution,
+summed over the small primes and signs, is
+\[
+ \ll_{C,Q} Y^3 L^{A_1/2}
+               (z^{-1}+L/B+Y/B^2)^{1/2}.
+\]
+Here $B\gg_Q Y^{1/2+\eta}$. Taking $K$ sufficiently
+large proves \cref{eq:criticalgridcoprimemoment}.
+
+The factor assertions follow from
+\cref{eq:squarefreevaughan} and
+\cref{eq:criticalgridcoprimeconditions}. If a prime
+dividing $t_1$ also divides $\Delta$, it divides
+$b_1t_2$. Since $(t_1,b_1)=1$, it would divide
+$t_2$, which is excluded. The second argument is
+the same. In the factorized sum the congruences
+for $N$ are therefore in one class modulo $d_1d_2$,
+with the two residues $-\epsilon_1p\overline b_1$
+modulo $d_1$ and $-\epsilon_2r\overline b_2$ modulo
+$d_2$. The period $d_1d_2$ exceeds $B^{1-2\kappa}$.
+\end{proof}
+
 \section{Conditional bounds from uniform prime-pair discrepancies}
 \label{sec:pairconditional}
 
@@ -9519,6 +9717,10 @@ boundary in \cref{thm:criticalmeangrid}.
 The file \texttt{formalization/SignedProgressionLocal.lean}
 checks the local root and slope conditions used in
 \cref{eq:criticalgridvarianceflip}.
+
+The file \texttt{formalization/TypeIIDeterminant.lean}
+checks the common-divisor test and the transfer through
+an invertible slope in \cref{thm:criticalgridcoprimetypeii}.
 
 The file \texttt{formalization/PrefixPersistence.lean} checks
 the finite sum version of the large-prefix estimate used in

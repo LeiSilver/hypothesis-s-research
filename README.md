@@ -4,6 +4,7 @@ This repository contains the English research manuscript and the code and data f
 
 - [Manuscript (PDF)](output/pdf/hypothesis_s_paper.pdf)
 - [LaTeX source](output/pdf/hypothesis_s_paper.tex)
+- [Lean verification of the determinant divisibility in the Type II form](formalization/TypeIIDeterminant.lean)
 - [Lean verification of the signed local progression roots](formalization/SignedProgressionLocal.lean)
 - [Lean verification of the product variation in a grid cell](formalization/ProductGridCell.lean)
 - [Lean verification of the prime-exponent injection for the divisor moment](formalization/DivisorMoment.lean)
@@ -29,6 +30,8 @@ This repository contains the English research manuscript and the code and data f
 - [Lean verification of the signed progression rows](formalization/CriticalArithmetic.lean)
 
 ## Research checkpoint · 26 November 2026
+
+Theorem 13.8 replaces both larger prime weights in the second moment of the signed prefix counts by screened Vaughan Type II weights. For $X\le Y^{1/2-\eta}$ each expanded value has two factors above $\lfloor (V/Y)^{1/2-\kappa}\rfloor$. The four factors across the pair may be required to be pairwise coprime and coprime to the slopes, smaller primes, modulus, and the determinant of the two linear forms. The single-count replacement has a uniform power saving at every modulus. The discarded terms in the second moment cost $O(Y^3(\log Y)^{-D})$ for any fixed $D$ with the stated screening. These estimates are unconditional.
 
 Theorem 13.7 expands the second moment of the signed prime prefix counts over all even moduli in $[Y,2Y]$ into prime-pair discrepancies for two linear forms. The local-density main terms cancel after summing over one slope. The unconditional error is $O_{C,Q,\eta}(Y^{3-\eta/100})$ uniformly over the prefix endpoints for $X\le Y^{1-\eta}$ and $Y^2/Q\le XV\le CY^2$. Cancellation of the signed prime-pair discrepancies would give decay in density through fixed critical caps.
 
@@ -86,6 +89,7 @@ With Elan installed, run the Lean check from the repository root.
 
 ```sh
 elan toolchain install leanprover/lean4:v4.35.0
+elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/TypeIIDeterminant.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/SignedProgressionLocal.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/ProductGridCell.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/DivisorMoment.lean
