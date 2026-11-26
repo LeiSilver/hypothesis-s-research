@@ -47,6 +47,8 @@ This repository contains the English research manuscript and the code and data f
 
 ## Research checkpoint · 27 November 2026
 
+Proposition 3.12 uses Maynard's three-factor progression theorem to remove additional strips even when the opposite divisor is unrestricted. After the deletions of Proposition 3.11, neither divisor may factor into three integers bounded respectively by $(N/3)^{1/2+1/1200}/(Q_2Q_3)$, $Q_2=N^{1/25}$ and $Q_3=N^{1/14}$. In particular, a surviving divisor at most $N^{1/2+1/2400}$ must have a prime factor exceeding $N^{1/6000}$. This still leaves a signed sum whose pointwise lower bound is open.
+
 Proposition 3.11 bounds the part of the remaining coprime correlation with $\max(d,e)\le N^{20/39-\eta}$ or $de\le N^{45/44-\eta}$ by $O_\eta(N^{1-\eta/2})$, at every even modulus under Dirichlet GRH for fixed $0<\eta<1/100$. In the surviving sum the complementary factors satisfy $\min(u,v)<N^{19/39+\eta}$ and $uv<N^{43/44+\eta}$. The pointwise one-sided estimate on this surviving sum remains open.
 
 Proposition 3.10 restores the common cutoff $R=\sqrt N/(\log N)^4$ on coprime summands for every sufficiently large even $N$ under Dirichlet GRH. Poisson summation and the Bettin–Chandee estimate bound the discrepancy of the two short divisor sums by $O_\epsilon(N^\epsilon R^{39/20})$. The resulting pointwise error in the fixed-test reduction is $O(N/(\log N)^2)$.

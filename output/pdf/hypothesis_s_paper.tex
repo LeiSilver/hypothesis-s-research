@@ -1330,9 +1330,12 @@ The second product term has exponent $45/44-\eta-1/16$ up to
 logarithms. All three bounds save at least $\eta/2$ on taking
 $\epsilon$ sufficiently small.
 
-The zero frequencies summed over $s$ give $cN\varphi(N)/N$ times
-the sum of $\mu(d)\mu(e)\log(d/R)\log(e/R)/(de)$ over the deleted
-region, with $(de,N)=(d,e)=1$. For fixed $d$ the admissible $e$
+On summing over $s$ the zero frequencies contribute
+\[
+ c\varphi(N)\sum_{\substack{(d,e)\ \mathrm{deleted}\\(de,N)=(d,e)=1}}
+         \frac{\mu(d)\mu(e)}{de}\log(d/R)\log(e/R).
+\]
+For fixed $d$ the admissible $e$
 form an interval above $R$ before the coprimality restriction.
 Under RH,
 \[
@@ -1348,6 +1351,96 @@ The absolute outer sum of $\log(d/R)/d$ costs $O(L^2)$.
 The full zero frequency is thus $O_\epsilon(N^{3/4+\epsilon})$.
 This proves the deletion estimate. Finally $u<N/d$, $v<N/e$
 give the stated complementary ranges.
+\end{proof}
+
+\begin{proposition}[Removing individually factorable divisors]
+\label[proposition]{prop:single-test-factorable}
+In the retained sum of \cref{prop:single-test-delete-products},
+put $\delta=1/1200$ and
+\[
+ Q_2=N^{1/25},\qquad Q_3=N^{1/14},\qquad
+ Q_1=(N/3)^{1/2+\delta}/(Q_2Q_3).
+\]
+Let $\mathcal D$ consist of the integers $d>R$ admitting at least
+one factorization $d=q_1q_2q_3$ with $q_i\le Q_i$. We may require
+both $d\notin\mathcal D$ and $e\notin\mathcal D$, at cost
+$O_{A,\eta}(N L^{-A})$ for every fixed $A>0$. In particular,
+any surviving divisor of size at most $N^{1/2+\delta/2}$ has a
+prime factor exceeding $N^{\delta/5}$.
+\end{proposition}
+
+\begin{proof}
+First select $d\in\mathcal D$, leaving the second long divisor
+unrestricted. Put $g_d=\mu(d)\log(d/R)$ on the selected divisors
+coprime to $N$ and zero elsewhere. With $G(m)=\sum_{d\mid m}g_d$,
+the sign in $U_R$ gives the selected contribution as
+\[
+ -\sum_{(m,N)=1}F(m/N)G(m)U_R(N-m).
+\]
+We compare its prime and short-divisor parts.
+
+For $5N/12\le x\le7N/12$, take the first parameter in Maynard's
+three-factor estimate \cite[Theorem~1.2]{MaynardIII} equal to
+$x^{1/2+\delta}/(Q_2Q_3)\ge Q_1$. The exponents of $Q_2,Q_3$
+relative to $x$ tend uniformly to $1/25,1/14$. These lie strictly
+in the required ranges
+\[
+ 40\delta<b<1/20-7\delta,\qquad
+ 1/10+12\delta-b<c'<1/10-4\delta-3b/5.
+\]
+For each $q_1,q_2$ choose the outer residue $N\bmod q_1q_2$,
+and for $q_3$ the compatible residue $N\bmod q_1q_2q_3$,
+keeping only factors coprime to $N$. The theorem thus bounds
+\[
+ \sum_{\substack{d\in\mathcal D\\(d,N)=1}}
+       \bigl|\pi(x;d,N)-\pi(x)/\varphi(d)\bigr|
+ \ll_B N L^{-B}
+\]
+for arbitrary fixed $B$. Each eligible modulus needs only one of
+its factorizations in this absolute bound. Partial summation with
+$F(1-x/N)\log x$ and $|g_d|\le L$ preserves arbitrary logarithmic
+saving. The ordinary prime number theorem under RH gives the
+integrated principal term $cN$ before multiplication by
+$\sum_d g_d/\varphi(d)$, whose absolute value is $O(L^3)$.
+In restoring proper powers, each sampled integer $n$ occurs for
+at most $\tau(N-n)$ divisors, giving total cost $O_\epsilon(N^{1/2+\epsilon})$.
+The extra nonunits in the prime coordinate cost $O_\epsilon(N^\epsilon)$
+as in \cref{prop:single-test-coprime-tail}. Thus the prime part
+equals $cN\sum_d g_d/\varphi(d)+O_A(NL^{-A})$.
+
+For the short-divisor part write $b_e=\mu(e)\log(R/e)$ on $e\le R$.
+On units only $(e,N)=1$ occur. The zero-frequency calculation in
+\cref{prop:single-test-uniform-coprime} gives
+\[
+ c\varphi(N)\sum_d\frac{g_d}{d}
+        \sum_{\substack{e\le R\\(e,dN)=1}}\frac{b_e}{e}.
+\]
+The inner sum is $dN/\varphi(dN)+O_\epsilon(N^\epsilon R^{-1/2})$
+by the restricted logarithmic M\"obius estimate of
+\cref{prop:single-test-long-divisors}. Since $(d,N)=1$, the
+display has the same main term as the prime part. The discrepancy
+is also acceptable: both divisor scales are at most a constant
+times $N^{1/2+\delta}$, so the bound for the nonzero frequencies
+is $O_\epsilon(N^{(1/2+\delta)39/20+\epsilon})$, with exponent
+strictly below one for small $\epsilon$. This proves the strip
+estimate before the geometric deletions.
+
+Intersecting this strip with the region deleted in
+\cref{prop:single-test-delete-products} still gives its power
+saving: insert $1_{\mathcal D}(d)$ in the first coefficient.
+The nonzero-frequency bound allows arbitrary coefficients there,
+and the M\"obius sum used for the zero frequency is over $e$.
+Hence the strip estimate holds on the retained region. Reflection
+gives the estimate with $e\in\mathcal D$. These two strips cannot
+intersect there since $Q_1Q_2Q_3<T$.
+
+Finally suppose $R<d\le N^{1/2+\delta/2}$ and every prime factor
+is at most $N^{\delta/5}$. Extract prime factors successively to
+make a product in $(Q_2/N^{\delta/5},Q_2]$, then a disjoint one
+in $(Q_3/N^{\delta/5},Q_3]$. There are enough factors at each
+step since $R\gg Q_2Q_3$. The remaining factor is at most
+$N^{1/2+9\delta/10}/(Q_2Q_3)<Q_1$ for large $N$. This puts $d$
+in $\mathcal D$, proving the assertion.
 \end{proof}
 
 \section{Certification on the balanced window}

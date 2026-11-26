@@ -1,4 +1,4 @@
-"""Exact checks for the divisor identities in Propositions 3.8 and 3.9."""
+"""Exact finite checks for the divisor identities and cutoffs of the single test."""
 
 from fractions import Fraction
 from math import gcd, isqrt, lcm, prod
@@ -57,6 +57,38 @@ def main():
                     raise AssertionError(("coprime periodic mean", n, d, e))
                 unit_pairs += 1
     print(f"Verified {splits} divisor splits, {pairs} periodic means and {unit_pairs} coprime means.")
+
+    progressions = 0
+    for n in range(30, 101, 2):
+        for s in divisors[n]:
+            x = n // s
+            for d in range(1, 13):
+                if gcd(d, n) != 1:
+                    continue
+                for e in range(2, 13):
+                    if gcd(e, n) != 1:
+                        continue
+                    # Open support of the test, before taking the Fourier transform.
+                    direct = [m for m in range(1, n) if 5*n < 12*m < 7*n
+                              and m % s == 0 and m % d == 0 and (n-m) % e == 0]
+                    sampled = []
+                    if gcd(d, e) == 1:
+                        residue = (x * pow(d, -1, e)) % e
+                        sampled = [s*d*k for k in range(residue, x//d + 1, e)
+                                   if 5*x < 12*d*k < 7*x]
+                    if sampled != direct:
+                        raise AssertionError(("reflected progression", n, s, d, e))
+                    progressions += 1
+    print(f"Verified {progressions} rescaled inverse progressions, including incompatible pairs.")
+
+    square, product = Fraction(20, 39), Fraction(45, 44)
+    if Fraction(39, 20)*square != 1 or Fraction(11, 10)*product - Fraction(1, 8) != 1:
+        raise AssertionError("Kloosterman exponent endpoints")
+    delta, b, c = Fraction(1, 1200), Fraction(1, 25), Fraction(1, 14)
+    if not (40*delta < b < Fraction(1, 20)-7*delta
+            and Fraction(1, 10)+12*delta-b < c < Fraction(1, 10)-4*delta-3*b/5
+            and Fraction(1, 2)+delta < square-Fraction(1, 100)):
+        raise AssertionError("three-factor ranges or strip overlap")
 
 
 if __name__ == "__main__":
