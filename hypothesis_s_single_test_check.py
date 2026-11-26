@@ -239,6 +239,29 @@ def check_upper_mark_sieve():
     print("Certified the semiprime width below 0.02383 and lower coefficient above 0.98212.")
 
 
+def check_interval_proportions():
+    primes = [p for p in range(3, 32, 2) if factors(p) == [p]]
+    small = primes[:4]
+    period = prod(small)
+    values = [prod(Fraction(p, p-1) if n % p == 0 else Fraction(p*(p-2), (p-1)**2)
+                   for p in small) for n in range(0, 2*period, 2)]
+    second_moment = prod(1 + Fraction(1, (p-1)**3) for p in small)
+    if sum(values) != period or sum(z*z for z in values) != period*second_moment:
+        raise AssertionError("local singular-series moments on even residues")
+
+    partial_product = prod(1 + Fraction(1, (p-1)**3) for p in primes)
+    tail_sum_bound = Fraction(1, 2*31**2)
+    variance_bound = Fraction(152, 1000)
+    if partial_product/(1-tail_sum_bound) >= 1 + variance_bound:
+        raise AssertionError("singular-series second-moment bound")
+    for margin, fraction in [(Fraction(1, 2), Fraction(1, 20)),
+                             (Fraction(1, 100), Fraction(3, 25))]:
+        gap = (1-margin)/(4-margin) - fraction
+        if gap <= 0 or gap**2 <= variance_bound*fraction*(1-fraction):
+            raise AssertionError(("short-interval proportion", margin, fraction))
+    print(f"Verified singular-series moments on {period} even residues and both interval proportions.")
+
+
 def check_presifted_large_factor():
     kappa, eta = Fraction(1, 2000), Fraction(1, 64000)
     eps, beta = Fraction(1, 1000), Fraction(121, 200)
@@ -394,6 +417,7 @@ def main():
     check_upper_mark_sieve()
     check_presifted_large_factor()
     check_joint_sieve()
+    check_interval_proportions()
 
 
 if __name__ == "__main__":

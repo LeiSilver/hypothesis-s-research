@@ -2653,6 +2653,173 @@ Subtract the principal term in \cref{prop:single-test-upper-mark}
 from $M_N^+=P_N+U_N+O(1/H)$ to obtain the estimate for $R_N^+$.
 \end{proof}
 
+\begin{proposition}[Local exceptional sets for the fixed test and its semiprime term]
+\label[proposition]{prop:single-test-local-semiprime}
+Let $Y,H$ be positive integers, $L=\log Y$, and let
+$\langle V\rangle$ denote the mean of $V_N$ on even
+$Y<N\le Y+H$ with weights $N\SSS(N)$. Fix $\varepsilon,A>0$.
+For $Y^{2/15+\varepsilon}\le H\le\sqrt Y$, unconditionally,
+\[
+ \langle P\rangle=c+O_{\varepsilon,A}(L^{-A}),\qquad
+ \langle U\rangle=cI_1+O_\varepsilon(L^{-1}),\qquad
+ \langle R^+\rangle=O_\varepsilon(L^{-1/2}).
+\]
+For sufficiently large $Y$, at least $1/20$ of the even integers there
+satisfy $P_N\ge c/2$, and at least $3/25$ satisfy $P_N\ge c/100$.
+For $Y^{8/33+\varepsilon}\le H\le\sqrt Y$ the three estimates
+also hold for the individual $P_N,U_N,R_N^+$ outside a common set
+of $O_{\varepsilon,A}(H L^{-A})$ even integers in each interval.
+\end{proposition}
+
+\begin{proof}
+Put $X=Y/3$, $a(m)=\Lambda(m){\bf1}_{(X,2X]}(m)$ and
+$\vartheta(n)={\bf1}_{n\ {\rm prime}}\log n$. Use in turn
+\[
+ g(n)=F(n/Y)\vartheta(n),\qquad g(n)=F(n/Y)B_Y(n),
+ \qquad D_g(N)=\sum_m a(m)g(N-m).
+\]
+Write $j_g=1,I_1$ respectively. On the support of $F(n/Y)$,
+$m=N-n$ lies in $(X,2X]$ throughout this range of $N$ once $Y$
+is large. For the prime and the semiprime sample the weight can
+be placed on the reflected coordinate by $F(1-u)=F(u)$.
+Replacing $F(n/N)$ by $F(n/Y)$ costs $O(HL^2)$ in either
+unnormalized convolution, by Lipschitz continuity and a trivial
+sum over $O(Y)$ terms. Replacing $\vartheta(m)$ by $\Lambda(m)$
+costs $O(\sqrt Y L^3)$ per $N$, and a diagonal prime pair costs
+$O(L^2)$. Both $g$ are supported on odd integers, so odd $N$
+can contribute only through a power of two in $(X,2X]$, at
+cost $O(L^2)$ per $N$. Thus at even $N$, $D_g(N)$ differs from
+$N\SSS(N)P_N$ by $O(HL^2+\sqrt Y L^3)$ in the first case.
+In the second case the same bound applies with the additional
+error $O(N\SSS(N)/L)$ from \eqref{eq:single-test-semiprime-freeze}
+when comparing with $N\SSS(N)U_N$.
+
+For the mean, sum first in $m$ at fixed $n$. The inner sum is
+$\psi(Y-n+H)-\psi(Y-n)$. For $H\ge Y^{2/15+\varepsilon}$,
+the mean-square estimate of Guth and Maynard
+\cite[proof of Corollary~1.4, Section~13.2]{GuthMaynard} gives
+\[
+ \sum_{5Y/12\le n\le7Y/12}
+ \big|\psi(Y-n+H)-\psi(Y-n)-H\big|^2
+       \ll_{\varepsilon,D} YH^2 L^{-D}
+\]
+for every fixed $D$. The continuous integral applies on finitely
+many comparable dyadic ranges, using $\varepsilon/2$ in the
+cited estimate. For integral $H$ the difference of the two
+step functions is constant on unit half-open intervals.
+Since $\sum_n|g(n)|^2\ll YL^2$, Cauchy--Schwarz gives
+$\sum_{Y<N\le Y+H}D_g(N)=H\sum_n g(n)+O_{\varepsilon,D}(YHL^{-D})$
+on increasing the saving in the variance. The prime number theorem
+gives $\sum g=cY+O_D(YL^{-D})$ in the first case.
+The interval estimate for $B_Y$ in \cref{prop:single-test-semiprime-mass}
+and partial summation give $\sum g=cYI_1+O(Y/L)$ in the second.
+The denominator is $YH+O(YL+H^2)$ by the elementary singular-series
+calculation in \cref{prop:single-test-short-mean}.
+This proves the means for $P,U$. Use
+$R_N^+=P_N+U_N-c(1+I_1)+O(L^{-1/2})$ for their signed discrepancy.
+
+We quantify the proportion in the shorter range. Sifting $N-p$
+on the prime sequence $F(p/N)\log p$ at $N^{b/2}$ with level
+$N^b$, $b<1/2$, gives $P_N\le(2/b+o_b(1))c$. Indeed
+Bombieri--Vinogradov gives the summed remainders, the total
+weight is $(c+o(1))N$, and the dimension-one local product is
+the one in \cref{prop:single-test-upper-mark}. Restoring the
+other logarithm costs at most $L+O(1)$ before normalization.
+Letting $b\uparrow1/2$ gives $P_N\le(4+o(1))c$ uniformly.
+Consequently for $0<\lambda<1$ the moduli with $P_N\ge\lambda c$
+carry at least $(1-\lambda)/(4-\lambda)-o(1)$ of the total
+$N\SSS(N)$ weight.
+
+Write $\mathbb E$ for the unweighted mean over the even integers
+of the interval and $Z_N=\SSS(N)/2$. Then $\mathbb EZ_N=1+o(1)$ and
+\[
+ \mathbb EZ_N^2=K+o(1),\qquad
+ K=\prod_{\ell>2,\ \ell\ {\rm prime}}\left(1+(\ell-1)^{-3}\right)
+       <1.152.
+\]
+Indeed, in the squared divisor expansion in
+\cref{prop:single-test-short-mean}, counting multiples gives
+the limiting Euler product with error $O(L^2/H+L^2/Y)$:
+the coefficient sum up to $2Y$ is $O(L^2)$, and partial summation
+bounds the tail after division by the divisor. At an odd prime
+the local factor of $Z_N$ takes values
+$\ell/(\ell-1)$ and $\ell(\ell-2)/(\ell-1)^2$ with
+frequencies $1/\ell$ and $1-1/\ell$ in that product.
+Its first moment is one and its variance is $(\ell-1)^{-3}$.
+For the numerical bound multiply through $31$ and use
+$\sum_{j\ge32}j^{-3}\le1/(2\cdot31^2)$ for the remaining factors.
+
+A set of unweighted fraction $v$ carries at most
+$v+\sqrt{(K-1)v(1-v)}+o(1)$ of the weight, by applying
+Cauchy--Schwarz to $Z_N-\mathbb EZ_N$ and the centered
+indicator; replacing $N$ by $Y$ costs $o(1)$.
+This upper bound increases on $[0,1/2]$. At $v=1/20$ it is
+strictly less in the limit than $(1-1/2)/(4-1/2)$, and at
+$v=3/25$ it is strictly less than $(1-1/100)/(4-1/100)$.
+This gives both asserted proportions.
+
+For the individual estimates use the minor-arc bound of
+Matom\"aki, Radziwi\l\l{} and Tao
+\cite[Proposition~3.4 and the deduction of Theorem~1.3]{MRTLong}.
+With $Q=(\log X)^B$, $\delta=X^{-1}(\log X)^{B'}$, remove the
+arcs of radius $\delta$ at reduced fractions of denominator
+at most $Q$ and write $\mathfrak m$ for the complement.
+For $H\ge Y^{8/33+\varepsilon}$, given $D$ one can choose $B$ and
+then $B'$ sufficiently large so that, with $S_a(\alpha)=\sum_m
+a(m)e(m\alpha)$,
+\[
+ \sup_{\alpha\in\mathfrak m}
+ \int_{\mathfrak m\cap[\alpha-1/(2H),\,\alpha+1/(2H)]}
+               |S_a(\beta)|^2\,\ud\beta\ll_{\varepsilon,D} YL^{-D}.
+\]
+The estimate in the cited deduction is used at exponent
+$8/33$ with a positive slack smaller than $\varepsilon$.
+The larger values of $H$ restrict the integral to a smaller arc.
+By \cite[Corollary~3.2, proof]{MRTLong} this bounds the sum
+of squares of the minor-arc contributions over $Y<N\le Y+H$
+by $O_{\varepsilon,D}(HY^2L^{-D})$, on increasing the input
+saving. Indeed $\|a\|_2,\|g\|_2\ll \sqrt Y L$, and reflecting
+$g$ changes the convolution to a correlation at shift $-N$.
+The center of the interval of shifts is arbitrary. No minor-arc
+estimate for the semiprime sequence is needed.
+
+For completeness, on the arc at $s/d$, put
+$v_a(\beta)=\int_X^{2X}e(\beta t)\,\ud t$. Define $v_g$ as the
+transform of $F(t/Y)$ times $1$ or $b_Y(t)$, respectively.
+The two arithmetic transforms equal their real transforms
+multiplied by $\mu(d)/\varphi(d)$, up to $O_E(YL^{-E})$ for
+every $E$, by Siegel--Walfisz and the reduced-class calculation
+in \cref{prop:single-test-semiprime-mass}. The range
+$|\beta|\le\delta$ costs only fixed powers of $L$ in partial
+summation. Each real transform is $O(\min(Y,|\beta|^{-1}))$.
+Write $A_d(N)=\mu^2(d)c_d(N)/\varphi(d)^2$ as in
+\eqref{eq:almosttails}. Completing the integrals to the line
+costs $O(\delta^{-1}\sum_{d\le Q}|A_d(N)|)$ and completing the
+series costs $O(Y\sum_{d>Q}|A_d(N)|)$. Here
+\[
+ \sum_{d\ge1} d^{1/2}|A_d(N)|\ll \tau(N).
+\]
+In its Euler product the factors at primes $\ell\nmid N$
+are $1+O(\ell^{-3/2})$ and those at $\ell\mid N$ are
+$1+\sqrt\ell/(\ell-1)$, at most two for $\ell\ge3$.
+Shiu's bound \cite[Theorem~1]{ShiuShort} at modulus one gives
+$\sum_{Y<N\le Y+H}\tau(N)\ll H L$ in this polynomial range of $H$.
+Thus off $O_A(HL^{-A})$ integers the two completion errors together
+are $O_A(YL^{-A})$ on taking $B,B'$ large enough. The integrated
+Siegel--Walfisz errors have the same saving by taking $E$ large.
+
+The completed main term is $\SSS(N)v_g(0)$ by Fourier inversion,
+since $N-t\in(X,2X]$ throughout the support of the density
+defining $v_g$. Its integral $v_g(0)$
+equals $cY$ for primes and $cYI_1+O(Y/L)$ for semiprimes.
+Chebyshev's inequality for the local minor-arc second moment,
+with $D>3A+3$, allows error $O(YL^{-A})$ outside the claimed
+exceptional set. Apply the two comparisons with $D_g$ above,
+using $\SSS(N)\gg1$ at even $N$ and $N=Y+O(\sqrt Y)$.
+Taking the union of the two exceptional sets gives all three
+individual conclusions.
+\end{proof}
+
 \section{Certification on the balanced window}
 \label{sec:certificate}
 
@@ -16767,6 +16934,23 @@ M. Hayani,
 \newblock \emph{Disproving a weaker form of Hooley's conjecture},
 \newblock Bull. Sci. Math. \textbf{199} (2025), 103582.
 \newblock \url{https://arxiv.org/abs/2407.01045}.
+
+\bibitem{MRTLong}
+K. Matom\"aki, M. Radziwi\l\l{} and T. Tao,
+\newblock \emph{Correlations of the von Mangoldt and higher divisor functions I.
+Long shift ranges}.
+\newblock \url{https://arxiv.org/abs/1707.01315}.
+
+\bibitem{GuthMaynard}
+L. Guth and J. Maynard,
+\newblock \emph{New large value estimates for Dirichlet polynomials}.
+\newblock \url{https://arxiv.org/abs/2405.20552}.
+
+\bibitem{ShiuShort}
+P. Shiu,
+\newblock \emph{A Brun--Titchmarsh theorem for multiplicative functions},
+\newblock J. Reine Angew. Math. \textbf{313} (1980), 161--170.
+\newblock \url{https://doi.org/10.1515/crll.1980.313.161}.
 
 \bibitem{LiuParkSong}
 Y. Liu, P.~S. Park and Z.~Q. Song,
