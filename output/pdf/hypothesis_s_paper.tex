@@ -110,14 +110,14 @@ which is the norm formulation of S when the admissible auxiliary function
 may be chosen to grow arbitrarily slowly. Here $\SSS(N)$ is the ordinary
 two-prime singular series.
 
-The global Dirichlet GRH used in this paper is the statement
-about all Dirichlet $L$-functions covered by the Lean proof
-released by Alp\"oge with Claude~\cite{AlpogeGRH}.
+We use the Dirichlet generalized Riemann hypothesis as a theorem
+of Alp\"oge and Claude~\cite{AlpogeGRH}. Their Lean proof covers
+all Dirichlet $L$-functions, including the Riemann zeta function.
 The independent verification records include checks of the
 Dirichlet theorem statements, their axiom dependencies, and
 the exported proof in multiple kernels~\cite{SutherlandGRH,RubinsteinGRH}.
-We retain the GRH hypotheses in individual statements to
-specify the exact zero-location input to each argument.
+The notation $\grh(N)$ in individual statements specifies the
+modulus-specific zero-location input used in each argument.
 
 The norm in \cref{eq:goal} is a supremum over test functions whose supports
 may move with $N$. When both supports lie in $(N/3,2N/3)$, the only
@@ -176,6 +176,9 @@ local pair-correlation consequence of hypothesis S.
 term on packets at $N(\log N)^A$ for primorial moduli.
 \Cref{thm:typicalpolylogcovariance} gives the uncorrected
 formula at log-power supports outside a sparse set of moduli.
+\Cref{thm:divisorgridcovariance} gives a covariance formula with
+an explicit divisor-sum correction for every even modulus,
+including supports through the transition at $N$.
 \Cref{thm:almostall} bounds the entire supported norm on a growing
 window for almost all even moduli.
 \Cref{thm:mixedpower} bounds mixed windows with upper scales
@@ -4718,6 +4721,132 @@ Schur sums $O(L^{-D})$. The diagonal and the
 explicit-formula errors are power savings as before.
 \end{proof}
 
+\subsection{A uniform divisor-sum formula through the transition}
+
+Let $F_j,G_k$ be the unit log packets of \cref{sec:cutoff} and
+put $X=e^{\max(j,k)}$, $R=X/N$ for this pair. Use the physical
+profiles $w(u)=u^{-1/2}F_j(\log(Xu))$ and
+$z(u)=u^{-1/2}G_k(\log(Xu))$ for $u>0$, extended by zero.
+Let $J=J_{w,z}$ as in \cref{eq:model} and $I_{jk}=\int F_j\overline{G_k}$.
+Define the divisor sum $S_N(t)=\sum_{1\le d\le t}a_N(d)$, with the
+coefficients from \cref{sec:cutoff}. For integers $B,Q\ge3$, put
+$v_i=i/Q^3$ and define
+\begin{align}
+ \mathcal V_{N;B,Q}(F,G)
+   &=\sum_{|j-k|\le B}\left\{-I_{jk}S_N(R/Q)
+   +\sum_{i=Q^2+1}^{6Q^3}
+     \bigl(S_N(Rv_i)-S_N(Rv_{i-1})\bigr)
+     \sum_{m=1}^{6Q}J(mv_i)\right\}.
+ \label{eq:divisorgrid}
+\end{align}
+The scales and profiles inside the braces are those of the given pair.
+
+\begin{theorem}[Uniform covariance with divisor sums]
+\label{thm:divisorgridcovariance}
+For any even $N\ge4$ and tests supported on the positive log axis,
+the normalized continuous model satisfies
+\begin{equation}
+ \left|\frac{\mathcal M(F,G)}{\SSS(N)}-\mathcal V_{N;B,Q}(F,G)\right|
+ \ll \left((1+B)e^{-B/2}
+       +\frac{e^{B/2}+(1+B)\log(2Q)}{Q}\right)\NN(F)\NN(G).
+ \label{eq:divisorgriderror}
+\end{equation}
+In particular, fix $\delta,D>0$ and take
+$B=\max(3,\lceil2(D+2)\log L\rceil)$ and
+$Q=\max(3,\lceil L^{2D+4}\rceil)$, where $L=\log N$.
+On supports $x,y\ge N^\delta$, under $\grh(N)$ one has
+\begin{align}
+ \B(f,g)
+ &=\frac{2}{\varphi(N)}\sum_{\chi\ {\rm odd}}
+     Z_\chi(F)\overline{Z_\chi(G)}
+    -\int rF(r)\overline{G(r)}\,\ud r
+    -\SSS(N)\mathcal V_{N;B,Q}(F,G)\notag\\
+ &\qquad+O_{\delta,D}\bigl(\SSS(N)L^{-D}\NN(F)\NN(G)\bigr).
+ \label{eq:divisorgridcovariance}
+\end{align}
+The number of divisor-sum evaluations and the length of each shift
+sum per packet pair depend only on $Q$, even as $X/N$ grows.
+\end{theorem}
+
+\begin{proof}
+First, for $t>0$ the positive weights satisfy
+\begin{equation}
+ \sum_{t<d\le 2t}a_N(d)\ll 1,
+ \qquad \sum_{d\le t}d\,a_N(d)\ll t .
+ \label{eq:divisorgridmass}
+\end{equation}
+Indeed $a_N\le a_2$. The coefficients $h(k)$ of $H_2$ in the
+Euler product preceding \cref{eq:condconstant} have
+$\sum_k|h(k)|<\infty$. At $p>2$ the two nonconstant terms have
+coefficients $a_2(p)-1/p$ and $-a_2(p)/p$, both $O(p^{-2})$.
+The prime $2$ has just one nonconstant term. In the identity
+$a_2(d)=\sum_{km=d}h(k)/m$, the sum of $1/m$ on
+$t/k<m\le 2t/k$ is bounded absolutely, uniformly in $t,k$.
+This proves the first bound. Summing it on successive halved
+intervals, with $d\le t2^{-n}$ on the $n$th interval, proves the second.
+
+Write $B_J(v)=\sum_{m\ge1}J(mv)$. The packet model divided by
+$\SSS(N)$ is $\sum_d a_N(d)B_J(d/R)$, by the divisor expansion
+in \cref{sec:cutoff}. All sums here are finite since $J$ is supported
+in $[0,2e]$. Let $j\le k$ and $\rho=e^{j-k}$, and write
+$P_{jk}=\|F_j\|_{H^1}\|G_k\|_{H^1}$. The short profile has
+$\|w\|_1\ll \rho^{1/2}\|F_j\|_{H^1}$ and
+$\|w'\|_1\ll\rho^{-1/2}\|F_j\|_{H^1}$, by the change of variable
+$u=\rho e^{r-j}$. For the long profile,
+$\|z\|_\infty+\|z'\|_1+\|z'\|_2\ll\|G_k\|_{H^1}$.
+The odd-extension lattice comparison used for \cref{eq:Mpacket}
+therefore gives $|B_J(v)|\ll\rho^{1/2}P_{jk}$ for every $v>0$.
+Putting one derivative on each profile in the three convolutions
+gives $\|J''\|_1\ll \rho^{-1/2}P_{jk}$. Also
+$J(0)=2I_{jk}$ and $\int_0^\infty J=0$. The trapezoidal estimate
+used in \cref{thm:primorialmodel} gives
+\begin{equation}
+ |B_J(v)+I_{jk}|\ll v\rho^{-1/2}P_{jk} .
+ \label{eq:divisorgridtrapezoid}
+\end{equation}
+For $k<j$ interchange the profiles and conjugate throughout.
+
+When $|j-k|>2$, the overlap $I_{jk}$ is zero. Up to $d\le\rho R$,
+sum \cref{eq:divisorgridtrapezoid} using the weighted bound
+in \cref{eq:divisorgridmass}. Above $\rho R$ use
+$|B_J(v)|\ll\rho^{1/2}P_{jk}$ and the first bound in
+\cref{eq:divisorgridmass} on the $O(1+|j-k|)$ dyadic intervals
+up to $6R$. The normalized block is thus bounded by
+$O((1+|j-k|)e^{-|j-k|/2}P_{jk})$. The sum of coefficients
+in either index for $|j-k|>B$ is $O((1+B)e^{-B/2})$.
+
+On the retained packet pairs the terms $d\le R/Q$ give
+$-I_{jk}S_N(R/Q)$ with error $O(Q^{-1}e^{|j-k|/2}P_{jk})$,
+by \cref{eq:divisorgridtrapezoid,eq:divisorgridmass}.
+On $v>1/Q$ only $m\le6Q$ can contribute. Extend the profiles
+by zero on the entire real line and differentiate the long
+profile in each correlation or convolution. Cauchy--Schwarz
+gives $\|J'\|_\infty\ll\|w\|_2\|z'\|_2\ll P_{jk}$,
+since $\|w\|_2=\|F_j\|_2$. The sum over $m\le6Q$ is
+Lipschitz with constant $O(Q^2 P_{jk})$. Replacing $d/R$ by
+the right endpoint of its interval $(v_{i-1},v_i]$ changes
+it by at most $Q^{-3}$. The total divisor mass between
+$R/Q$ and $6R$ is $O(\log(2Q))$ by \cref{eq:divisorgridmass}.
+The resulting error is $O(Q^{-1}\log(2Q)P_{jk})$.
+All terms with $d>6R$ vanish. Summing the coefficients for
+$|j-k|\le B$ gives $O(Q^{-1}(e^{B/2}+(1+B)\log(2Q)))$
+in every row and column. The Schur bound and bounded packet
+overlap in energy prove \cref{eq:divisorgriderror}.
+
+For the covariance, the diagonal estimate following
+\cref{eq:modelresidue} gives $\int rF\overline G$ with a power
+saving. Only overlapping packets occur and $X\gg N^\delta$
+on these packets. The error factor $X^{-1/2}\log^3(2NX)$ is
+$O_\delta(N^{-c_\delta})$ uniformly for such $X$.
+On $r\ge\delta L$, \cref{eq:poslogexplicit,eq:Utail} and the
+estimate for the imprimitive terms give
+$\ell_\chi(F)=-Z_\chi(F)+O(LN^{-\delta/2}\NN(F))$ and
+$\|U(F)\|+\|Z(F)\|_\chi\ll L\NN(F)$.
+The error in the paired replacement in \cref{eq:split} is
+again a power saving. Applying \cref{eq:divisorgriderror}
+with the stated parameters proves \cref{eq:divisorgridcovariance}.
+\end{proof}
+
 \section{Norm decay for almost all moduli on growing windows}
 \label{sec:almostall}
 
@@ -6707,6 +6836,8 @@ to every log-power support requires retaining a term
 that depends on the small prime divisors of the modulus.
 \Cref{thm:typicalpolylogcovariance} gives the log-power
 threshold with arbitrarily few exceptional moduli.
+\Cref{thm:divisorgridcovariance} uses partial divisor sums to give the
+uniform covariance center above every fixed positive power of $N$.
 Known variance obstructions of the type studied by Fiorilli and
 Martin and by Hayani occur at $N\asymp\log\log x$
 \cite{FiorilliMartin,Hayani}. These support scales lie beyond
@@ -6777,6 +6908,9 @@ height symmetrization used in \cref{eq:fullpairshrinking}.
 The file \texttt{formalization/PrimorialModel.lean}
 checks the discrete trapezoidal endpoint identity used
 in the proof of \cref{thm:primorialmodel}.
+The file \texttt{formalization/DivisorGrid.lean} checks the finite
+shift cutoff and the right-endpoint grid index for rational
+samples in \cref{thm:divisorgridcovariance}.
 The file \texttt{formalization/CriticalArithmetic.lean}
 verifies the two congruence branches and the reduced
 proper-power threshold in \cref{thm:criticalpowers}.

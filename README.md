@@ -4,6 +4,7 @@ This repository contains the English research manuscript and the code and data f
 
 - [Manuscript (PDF)](output/pdf/hypothesis_s_paper.pdf)
 - [LaTeX source](output/pdf/hypothesis_s_paper.tex)
+- [Lean verification of the divisor-grid cutoff and endpoints](formalization/DivisorGrid.lean)
 - [Lean verification of the trapezoidal endpoint term](formalization/PrimorialModel.lean)
 - [Lean verification of the pair-height symmetry](formalization/PairHeightSymmetry.lean)
 - [Lean verification of the finite zero-concentration inequalities](formalization/ZeroConcentration.lean)
@@ -16,6 +17,8 @@ This repository contains the English research manuscript and the code and data f
 - [Lean verification of the signed progression rows](formalization/CriticalArithmetic.lean)
 
 ## Research checkpoint · 26 November 2026
+
+Theorem 10.15 gives a covariance formula for every even modulus on supports $x,y\ge N^\delta$ for any fixed $\delta>0$. Its explicit center uses partial sums of the singular-series divisor coefficients. For each fixed $D>0$ the error, normalized by the singular series, is $O_{\delta,D}((\log N)^{-D})$ in operator norm. The approximation to the continuous model uses no zero-location theorem. The covariance formula uses Dirichlet GRH.
 
 Theorem 10.13 computes the deterministic covariance correction for moduli divisible by the primorial up to $y$ with $\log N=O(y)$. The correction is multiplication by a function of the integrated Buchstab function throughout every fixed log-power window. For every fixed power threshold there are primorial packets beyond it where deleting this correction incurs an error of order the singular series.
 
@@ -33,7 +36,7 @@ Theorem 10.10 bounds the normalized short-gap part of the centered covariance by
 
 Theorem 3.2 gives a quantitative equivalence between norm decay on each fixed window $x,y<RN$ and vanishing Hardy–Littlewood discrepancies on its individual sum and difference lines. In particular, Hypothesis S would imply the expected asymptotic for prime pairs $(p,p+N)$ with $aN<p<bN$, for fixed $0<a<b$ and all even $N$ tending to infinity.
 
-The manuscript cites the [Alpöge–Claude Lean proof announcement](https://alpo.ge/remark.pdf) and independent [MIT](https://math.mit.edu/~drew/grh/) and [Waterloo](https://mrubinst.github.io/grh-lean-verification/) verification records. The verified Dirichlet GRH statements cover the zero-location inputs used here.
+We use the Alpöge–Claude Dirichlet GRH theorem for the zero-location inputs in the manuscript. The independent verification records include theorem-statement checks and kernel replays. [Proof announcement](https://alpo.ge/remark.pdf) · [MIT verification](https://math.mit.edu/~drew/grh/) · [Waterloo verification](https://mrubinst.github.io/grh-lean-verification/)
 
 Theorem 9.2 shows that, for any fixed $C\ge 1$, decay of the norm with the sharp product cutoff $xy\le CN^2$ is equivalent to uniform decay of signed rectangle counting discrepancies. The equivalence is unconditional for the physical arithmetic form. Under modulus-specific GRH, if $E_N$ is the full norm divided by the singular series, the sharp restriction has normalized norm $O_C(E_N^{1/3}+N^{-c})$. The improvement uses a linear upper-collar bound at fixed $C$.
 
@@ -49,6 +52,7 @@ With Elan installed, run the Lean check from the repository root.
 
 ```sh
 elan toolchain install leanprover/lean4:v4.35.0
+elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/DivisorGrid.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/PrimorialModel.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/PairHeightSymmetry.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/ZeroConcentration.lean
