@@ -234,6 +234,9 @@ def check_upper_mark_sieve():
             and 4*hi2 < Fraction(3086, 100000)):
         raise AssertionError(("upper-range sieve coefficients", intervals))
     print("Certified the upper-range lower coefficient in (0.97510, 0.97511) and width below 0.03086.")
+    if 4*hi1 >= Fraction(2383, 100000) or 1-3*hi1 <= Fraction(98212, 100000):
+        raise AssertionError(("semiprime product sieve coefficients", intervals[0]))
+    print("Certified the semiprime width below 0.02383 and lower coefficient above 0.98212.")
 
 
 def check_presifted_large_factor():

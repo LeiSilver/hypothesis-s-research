@@ -2505,6 +2505,154 @@ for the logarithm. The conversion to \eqref{eq:single-test-presifted}
 is the same as in \cref{prop:single-test-presifted-large-factor}.
 \end{proof}
 
+\begin{proposition}[The semiprime contribution at the target cutoff]
+\label[proposition]{prop:single-test-semiprime-mass}
+Let $U_N$ be the contribution to $M_N^+$ from $N-p=qr$ with
+$q,r$ prime, as in \cref{prop:single-test-upper-mark}. At every
+sufficiently large even $N$,
+\[
+ U_N\le 4cI_1+o(1),\qquad
+ P_N\ge c(1-3I_1)+R_N^+-o(1).
+\]
+Here $4I_1<0.02383$ and $1-3I_1>0.98212$. Moreover, for any
+$A>0$, outside a set of $O_A(Y/(\log Y)^A)$ even integers in
+$[Y,2Y]$, one has unconditionally
+\[
+ U_N=cI_1+O(1/\log Y),\qquad R_N^+=O((\log Y)^{-1/2}).
+\]
+\end{proposition}
+
+\begin{proof}
+For a scale $Z$, write $H=\log Z$, $J_Z=[Z/3,4Z/3]$ and put
+\[
+ B_Z(n)=H{\bf1}_{J_Z}(n)
+   \sum_{\substack{qr=n,\ q,r\ {\rm prime}\\Z^{1/5}<q\le Z^{2/5}}}
+            k(\log q/H).
+\]
+Here $r\gg Z^{3/5}$ and the factorization in the sum is unique.
+The continuous density obtained by replacing the two prime
+measures by their prime number theorem densities is, on $J_Z$,
+\[
+ b_Z(v)=H\int_{Z^{1/5}}^{Z^{2/5}}
+    \frac{k(\log u/H)}{\log(v/u)}\frac{\ud u}{u\log u}
+       =I_1+O(1/H).
+\]
+In the last equality set $t=\log u/H$ and use
+$\log(v/u)=(1-t)H+O(1)$. Extend $b_Z$ by zero off $J_Z$.
+It has bounded total variation uniformly in $Z$, by differentiating
+the integral in the interior and including the endpoint jumps.
+Partial summation in the prime number theorem in $r$ and then $q$
+gives $\sum_{n\in I}B_Z(n)=\int_I b_Z(v)\,\ud v+O_D(ZH^{-D})$
+uniformly in intervals $I$ for every $D>0$. At fixed $q$ the
+endpoint errors are $O_D((Z/q)H^{-D-2})$ before restoring $H$.
+
+For the pointwise bound take $Z=N$ and give $N-n$ the
+nonnegative weight $a_n=F(n/N)B_N(n)$, using the symmetry of $F$.
+In this proof $B_Z(n)$ denotes the sequence just defined.
+The total weight is $T=cNI_1+O(N/H)$. For $0<b<1/2$ fixed and
+every $D>0$ the reduced progression estimate for products of two
+primes gives
+\[
+ \sum_{\substack{d\le N^b\\(d,N)=1}}
+ \left|\sum_{n\equiv N\bmod d}a_n-\frac{T}{\varphi(d)}\right|
+       \ll_{b,D} NH^{-D}.
+\]
+Indeed apply \cite[Theorem~3.2]{LiuParkSong} to the disjoint prime
+ranges $(N^{1/5},u]$ and $(N^{1/2},2N]$ at a product endpoint
+$x\asymp N$. One may use $x$ as base scale and exponent one,
+expressing the prime ranges as powers of $x$; the theorem is
+uniform in the range endpoints. Partial summation in $u$ and
+$x$ inserts $k$ and $F$, at bounded variation cost before the
+factor $H$. The theorem centers at the total restricted to
+$(n,d)=1$. Its difference from $T$ is
+$O(H\sum_{\ell\mid d,\,\ell>N^{1/5}}(N/\ell+1))$, since
+$B_N(n)\ll H$. Even the uniform bound for this difference is
+$O(N^{4/5}H^2)$, and $\sum_{d\le N^b}1/\varphi(d)\ll H$.
+
+Sieve $N-n$ at $N^{b/2}$ on primes not dividing $N$.
+The local densities are $1/(\ell-1)$, exactly as in
+\cref{prop:single-test-upper-mark}. The upper linear sieve at
+parameter two bounds the surviving weight by
+$(2/b+o_b(1))T\SSS(N)/H$. Every prime in the window survives.
+For $n=qr$ in the original mass the mark satisfies
+$w_+(\log r/H)\le k(\log q/H)$ and $\log n\le H$.
+Thus multiplication by $H/(N\SSS(N))$ majorizes the desired
+normalization, including $\log p$ in place of the $H$ in $B_N(n)$
+since $\log p\le H$. Letting $b\uparrow1/2$ gives $4cI_1$.
+The exact decomposition of $M_N^+$ in
+\cref{prop:single-test-upper-mark} gives the asserted lower bound.
+The same endpoint sums used there certify the new numerical constants.
+
+For the almost-all estimate take $Z=Y$. Uniformly in the dyadic
+interval we have
+\begin{equation}
+ N\SSS(N)U_N=
+ \sum_{p\ {\rm prime}} F(p/N)\log p\,B_Y(N-p)
+       +O(N\SSS(N)/H).
+ \label{eq:single-test-semiprime-freeze}
+\end{equation}
+To check the change of scale, the fixed-$q$ upper sieve in
+\cref{prop:single-test-upper-mark}, with the mark removed,
+bounds the normalized mass by $O(1/q)$ uniformly for
+$q$ between $Y^{1/5}$ and $(2Y)^{2/5}$ (if $q\mid N$ there
+is no sample). Its sum is $O(1)$; on either endpoint band
+$[Y^a,(2Y)^a]$, $a=1/5,2/5$, it is $O(1/H)$ by the prime
+number theorem. Between the endpoints $\log n=H+O(1)$ and
+$\log r/\log N=1-\log q/H+O(1/H)$. The Lipschitz mark,
+extended by zero below $3/5$, therefore costs $O(1/H)$ in
+normalized mass, also at its cutoff. The support lies in $J_Y$.
+
+We give the mean-square estimate behind the exceptional set.
+Freeze the scale of $F$ at $s\in[Y,2Y]$ and set
+$D_s(N)=\sum_p F(p/s)\log p\,B_Y(N-p)$. Uniformly in $s$,
+for each $D>0$ one has
+\[
+ \sum_{Y\le N\le2Y}\left|D_s(N)
+ -\SSS(N)\int F(u/s)b_Y(N-u)\,\ud u\right|^2
+       \ll_D Y^3 H^{-D},
+\]
+where the singular series is zero on odd integers.
+Here are the details of the mixed convolution. On the minor arcs
+of \eqref{eq:almostminor} with $P=2Y$ and $Q=H^K$, the prime
+sum with $F$ has the same Vaughan bound by partial summation
+(removing powers costs $O(\sqrt Y H^2)$).
+The squared Fourier norm of $B_Y$ is $O(YH^2)$ by uniqueness.
+Bessel's inequality gives the claimed saving there by taking
+$K$ sufficiently large. On the major arcs the Fourier transform
+of $B_Y$ at $a/d+\beta$ equals
+\[
+ \frac{\mu(d)}{\varphi(d)}\int b_Y(v)e(\beta v)\,\ud v
+     +O_{K,E}(YH^{-E})
+\]
+for every $E>0$. Indeed $d\le H^K$ is coprime to each factor.
+In any reduced product class first sum $r$ by Siegel--Walfisz
+at the fixed class modulo $d$ determined by $q$. Then replace
+the reciprocal prime sum over $q$ by its integral as above.
+This gives $\int_I b_Y/\varphi(d)$ with arbitrary logarithmic
+saving for every subinterval $I$. Summation over residue classes
+and insertion of $e(\beta v)$ cost only powers of $H$. The prime
+factor with $F$ has the corresponding ordinary major-arc formula.
+Both real transforms are $O(\min(Y,|\beta|^{-1}))$ by bounded
+variation, giving precisely the completion error
+\eqref{eq:almosttails} and its stated mean-square bound.
+This proves the estimate.
+
+Use a grid of $O(H^4)$ choices of $s$ spaced by at most $Y/H^4$.
+Moving $s$ to $N$ costs $O(Y/H^2)$ in the convolution by the
+Lipschitz bound and $B_Y(n)\ll H$, and $O(Y\SSS(N)/H^4)$ in
+the model. Chebyshev's inequality at error $Y/H$, summed over
+this grid, gives an exceptional set of the asserted size on
+choosing $D>A+7$. At $s=N$ the integral is $cNI_1+O(N/H)$.
+Using \eqref{eq:single-test-semiprime-freeze} and $\SSS(N)\gg1$
+on even integers proves the assertion for $U_N$.
+The identical argument with $B_Y$ replaced by the prime log
+weight on $J_Y$ uses density one there. It gives
+$P_N=c+O(1/H)$ off a further exceptional set of the same size
+(the diagonal costs $O(H^2/N)$ after normalization).
+Subtract the principal term in \cref{prop:single-test-upper-mark}
+from $M_N^+=P_N+U_N+O(1/H)$ to obtain the estimate for $R_N^+$.
+\end{proof}
+
 \section{Certification on the balanced window}
 \label{sec:certificate}
 
@@ -16619,6 +16767,12 @@ M. Hayani,
 \newblock \emph{Disproving a weaker form of Hooley's conjecture},
 \newblock Bull. Sci. Math. \textbf{199} (2025), 103582.
 \newblock \url{https://arxiv.org/abs/2407.01045}.
+
+\bibitem{LiuParkSong}
+Y. Liu, P.~S. Park and Z.~Q. Song,
+\newblock \emph{Bounded gaps between products of distinct primes},
+\newblock Res. Number Theory \textbf{3} (2017), article 26.
+\newblock \url{https://doi.org/10.1007/s40993-017-0089-3}.
 
 \bibitem{VaughanExp}
 R.~C. Vaughan,
