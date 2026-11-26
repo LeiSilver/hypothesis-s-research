@@ -729,6 +729,79 @@ RH, Chirre and Hagen obtain length $123\log^2 Y$
 balanced test and gives a lower bound on the number of its prime
 representations on the selected moduli.
 
+\begin{proposition}[The fixed test on intervals of squared logarithmic length]
+\label[proposition]{prop:single-test-tents}
+Under the hypotheses and notation of \cref{prop:single-test-short-mean},
+allow $L^2\le H\le\sqrt Y$. Then
+\[
+ \frac{\sum_N N\SSS(N)\Delta_N}{\sum_N N\SSS(N)}
+ =\frac4{45}
+ +O\left(\frac{L^2}{H}\log\left(2+\frac H{L^2}\right)\right).
+\]
+There is an absolute $K$ such that every such interval with
+$H\ge K L^2$ contains $\gg H$ even integers with $\Delta_N\ge2/45$.
+The representation bound of \cref{prop:single-test-short-mean}
+holds on these moduli.
+\end{proposition}
+
+\begin{proof}
+Write $T_h(s)=(1-|s|/h)_+$, $F=f^2$, and $c=\int F$.
+For real $t\in[Y,Y+H]$ and $1\le h\le H$ we first show that
+\begin{equation}
+ \sum_{2\mid N}T_h(N-t)N\SSS(N)\Delta_N
+       =c t h+O(YL^2).
+ \label{eq:single-test-tent}
+\end{equation}
+Put $P_h(x)=\psi(x+h)-\psi(x)$. The overlap of
+$[m-h,m)$ with $(t-n-h,t-n]$ has length $hT_h(m+n-t)$.
+Consequently the left side is
+\[
+ \frac1h\int F(x/t)P_h(x)P_h(t-x-h)\,\ud x
+       +O(h^2 L+h L^2).
+\]
+Indeed, on the overlap $|x/t-m/(m+n)|\ll h/Y$ wherever either
+weight is nonzero. The total unrestricted tent mass before
+inserting $F$ is $O(YhL)$ by Chebyshev's bound on the first
+variable and the trivial interval count on the second.
+After restoring $F(m/(m+n))$, removal of odd sums and nonunit
+pairs costs $O(hL^2)$ as in \cref{prop:single-test-short-mean}.
+
+Write $P_h(x)=h+E_h(x)$. The constant term of the integral after
+division by $h$ is $cth$. Either linear term is $O(h\sqrt Y L^2)$:
+integrate first over shifts $0\le u\le h$ and apply the RH prime
+number theorem by partial summation to the translated test. Its
+total variation is bounded uniformly, also after reflection. More
+explicitly, for the first term one integrates
+$\sum_m\Lambda(m)F((m-u)/t)-\int F((v-u)/t)\,\ud v$
+over $u$. On both supports the Selberg integral bounds
+$\int_{x\asymp Y}|E_h(x)|^2\,\ud x\ll YhL^2$
+\cite{PracharShort,GoldstonYildirimShort}. Cauchy--Schwarz bounds
+the quadratic term after division by $h$ by $O(YL^2)$.
+This proves \cref{eq:single-test-tent} since $h\le\sqrt Y$.
+
+To recover the interval, start with the tent of radius $H/2$
+centered at its midpoint. Its two outer linear ramps each have
+width $H/2$. On bisecting a ramp of width $b$, add half a tent
+of radius $b/2$ at its midpoint. This makes the inner half
+constant one and leaves an outer ramp of width $b/2$. Perform
+this on both sides until the ramp width is at most $L^2$.
+There are $O(\log(2+H/L^2))$ tents, each of radius at least
+one for large $Y$. Their sum with these coefficients equals one
+off the two end intervals inside $(Y,Y+H]$ and lies in $[0,1]$
+everywhere. For a tent, $\int sT_h(s-t)\,\ud s=th$. The
+integrated main terms therefore differ from
+$c\int_Y^{Y+H}s\,\ud s$ by $O(YL^2)$.
+The omitted mass of the discrete sum is also $O(YL^2)$,
+including any endpoint atom, by $\Delta_N\ll1$ and the
+interval estimate $\sum_N\SSS(N)=b+O(L)$ on a segment of
+length $b$ from the preceding proof. Partial summation of that
+estimate gives $\sum_N N\SSS(N)=\int_Y^{Y+H}s\,\ud s+O(YL)$.
+Summing \cref{eq:single-test-tent} and dividing gives the claim.
+Choose $K$ so that the error in the mean is at most $c/4$.
+The second-moment argument for $\SSS(N)$ in
+\cref{prop:single-test-short-mean} now gives the asserted count.
+\end{proof}
+
 \section{Certification on the balanced window}
 \label{sec:certificate}
 
