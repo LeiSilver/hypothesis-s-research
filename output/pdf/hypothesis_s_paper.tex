@@ -89,6 +89,8 @@ We certify two-sided norm bounds at five balanced moduli and for
 three separated rectangular restrictions. A rational test gives
 $\|T_{32762}\|>0.2485744893$ in the original normalization.
 The asymptotic estimate for the full operator remains open.
+It would imply that the proportion of odd characters with
+nonzero central value tends to one through the even moduli.
 \end{abstract}
 
 \section{Introduction}
@@ -163,6 +165,9 @@ at all sufficiently large prime factors of the modulus.
 \Cref{thm:shortgapdeletion} bounds the short-gap terms in
 the remaining covariance by a uniform operator estimate,
 including on a tapered upper product range.
+\Cref{thm:microscopicconcentration} gives a lower bound
+for the norm from concentration in a shrinking interval of
+zero ordinates, with a consequence for central nonvanishing.
 \Cref{thm:almostall} bounds the entire supported norm on a growing
 window for almost all even moduli.
 \Cref{thm:mixedpower} bounds mixed windows with upper scales
@@ -4093,6 +4098,160 @@ In the range of \cref{eq:projectedlogseparation},
 $\mathcal C_{N,P}$ is therefore given, at that precision, by
 the sum over distinct labels.
 
+\subsection{Microscopic concentration and central nonvanishing}
+
+For $t\in\mathbb R$ and $h>0$, set
+\[
+ M_\chi(t,h)=\#\{\gamma\in\mathcal Z_\chi:|\gamma-t|\le h\},
+ \qquad L=\log N.
+\]
+The count includes all labels at a multiple zero.
+
+\begin{theorem}[A norm obstruction from concentrated zeros]
+\label{thm:microscopicconcentration}
+Assume $\grh(N)$. There is an absolute $c_0>0$ such that,
+for each fixed $B>0$, uniformly for $K\ge4$ and $|t|\le L^B$,
+\begin{equation}
+ \mathbf E_N M_\chi(t,c_0/(KL))^2
+ \ll_B \frac1K
+       +\frac{e^{2K}(1+t^2)}{KL}\,\SSS(N) E_N^{\rm hi}(1).
+ \label{eq:microscopicconcentration}
+\end{equation}
+Here $E_N^{\rm hi}(1)$ is the covariance norm on
+$r,s\ge2L$ as in \cref{thm:largeprimeconductors}.
+In particular, if the mean square of the multiplicity
+at a specified ordinate $t$ is at least $\epsilon>0$, then
+\begin{equation}
+ \|T_N\|\gg_{B,\epsilon}\frac{L}{1+t^2}
+ \label{eq:multiplicityobstruction}
+\end{equation}
+for sufficiently large $N$.
+
+More generally, put
+\[
+ Q_N(t)=\frac{L}
+        {(1+t^2)(1+\SSS(N)E_N^{\rm hi}(1))}.
+\]
+For $|t|\le L^B$ and $Q_N(t)\ge e^{16}$, the mean square
+of the count in the interval of radius
+$4c_0/(L\log Q_N(t))$ about $t$ is $O_B(1/\log Q_N(t))$.
+
+If hypothesis S holds along a sequence of moduli, then for
+each fixed $0\le\beta<1/2$ there is $c_\beta>0$ such that
+\begin{equation}
+ \sup_{|t|\le L^\beta}
+   \mathbf E_N M_\chi(t,c_\beta/(L\log L))^2
+             \ll_\beta (\log L)^{-1}.
+ \label{eq:microvanishing}
+\end{equation}
+In particular the proportion of odd characters with
+$L(1/2,\chi)=0$ is $O(1/\log\log N)$ on that sequence.
+\end{theorem}
+
+\begin{proof}
+Take an even smooth real bump $\phi$ supported in $[-1,1]$
+whose Fourier transform is nonnegative and has value one
+at zero. For example, use the autocorrelation of a smooth
+real function supported in $(-1/2,1/2)$ with nonzero
+integral, divided by the square of that integral.
+Choose $c_0>0$ so that $\widehat\phi(u)\ge1/2$ for
+$|u|\le c_0$. Let $\eta$ be a smooth function taking
+values in $[0,1]$ that is zero on $(-\infty,2]$ and one
+on $[3,\infty)$. Use the test
+\[
+ F(r)=\frac1{KL}\phi\!\left(\frac r{KL}\right)\eta(r/L)e^{-itr},
+ \qquad
+ h_{N,K}(r)=\frac1{KL}\phi\!\left(\frac r{KL}\right)
+                                  (1-\eta(|r|/L)).
+\]
+The test $F$ is supported on $[2L,KL]$.
+Adding the two reflected copies of its real envelope gives
+\begin{equation}
+ 2\Re\widehat F(\gamma)
+     =\widehat\phi(KL(\gamma-t))-\widehat h_{N,K}(\gamma-t).
+ \label{eq:microscopicreflection}
+\end{equation}
+This identity preserves a nonnegative contribution
+from every ordinate in the first term.
+
+The second envelope is supported on $[-3L,3L]$.
+Its $j$th derivative has $L^1$ norm $O_j(K^{-1}L^{-j})$
+for each fixed nonnegative integer $j$, by the product
+rule and $K\ge4$. Integration by parts therefore gives
+$|\widehat h_{N,K}(u)|\ll_j K^{-1}(1+L|u|)^{-j}$.
+Using \cref{eq:shortzerocount} in bins of width $1/L$
+centered relative to $t$ and the triangle inequality in
+character mean square gives
+\[
+ \left\|\sum_{\gamma\in\mathcal Z_\chi}
+                 \widehat h_{N,K}(\gamma-t)\right\|_\chi
+           \ll_B K^{-1}
+           \qquad (|t|\le L^B).
+\]
+Indeed the bin with offset $j$ from $t$ costs at most a
+constant times $K^{-1}(1+|j|)^{-3}
+(K^{-1}L^{-1})(1+|j|)^{-3}\log(2+|t+j/L|)$.
+Since $\widehat\phi$ is nonnegative and at least $1/2$ on
+$[-c_0,c_0]$, \cref{eq:microscopicreflection} bounds the
+mean square of $M_\chi(t,c_0/(KL))$ by
+$O_B(\mathbf E_N|Z_\chi(F)|^2+K^{-2})$.
+
+Write $F_0(r)=e^{itr}F(r)$. Its squared $H^1$ norm is
+$O((KL)^{-1})$, by its amplitude, support length, and
+the product rule at the two scales $L,KL$. Thus
+\[
+ \NN(F)^2\ll \frac{e^{2K}(1+t^2)}{KL},
+\]
+using $W_N(r)\le e^{2r/L}$ on the support.
+The symbol of \cref{eq:archdensity} is bounded by
+$O(L+\log(2+|u|))$ at frequency $u$.
+After shifting the frequency by $t$, Plancherel gives
+\[
+ |\mathcal W_N(F,F)|
+   \ll (L+\log(2+|t|))\|F_0\|_{H^1}^2
+   \ll_B K^{-1}.
+\]
+The definition of the high covariance norm gives
+\[
+ \mathbf E_N|Z_\chi(F)|^2\le|\mathcal W_N(F,F)|
+       +\SSS(N) E_N^{\rm hi}(1)\NN(F)^2.
+\]
+This proves \cref{eq:microscopicconcentration}.
+
+The multiplicity at $t$ is at most the count in each of
+these windows. If its mean square is at least $\epsilon$,
+choose a fixed $K$ large enough that the first bound is
+at most $\epsilon/2$. This gives the stated lower bound
+for $\SSS(N)E_N^{\rm hi}(1)$. By \cref{thm:zeros} this is
+bounded by $\|T_N\|+O(N^{-c})$ for some $c>0$, proving
+\cref{eq:multiplicityobstruction} for $|t|\le L^B$.
+
+For the estimate in terms of $Q_N(t)$ take
+$K=\frac14\log Q_N(t)$ in \cref{eq:microscopicconcentration}.
+The factor $e^{2K}(1+t^2)\SSS(N) E_N^{\rm hi}(1)/L$
+is at most $Q_N(t)^{-1/2}$.
+
+Under hypothesis S the same comparison gives
+$\SSS(N)E_N^{\rm hi}(1)=O(\log L)$, using
+$\SSS(N)\ll\log L$. Take
+$K=(1-2\beta)(\log L)/4$. On $|t|\le L^\beta$
+the coefficient $e^{2K}(1+t^2)/L$ is
+$O(L^{-(1-2\beta)/2})$. This proves
+\cref{eq:microvanishing} with $c_\beta=4c_0/(1-2\beta)$.
+An odd character whose central value vanishes contributes
+at least one label at $t=0$. The Euler factors of an
+induced character are nonzero at $1/2$, so central
+vanishing coincides for the induced and primitive
+characters. This proves the nonvanishing assertion.
+\end{proof}
+
+For $N=2p$ with $p$ an odd prime, the inducing family
+consists of exactly the odd primitive characters modulo
+$p$. The last consequence of \cref{thm:microscopicconcentration}
+then concerns central values at a single prime conductor.
+For an example of the mollified-moment theory of
+nonvanishing at prime conductors, see \cite{KMNNonvanishing}.
+
 \section{Norm decay for almost all moduli on growing windows}
 \label{sec:almostall}
 
@@ -6069,6 +6228,10 @@ of the normalized norms.
 On the upper product range, \cref{thm:shortgapdeletion}
 further reduces the covariance to pairs with gaps larger
 than the indicated microscopic threshold.
+\Cref{thm:microscopicconcentration} makes a positive
+limiting proportion of central zeros an obstruction
+on the full norm scale, and gives a uniform shrinking
+window bound under hypothesis S.
 Known variance obstructions of the type studied by Fiorilli and
 Martin and by Hayani occur at $N\asymp\log\log x$
 \cite{FiorilliMartin,Hayani}. These support scales lie beyond
@@ -6129,6 +6292,10 @@ The file \texttt{formalization/ZeroGapBins.lean} checks the
 bin-index range for short gaps and the elementary quadratic
 bound for summation at a fixed bin offset in
 \cref{thm:shortgapdeletion}.
+The file \texttt{formalization/ZeroConcentration.lean}
+checks the finite lower bound from nonnegative weights
+and its transfer through a signed error in
+\cref{thm:microscopicconcentration}.
 The file \texttt{formalization/CriticalArithmetic.lean}
 verifies the two congruence branches and the reduced
 proper-power threshold in \cref{thm:criticalpowers}.
@@ -6167,6 +6334,12 @@ J.~D. Lichtman,
 and Goldbach beyond the square-root barrier},
 \newblock arXiv:2309.08522, 2023.
 \newblock \url{https://arxiv.org/abs/2309.08522}.
+
+\bibitem{KMNNonvanishing}
+R.~Khan, D.~Mili\'cevi\'c and H.~T. Ngo,
+\newblock \emph{Nonvanishing of Dirichlet $L$-functions, II},
+arXiv:1911.10268, 2020.
+\newblock \url{https://arxiv.org/abs/1911.10268}.
 
 \bibitem{YLiu}
 Y.~Liu,
