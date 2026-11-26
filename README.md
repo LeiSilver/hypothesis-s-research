@@ -47,6 +47,8 @@ This repository contains the English research manuscript and the code and data f
 
 ## Research checkpoint · 27 November 2026
 
+Section 3 gives a one-sided Goldbach criterion on a single fixed test supported on $[5/12,7/12]$. Its squared integral is $4/45$. Under the modulus-specific GRH hypothesis, a fixed positive gap below $4/45$ for the normalized reflected pairing at every sufficiently large even modulus would give $\gg N\mathfrak S(N)/(\log N)^2$ ordered prime representations there. The proof gives an explicit proper-prime-power allowance for each modulus. The required uniform gap remains open.
+
 Theorem 13.34 uses Dirichlet GRH and the dispersion estimates of Fouvry and Fouvry–Radziwiłł to remove squarefree values with a prime factor at most $Y^\theta$ from the long-divisor remainder for any fixed $\theta<1/3$. The squared error over the even moduli is $O(Y^3(\log Y)^{-J_0})$ for every fixed $J_0$, with a sufficiently large fixed exponent in the initial roughness screen.
 
 Proposition 13.35 takes $\theta=21/64$. The remaining values have at most six prime factors, and the complementary divisors are primes or products of two distinct primes. The weight on the six-prime values is exactly $4\log n$. The critical decay-in-density criterion can use these remaining counts in place of the original prime prefixes.

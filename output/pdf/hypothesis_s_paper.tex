@@ -488,6 +488,38 @@ Indeed, on this support $\log p,\log q=\log N+O(1)$, and proper
 prime powers contribute $o(N\SSS(N))$ to the weighted sum. The only
 prime pairs removed by the unit condition have $p=q=N/2$.
 
+\paragraph{A one-sided test for Goldbach representations.}
+Take $f(u)=(1-144(u-1/2)^2)_+$ and $g(u)=f(1-u)$.
+This fixed test belongs to $H^1_0(I)$, takes values in $[0,1]$,
+and is positive precisely on $(5/12,7/12)$. Its squared integral
+is $(1/12)\int_{-1}^1(1-t^2)^2\,\ud t=4/45$. Put
+\[
+  \Delta_N=\frac4{45}-\frac{\B(f,g)}{\SSS(N)},\qquad
+  H_N=2\bigl(\sqrt N+N^{1/3}\lfloor\log_2 N\rfloor\bigr).
+\]
+Let $r_N$ count ordered pairs of distinct primes $p+q=N$ with
+$5N/12<p<7N/12$. Under the hypotheses of \cref{thm:disc},
+\begin{equation}
+ r_N\ \ge\ \frac{N\SSS(N)}{(\log N)^2}\Delta_N-H_N .
+ \label{eq:single-goldbach-test}
+\end{equation}
+Indeed, \cref{eq:balance} gives $\Delta_N=\int f^2\,\ud\mu_N$.
+At most $\sqrt N$ squares and at most $N^{1/3}$ powers for
+each exponent $3\le k\le\lfloor\log_2 N\rfloor$ can occur in
+either coordinate. Their total weight before normalization is
+at most $H_N(\log N)^2$. Each remaining atom contributes at
+most $(\log N)^2$, and the unit condition excludes $p=q=N/2$.
+This proves \cref{eq:single-goldbach-test}.
+
+Thus a fixed $\varepsilon>0$ with
+$\B(f,g)/\SSS(N)\le 4/45-\varepsilon$ at every sufficiently
+large even $N$ would give
+$r_N\ge(\varepsilon-o(1))N\SSS(N)/(\log N)^2$, since
+$\SSS(N)\gg1$. Even an $N$-dependent margin suffices for
+existence whenever $N\SSS(N)\Delta_N>H_N(\log N)^2$.
+Establishing such a margin at every sufficiently large even
+modulus remains open.
+
 \subsection{Individual sum and difference lines on bounded windows}
 
 Fix $R\ge1$. Write $W_N(R)$ for the normalized form norm
