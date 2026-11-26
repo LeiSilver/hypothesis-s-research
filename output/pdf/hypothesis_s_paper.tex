@@ -284,6 +284,8 @@ bounding the resulting difference in their Farey lengths.
 \Cref{thm:criticalgriddoublecompletion} factors the remaining
 complete coefficient into two Kloosterman sums and removes
 part of the resulting zero mode.
+\Cref{thm:criticalgriddoublezero} reconstructs the physical
+Type~II count from the transition-range double zero mode.
 \Cref{thm:criticalpowers} proves decay in density for the
 entire proper-power contribution through a fixed critical
 product cap and identifies the fixed rows needed for decay
@@ -12913,6 +12915,305 @@ moment after the replacements.
 \end{proof}
 
 \clearpage
+\subsection{Reconstruction of the double zero mode}
+
+Keep the notation of \cref{thm:criticalgriddoublecompletion},
+and put $T_*=B Y^\beta$. Define the physical Type~II sum
+\begin{equation}
+ U_N=\sum_{p\in I}\log p\sum_{b\in\mathcal B}
+       \sum_{\sigma=\pm1}\sigma\,1_{n\in J}s_z(n)
+       \sum_{\substack{d\mid n\\A_*<d\le T_*}}
+                    \mu(d)\log(n/d),
+ \qquad n=bN+\sigma p.
+ \label{eq:criticalgridtransitionphysical}
+\end{equation}
+The prime sum here has the same convention as the
+sampling sum of \cref{thm:criticalgriddoublecompletion}.
+
+\begin{theorem}[Physical sum on the transition range]
+\label{thm:criticalgriddoublezero}
+Assume Dirichlet GRH and the conditions of
+\cref{thm:criticalgriddoublecompletion}, including
+\cref{eq:criticalgriddoubletransitioncondition}. Suppose
+also that $\lambda>\beta+4\rho$.
+In the completed sequence the entire part with
+$A_*<d\le T_*$ and $D_0\le Y^\lambda$ may be replaced
+by $U_N$, with $O(Y^{3-\delta})$ squared error for some
+$\delta>0$. The difference between the capped and uncapped
+double zero modes on this divisor range itself has a
+power-saving pointwise bound.
+\end{theorem}
+
+\begin{proof}
+By \cref{thm:criticalgriddoublecompletion}, it suffices
+to treat $k=h=0$. We use the cutoff $D_0\le Y^\lambda$
+at first and also compute the effect of lifting it.
+Use the convolution construction of $u_Y$ in the proof
+of \cref{thm:criticalgridpoisson}, so that
+$\int|u_Y'|\ll1$. In particular
+$\|f_d\|_\infty+\|f_d'\|_1\ll\log Y$ and
+$\|f_d^{(i)}\|_1\ll_i Y^{i\rho}\log Y$.
+
+Fix $s,\ell,d,g$ and write $q=gx$ and $v=D/g$ as above.
+For signed $j\ne0$, use the unit-lift identity
+\cref{eq:criticalgridflatlifts}, which does not require an
+upper bound on $D/x$. For $h_0\mid g$, put $t=g/h_0$
+and $c=D/t$. Reciprocity and the mean in $x$ give the
+Ramanujan factor
+\begin{equation}
+ \mu(h_0)t\,1_{t\mid n}\frac{c_c(jn/t)}c
+                 \prod_{p_0\mid j,\ p_0\nmid c}(1-1/p_0).
+ \label{eq:criticalgriddoublezero-ramanujan}
+\end{equation}
+The integral multiplying it is
+\[
+ \int_0^\infty \frac{M}{K g x}\omega(gx)a_0(gx)
+   \widehat f_d(Mj/x)\,\vartheta(Mj/(xY^{2\rho}))
+                     e(jn/(Dx))\,\ud x .
+\]
+Indeed, at $h=0$ the arc weight is independent of the
+inverse numerator, and \cref{eq:criticalgridflatlifts}
+with reciprocity evaluates the mean by permutation of
+the units modulo $c$. The extra coprimality with $j$
+gives the displayed product. The mean can equivalently
+be taken modulo $Dj$, since the period $c|j|$ divides
+$D|j|$. Negative $j$ accounts for the conjugate part.
+
+Expand the Ramanujan weight in \cref{eq:criticalgriddoublezero-ramanujan}
+over $e\mid c$, with $f=c/e$. Its terms have coefficient
+$\mu(e)/e$ and condition $f\mid jn/t$.
+Regroup by $u=(f,j)$, writing $j=u a$, so that
+$(a,f/u)=1$. Put $m=eu$ and $L_f=D/m$. Then
+$t\mid n$ and $f\mid jn/t$ are together equivalent to
+$L_f\mid n$. In fact $f/u$ divides $n/t$ by coprimality,
+and $L_f=t f/u$.
+Define
+\[
+ R_D=\operatorname{rad}(D),\qquad
+ \mathcal D_g(b)=\prod_{p_0\mid gb}p_0^{v_{p_0}(D)} .
+\]
+The arithmetic weight on the nonzero integers $a$ is
+\[
+ 1_{(a,c/m)=1}\,1_{\mathcal D_g(ua)\le Y^\lambda}
+                 \prod_{p_0\mid a,\ p_0\nmid c}(1-1/p_0).
+\]
+The factors at primes dividing $D$ give a function
+$F(a)$ of $(a,R_D)$ taking values in $[0,1]$.
+The other factors equal
+$\sum_{b_0\mid |a|,\,(b_0,D)=1}\mu(b_0)/b_0$.
+Write $\overline F=R_D^{-1}\sum_{a\bmod R_D}F(a)$.
+The mean to be used below is
+\begin{equation}
+ \mathfrak m_\lambda
+    =\overline F\prod_{p_0\nmid D}(1-p_0^{-2}).
+ \label{eq:criticalgriddoublezero-density}
+\end{equation}
+The same definitions without the cutoff give
+$\mathfrak m_\infty$.
+
+To evaluate the sum in $a$, put $Q_x=x/(M u)$ and
+$\Psi_n(y)=\widehat f_d(y)\vartheta(y/Y^{2\rho})e(yn/V)$.
+For each progression $a\in l\mathbb Z$ the sum of
+$\Psi_n(a/Q_x)$ over $a\ne0$ is
+$(Q_x/l)\int\Psi_n+O(Y^{2\rho}\log Y)$, by comparing
+the sum with the integral one mesh interval at a time.
+The corresponding error after differentiating in $n$
+is $O(Y^{4\rho}(\log Y)/V)$. These bounds follow from
+the supremum and total variation of $\Psi_n$ and
+$\partial_n\Psi_n$ on $|y|\le2Y^{2\rho}$, for
+$|n|\ll V$.
+
+By M\"obius inversion on the divisors of $R_D$, write
+$F(a)=\sum_{v_0\mid(a,R_D)}F^*(v_0)$, with
+$|F^*(v_0)|\le\tau(v_0)$. Use the progression bound on
+multiples of $v_0b_0$ for $b_0\le\lceil2Q_xY^{2\rho}\rceil$.
+The sum of the error weights is $O_\epsilon(Y^\epsilon)$
+by the divisor bound and the harmonic sum in $b_0$.
+Extending the main coefficient in $b_0$ to infinity
+costs $O_\epsilon(Y^\epsilon)$ times the supremum
+and variation bounds just used, since
+$Q_x\sum_{b_0>2Q_xY^{2\rho}}b_0^{-2}\ll1$
+with the ceiling understood.
+The sum $\sum_{v_0\mid R_D} F^*(v_0)/v_0$ is
+$\overline F$. Finally Fourier inversion gives
+$\int\Psi_n(y)\,\ud y=f_d(n/V)$ up to a negligible
+error, also after differentiating with respect to $n$.
+This follows by repeated integration by parts for
+$\widehat f_d$ outside $|y|\le Y^{2\rho}$.
+Thus the $a$ sum is
+\begin{equation}
+  Q_x\mathfrak m_\lambda f_d(n/V)+E(n;x),\qquad
+ |E(n;x)|\ll_\epsilon Y^{2\rho+\epsilon},\quad
+ |\partial_n E(n;x)|\ll_\epsilon Y^{4\rho+\epsilon}/V .
+ \label{eq:criticalgriddoublezero-lattice}
+\end{equation}
+All estimates hold as well for $\lambda=\infty$.
+
+For fixed remaining indices, $L_f\mid bN\pm p$ describes
+either two empty progressions or two residue classes
+of the same modulus. Their signed count on any interval
+is $O(1)$. Replace $E(bN\pm p;x)$ by $E(bN;x)$ at cost
+$O_\epsilon(pB Y^{4\rho+\epsilon}/V)$ and then apply
+partial summation over $b$ to the signed progressions.
+The total error in the slope sum is
+$O_\epsilon(Y^{4\rho+\epsilon})$.
+Integration against $M\omega(gx)a_0(gx)/(K g x)$
+and multiplication by $t/e$ cost at most
+$O_\epsilon((P/d)Y^\epsilon)$.
+Sum the divisor choices at a divisor-bound loss, the
+screen pairs at cost $Z^2$, and the prime weights at
+cost $O(X)$. Since $\sum_d d^{-1}\ll\log Y$ in the
+indicated range, the total error is
+$O_\epsilon(XP Y^{5\rho+\epsilon})$, a pointwise
+power saving.
+
+Put $\kappa_Y=K^{-1}\int_0^\infty\omega(q)a_0(q)\,\ud q$.
+The main contribution from \cref{eq:criticalgriddoublezero-lattice}
+is now, before the screen and prime weights,
+\begin{equation}
+ \kappa_Y\frac{\mu(h_0)\mu(e)t}{g^2 e u}\,
+        \mathfrak m_\lambda\,1_{L_f\mid n} f_d(n/V).
+ \label{eq:criticalgriddoublezero-local}
+\end{equation}
+Here $Q_x=x/(M u)$ cancels the $x$ and $M$ in the
+weight, and the substitution $q=gx$ supplies the
+second factor $1/g$.
+
+We bound the change on lifting the cap in this main
+contribution. On the support of $\mu(d)$, $d$ is
+squarefree and
+$\mathcal D_g(ua)\le r g u(d,a)\le Y^{3\rho}u(d,a)$.
+Over $a\bmod R_D$ the probability of
+$(d,a)>Y^{\lambda-3\rho}/u$ is
+$O_\epsilon(Y^{3\rho-\lambda+\epsilon}u)$, by summing
+$1/v_0$ over the divisors $v_0\mid d$ above that threshold.
+Consequently
+$|\mathfrak m_\lambda-\mathfrak m_\infty|
+ \ll_\epsilon Y^{3\rho-\lambda+\epsilon}u$.
+The same comparison of the two signed progressions
+bounds the slope sum with $f_d(n/V)$ by $O(\log Y)$,
+using $\|f_d'\|_1\ll\log Y$, and
+$pBY^\rho/V\ll1$ for the shift by $p$.
+Thus the factor $u$ from lifting the cap is canceled
+by $1/u$ in \cref{eq:criticalgriddoublezero-local}.
+Using $d\le B Y^\beta$ and $XB\asymp_{C,Q}Y$, the
+total cost is
+$O_\epsilon(Y^{1+\beta+4\rho-\lambda+\epsilon})$.
+This proves the claimed saving for lifting the cap.
+
+In the uncapped coefficient, for fixed $m=eu\mid c$,
+the density depends only on $c/m$, since $u\mid c$.
+Thus the sum over $e\mid m$ carries the factor
+$\sum_{e\mid m}\mu(e)$, and only $m=1$ survives.
+Its condition is $D\mid n$, and its density is
+\[
+ \alpha(c)=\frac{\varphi(c)}c\prod_{p_0\nmid c}(1-p_0^{-2}).
+\]
+We may now restore all $g\mid D$. Each previously
+excluded $g$ exceeds $Y^\rho$, and its coefficient
+summed over $h_0\mid g$ is $O_\epsilon(Y^{-\rho+\epsilon})$.
+For each sampled $n$ the condition $D\mid n$ allows at
+most $\tau(n)$ choices of $d$. Counting the $b,p$
+samples and the screen pairs bounds the restoration
+by $O_\epsilon(Y^{1-\rho/3+\epsilon})$.
+The full coefficient in $g,h_0$ is
+\begin{align*}
+ \sum_{g\mid D}\frac1g
+      \sum_{h_0\mid g}\frac{\mu(h_0)}{h_0}\alpha(h_0 D/g)
+ &=\sum_{t\mid D}\frac{\alpha(D/t)}t
+                     \sum_{h_0\mid D/t}\frac{\mu(h_0)}{h_0^2}\\
+ &=\frac{1}{\zeta(2)D}\sum_{v_0\mid D}\varphi(v_0)
+ =\frac1{\zeta(2)}.
+\end{align*}
+
+The scalar $\kappa_Y$ equals $\zeta(2)+O(Y^{-\rho})$.
+Indeed smoothing the length function changes its mean
+by $O(Y^{-2\rho})$, and the taper drops a fraction
+$O(Y^{-\rho})$ of the $q$ interval.
+Without either change the mean length, integrated
+in $q/K$, is
+\[
+ 1+2\int_0^1\frac{r_0(1-\log r_0)}{(1+r_0)^2}\,\ud r_0
+      =\zeta(2).
+\]
+Here the first term is from $q\le K/2$, and for
+$q>K/2$ we put $r_0=(K-q)/q$.
+The equality follows by integration by parts and
+$\int_0^1(-\log r_0)/(1+r_0)\,\ud r_0=\zeta(2)/2$.
+The scalar error costs $O_\epsilon(Y^{1-\rho/3+\epsilon})$
+by the same divisor count at each sampled $n$.
+
+Finally, $D=dr=\operatorname{lcm}(d,\operatorname{lcm}(s^2,\ell))$.
+The condition $D\mid n$ therefore reconstructs the
+truncated screen $s_z^*(n)$ together with $d\mid n$.
+The physical sum now has the weight
+$u_Y(n/V)s_z^*(n)$ in place of $1_J(n)s_z(n)$.
+Their discrepancy is on $O(VY^{-c_0})$ integers
+for some $c_0>0$, by the screen estimates of
+\cref{thm:criticalgridpoisson} and the width of the
+endpoint smoothing. For each fixed $p,\sigma$ such
+integers have at most $O(VY^{-c_0+\epsilon})$ representations
+as $n=bN+\sigma p$, by counting divisors of $n-\sigma p$.
+Thus the sum over $N$ of the absolute error is
+$O_\epsilon(Y^{2-c_0+\epsilon})$, and the maximum
+over $N$ is $O_\epsilon(Y^{1+\epsilon})$.
+Their product gives a power-saving squared error.
+Together with the earlier pointwise savings this
+proves the replacement by \cref{eq:criticalgridtransitionphysical}.
+\end{proof}
+
+\begin{proposition}[The lower endpoint of the reconstructed range]
+\label[proposition]{prop:criticalgriddoublezero-lower}
+For any fixed $J_0>0$ one can choose the exponent in
+$z=(\log Y)^A$ and the constant $A_0$ sufficiently large
+that, with
+\[
+ H_0=\exp\!\left(
+       A_0\frac{(\log\log Y)^2}{\log\log\log Y}\right),
+\]
+raising the lower bound on $d$ in
+\cref{eq:criticalgridtransitionphysical} from $A_*$ to
+$B/H_0$ costs $O(Y^3(\log Y)^{-J_0})$ in squared norm.
+\end{proposition}
+
+\begin{proof}
+Apply \cref{thm:criticalgridlongmobius} with $W=1$ and
+the two cutoffs $U_1=\lfloor A_*\rfloor$ and
+$U_2=\lfloor B/H_0\rfloor$. They are ordered for large $Y$
+and both are allowed, since $A_*/B\asymp_{C,Q}Y^{-\varepsilon}$
+and $H_0=Y^{o(1)}$. Subtracting the two Type~II sums
+selects exactly $U_1<d\le U_2$. The theorem bounds that
+difference in squared norm with an arbitrarily large
+logarithmic saving.
+
+To compare the conventions in the two sums, changing
+$1_J(bN)$ to $1_J(bN+\sigma p)$ costs a power saving.
+For each $p,\sigma$ their difference restricts $n$ to
+intervals of total length $O(X)$ at the endpoints of
+$J$. As in the preceding proof, count representations of
+$n-\sigma p$ and use the maximum per-modulus bound.
+The range of $b$ with $bN\in J$ lies in $\mathcal B$.
+
+It remains to include $p\mid N$ or $p\mid b$.
+If either holds, $p\mid n$, so the screen forces $p>z$.
+For fixed $p$ the number of such pairs $(N,b)$ is
+$O(YB/p)$, since $p\ll\min(Y,B)$. The square of
+the weight at $n$ is at most $\tau(n)^2(\log Y)^2$,
+and its second moment over $(N,b)$ is
+$O(V(\log Y)^C)$ for some fixed $C$.
+This follows from the divisor bound for the number of
+representations of $n-\sigma p$ and the divisor moments
+used in \cref{thm:criticalgridlongmobius}.
+Cauchy--Schwarz on the exceptional pairs, and then the
+weighted Cauchy--Schwarz bound with total weight
+$O(XB)$ per modulus, give squared error
+$O(Y^3z^{-1/2}(\log Y)^C)$, increasing $C$ if necessary.
+Choose $A$ sufficiently large. This proves the bound
+with the sampling convention of
+\cref{eq:criticalgridtransitionphysical}.
+\end{proof}
+
+\clearpage
 \section{Conditional bounds from uniform prime-pair discrepancies}
 \label{sec:pairconditional}
 
@@ -13140,6 +13441,8 @@ M\"obius range across all retained arc denominators.
 \Cref{thm:criticalgriddoublecompletion} makes the two
 Kloosterman factors of the long-divisor remainder
 explicit and removes a portion of its zero mode.
+\Cref{thm:criticalgriddoublezero} gives a physical
+congruence sum for the transition-range contribution.
 \Cref{prop:criticalgridarcsharpness} shows that a power saving
 for arbitrary arc functions cannot follow from their size,
 their energy, and the conductor cutoffs alone.
@@ -13311,6 +13614,10 @@ The file \texttt{formalization/DoubleCompletion.lean}
 checks the cleared phase identity and the congruence
 used to change a branch representative in
 \cref{thm:criticalgriddoublecompletion}.
+
+The file \texttt{formalization/DoubleZeroReconstruction.lean}
+verifies the reduced divisibility condition and the
+divisor regrouping in \cref{thm:criticalgriddoublezero}.
 
 The file \texttt{formalization/PrefixPersistence.lean} checks
 the finite sum version of the large-prefix estimate used in
