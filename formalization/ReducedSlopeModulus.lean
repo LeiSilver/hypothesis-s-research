@@ -63,7 +63,34 @@ theorem modulus_dvd_reduced_cofactor_product (q n : Nat) :
       rw [hm, Nat.mul_assoc]
     _ = q * m := by rw [hq]
 
+theorem modulus_dvd_iff_reduced_cofactor_dvd (q n m : Nat) (hq : 0 < q) :
+    q ∣ n * m ↔ (q / Nat.gcd q n) ∣ m := by
+  let d := Nat.gcd q n
+  have hd : 0 < d := Nat.gcd_pos_of_pos_left n hq
+  have hdq : d ∣ q := Nat.gcd_dvd_left q n
+  have hdn : d ∣ n := Nat.gcd_dvd_right q n
+  have hqSplit : d * (q / d) = q := by
+    rw [Nat.mul_comm]
+    exact Nat.div_mul_cancel hdq
+  have hnSplit : d * (n / d) = n := by
+    rw [Nat.mul_comm]
+    exact Nat.div_mul_cancel hdn
+  have hnProduct : d * ((n / d) * m) = n * m := by
+    rw [← Nat.mul_assoc, hnSplit]
+  have hCoprime : Nat.Coprime (q / d) (n / d) := by
+    change Nat.gcd (q / d) (n / d) = 1
+    rw [Nat.gcd_div hdq hdn]
+    exact Nat.div_self hd
+  change q ∣ n * m ↔ q / d ∣ m
+  calc
+    q ∣ n * m ↔ d * (q / d) ∣ d * ((n / d) * m) := by rw [hqSplit, hnProduct]
+    _ ↔ q / d ∣ (n / d) * m := Nat.mul_dvd_mul_iff_left hd
+    _ ↔ q / d ∣ m :=
+      ⟨hCoprime.dvd_of_dvd_mul_left,
+        fun h => Nat.dvd_trans h (Nat.dvd_mul_left m (n / d))⟩
+
 #print axioms slope_reduced_denominator
 #print axioms modulus_dvd_reduced_cofactor_product
+#print axioms modulus_dvd_iff_reduced_cofactor_dvd
 
 end HypothesisS

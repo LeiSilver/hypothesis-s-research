@@ -249,6 +249,9 @@ Fourier variable and combines this with the modulus cutoff.
 \Cref{thm:criticalgriddenominatorpairs} bounds the pairs
 of nearby or closely related approximation denominators
 and gives a second-moment formula using separated denominators.
+\Cref{thm:criticalgridglobalcharacters} removes the entire
+principal-character contribution and restricts the nonprincipal
+terms to larger denominators and conductors.
 \Cref{thm:criticalpowers} proves decay in density for the
 entire proper-power contribution through a fixed critical
 product cap and identifies the fixed rows needed for decay
@@ -10561,6 +10564,184 @@ and their least common multiple divides $N$. In particular
  \le \frac{2YH^2}{P}.
 \]
 
+\clearpage
+\subsection{Summing the character components over denominators}
+
+Use the partition and $F_q$ of
+\cref{thm:criticalgriddenominatorpairs}, and write
+$Q_*=\lceil V/P\rceil$. For $d=(q,N)$, $r=q/d$,
+$e_b=(b,r)$ and $k=r/e_b$, define the multiplicative
+Fourier coefficients
+\[
+ \gamma_{q,k}(\chi;\beta)=
+ \frac1{\varphi(k)}
+ \sum_{v\bmod k}^{*}\overline{\chi(v)}
+ \sum_{a\bmod q}^{*}F_q(a/q+\beta)e(-av/k),
+            \qquad \chi\bmod k.
+\]
+For each $b$ the expansion in \cref{thm:criticalgriddenominatorpairs}
+then substitutes
+$\sum_{\chi\bmod k}\gamma_{q,k}(\chi;\beta)\chi((b/e_b)(N/d))$
+for $\sum_a^*F_q(a/q+\beta)e(-abN/q)$. The phase
+$e(-\beta bN)$ still multiplies this expansion. Let
+$C_{q,N}$ denote the principal part without the mask
+$1_{qr\le PH}$ used for $C_{q,N}^{\star}$.
+
+\begin{theorem}[Global deletion of principal and small character terms]
+\label{thm:criticalgridglobalcharacters}
+Use the hypotheses of \cref{thm:criticalgriddualmajor} and
+suppose additionally that $X\le Y^{\xi/8}$. Set
+\[
+ R_0=Y^{1+\xi/4},\qquad D_0=Y^{2\xi},\qquad H_0=Y^{1-\xi/2}.
+\]
+Let $A_{q,N}$ be obtained from $(\mathcal C F_q)_N$ by
+retaining only
+\begin{equation}
+ q>R_0,\qquad d\le D_0,\qquad \chi\ne\chi_0,\qquad
+ \min\bigl(\operatorname{cond}(\chi),(B/e_b)^2\bigr)
+                      (1+Y e_b/q)>H_0
+ \label{eq:criticalgridglobalcut}
+\end{equation}
+in the expansion just given. Under Dirichlet GRH,
+\begin{equation}
+  \sum_{\substack{Y\le N\le2Y\\2\mid N}}
+       \left|B_N^{\rm p}(I,J)-\sum_q A_{q,N}\right|^2
+       \ll_{C,Q,\eta,\xi}Y^{3-\xi/4}.
+ \label{eq:criticalgridglobalcharacters}
+\end{equation}
+In particular, if $e_b\le Y^{\xi/4}$, the retained
+characters have conductor $\gg Y^{1-\xi/2}$.
+For every retained character,
+$k/\operatorname{cond}(\chi)\ll_C Y^{3\xi/2}$.
+
+Let $\widetilde Z_q(\alpha)=\sum_{Y\le N\le 2Y,\,2\mid N}
+A_{q,N}e(\alpha N)$. For any measurable $E\subset\mathbb R/\mathbb Z$
+and any set $\Gamma$ of denominator pairs with row and
+column degrees $O(Y^{1-\xi/2})$,
+\begin{equation}
+ \sum_{(q,q')\in\Gamma}\left|
+     \int_E\widetilde Z_q(\alpha)
+              \overline{\widetilde Z_{q'}(\alpha)}\,\ud\alpha\right|
+ \ll_{C,Q,\eta,\xi}Y^{3-\xi/4}.
+ \label{eq:criticalgridwidegap}
+\end{equation}
+This includes $|q-q'|\le Y^{1-\xi/2}$ and, if desired,
+$\max(q,q')/(q,q')\le Y^{1-\xi}$.
+On the prime-prefix grid, choose $\xi\ge8\kappa$
+and use $E=(\mathbb R/\mathbb Z)\setminus\mathfrak M_Y$.
+The original second moment equals the sum of the integrals for
+the surviving pairs $(q,q')\notin\Gamma$ with a power-saving error.
+\end{theorem}
+
+\begin{proof}
+First sum the principal parts over all $q$. For $q\le V/(3P)$
+the arcs of order at most $q$ are disjoint, since their
+summed radii are less than their rational spacing.
+The least-denominator assignment therefore leaves every
+$q$ arc intact in this range. The GRH calculation in
+\cref{thm:criticalgriddenominatorpairs} gives
+$|\sum_a^* F_q(a/q+\beta)|\ll X\sigma(q)\sqrt V L^2$
+on each translated interval for $\beta$. Its argument
+only needs $V|\beta|\le1$ and complete $q$ arcs.
+Together with $\sum_b1/\varphi(k)\ll_\epsilon Y^\epsilon B/r$,
+it bounds the full $|C_{q,N}|$ by
+$O_\epsilon(Y^\epsilon PXB/(\sqrt V\,r))$.
+For fixed $N$,
+\[
+ \sum_{q\le Q_*}\frac1r
+ \le \sum_{d\mid N}\sum_{r\le Q_*/d}\frac1r
+ \ll \tau(N)\log(2Y).
+\]
+The sum of the low-$q$ principal parts at each $N$ is therefore
+$O_\epsilon(Y^{1-\xi+\epsilon}/\sqrt X)$.
+
+For $q>V/(3P)$ apply Cauchy--Schwarz over $(a,\beta)$
+instead. Using $\Delta_q q=P/V$ gives
+\[
+ |C_{q,N}|\ll_\epsilon Y^\epsilon (P/V)^{1/2}
+                                     (B/r)\|F_q\|_2 .
+\]
+Use the fixed-$N$ harmonic sum above in Cauchy--Schwarz with
+weights $1/r$. For fixed $q$ the complementary estimate is
+$\sum_{N\sim Y}r^{-1}\ll (Y/q)\tau(q)$, since the group indexed
+by $d=(N,q)$ has $O(Y/d)$ moduli when nonempty and contributes
+$d/q$ per modulus. Summing over $N$ bounds the squared norm of
+the high-$q$ principal sum by
+\[
+ \ll_\epsilon Y^\epsilon (P/V)B^2
+                  (YP/V)\sum_q\|F_q\|_2^2
+ \ll_{C,Q,\epsilon}Y^{3-2\xi+\epsilon}.
+\]
+Here $P^2/V\ll_Q Y^{-2\xi}/X$ and
+$B\sum_q\|F_q\|_2^2\ll_C Y^3L$. Combining the two ranges
+proves the same squared bound for $\sum_q C_{q,N}$.
+
+For nonprincipal characters, fix $q,d,e_0=(b,r)$ and
+use the argument for \cref{eq:criticalgriddenominatorenergy}
+with any selected subset of characters for that group.
+The nonprincipal interval sums against the slope weights
+in the separated power series are
+$O_\epsilon(Y^\epsilon\min(\sqrt{\operatorname{cond}(\chi)},B/e_0))$.
+Indeed the trivial bound is $O(B/e_0)$, while P\'olya--Vinogradov
+applied to the inducing character with inclusion--exclusion
+gives the other bound. The multiplicity of each class
+$N/d\bmod k$ is at most $1+Y/(dk)=1+Y e_0/q$.
+It follows from multiplicative Parseval and the integral
+over $\beta$ that the squared norm for this group is
+\begin{equation}
+ \ll_\epsilon Y^\epsilon (P/V)
+   \max_{\chi}\left[
+      \min\bigl(\operatorname{cond}(\chi),(B/e_0)^2\bigr)
+                              (1+Y e_0/q)\right]\|F_q\|_2^2 ,
+ \label{eq:criticalgridglobalcomponent}
+\end{equation}
+with zero contribution for an empty subset. The
+$O(\tau(q)^2)$ groups can be summed at cost $Y^\epsilon$
+by choosing the starting divisor exponents sufficiently small.
+The bracket is always at most $k+Y/d\le q+Y$.
+
+On $q\le R_0$ use Cauchy--Schwarz over at most $R_0$ denominators.
+The bound for the resulting squared norm is
+\[
+ \ll_\epsilon Y^\epsilon (P/V)R_0(R_0+Y)\sum_q\|F_q\|_2^2
+ \ll_{C,Q,\epsilon} Y^{3-\xi/2+\epsilon}X .
+\]
+For $d>D_0$ the bracket in
+\cref{eq:criticalgridglobalcomponent} is at most
+$(Q_*+Y)/D_0$. Cauchy--Schwarz over at most $Q_*$
+denominators costs $Q_*$ in the square and
+$P Q_*/V\ll1$, giving a bound
+$O_{C,Q,\epsilon}(Y^{3-\xi+\epsilon}X)$.
+For the terms with bracket at most $H_0$ the same
+argument bounds the squared norm by
+$O_{C,Q,\epsilon}(Y^{3-\xi/2+\epsilon}X)$.
+All these costs are $O(Y^{3-\xi/4})$ on using $X\le Y^{\xi/8}$
+and a sufficiently small fixed $\epsilon$.
+Together with \cref{eq:criticalgriddualmajor} this proves
+\cref{eq:criticalgridglobalcharacters}. If $e_b\le Y^{\xi/4}$,
+the retained $q>R_0$ gives $1+Y e_b/q\le2$, proving
+the conductor assertion.
+Also the bracket in \cref{eq:criticalgridglobalcomponent}
+is at most $(\operatorname{cond}(\chi)/k)(k+Y/d)$.
+Comparing with $H_0$ gives the bound on the conductor quotient.
+
+For the surviving part, \cref{eq:criticalgridglobalcomponent}
+with bracket bounded by $q+Y$ and Parseval show
+$\sum_q\|\widetilde Z_q\|_2^2
+\ll_\epsilon Y^\epsilon\sum_q\|F_q\|_2^2
+\ll_{C,\epsilon}Y^{2+\epsilon}X$,
+since $(P/V)(Q_*+Y)\ll_Q1$. Restriction to $E$
+is a contraction, so the degree estimate in
+\cref{thm:criticalgriddenominatorpairs} proves
+\cref{eq:criticalgridwidegap}. The degree of the
+large-common-divisor pairs is $O(\tau(q)Y^{1-\xi})$,
+as in that theorem. Finally Cauchy--Schwarz and Parseval
+transfer \cref{eq:criticalgridglobalcharacters} to the
+integral of the square, with a possibly smaller power saving,
+since $|B_N^{\rm p}|\ll YL$. Apply
+\cref{eq:criticalgridmodulusarcs} for the stated choice of $E$.
+\end{proof}
+
 \section{Conditional bounds from uniform prime-pair discrepancies}
 \label{sec:pairconditional}
 
@@ -10900,6 +11081,9 @@ used to hold the periodic weight constant in
 The file \texttt{formalization/ReducedSlopeModulus.lean}
 checks the effective denominator of $bN/q$ and the
 cofactor divisibility in \cref{thm:criticalgriddenominatorpairs}.
+It also checks that $r=q/(q,N)$ divides every $m$ such that
+$q\mid Nm$, the divisor grouping used in
+\cref{thm:criticalgridglobalcharacters}.
 
 The file \texttt{formalization/PrefixPersistence.lean} checks
 the finite sum version of the large-prefix estimate used in
