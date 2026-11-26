@@ -220,6 +220,9 @@ factored moduli.
 \Cref{thm:fixedrowmeansquare} gives a quantitative mean-square
 estimate for bounded smaller inputs over all even moduli,
 including the progression correction for identical zero labels.
+\Cref{thm:criticalmeangrid} reduces decay in density through
+the fixed critical caps to unclipped signed prime counts on
+$O(\log\log N)$ prefix rectangles at fixed precision.
 \Cref{thm:criticalpowers} proves decay in density for the
 entire proper-power contribution through a fixed critical
 product cap and identifies the fixed rows needed for decay
@@ -8809,6 +8812,244 @@ Take $A(Y)=k$ on $[Y_k,Y_{k+1})$. The uniformity in
 $C\le C_0$ then proves the growing-cutoff assertion.
 \end{proof}
 
+\subsection{The remaining prime counts for decay in density}
+
+Write $U_{N,\ge M}(C)$ for $U_N(C)$ on tests supported
+in $x,y\ge M$. The maximal line estimate gives a bound
+uniform in the product cap and the lower support.
+
+\begin{lemma}[Critical mean square above a moving lower support]
+\label[lemma]{lem:criticalmeanmoving}
+Assume Dirichlet GRH. Fix $C_0\ge1$, $B\ge0$ and
+$0<\varepsilon<1/2$. For arbitrary
+$1\le C_N\le C_0(\log Y)^B$ and $M\ge2$, one has
+\begin{equation}
+ \sum_{\substack{Y\le N\le2Y\\2\mid N}}
+       U_{N,\ge M}(C_N)^2
+ \ll_{C_0,B,\varepsilon}
+ Y(\log Y)^{B+A_\varepsilon} M^{-1/2+\varepsilon}
+ \label{eq:criticalmeanmoving}
+\end{equation}
+where $A_\varepsilon$ is independent of $B,C_0,M$.
+\end{lemma}
+
+\begin{proof}
+Use the packet scales $X\le V$, $P=eV$ of
+\cref{lem:maximalcriticalmeansquare}. Contributing
+pairs satisfy $X\gg M$, $P\gg Y$ and
+$XP\ll C_0Y^2(\log Y)^B$. Keep the individual
+multiplicities in the proof of \cref{eq:quantitativepacketavg}.
+For each orientation the squared packet norms summed
+over the moduli are bounded by
+\[
+ O\!\left(\frac1{XY}\sum_{0<|h|\le2P}\tau(|h|)
+                   D_\sigma(h)^2
+       +\frac{P(\log(2P))^8}{XY}\right).
+\]
+Here the second term comes from the unit condition.
+The supremum over intervals in $D_\sigma(h)$ permits
+different cutoffs $C_N$. Counting terms on the line
+also gives $D_\sigma(h)\ll X(\log(2P))^2$.
+For bounded $X$ this trivial bound also gives the
+conclusion of \cref{lem:maximalcriticalmeansquare}.
+
+For integral $k\ge1$ one has $\tau(n)^k\le d_{2^k}(n)$.
+At each prime, encode the $k$ divisor exponents by the
+counts of their level subsets. The subset at level $j$
+consists of the exponents at least $j$. The counts of
+all subsets across levels from one to the prime exponent
+of $n$ sum to that exponent, and summing the counts
+containing an index recovers the corresponding divisor
+exponent. This is an injection into the exponent tuples
+counted by $d_{2^k}$. Summing the divisor function gives
+$\sum_{n\le2P}\tau(n)^k\ll_k P(\log(2P))^{2^k-1}$.
+
+Split the shift sum at $\tau(|h|)=T\ge1$. By
+\cref{eq:maximalcriticalmeansquare} the first part
+costs at most $T P X^{3/2}(\log(2P))^{A_0}$.
+The rest costs $O_r(PX^2T^{-r}(\log(2P))^{2^{r+1}+3})$
+by the trivial line bound and the moment of order $r+1$.
+Taking $T=X^{1/(2(r+1))}$ shows that the squared
+packet norms sum to
+\[
+ \ll_r \frac{XP}{Y}\,X^{-r/(2(r+1))}
+                  (\log(2P))^{A_r'}
+\]
+for a constant $A_r'$ depending only on $r$.
+The unit-condition error is smaller. Choose $r$ with
+$r/(2(r+1))\ge1/2-\varepsilon$. Since
+$\log(2P)\ll_{C_0,B}\log Y$, summing the
+$O((\log Y)^2)$ packet pairs costs at most four more
+powers of $\log Y$ in summed squares.
+\end{proof}
+
+Choose an increasing $a(Y)\to\infty$ from
+\cref{thm:fixedrowmeansquare}, with $a(Y)\le\log\log Y$
+and the asserted bounds at $B=0$ for each fixed
+$C_0$. Let $L_Y=(\log Y)^K$ for a sufficiently large
+fixed absolute $K$. For $N\in[Y,2Y]$ and fixed $Q\ge2$
+keep dyadic boxes $[X,2X)\times[V,2V)$ with
+\begin{equation}
+ a(Y)/4\le X\le2L_Y,\qquad N^2/Q\le XV\le CN^2.
+ \label{eq:criticalmeangridscales}
+\end{equation}
+Divide both axes into $M$ equal cells for a fixed
+integer $M\ge2$. Write $P_X(u)=[X,u)$ and
+$P_V(v)=[V,v)$ for the prefixes ending at grid points.
+Put $\Lambda_{\rm p}(t)=\log t$ for ordinary primes
+and zero otherwise. For intervals $I,J$ in a box define
+the count without the product cutoff by
+\[
+ B_N^{\rm p}(I,J)=
+ \sum_{\substack{p\in I\ {\rm prime}\\(p,N)=1}}\log p
+ \sum_{\substack{b\ge1\\bN\in J}}
+       \bigl(\Lambda_{\rm p}(bN+p)-\Lambda_{\rm p}(bN-p)\bigr).
+\]
+Let $g_{N,Y}^{\rm p}(C;Q,M)$ be the maximum of
+$|B_N^{\rm p}(P_X(u),P_V(v))|/(\SSS(N)\sqrt{XV})$
+over these tests, with maximum zero for an empty family.
+
+\begin{theorem}[Prime prefix tests for critical decay in density]
+\label{thm:criticalmeangrid}
+Assume Dirichlet GRH. For fixed $C\ge1$, $Q\ge2$
+and integer $M\ge2$, for sufficiently large $Y$ and
+even $N\in[Y,2Y]$ one has
+\begin{align}
+ U_N(C)&\ll_C M^2\log(2Q)\,g_{N,Y}^{\rm p}(C;Q,M)
+       +Q^{-1/2}+M^{-1}+e_{N,Y}(C), \label{eq:criticalmeangridupper}\\
+ g_{N,Y}^{\rm p}(C;Q,M)&\ll_C U_N(4C)^{1/4}
+       +O_{C,Q}\bigl(a(Y)^{-1/2}+N^{-c}\bigr)
+       \label{eq:criticalmeangridlower}
+\end{align}
+for a constant $c>0$. The error satisfies
+$Y^{-1}\sum_{Y\le N\le2Y,\ 2\mid N}e_{N,Y}(C)^2=o_C(1)$.
+Thus $U_N(C)\to0$ in density for every fixed $C$
+if and only if $g_{N,Y}^{\rm p}(C;Q,M)\to0$ in density
+for every fixed $C,Q,M$. The number of prefix tests
+per modulus is $O_{C,Q,M,K}(\log\log Y)$.
+\end{theorem}
+
+\begin{proof}
+Use smooth cutoffs of fixed logarithmic width to split
+each test into pieces supported in $x\le a(Y)$,
+$a(Y)/2\le x\le2L_Y$, and $x\ge L_Y$. Their energy
+multiplier norms are bounded. Terms with one lower
+piece have vanishing mean-square norm after division
+by $Y$, by \cref{thm:criticalcenteredrows,thm:fixedrowmeansquare}.
+The term with two upper pieces has the same property
+by \cref{lem:criticalmeanmoving}, applied at $L_Y$ with
+$K$ sufficiently large.
+
+Each remaining term has a middle piece, which may be
+taken to be the first by conjugation. Sample the larger
+test at $bN$ and use ordinary primes there by
+\cref{thm:criticalcenteredrows}, with a power-saving
+error since $2L_Y$ is a log power. In this centered
+form the smaller proper powers at scale $X$ have total
+weight $O(\sqrt X)$. For $V\ge N^{11/10}$ the one-class
+sieve bounds the larger weight in either sign by
+$O(V/\varphi(N))$. The normalized packet bound for
+the smaller proper powers is therefore
+$O(X^{-1/2}\sqrt{XV}/N)$, by $\SSS(N)\asymp N/\varphi(N)$.
+At smaller $V\gg N$ the trivial candidate count gives
+a power saving, since $X$ is a log power. The geometric
+row and column sums of $\sqrt{XV}/N$ for $XV\le CN^2$
+are bounded. Deleting the smaller proper powers costs
+$O_C(a(Y)^{-1/2}+N^{-c})$.
+
+With both weights restricted to primes the unsigned
+packet bound is $O(\sqrt{XV}/N)$ for $V\ge N^{11/10}$
+by the same sieve and Chebyshev's bound. At smaller
+$V\gg N$ the trivial bound $O((\log N)\sqrt{XV}/N)$
+still saves a power after summation. Thus the packets
+with $XV<N^2/Q$ cost $O_C(Q^{-1/2}+N^{-c})$ by
+geometric row and column sums. All the remaining
+packets satisfy \cref{eq:criticalmeangridscales}.
+
+Round a rectangle inside a packet to whole cells, and
+impose the cap $pbN\le CN^2$ by retaining cells wholly
+below the hyperbola. The endpoint strips in the smaller
+variable have width $O(X/M)$ and prime weight $O(X/M)$
+by the one-form sieve. This uses fixed $M$ and
+$X\ge a(Y)/4\to\infty$. The endpoint strips in the
+larger variable have width $O(V/M)$. The product
+varies by $O(XV/M)$ within each cell, so for each
+fixed $p$ the cap-boundary cells are contained in an
+interval of length $O(V/M)$ about $CN^2/p$.
+In either unit class an interval of that length has
+prime weight $O(V/(M\varphi(N)))$ by the one-class
+sieve, since $V\ge N^2/(QX)$ and $X$ is a log power.
+This also bounds the larger endpoint strips. Counting
+either sign gives total normalized rounding error
+$O(\sqrt{XV}/(MN))$.
+
+Each whole cell count is an alternating sum of four
+unclipped prefix counts. There are at most $M^2$ cells.
+Two-dimensional partial summation transfers the resulting
+clipped rectangle bound to the weighted packet term.
+The supremum plus total variation of each physical
+test on its packet costs its local $H^1$ log norm
+divided by the square root of its scale. The squares
+of these local norms sum to at most a constant times
+the full squared energy. Geometric summation of the
+rounding bounds costs $O_C(M^{-1})$, and each row and
+column of the packet matrix has $O_C(\log(2Q))$ retained
+partners. This proves \cref{eq:criticalmeangridupper}
+with the discarded norm errors included in $e_{N,Y}(C)$.
+
+For the reverse estimate replace $bN\in J$ by
+$bN\pm p\in J$ in the two branches of each prefix.
+At most a bounded number of $b$ per prime can change
+since $p\le2X=o(N)$ and only the endpoints can be
+crossed. The normalized cost is
+$O(\sqrt{X/V}\log N)$. The resulting physical rectangle
+lies within $xy\le4CN^2$. Its continuous part costs
+$O(\sqrt{X/V}\log(2+V/N))$ by \cref{eq:criticalgridmodel},
+and restoring proper powers costs $O_C(X^{-1/2}+N^{-c})$
+by the absolute packet bounds in the proof of
+\cref{thm:criticalpowers}. Thus the grid maximum is
+$O_C(d_N(4C)+a(Y)^{-1/2})+O_{C,Q}(N^{-c})$.
+\Cref{eq:criticaldiscrepancy} gives
+\cref{eq:criticalmeangridlower}.
+
+At fixed norm tolerance, first choose $Q,M$ large and
+then use the vanishing mean-square error and the prime
+grid decay at these parameters. The reverse density
+implication follows from \cref{eq:criticalmeangridlower}.
+There are $O_K(\log\log Y)$ scales $X$,
+$O_C(\log(2Q))$ scales $V$ for each, and $(M+1)^2$
+prefix counts per box.
+\end{proof}
+
+For example, an averaged estimate on individual signed
+progressions would suffice for this density problem.
+Write $\vartheta(t;N,a)$ for the prime logarithmic sum
+in class $a\bmod N$ up to $t$. If for every fixed $C\ge1$
+\[
+ \sup_{\substack{1\le a\le 4L_Y\\
+                Y^2(\log Y)^{-K-1}\le t\le8CY^2}}
+ \ \sum_{\substack{Y\le N\le2Y\\2\mid N,\ (a,N)=1}}
+ \frac{N}{t\SSS(N)}
+       |\vartheta(t;N,a)-\vartheta(t;N,-a)|
+     = o_C\bigl(Y/\log\log Y\bigr),
+\]
+then $U_N(C)\to0$ in density for every fixed $C$.
+Indeed, for each fixed dyadic box and grid endpoint,
+the two larger endpoints are independent of $N$.
+Replacing the centered bounds by physical endpoints
+costs $O(\sqrt{X/V}\log N)$ as above. The displayed
+estimate, summed against the prime weights at scale $X$,
+bounds the first moment of each normalized prefix
+count by $o_{C,Q,M}(Y/\log\log Y)$, since
+$\sqrt{XV}/Y\ll_C1$ on boxes used for some $N\in[Y,2Y]$.
+There are $O_{C,Q,M,K}(\log\log Y)$ such tests across
+the whole dyadic range. Summing their first moments
+and using Markov's inequality gives the required
+grid convergence. The fixed-residue bound in
+\cref{eq:fixedrowfirstmoment} supplies the needed
+saving for each fixed $a$, with constants depending
+on $a$.
+
 \clearpage
 \section{Conditional bounds from uniform prime-pair discrepancies}
 \label{sec:pairconditional}
@@ -9115,6 +9356,10 @@ scale used in \cref{lem:sampledshorttypeii}.
 The file \texttt{formalization/DivisorMoment.lean}
 checks the prime-exponent injection for the divisor
 moment in \cref{lem:maximalcriticalmeansquare}.
+
+The file \texttt{formalization/ProductGridCell.lean}
+checks the product variation in a cell meeting the cap
+boundary in \cref{thm:criticalmeangrid}.
 
 The file \texttt{formalization/PrefixPersistence.lean} checks
 the finite sum version of the large-prefix estimate used in

@@ -4,6 +4,7 @@ This repository contains the English research manuscript and the code and data f
 
 - [Manuscript (PDF)](output/pdf/hypothesis_s_paper.pdf)
 - [LaTeX source](output/pdf/hypothesis_s_paper.tex)
+- [Lean verification of the product variation in a grid cell](formalization/ProductGridCell.lean)
 - [Lean verification of the prime-exponent injection for the divisor moment](formalization/DivisorMoment.lean)
 - [Lean verification of the dyadic interval boundary count](formalization/DyadicIntervalBoundary.lean)
 - [Lean verification of the clipped Fourier line and its sampling period](formalization/CriticalFourierWindow.lean)
@@ -27,6 +28,8 @@ This repository contains the English research manuscript and the code and data f
 - [Lean verification of the signed progression rows](formalization/CriticalArithmetic.lean)
 
 ## Research checkpoint · 26 November 2026
+
+Theorem 13.6 characterizes decay in density through all fixed critical product caps using $O(\log\log N)$ prime prefix counts per modulus at fixed precision. These signed counts use ordinary primes on both sides and have no product cutoff inside a prefix rectangle. The smaller variable ranges between a slowly growing lower bound and a fixed power of $\log N$. Lemma 13.5 gives the upper-support mean square with explicit dependence on the lower support threshold and allows a different product cap for each modulus. Cancellation of the remaining prefix counts is open.
 
 Theorem 11.6 bounds the sum of squared normalized operator norms on supports $x,y\le N(\log N)^B$, over even $N\in[Y,2Y]$, by $O_B(Y^{1/2}(\log Y)^{A_B})$ under Dirichlet GRH. The estimate controls the supremum over moving tests. It follows from the mean square of maximal interval discrepancies on the sum and difference lines. The same theorem gives exponent $1/2+3\eta/2+\varepsilon$ on supports up to $N^{1+\eta}$ and exponent $1+\gamma-\delta/2+\varepsilon$ for the sharp product cap $xy\le CN^{2+\gamma}$ on supports $x,y\ge N^\delta$.
 
@@ -80,6 +83,7 @@ With Elan installed, run the Lean check from the repository root.
 
 ```sh
 elan toolchain install leanprover/lean4:v4.35.0
+elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/ProductGridCell.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/DivisorMoment.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/DyadicIntervalBoundary.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/CriticalFourierWindow.lean
