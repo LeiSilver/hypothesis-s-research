@@ -123,6 +123,8 @@ all Dirichlet $L$-functions, including the Riemann zeta function.
 The independent verification records include checks of the
 Dirichlet theorem statements, their axiom dependencies, and
 the exported proof in multiple kernels~\cite{SutherlandGRH,RubinsteinGRH}.
+They also verify the same Dirichlet statements in the shorter
+Lean development released on 25 November 2026~\cite{ShortGRH}.
 The notation $\grh(N)$ in individual statements specifies the
 modulus-specific zero-location input used in each argument.
 
@@ -234,6 +236,9 @@ length of the slope interval.
 \Cref{thm:criticalgridadditiveorder} combines that cutoff
 with deletion of the small reduced denominators on the
 additive frequency grid.
+\Cref{thm:criticalgridpairorder} also deletes pairs whose
+sum or difference has a small reduced denominator in the
+second moment.
 \Cref{thm:criticalpowers} proves decay in density for the
 entire proper-power contribution through a fixed critical
 product cap and identifies the fixed rows needed for decay
@@ -9820,6 +9825,150 @@ $|B_N^{\rm p}(I,J)|\ll YL$. On the boxes of
 \cref{thm:criticalmeangrid}, the cofactor bound
 $N/q<H$ is a fixed power of $\log Y$.
 
+\clearpage
+\subsection{Reduced denominators of frequency sums and differences}
+
+For every integer $w$, write $q_N(w)=N/(w,N)$, with
+$q_N(0)=1$. Fix $D,K>0$ and choose the parameters of
+\cref{thm:criticalgridadditiveorder} with exponent $2D+4$.
+In particular, put
+\[
+ H=\sqrt X\,L^{(2D+13)/2},\qquad A(t)=A_{U,W,z}(t),
+ \qquad
+ \mathcal H_N=\{0\le a<N:q_N(a)>N/H\}.
+\]
+For $a$ modulo $N$ set
+\begin{equation}
+ G_N(a)=
+ \sum_{\substack{p\in I\ {\rm prime}\\(p,N)=1}}
+  \log p\,\bigl(e(-ap/N)-e(ap/N)\bigr)
+  \sum_{\substack{t\in J\\(t,pN)=1}} A(t)e(at/N).
+ \label{eq:criticalgridpaircoefficient}
+\end{equation}
+Then $\mathcal F_{N,\mathcal Q_N^{\rm hi}}[A]
+=N^{-1}\sum_{a\in\mathcal H_N}G_N(a)$.
+
+\begin{theorem}[Deletion by the denominators of sums and differences]
+\label{thm:criticalgridpairorder}
+Put $M=D+6$ and
+\[
+ \mathcal G=\{Y\le N\le2Y:2\mid N,\ \tau(N)\le L^M\},
+ \qquad
+ R=\frac{Y}{XH L^{D+2M+10}} .
+\]
+For all sufficiently large $Y$ one has $R\ge2$ and
+\begin{align}
+ &\sum_{\substack{Y\le N\le2Y\\2\mid N}}|B_N^{\rm p}(I,J)|^2
+ \notag\\[-2pt]
+ &\quad=
+ \sum_{N\in\mathcal G}\frac{1}{N^2}
+ \sum_{\substack{a,b\in\mathcal H_N\\
+             q_N(a-b)>R,\ q_N(a+b)>R}}G_N(a)\overline{G_N(b)}
+ +O_{C,Q,\eta,D,K}(Y^3 L^{-D}).
+ \label{eq:criticalgridpairmoment}
+\end{align}
+This uses Dirichlet GRH through \cref{eq:criticalgridjointfilter}.
+The contribution of the deleted frequency pairs in the square of
+the projection on $\mathcal G$ is bounded absolutely, independently
+of GRH. On the grid of \cref{thm:criticalmeangrid}, all four
+denominators $q_N(a),q_N(b),q_N(a-b),q_N(a+b)$ in the retained sum
+have a common divisor at least $N/L^{C_2}$ for a fixed $C_2$.
+\end{theorem}
+
+\begin{proof}
+First consider any sequence $c_t$ supported in $J$
+with $|c_t|\le\tau(t)\log(2t)$. We claim that
+\begin{equation}
+ \sum_{N\in\mathcal G}\sum_{a\in\mathcal H_N}
+ \left|\sum_{\substack{t\in J\\(t,N)=1}}c_t e(at/N)\right|^2
+ \ll_C H Y^2 V L^{M+9}.
+ \label{eq:criticalgridpairenergy}
+\end{equation}
+Expand $1_{(t,N)=1}=\sum_{d\mid(t,N)}\mu(d)$ and
+apply Cauchy--Schwarz, at a cost of $\tau(N)\le L^M$.
+For the resulting sum with fixed $d\mid N$, write $N=dm$.
+The inner polynomial becomes $\sum_{s:ds\in J}c_{ds}e(as/m)$.
+Each residue modulo $m$ has at most $d$ lifts to residues $a$
+modulo $dm$. A reduced fraction $a/m\bmod 1$ with denominator
+$r$ can occur only for $m$ with $r\mid m$ and $m/r<H$, since
+$(a,m)\le(a,dm)<H$. Thus each distinct reduced fraction occurs
+for at most $H$ choices of $m$, with at most $d$ lifts per choice.
+
+The distinct fractions have denominators at most $2Y/d$,
+and their circular spacing is at least $(2Y/d)^{-2}$.
+The additive large sieve of Montgomery and Vaughan
+\cite{MontgomeryVaughanSieve}, applied on an interval of
+length $O(V/d)$, bounds the fixed-$d$ sum by
+\[
+ \ll dH\bigl((Y/d)^2+V/d\bigr)\sum_{t:d\mid t}|c_t|^2.
+\]
+Here $d\le2Y$ and $V\gg_Q Y^{3/2+\eta}$, so the interval
+length bound also absorbs the endpoint term for large $Y$.
+Summing in $d$ gives
+\[
+ \ll H L^M \sum_t |c_t|^2\bigl(Y^2\sigma_{-1}(t)+V\tau(t)\bigr).
+\]
+Use $\sigma_{-1}(t)=\sum_{d\mid t}d^{-1}\ll_C L$ and
+the elementary bounds $\tau(t)^j\le d_{2^j}(t)$ and
+$\sum_{t\le T}d_k(t)\ll_k T(\log(2T))^{k-1}$.
+Thus $\sum_{t\in J}|c_t|^2\ll_C V L^5$ and
+$\sum_{t\in J}|c_t|^2\tau(t)\ll_C V L^9$. Since $V\ll_C Y^2$,
+this proves \cref{eq:criticalgridpairenergy}.
+
+The sequence $c_t=A(t)1_{(t,p)=1}$ satisfies the required
+divisor bound for every $p$. Cauchy--Schwarz over $p$ in
+\cref{eq:criticalgridpaircoefficient}, using the weights
+$\log p$, gives
+\begin{equation}
+  \sum_{N\in\mathcal G}\sum_{a\in\mathcal H_N}|G_N(a)|^2
+  \ll_C X^2 H Y^2 V L^{M+9}.
+ \label{eq:criticalgridpairsignedenergy}
+\end{equation}
+Indeed, the exponential difference is bounded by $2$, and
+$\sum_{p\in I}\log p\ll X$. After Cauchy--Schwarz the
+restriction $(p,N)=1$ may be dropped in the nonnegative
+sum for each $p$.
+
+For a fixed $a$, each map $b\mapsto a\pm b$ permutes the
+residues modulo $N$. The number of residues of denominator
+at most $R$ is $\sum_{r\mid N,\,r\le R}\varphi(r)\le R\tau(N)$.
+Consequently the excluded pairs form a symmetric set with
+at most $2R\tau(N)$ entries in each row and column.
+By $2|G_N(a)G_N(b)|\le |G_N(a)|^2+|G_N(b)|^2$ and
+\cref{eq:criticalgridpairsignedenergy} the sum of the absolute
+values of their contributions is
+\begin{align*}
+ \sum_{N\in\mathcal G}\frac{1}{N^2}
+ \sum_{\substack{a,b\in\mathcal H_N\\
+               \min(q_N(a-b),q_N(a+b))\le R}}
+       |G_N(a)G_N(b)|
+ &\ll_C R H X^2 V L^{2M+9}\\
+ &\ll_C R H X Y^2 L^{2M+9}.
+\end{align*}
+Here $XV\le CY^2$. Our choice of $R$ makes the last bound
+$O_C(Y^3L^{-D})$. Also $XH\le
+Y^{3/4-3\eta/2} L^{(2D+13)/2}$, so $R\to\infty$.
+
+The elementary estimate $\sum_{N\le2Y}\tau(N)\ll YL$
+shows that $O(YL^{1-M})$ moduli are omitted from $\mathcal G$.
+By $|B_N^{\rm p}(I,J)|\ll YL$, their contribution to the
+original second moment is $O(Y^3L^{3-M})$.
+On $\mathcal G$, \cref{eq:criticalgridjointfilter} and
+Cauchy--Schwarz replace that second moment by the square
+of the high-denominator projection with error
+$O_{C,Q,\eta,D,K}(Y^3L^{-D})$. Expanding the square and applying
+the absolute estimate for the deleted pairs proves
+\cref{eq:criticalgridpairmoment}.
+
+For a retained pair write $h_w=N/q_N(w)=(w,N)$ for
+$w\in\{a,b,a-b,a+b\}$. The greatest common divisor of the
+four denominators is $N/\operatorname{lcm}(h_a,h_b,h_{a-b},h_{a+b})$.
+The latter least common multiple is at most $H^2(N/R)^2$.
+On the grid of \cref{thm:criticalmeangrid} both $H$ and
+$N/R$ are bounded by fixed powers of $L$, proving the last
+assertion.
+\end{proof}
+
 \section{Conditional bounds from uniform prime-pair discrepancies}
 \label{sec:pairconditional}
 
@@ -10146,6 +10295,10 @@ The file \texttt{formalization/AdditiveDenominator.lean}
 checks the reduced-fraction identity and the cofactor cutoff
 in the frequency grid of \cref{thm:criticalgridadditiveorder}.
 
+The file \texttt{formalization/AdditivePairOrder.lean}
+checks the common-divisor bound for reduced denominators and
+the permutation of residues used in \cref{thm:criticalgridpairorder}.
+
 The file \texttt{formalization/PrefixPersistence.lean} checks
 the finite sum version of the large-prefix estimate used in
 \cref{thm:fixedrowmeansquare}.
@@ -10181,6 +10334,15 @@ M.~Rubinstein,
 \newblock \emph{An independent check of the Lean proof of RH and GRH},
 November 2026.
 \newblock \url{https://mrubinst.github.io/grh-lean-verification/}.
+
+\bibitem{ShortGRH}
+L.~Sernau and collaborators,
+\newblock \emph{GRH for Dirichlet L-functions, in Lean 4},
+25 November 2026, commit \texttt{72fead10}.
+\newblock \url{https://github.com/lsernau/grh-lean/tree/72fead10}.
+\newblock Independent checks:
+\url{https://math.mit.edu/~drew/shortgrh/},
+\url{https://mrubinst.github.io/grh-lean-compact-check/}.
 
 \bibitem{Lichtman}
 J.~D. Lichtman,
@@ -10318,6 +10480,12 @@ R.~C. Vaughan,
 \newblock \emph{An elementary method in prime number theory},
 \newblock Acta Arith. \textbf{37} (1980), 111--115.
 \newblock \url{https://bibliotekanauki.pl/articles/1393102.pdf}.
+
+\bibitem{MontgomeryVaughanSieve}
+H.~L. Montgomery and R.~C. Vaughan,
+\newblock \emph{The large sieve},
+\newblock Mathematika \textbf{20} (1973), 119--134.
+\newblock \url{https://doi.org/10.1112/S0025579300004708}.
 
 \bibitem{SoundararajanMobius}
 K.~Soundararajan,

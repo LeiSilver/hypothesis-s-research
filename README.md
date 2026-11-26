@@ -4,6 +4,7 @@ This repository contains the English research manuscript and the code and data f
 
 - [Manuscript (PDF)](output/pdf/hypothesis_s_paper.pdf)
 - [LaTeX source](output/pdf/hypothesis_s_paper.tex)
+- [Lean verification of residue translations and the common denominator divisor](formalization/AdditivePairOrder.lean)
 - [Lean verification of the additive frequency denominator and cofactor](formalization/AdditiveDenominator.lean)
 - [Lean verification of the complementary divisor cutoff and sign](formalization/ComplementaryDivisor.lean)
 - [Lean verification of the determinant divisibility in the Type II form](formalization/TypeIIDeterminant.lean)
@@ -32,6 +33,10 @@ This repository contains the English research manuscript and the code and data f
 - [Lean verification of the signed progression rows](formalization/CriticalArithmetic.lean)
 
 ## Research checkpoint · 26 November 2026
+
+Theorem 13.11 removes pairs of large-denominator frequencies whose sum or difference has reduced denominator at most $Y/(XH(\log Y)^{D+2M+10})$, with $M=D+6$ and $H=\sqrt X(\log Y)^{(2D+13)/2}$. The removed pairs contribute $O(Y^3(\log Y)^{-D})$ in absolute value on the moduli with $\tau(N)\le(\log Y)^M$. The original second moment on the other moduli has the same error bound. On the prime-prefix grid the four retained denominators have a common divisor of size at least $N/(\log Y)^{C_2}$ for fixed $C_2$. The remaining correlations still require cancellation.
+
+The Dirichlet GRH input is the Alpöge–Claude theorem. The manuscript cites the independent verification of the original proof and the checks of the shorter Lean proof released on 25 November.
 
 Theorem 13.10 gives the long Möbius replacement uniformly for every subset of additive frequency denominators $q\mid N$, with squared error $O(Y^3(\log Y)^{-D})$ over the even moduli. Under Dirichlet GRH one may retain only $q>N/H$ with $H=\sqrt X(\log Y)^{(D+9)/2}$. On the prime-prefix grid the cofactors $N/q$ are consequently bounded by a fixed power of $\log Y$. The remaining high-denominator projection still requires cancellation.
 
@@ -95,6 +100,7 @@ With Elan installed, run the Lean check from the repository root.
 
 ```sh
 elan toolchain install leanprover/lean4:v4.35.0
+elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/AdditivePairOrder.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/AdditiveDenominator.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/ComplementaryDivisor.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/TypeIIDeterminant.lean
