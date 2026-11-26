@@ -278,6 +278,9 @@ complementary sum with no zero frequency.
 \Cref{thm:criticalgridflatdeletion} completes the denominator
 sum on the full assigned arcs and discards the short M\"obius
 range there.
+\Cref{thm:criticalgridclippeddeletion} extends the deletion to
+clipped arcs by pairing the inverse-numerator branches and
+bounding the resulting difference in their Farey lengths.
 \Cref{thm:criticalpowers} proves decay in density for the
 entire proper-power contribution through a fixed critical
 product cap and identifies the fixed rows needed for decay
@@ -12272,6 +12275,282 @@ squared error to any modulus Fourier subset, followed by
 \end{proof}
 
 \clearpage
+\subsection{Cancellation with the clipped Farey lengths}
+
+Keep the parameters and restrictions of
+\cref{thm:criticalgridpoisson}. For $\nu>0$, write
+$W_N^{\le}$ for the part of that sequence with
+$d\le P Y^\nu$ on all the retained arcs.
+
+\begin{theorem}[Deleting short M\"obius divisors on all assigned arcs]
+\label{thm:criticalgridclippeddeletion}
+Assume Dirichlet GRH and $\nu+9\rho<\xi$.
+For some $\delta>0$ depending on the fixed parameters,
+\begin{equation}
+ \sum_{\substack{Y\le N\le 2Y\\2\mid N}}|W_N^{\le}|^2
+                 \ll Y^{3-\delta}.
+ \label{eq:criticalgridclippeddeletion}
+\end{equation}
+Thus the conductor-pair moment of \cref{thm:criticalgridpoisson}
+may be restricted to $d>P Y^\nu$ in both coefficients, with
+a power-saving error. This also holds on the modulus minor
+arcs in the stated small-input range.
+For any fixed $0<\varepsilon<\xi$, take
+$\nu=\xi-\varepsilon$ and $\rho$ sufficiently small
+to obtain the cutoff $d>Y^{1-\varepsilon}/X
+\asymp_{C,Q} B Y^{-\varepsilon}$.
+\end{theorem}
+
+\begin{proof}
+The shorter divisor sum has frozen arc energy
+$O_\epsilon(X^2 VY^\epsilon)$ by the argument at the start
+of the proof of \cref{thm:criticalgridflatdeletion}, which
+only uses the upper bound $w_q(a)\le2$ for this energy.
+Insert a smooth taper $\omega(q)$ supported in $(R_*,K)$,
+with $K-q\gg K Y^{-\rho}$ on its support. Take it equal
+to one on the remaining interval outside endpoint intervals
+of total length $O(KY^{-\rho})$, and with
+$|\omega^{(i)}(q)|\ll_i (Y^\rho/q)^i$ for $q>0$.
+The per-denominator bound in that proof applies to these
+arcs as well, so the taper has squared cost
+$O_\epsilon(Y^{3-\rho+\epsilon})$.
+
+Let $u$ be the representative of $\bar a\bmod q$ with
+$0<u<q$. The two neighbor denominators in
+\cref{eq:criticalgridarclengthweight} are lifted from
+$u$ and $q-u$. For either residue $u_0$ between zero and
+$q$, the lift is $u_0$ when $u_0>Q_0-q$. Otherwise it
+is at least $q$, and $u_0\le K-q$. Consequently
+\begin{equation}
+ w_q(a)=\phi\!\left(\frac{u}{K-q}\right)
+        +\phi\!\left(\frac{q-u}{K-q}\right),
+ \qquad
+ \phi(y)=
+ \begin{cases}
+  1,&y\le1,\\
+  y^{-1},&y>1 .
+ \end{cases}
+ \label{eq:criticalgridclippedweight}
+\end{equation}
+Smooth $\phi$ by convolution at scale $Y^{-2\rho}$,
+giving a function $\phi_\rho$ with Lipschitz
+constant at most one, uniform error $O(Y^{-2\rho})$,
+and $\|\phi_\rho^{(i)}\|_\infty\ll_i Y^{2i\rho}$.
+Let $w^\#(q,u)$ be the resulting weight.
+Since $w_q(a)\gg Y^{-\rho}$ on the support of $\omega$,
+the relative change is $O(Y^{-\rho})$.
+Apply \cref{eq:criticalgridselectedsampler} to the error on
+the assigned arcs. This costs $O_\epsilon(Y^{3-2\rho+\epsilon})$
+in squared norm. As in \cref{thm:criticalgridflatdeletion},
+all characters can now be restored with a power-saving
+squared cost. The proof there uses only the arc energy
+and $q>R_*$. The restored output samples the additive
+phase $e(-a bN/q)$ with weight $\omega(q)w^\#(q,u)/(Kq)$.
+
+Use the smooth Poisson cutoff $\vartheta$ from
+\cref{thm:criticalgridflatdeletion}, taking it even.
+As there we can omit the local lower bound on $d$ and sum
+over $0<|j|\le 2Y^{\nu+3\rho}$ up to negligible error.
+It suffices to estimate $j>0$, since replacing $a$ by
+$-a$ makes the negative part its complex conjugate.
+Fix the screen parameters and $d$, and use
+$D=dr$, $g=(D,q)$, $q=g x$ and $v=D/g$.
+We sum over $g\mid D$ with $(g,d)\le Y^\rho$ and
+$g\le Y^{2\rho}$. For such $g$, the condition on $x$
+is $(x,v)=1$. Because $D\le P Y^{\nu+\rho}$ and
+$q>R_*$, one has $x>v$ throughout the support.
+
+For a given $j>0$, the numerator condition is
+$av+j\equiv0\bmod x$. Nonempty unit classes require
+$(x,j)=1$. In terms of the inverse numerator, all
+possibilities are
+\begin{equation}
+ u_L(x)=(Lx-v)/j,\qquad 1\le L\le g j ,
+ \label{eq:criticalgridclippedbranches}
+\end{equation}
+subject to integrality and $(u_L(x),g)=1$.
+Indeed $j u+v$ must be a multiple of $x$, and $x>v$
+gives the indicated range. Conversely these conditions
+and $(x,vj)=1$ make $u_L(x)$ a unit modulo $gx$.
+Write $av+j=m x$. For each allowed $u=u_L(x)$,
+the class of $m$ modulo $D$ is specified by
+\begin{equation}
+ m x\equiv j\pmod v,\qquad m u\equiv L\pmod D .
+ \label{eq:criticalgridclippedclasses}
+\end{equation}
+In fact $a=(mx-j)/v$, and $v(au-1)=x(mu-L)$.
+This proves equivalence to the inverse constraint
+and uniqueness modulo $D$.
+
+Factor $D=D_0D_1$ with $D_0$ supported on the primes
+dividing $g j$ and $(D_1,g j)=1$. Here $g\mid D_0$,
+and $D_0\le r g j$ since $d$ is squarefree on the
+support of $\mu(d)$. Set $M_0=jD_0$.
+Fix $L$ and a class $x_0\bmod M_0$. Call this pair
+admissible when $(x_0,jD_0/g)=1$, the linear
+expression $u_0=(Lx_0-v)/j$ is integral, and $(u_0,g)=1$.
+These conditions are independent of the representative.
+For $(x,D_1)=1$ in this class the two congruences in
+\cref{eq:criticalgridclippedclasses} give
+a class $m_0\bmod D_0$ independent of $x$, and
+$m\equiv j\bar x\bmod D_1$. To see this, the conditions
+at $D_0$ are $m_0 x_0\equiv j\bmod D_0/g$ and
+$m_0u_0\equiv L\bmod D_0$. At $D_1$ the second
+congruence follows from the first and $j u=Lx-v$.
+The uniqueness and existence just proved, applied to
+an integer $x>v$ coprime to $D_1$ in the class,
+give the same for $m_0$. For each $x_0$, at most
+$g$ values of $L$ are admissible, since integrality
+prescribes one residue modulo $j$ in $1\le L\le gj$.
+
+For $n=bN+\sigma p$, write
+$e(-an/q)=e(-mn/D)e(jn/(Dx))$.
+On each admissible pair, the sum over $x$ is a smooth
+sum against a function of period $M_0D_1=jD$.
+Its weight is
+\[
+ F_{L,n}(x)=\frac{M}{K g x}\omega(gx)
+    w^\#(gx,u_L(x))\,\widehat f_d(Mj/x)
+    \vartheta(Mj/(xY^{2\rho}))\,e(jn/(Dx)),
+ \qquad M=V/D.
+\]
+For $|n|\ll V$ one has
+\[
+ \|F_{L,n}^{(i)}\|_1\ll_i
+     \frac{M}{Kg}(\log Y)^2
+        \sup_{x\in\operatorname{supp}F_{L,n}}
+             \left(\frac{Y^{4\rho}}{x}\right)^i .
+\]
+For the two ratios in \cref{eq:criticalgridclippedweight},
+their derivatives of order $i\ge1$ are
+$O_i((g/K)^iY^{(i+1)\rho})$ on the taper.
+This follows by differentiating the affine numerator
+and the denominator $K-gx$. Composition with $\phi_\rho$
+costs at most the indicated $Y^{4i\rho}$ factor, since $gx<K$.
+For the other factors use $x\ge R_*/g$,
+$|Mj/x|\le 2Y^{2\rho}$, and the compact support of $f_d$.
+The zeroth-order integral costs at most a further
+logarithm from $\int \ud x/x$.
+
+Complete the $x$ sum. On the support of the weight,
+$Mj/x\le 2Y^{2\rho}$, so
+\[
+ \frac{jD Y^{4\rho}}{x}
+       \ll Y^{6\rho}\frac{D^2}{V}
+       \ll_{C,Q}Y^{-2\xi+2\nu+8\rho}.
+\]
+This bounds the ratio for integration by parts at each
+nonzero dual frequency. The nonzero modes are therefore
+$O_{A_0}(Y^{-A_0})$ for any fixed $A_0>0$.
+For the zero mode the Chinese remainder theorem
+and inversion on the units modulo $D_1$ give
+\begin{equation}
+ \frac{1}{M_0} A_{L,x_0}(n) I_L(n),\qquad
+ A_{L,x_0}(n)=e(-m_0 n\overline{D_1}/D_0)\frac{c_{D_1}(n)}{D_1},
+ \qquad I_L(n)=\int_{\mathbb R}F_{L,n}(x)\,\ud x .
+ \label{eq:criticalgridclippedramanujan}
+\end{equation}
+We used $(jD_0,D_1)=1$ in the Ramanujan sum.
+The terms with a modulus one use the trivial phase.
+
+Pair $(L,x_0)$ with $(L',-x_0)$, with
+$L'\equiv-L\bmod gj$ in $1\le L'\le gj$.
+Write $L'=c_0gj-L$, where $c_0$ equals one or two.
+The new $u_0'$ is congruent to $u_0-c_0g x_0\bmod D_0$.
+In particular it stays a unit modulo $g$.
+The new class $m_0'$ is $-m_0\bmod D_0$: the first
+congruence at $D_0/g$ is preserved, and for the second
+use $m_0 g x_0\equiv gj\bmod D_0$.
+This is an involution on the admissible pairs and
+it sends $A_{L,x_0}(n)$ to $A_{L,x_0}(-n)$.
+At the same real $x$ one has
+$u_L(x)+u_{L'}(x)=c_0gx-2v/j$.
+The weight $w^\#$ is even on the circle of length $gx$
+and is Lipschitz there with constant $O((K-gx)^{-1})$.
+Thus
+\begin{align*}
+ |I_L(n)| &\ll \frac{M}{Kg}(\log Y)^2,\\
+ |I_L'(n)| &\ll \frac{M}{Kg}(\log Y)^2\frac{Y^{2\rho}}V,\\
+ |I_L(n)-I_{L'}(n)|
+     &\ll \frac{M}{Kg}(\log Y)^2\frac{vY^\rho}{jK}.
+\end{align*}
+
+For each pair use the average of $I_L$ and $I_{L'}$.
+After replacing $bN\pm p$ by $bN$ in this average,
+the sum of the paired signed weights has mean zero on
+the slope period $D/(D,N)$, by reflection of $b$.
+Over one period, each absolute sum of
+$A_{L,x_0}(bN\pm p)$ is $O(D_0\tau(D))$.
+More generally its absolute sum over $\mathcal B$ is
+\begin{equation}
+ \ll \tau(D)
+       \left(\frac{B(p,D_1,N)}{D_1}+D_0\right).
+ \label{eq:criticalgridclippedperiod}
+\end{equation}
+For these bounds use $|A_{L,x_0}(n)|\le (D_1,n)/D_1$,
+since $(jD_0,D_1)=1$.
+For each $f\mid D_1$, the congruence $f\mid bN\pm p$
+has at most $(D/(D,N))(f,N)/f$ solutions in a period.
+If solvable it requires $(f,N)\mid p$.
+The divisor identity for $(D_1,n)$ gives both
+bounds by counting full periods and a partial period.
+
+Partial summation uses the period bound and the derivative
+of the symmetric average. Before the factor $1/M_0$,
+the bound per branch is
+\[
+ O_\epsilon\!\left(Y^{2\rho+\epsilon}\frac{M D_0}{K g}\right).
+\]
+This includes shifting the argument by $\pm p$,
+since the derivative bound and $p(B+1)/V\ll1$
+control the accumulated shifts. The total branch weight
+$\sum_{L,x_0}1/M_0$ is at most $g$.
+As $d$ is squarefree, its part supported on primes of
+$g j$ divides $g(d,j)$. Hence $D_0\le r g(d,j)$.
+For $J_*=2Y^{\nu+3\rho}$ one has
+$\sum_{1\le j\le J_*}(d,j)\le J_*\tau(d)$ by the divisor
+identity for the gcd. Summing over $j,d$ and the
+screen parameters gives
+$O_\epsilon(XP Y^{\nu+9\rho+\epsilon})$.
+Here $M/K\le P/d$, the choices of $g$ cost $Y^\epsilon$,
+and there are at most $Z^2$ screen pairs.
+
+For the antisymmetric difference use the last bound for
+$I_L-I_{L'}$ and \cref{eq:criticalgridclippedperiod}.
+After summing branches, its cost for fixed $p,d,j,g$
+and screen pair is at most
+\[
+ O_\epsilon\!\left(
+  Y^{\rho+\epsilon}\frac P {jK}
+         \left(\frac{B(p,D_1,N)}{gD_1}+\frac{D_0}{g}\right)\right).
+\]
+For the first term use
+$1/(gD_1)=D_0/(gD)\le j/d$ and
+$(p,D_1,N)\le Y^\rho(p,d)$.
+The sum $\sum_{d\le P Y^\nu}(p,d)/d\ll \log Y$
+is uniform for prime $p$. For the second use
+$D_0/g\le Y^\rho j$ and the number of available $d$.
+Summing all variables bounds the antisymmetric error by
+\[
+ O_\epsilon\!\left(XP Y^\epsilon
+       \left(\frac B K Y^{\nu+6\rho}
+                      +\frac P K Y^{2\nu+6\rho}\right)\right).
+\]
+Since $B/K=Y^{-\xi}/X$ and $P/K\ll_{C,Q} Y^{-2\xi}/X$,
+this also saves a power after extracting $XP=Y^{1-\xi}$.
+
+The restored smoothed sum is therefore
+$O_\epsilon(Y^{1-\xi+\nu+9\rho+\epsilon})$ at each $N$.
+Restore the previous selections and sharp arc ranges
+using the squared costs at the start of the proof.
+This gives \cref{eq:criticalgridclippeddeletion}.
+The remaining arc energy stays $O_\epsilon(X^2 VY^\epsilon)$,
+so the same conductor-pair deletions apply. Parseval
+and Cauchy--Schwarz transfer the error to the second
+moment, on the whole circle or on the modulus minor arcs.
+\end{proof}
+
+\clearpage
 \section{Conditional bounds from uniform prime-pair discrepancies}
 \label{sec:pairconditional}
 
@@ -12494,6 +12773,8 @@ factor at reduced denominators and restricts the lower
 M\"obius range to short nonzero inverse phases.
 \Cref{thm:criticalgridflatdeletion} removes that lower range
 where the Farey arcs are assigned their full length.
+\Cref{thm:criticalgridclippeddeletion} removes a lower
+M\"obius range across all retained arc denominators.
 \Cref{prop:criticalgridarcsharpness} shows that a power saving
 for arbitrary arc functions cannot follow from their size,
 their energy, and the conductor cutoffs alone.
@@ -12656,6 +12937,10 @@ in \cref{thm:criticalgridpoisson}.
 The file \texttt{formalization/FlatArcCancellation.lean}
 checks the reciprocity divisibilities and the reflection
 of the two slope weights used in \cref{thm:criticalgridflatdeletion}.
+
+The file \texttt{formalization/ClippedArcCancellation.lean}
+checks the branch identity, reflected congruence, and inverse
+displacement used in \cref{thm:criticalgridclippeddeletion}.
 
 The file \texttt{formalization/PrefixPersistence.lean} checks
 the finite sum version of the large-prefix estimate used in
