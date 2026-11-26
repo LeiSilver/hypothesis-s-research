@@ -91,6 +91,39 @@ def check_sifted_twists():
     print(f"Verified both twist identities on {len(samples)} prime shifts at each of two cutoffs.")
 
 
+def check_twist_profile():
+    # Row k encloses c_k(i/mesh) in units of 1/scale. On each cell
+    # bound the increasing numerator and the reciprocal separately.
+    mesh, scale = 100_000, 2**54
+    points = 5*mesh + 1
+    lower = [scale if i >= mesh else 0 for i in range(points)]
+    upper = lower.copy()
+    probes = (438_440, 438_480, 500_000)
+    values = {}
+    for k in (2, 3, 4):
+        lo, hi = [0]*points, [0]*points
+        for i in range(k*mesh + 1, points):
+            j = i - mesh
+            lo[i] = lo[i-1] + lower[j-1]//j
+            hi[i] = hi[i-1] + (upper[j]+j-2)//(j-1)
+        for i in (*probes, *(x//2 for x in probes)):
+            values[k, i] = (Fraction(lo[i], scale), Fraction(hi[i], scale))
+        lower, upper = lo, hi
+
+    gaps = []
+    for i in probes:
+        lo2, hi2 = values[2, i]
+        lo3, hi3 = values[3, i]
+        lo4, hi4 = values[4, i]
+        log_lo, log_hi = values[2, i//2]
+        gaps.append(((1-hi2-2*hi3-hi4)/2 + 2*log_lo,
+                     (1-lo2-2*lo3-lo4)/2 + 2*log_hi))
+    if not (gaps[0][1] < 0 < gaps[1][0]
+            and Fraction(2042, 10000) < gaps[2][0] <= gaps[2][1] < Fraction(2043, 10000)):
+        raise AssertionError(("signed profile intervals", gaps))
+    print("Certified the profile crossing in (4.3844, 4.3848) and the gap at 5 in (0.2042, 0.2043).")
+
+
 def main():
     limit = 256
     divisors = [tuple(d for d in range(1, n + 1) if n % d == 0)
@@ -167,6 +200,7 @@ def main():
         raise AssertionError("three-factor ranges or strip overlap")
     check_rough_pairs()
     check_sifted_twists()
+    check_twist_profile()
 
 
 if __name__ == "__main__":

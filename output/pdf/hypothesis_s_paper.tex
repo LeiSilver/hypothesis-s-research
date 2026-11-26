@@ -1664,6 +1664,152 @@ The baseline and the identity defining $K_N$ give the ratio bound
 when $P_N=0$, with $N$ sufficiently large in terms of $\delta$.
 \end{proof}
 
+\begin{proposition}[Mean of the prime-shift twist and its threshold]
+\label[proposition]{prop:single-test-twist-mean}
+For $1/5\le a\le1/4$, $|v|=1$, put $u=1/a$ and define
+\[
+ c_1(t)={\bf1}_{t\ge1},\qquad
+ c_k(t)=\int_{k}^{\max(k,t)}\frac{c_{k-1}(s-1)}{s-1}\,\ud s
+ \quad(k\ge2),\qquad D_v(u)=\sum_{k=1}^4 v^k c_k(u).
+\]
+Write $\langle J\rangle_{Y,H}$ for the mean of $J_N(N^a,v)$
+over even $Y<N\le Y+H$ with weights $N\SSS(N)$. For $L=\log Y$,
+\begin{align}
+ \langle J\rangle_{Y,Y}
+   &=cD_v(u)+O(\log L/L),\qquad c=4/45,\nonumber\\
+ \langle J\rangle_{Y,H}
+   &=cD_v(u)+O\bigl(\log L/L+L/\sqrt H\bigr)
+   \qquad(L^2\le H\le\sqrt Y).
+ \label{eq:single-test-twist-mean}
+\end{align}
+The dyadic estimate is unconditional. The short-interval estimate
+assumes RH for the Riemann zeta function. Both errors are uniform
+in $a$ and $v$.
+
+For $v=\exp(i\pi/3)$ the limiting real mean minus the sufficient
+threshold $-2c\log(u/2-1)$ from \cref{prop:single-test-twisted-sieve}
+equals $c\,g(u)$, where
+\[
+ g(u)=\tfrac12(1-c_2(u)-2c_3(u)-c_4(u))+2\log(u/2-1).
+\]
+This function is strictly increasing on $[4,5]$. Its unique zero
+$u_*$ lies in $(4.3844,4.3848)$ and $0.2042<g(5)<0.2043$.
+Consequently the strict uniform lower-limit criterion for this
+sixth-root twist is impossible for $1/u_*\le a<1/4$.
+At $a=1/5$ the mean clears the threshold; a uniform lower
+bound at individual even integers is still needed.
+For each fixed $u$ with $g(u)\ne0$, a positive proportion of
+the even integers in every sufficiently late dyadic interval
+lie on the side of the threshold indicated by $g(u)$, at distance
+at least $c|g(u)|/2$. Under RH the same conclusion holds in
+every interval above with $H\ge K_u L^2$ for some constant $K_u$.
+\end{proposition}
+
+\begin{proof}
+Freeze the cutoff at $y=Y^a$ and write $b(n)=(\log n)h_{y,v}(n)$.
+For $N\in[Y,2Y]$ a change of cutoff affects only survivors at
+$y$ with a prime divisor $r\in(y,(2Y)^a]$. Writing $n=rs$,
+sift $s,N-rs$ as in \cref{prop:single-test-rough-pairs};
+$(r,N)=1$ on the unit samples. Each $r$ costs $O(1/r)$ after
+normalization. The total is $O(1/L)$ by the prime upper bound
+in this fixed-ratio interval. Also $|J_N|\ll1$ at either cutoff
+by \eqref{eq:uniformsieve} applied to $m,N-m$ up to a small
+fixed power of $Y$. Both coordinates are odd and the only
+nonunit pair with prime first coordinate in the test window is
+the diagonal. Dropping that restriction costs $O(L^2)$ per
+modulus before normalization.
+
+For $Y/4\le l\le r\le2Y$, the count of rough integers with $k$
+prime factors in \cite[Lemma~2.2]{MatomakiZunigaSwitching} gives
+\begin{equation}
+ \sum_{l<n\le r} b(n)=(r-l)D_v(u)+O(Y\log L/L).
+ \label{eq:single-test-rough-primitive}
+\end{equation}
+Indeed the cumulative unweighted main term at $x$ for $k$ factors
+is $x c_k(\log x/\log y)/\log x$ with error $O(Y\log L/L^2)$.
+Here $\log x/\log y=u+O(1/L)$, the functions with $k\ge2$
+are Lipschitz on this compact range, and $c_1$ is constant
+there. Up to $2Y$ at most five factors occur, with $c_5(u)=0$.
+Excluding equality at a prime cutoff costs at most $O(Y/y+1)$
+unweighted terms. Partial summation inserts $\log n$.
+The same estimate with $v=1$ gives $\sum_{n\asymp Y}|b(n)|\ll Y$
+on the relevant support.
+
+For the dyadic mean use $F(p/N)=F(n/N)$. At fixed $n$, partial
+summation and the prime number theorem replace the sum of $\log p$
+with weight $F(n/(p+n))$ for $Y<p+n\le2Y$ by
+$\int_Y^{2Y}F(n/t)\,\ud t$ with error $O_A(Y/L^A)$.
+The weight has bounded variation uniformly in $n$. Now
+\eqref{eq:single-test-rough-primitive} gives
+$\sum_n b(n)F(n/t)=ctD_v(u)+O(Y\log L/L)$.
+The denominator is $\int_Y^{2Y}t\,\ud t+O(YL)$ by the
+singular-series mean in the proof of \cref{prop:single-test-short-mean}.
+
+For the short intervals use the tents $T_h(N-t)$ from
+\cref{prop:single-test-tents}, supported in $[Y,Y+H]$.
+Write $R_h(x)=\sum_{x<n\le x+h}b(n)$. On the range $x\asymp Y$
+that meets the support, for $1\le h\le\sqrt Y$ one has
+\[
+ \int |R_h(x)|^2\,\ud x\ll Yh(L+h).
+\]
+The diagonal costs $O(YhL)$. For a shift $1\le j\le h$, even
+after taking absolute values the two integers must both be rough.
+For odd $j$ this is impossible. For even $j$ the two-form sieve
+\eqref{eq:uniformsieve} bounds their weighted count by
+$O(Y\SSS(j))$. Their intervals overlap in length at most $h$.
+Summing uses $\sum_{2\mid j,\ j\le h}\SSS(j)\ll h$, obtained
+from the positive divisor expansion in \cref{prop:single-test-short-mean}
+by bounding the number of multiples by $h/(2d)$.
+
+For a tent of radius $h\ge L^2$, the unnormalized sum with frozen
+cutoff equals
+\[
+ \frac1h\int F(x/t)R_h(x)
+  \bigl(\psi(t-x)-\psi(t-x-h)\bigr)\,\ud x
+ +O(h^2 L+h\sqrt Y L^3).
+\]
+Indeed the overlap identity used in \cref{eq:single-test-tent}
+moves the test by $O(h/Y)$ on a total absolute mass $O(YhL)$.
+The proper powers added on the prime side have total cost
+$O(h\sqrt Y L^3)$ by counting powers and using $|b(n)|\ll L$.
+After replacing the prime interval sum by $h$, the RH Selberg
+integral and the displayed bound for $R_h$ give a Cauchy--Schwarz
+error $O(YL\sqrt h)$. The remaining integral is
+$cthD_v(u)+O(Yh\log L/L)$ by applying
+\eqref{eq:single-test-rough-primitive} against $F((n-s)/t)$
+and integrating in $0\le s\le h$.
+In the tent decomposition of \cref{prop:single-test-tents}, stop
+with end ramps of width $O(L^2)$ so all used radii are at least
+$L^2$. Their radii sum to $O(H)$ and their square roots to
+$O(\sqrt H)$ by geometric summation. The end intervals contribute
+$O(YL^2)$ by $|J_N|\ll1$ and the singular-series mean. This
+also suffices by itself for $H\asymp L^2$. Division by the
+weight sum gives \eqref{eq:single-test-twist-mean}.
+
+Finally $c_2(u)=\log(u-1)$ on this range. Differentiation gives
+\[
+ 2(u-1)g'(u)=\frac{4(u-1)}{u-2}
+             -1-2\log(u-2)-c_3(u-1)>0.
+\]
+Indeed the fraction is at least $16/3$, while
+$c_3(u-1)\le c_3(4)\le\int_2^3(s-2)/s\,\ud s<1$.
+For the numerical bounds use a grid of step $1/100000$ in the
+recurrence for $c_k$. On a cell $[l,r]$ in the variable $s-1$,
+bound the integrand between $c_{k-1}(l)/r$ and $c_{k-1}(r)/l$.
+The accompanying integer checker rounds each increment outwards
+in units of $2^{-54}$. Substituting $c_2(u/2)=\log(u/2-1)$
+gives $g(4.3844)<0<g(4.3848)$ and the asserted bounds at five.
+If a strict lower limit above the sufficient threshold held,
+every sufficiently late dyadic mean would exceed that threshold
+by a fixed amount. This contradicts the unconditional mean when
+$g(u)\le0$. For $g(u)\ne0$, take the mean error below
+$c|g(u)|/4$. Since $|J_N|\ll1$, the stated side at distance
+at least $c|g(u)|/2$ must then carry a positive fraction of the
+weight. Cauchy--Schwarz and $\sum_N\SSS(N)^2\ll H+L^2$ from
+\cref{prop:single-test-short-mean} convert this to $\gg_u H$
+even moduli.
+\end{proof}
+
 \section{Certification on the balanced window}
 \label{sec:certificate}
 
