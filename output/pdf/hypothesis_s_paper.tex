@@ -1213,6 +1213,77 @@ $2^{\omega(N)}\le\tau(N)=N^{o(1)}$. Finally $(m,N)=1$ gives
 $(m,N-m)=1$, hence the coprimalities in the claim.
 \end{proof}
 
+\begin{proposition}[Uniform square-root cutoff on coprime summands]
+\label[proposition]{prop:single-test-uniform-coprime}
+In \cref{prop:single-test-coprime-tail} the error is
+\[
+ O_\epsilon\bigl(N^{1+\epsilon}/R+\sqrt N R L^2
+                        +N^\epsilon R^{39/20}\bigr).
+\]
+Thus $R=\sqrt N/L^4$ gives $O(N/L^2)$ with $(ud,ve)=1$ for
+every sufficiently large even $N$.
+\end{proposition}
+
+\begin{proof}
+We estimate the discrepancy for the two short sums jointly in
+their divisors. Write $d\in[D/2,D]$, $e\in[E/2,E]$, and allow
+separate coefficients $\alpha_d,\beta_e$ of modulus at most one,
+supported on units modulo $N$. Define
+\[
+ \mathcal K(D,E)=
+ (DE)^{17/20}(D+E)^{1/4}+(DE)^{7/8}(D+E)^{1/8}.
+\]
+For each $s\mid N$ put $X=N/s$. On $s\mid m$ the conditions
+$d\mid m$, $e\mid N-m$ become $d\mid m/s$, $e\mid X-m/s$.
+They require $(d,e)=1$, since any common divisor divides $N$
+and $d,e$ are units. For a compatible pair their weighted count is
+\begin{equation}
+ \sum_{k\equiv X\bar d\bmod e} F(dk/X)
+   =\frac X{de}\sum_{j\in\mathbb Z}
+        \widehat F(jX/(de))\,e(jX\bar d/e),
+ \label{eq:single-test-physical-poisson}
+\end{equation}
+where $\widehat F(y)=\int F(x)e(-xy)\,\ud x$ and $e(t)=\exp(2\pi i t)$.
+The zero frequency gives $cX/(de)$. We claim the sum of the
+other frequencies, with the indicated coefficients and summed over
+$d,e$, is $O_\epsilon((DE)^\epsilon\mathcal K(D,E))$, uniformly
+in $X$. If either scale is bounded, the bounded-variation
+progression error $O(1)$ for each pair suffices since then
+$DE\ll\mathcal K(D,E)$.
+
+For $j\ne0$ use Bettin and Chandee's trilinear estimate with its
+third variable fixed at one and multiplier $jX$
+\cite[Theorem~1]{BettinChandeeFractions}. With $t=X/(DE)$ it bounds
+the bilinear sum of the phase in \cref{eq:single-test-physical-poisson}
+by $O_\epsilon((DE)^\epsilon(1+|j|t)^{1/2}\mathcal K(D,E))$.
+Here the two $\ell^2$ norms contribute $(DE)^{1/2}$. The estimate
+is uniform when either coefficient is twisted by an imaginary power.
+
+To separate the amplitude, let $v=\log(de/(DE))$ and multiply
+$g(v)=t e^{-v}\widehat F(jt e^{-v})$ by a fixed smooth compactly
+supported function equal to one on $[-\log4,0]$. Both
+$\widehat F(y)$ and $\widehat F'(y)$ are $O((1+|y|)^{-3})$:
+$F$ and $xF(x)$ are piecewise polynomials with a double zero at
+each boundary, and their second derivatives have bounded variation.
+Consequently $\|g\|_{H^1}\ll t(1+|j|t)^{-2}$ for the cut-off
+function. Cauchy--Schwarz and Plancherel give the same bound for
+the $L^1$ norm of its Fourier transform. Fourier inversion in $v$
+separates the coefficients by imaginary powers. Since
+$\sum_{j\ne0} t(1+|j|t)^{-3/2}\ll1$ for every $t>0$, the
+claimed discrepancy bound follows.
+
+In the proof of \cref{prop:single-test-coprime-tail}, apply this
+estimate to each term $\mu(s)$ in the unit restriction with the
+short divisor coefficients divided by $L$. The zero frequencies
+give exactly the periodic main terms used there. Summation over
+the dyadic boxes and $s\mid N$ costs at most $N^\epsilon$ after
+adjusting $\epsilon$. As $D,E\ll R$, we have
+$\mathcal K(D,E)\ll R^{39/20}$. This replaces the term
+$2^{\omega(N)}R^2$ in the earlier proof. At the asserted $R$ the
+new term saves a fixed power of $N$, and the mixed sum costs
+$O(N/L^2)$.
+\end{proof}
+
 \section{Certification on the balanced window}
 \label{sec:certificate}
 
@@ -15471,6 +15542,11 @@ D.~A.~Goldston and C.~Y.~Y{\i}ld{\i}r{\i}m,
 \newblock \emph{Higher correlations of divisor sums related to primes I:
 triple correlations},
 \newblock \url{https://arxiv.org/abs/math/0111212}.
+
+\bibitem{BettinChandeeFractions}
+S.~Bettin and V.~Chandee,
+\newblock \emph{Trilinear forms with Kloosterman fractions},
+\newblock \url{https://arxiv.org/abs/1502.00769}.
 
 \bibitem{SoundMobius}
 K.~Soundararajan,

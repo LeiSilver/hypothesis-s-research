@@ -47,6 +47,8 @@ This repository contains the English research manuscript and the code and data f
 
 ## Research checkpoint · 27 November 2026
 
+Proposition 3.10 restores the common cutoff $R=\sqrt N/(\log N)^4$ on coprime summands for every sufficiently large even $N$ under Dirichlet GRH. Poisson summation and the Bettin–Chandee estimate bound the discrepancy of the two short divisor sums by $O_\epsilon(N^\epsilon R^{39/20})$. The resulting pointwise error in the fixed-test reduction is $O(N/(\log N)^2)$.
+
 Proposition 3.9 restricts the single-test reflected Möbius correlation to coprime summands at every even $N$. Taking $R=\sqrt N/(2^{\omega(N)/2}(\log N)^4)$ gives error $O(N/(\log N)^2)$ with $d,e>R$ and $(ud,ve)=1$. The [exact checker](hypothesis_s_single_test_check.py) verifies the short/long split and the periodic and unit-restricted densities on finite inputs. Run it with Python 3.
 
 Proposition 3.8 uses the exact divisor identity for the von Mangoldt function. At each even integer $N$ it replaces $N\mathfrak S(N)(\Delta_N-4/45)$ by the reflected correlation of two Möbius divisor sums with both divisors greater than $\sqrt N/(\log N)^4$. The pointwise error is $O(N/(\log N)^2)$. The unresolved lower bound now concerns the signed solutions of $ud+ve=N$ with these long divisors and $u,v\ll\sqrt N(\log N)^4$.
