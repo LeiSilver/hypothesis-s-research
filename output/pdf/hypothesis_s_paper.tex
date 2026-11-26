@@ -298,6 +298,12 @@ $Y^{1-1/32}\le d\le Y^{1+1/32}$ for log-power
 smaller inputs. After the Type~I deletion,
 \cref{prop:criticalgridbalancedmobius} thus restricts
 the prime count to $d>Y^{1+1/32}$.
+\Cref{thm:criticalgridrough-tail} raises the roughness
+threshold in that remainder to $Y^\theta$ for every
+fixed $\theta<1/3$, with a logarithmically small
+squared error. \Cref{prop:criticalgridrough-tail}
+then restricts the complementary divisor to a prime
+or a product of two distinct primes.
 \Cref{thm:criticalpowers} proves decay in density for the
 entire proper-power contribution through a fixed critical
 product cap and identifies the fixed rows needed for decay
@@ -13725,6 +13731,246 @@ The remaining factor bound follows from $dm\ll V$.
 \end{proof}
 
 \clearpage
+\subsection{Removing small prime factors from the long-divisor sum}
+
+\begin{theorem}[A power-sized roughness cutoff in mean square]
+\label{thm:criticalgridrough-tail}
+Assume Dirichlet GRH and the scale conditions of
+\cref{thm:criticalgridbalancedmobius}. Fix $0<\theta<1/3$
+and $J_0>0$. In the physical representation of
+\cref{prop:criticalgridbalancedmobius}, the screen
+$s_z(n)$ with sufficiently large fixed $K$ can be replaced
+by $s_{Y^\theta}(n)$ with squared error
+$O(Y^3(\log Y)^{-J_0})$ over the even moduli, uniformly
+over the intervals $I,J$.
+\end{theorem}
+
+\begin{proof}
+Write $L=\log Y$ and $D_*=Y^{1+1/32}$. The difference
+of the two screens selects squarefree $n$ whose least
+prime factor $\ell$ satisfies $z<\ell\le Y^\theta$.
+Write $n=\ell t$. Then $\mu^2(t)=1$ and
+$P^-(t)>\ell$, where $P^-$ denotes the least prime
+factor and $P^-(1)=+\infty$. Splitting the divisors
+of $n$ according to whether they contain $\ell$ gives
+the divisor weight
+\begin{align}
+ &\sum_{\substack{e\mid t\\e>D_*}}\mu(e)\log(t/e)
+ +\log\ell\sum_{\substack{e\mid t\\e>D_*}}\mu(e)
+ -\sum_{\substack{e\mid t\\\ell e>D_*}}\mu(e)\log(t/e).
+ \label{eq:criticalgridrough-tail-split}
+\end{align}
+The slope sum is equivalent to $\ell t\equiv\pm p\bmod N$
+on this support. A solution determines exactly one
+$b\in\mathcal B$ for the corresponding sign. The screen
+forces $p\nmid N$ whenever there is a solution, since
+$p\le2X<z$.
+
+Divide the dyadic $\ell$ ranges into intervals
+$(u,u']$ with $u'/u\le1+\Delta$, where $\Delta=L^{-H}$
+and $H$ is a sufficiently large fixed constant.
+On each interval impose $P^-(t)>u'$ and require
+that $ut,u't\in J$. In the last term of
+\cref{eq:criticalgridrough-tail-split}, impose $ue>D_*$.
+These restrictions depend only on the long variable
+$t$ and its divisors. The first restriction can change
+the sum only when $n$ has two prime factors $\ell,r$
+with $z<\ell<r\le(1+\Delta)\ell$. Their number of
+multiples in the range is
+\[
+ \ll V\sum_{\substack{z<\ell\le Y^\theta\\\ell\ {\rm prime}}}
+             \frac{\Delta+\ell^{-1}}{\ell}
+ \ll V(\Delta\log L+z^{-1}).
+\]
+Here the count of $r$ is bounded by the number of
+integers in its interval. The condition involving $J$
+can change only within $O(\Delta V)$ of its endpoints.
+Finally the cutoff on $e$ can change only for $n$
+with a divisor in $(D_*,(1+\Delta)D_*]$. Counting
+multiples of these divisors gives $O(V(\Delta+D_*^{-1}))$
+integers. Tightening the least-prime condition preserves
+the uniqueness of the chosen $\ell$. In particular all
+error weights are bounded by $O(\tau(n)L)$.
+
+For each $p$ and sign the number of representations
+$n=bN\pm p$ is at most $\tau(n\mp p)$. If a set of
+affected integers has size at most $\eta V$, Cauchy--Schwarz
+and the divisor moments give
+\[
+ \sum_{n\in\text{set}}\tau(n)\tau(n\mp p)L
+     \ll V \eta^{1/2} L^{C_1}
+\]
+with an absolute $C_1$. The prime weights have sum
+$O(X)$, so the endpoint and cutoff replacements give
+an arbitrarily large logarithmic saving relative to $Y^2$
+in the summed absolute error, by taking $H,K$ large.
+
+Each remaining expression on one $\ell$ interval is,
+up to a factor $O(L)$, a convolution of a
+long divisor-bounded sequence $\alpha(t)$ and a
+short sequence $\beta(\ell)$ supported on primes.
+The short sequence is an interval restriction of
+$1_{\ell\ {\rm prime}}$ or of
+$1_{\ell\ {\rm prime}}\log\ell/\log(4V)$.
+The long sequence contains the independent
+conditions on $t,e$ and satisfies $|\alpha(t)|\le\tau(t)$
+after the same logarithmic normalization of its weights.
+Split $t$ further into a bounded number of dyadic
+intervals for each fixed dyadic $\ell$ range. Write
+$D$ and $M$ for the long and short dyadic scales and
+$F=DM\asymp V=Y^{2+o(1)}$. It remains to show, for
+$1\le |a|\le2X$, that
+\begin{equation}
+ \sum_{\substack{Y\le q\le2Y\\(q,a)=1}}
+ \left|\sum_{t\ell\equiv a\bmod q}\alpha(t)\beta(\ell)
+  -\frac{1}{\varphi(q)}
+     \sum_{(t\ell,q)=1}\alpha(t)\beta(\ell)\right|
+ \ll_{A_1} F L^{-A_1}
+ \label{eq:criticalgridrough-tail-dispersion}
+\end{equation}
+for each fixed $A_1>0$ and sufficiently large $K$.
+Endpoint moduli may be included by using two dyadic
+ranges when applying the dispersion bounds below.
+
+On $M\ge Y^{1/50}$ use Fouvry's convolution theorem
+\cite[Th\'eor\`eme~1]{Fouvry1984}. For
+$\nu=\log M/\log(4F)$ the allowed exponent before its
+fixed margin is $\min(1/2+\nu/2,5/8-3\nu/4)$.
+It exceeds $1/2$ by a positive constant, since
+$1/100+o(1)\le\nu\le\theta/2+o(1)$ and $\theta<1/3$.
+Thus the range covers $q\le2Y$, with the required
+uniformity for $|a|\le2X$. The short sequence meets
+the Siegel--Walfisz condition with an auxiliary
+coprimality restriction $(\ell,v)=1$. In fact the
+GRH prime-character estimate for a nonprincipal
+character modulo $r$ is
+$O(\sqrt x(\log(2rx))^2)$ up to $x$
+\cite[Section~4]{LeeGRH}, also on
+subintervals and with the normalized logarithmic
+weight by partial summation. Removing primes dividing
+$v$ costs at most $\tau(v)$. For $r$ past a suitably
+large log power of $x$, the trivial class bound and
+the principal average suffice. These estimates are
+uniform in the short interval and give the required
+Siegel--Walfisz bounds to each fixed logarithmic order.
+
+On $z/2\le M<Y^{1/50}$ use the explicit dispersion
+estimate of Fouvry and Radziwi{\l}{\l}
+\cite[Theorem~1.1 of the preprint]{FouvryRadziwillUnbalanced}.
+The lower bound on $M$ holds for every nonzero short
+box. We verify its short-sequence error functional
+directly. For $(b,r)=1$ set
+\[
+ E^\star(r,b;v)=
+  \sum_{\substack{\ell\equiv b\bmod r\\(\ell,v)=1}}\beta(\ell)
+    -\frac{1}{\varphi(r)}\sum_{(\ell,rv)=1}\beta(\ell).
+\]
+The error functional is the sum of $|E^\star(r,b;v)|^2$
+over $1\le r\le2Y$, $v\asymp Y/r$ in the corresponding
+dyadic range and unit classes $b\bmod r$.
+For $r\le L^T$, orthogonality of characters and the
+GRH estimate just used give
+$|E^\star(r,b;v)|\ll \sqrt M L^2+\tau(v)$.
+Summing the bound with the divisor moments costs
+$O(YM L^{T+C_2})$ for an absolute $C_2$.
+For $L^T<r\le2M$, the bound is $O(M L/r)$
+by $|\beta|\le1$ and the elementary totient bound.
+This range costs $O(YM^2 L^{2-T})$.
+When $r>2M$, each residue has at most one term.
+The sum of squares over $b$ is
+$O(M+M^2/\varphi(r))=O(M L)$.
+Summing $v$ and $r$ gives $O(YM L^2)$.
+Consequently the entire error functional is
+$O_{A_1}(YM^2 L^{-A_1})$, on taking $T$ and then $K$
+sufficiently large.
+
+For the same dispersion theorem choose its auxiliary
+cutoff to be $L^{T_1}$ with $T_1$ sufficiently large,
+and then take $K>10T_1$. The long scale satisfies
+$D>Y F^{1/1000}$, and the short scale exceeds
+$L^{10T_1}$. After division by $DM^2$, the two terms
+in its power error, before the factor
+$F^{1/1000}L^{O(1)}$, are bounded by
+\[
+   F^{-17/20}M^{9/5}Y^{33/20}
+     + F^{-1}M^{15/8}Y^{15/8}.
+\]
+Both save a power for $M\le Y^{1/50}$ and
+$F=Y^{2+o(1)}$. The $M^2Y$ term saves a power
+because $Y/D$ does, and the auxiliary-cutoff term
+gives any fixed logarithmic saving with $T_1$ large.
+The factor $\|\alpha\|_2$ is at most
+$D^{1/2}L^{O(1)}$ by the divisor moment bound.
+This proves \cref{eq:criticalgridrough-tail-dispersion}
+also on the shorter boxes.
+
+The principal averages in
+\cref{eq:criticalgridrough-tail-dispersion} cancel
+between $a=p$ and $a=-p$. Summing the estimate
+over the $O(L^{H+1})$ boxes and the prime weights,
+and including the rounding errors, gives
+$\sum_N |T_N|\ll_{A_1} Y^2 L^{-A_1}$ for each desired
+fixed $A_1$ and sufficiently large $K$, where $T_N$
+is the contribution of the discarded
+integers in the original count. Finally
+\[
+ \sum_N |T_N|^4
+   \ll (XB)^3 L^4\sum_{p\in I}\log p
+               \sum_{N,b,\sigma:\ n=bN+\sigma p\in J}\tau(n)^4
+   \ll Y^5 L^{C_3}.
+\]
+The first bound is weighted H\"older, and the last follows by counting
+representations of $n\mp p$ and using divisor moments.
+Interpolating the first and fourth moments by
+H\"older proves the asserted squared-norm bound.
+\end{proof}
+
+\newpage
+\begin{proposition}[A remaining sum with at most two complementary primes]
+\label[proposition]{prop:criticalgridrough-tail}
+Take $\theta=21/64$ in \cref{thm:criticalgridrough-tail}.
+Up to squared error $O(Y^3(\log Y)^{-J_0})$ for each
+fixed $J_0>0$, the prime count
+$B_N^{\rm p}(I,J)$ is the physical count on squarefree
+$n=bN\pm p\in J$ with all prime factors greater than
+$Y^{21/64}$, weighted by
+\[
+ \mu(n)\!\!\sum_{\substack{m\mid n\\1<m<n/Y^{1+1/32}}}
+                         \mu(m)\log m .
+\]
+There are at most six prime factors of $n$, and the
+sum over $m$ has only primes and products of two
+distinct primes. At a value with exactly six prime
+factors the weight is $4\log n$.
+\end{proposition}
+
+\begin{proof}
+Combine \cref{prop:criticalgridbalancedmobius,thm:criticalgridrough-tail}
+and use $\mu(n/m)=\mu(n)\mu(m)$ on squarefree values.
+The term at $m=1$ is zero. Since $7(21/64)>2$ and
+$3(21/64)>1-1/32$, seven prime factors of $n$ or three
+of $m$ would exceed $n\ll V$ or $m\ll VY^{-1-1/32}$,
+respectively, for large $Y$.
+For six prime factors, every singleton and every pair
+is allowed in the sum over $m$, since the complementary
+divisor contains at least four primes and
+$4(21/64)>1+1/32$. In the singleton sum each prime
+logarithm occurs once with a negative sign, and in the
+pair sum it occurs five times with a positive sign.
+Since $\mu(n)=1$, their sum is $4\log n$.
+\end{proof}
+
+The prime prefix maximum in \cref{thm:criticalmeangrid}
+may therefore be computed using this remaining sum.
+Indeed, $\SSS(N)\sqrt{XV}\gg_{C,Q}Y$ on the grid.
+The sum of the squared errors of all the normalized
+tests over the even moduli is
+$O_{C,Q,M}(Y(\log Y)^{-J_0}\log\log Y)$, by the test
+count and the uniformity in the endpoints. The
+difference of the two maxima thus tends to zero in
+mean square after averaging over these moduli.
+
+\clearpage
 \section{Conditional bounds from uniform prime-pair discrepancies}
 \label{sec:pairconditional}
 
@@ -13960,6 +14206,10 @@ above it.
 prove cancellation for the modulus-scale physical block and
 retain only $d>Y^{1+1/32}$ in the prime counts with
 log-power smaller inputs.
+\Cref{thm:criticalgridrough-tail,prop:criticalgridrough-tail}
+reduce those counts in mean square to squarefree values
+with at most six prime factors and complementary
+divisors with one or two prime factors.
 \Cref{prop:criticalgridarcsharpness} shows that a power saving
 for arbitrary arc functions cannot follow from their size,
 their energy, and the conductor cutoffs alone.
@@ -14145,6 +14395,11 @@ The file \texttt{formalization/InverseMobius.lean}
 checks the modular and factorization identities for
 the inverse-sum energy bound and the screen congruence
 used in \cref{lem:criticalgridinverse-mobius,thm:criticalgridbalancedmobius}.
+
+The file \texttt{formalization/LeastPrimeSplit.lean}
+checks the disjoint splitting of divisors at the
+extracted prime and the logarithm multiplicity in the
+six-prime weight of \cref{prop:criticalgridrough-tail}.
 
 The file \texttt{formalization/PrefixPersistence.lean} checks
 the finite sum version of the large-prefix estimate used in
@@ -14334,6 +14589,18 @@ J. Cilleruelo and M. Z. Garaev,
 hyperbolas and applications},
 Geom. Funct. Anal. \textbf{21} (2011), 892--904.
 \href{https://arxiv.org/abs/1007.1526}{arXiv:1007.1526}.
+
+\bibitem{Fouvry1984}
+\'E. Fouvry,
+\emph{Autour du th\'eor\`eme de Bombieri--Vinogradov},
+Acta Math. \textbf{152} (1984), 219--244.
+\href{https://doi.org/10.1007/BF02392198}{doi:10.1007/BF02392198}.
+
+\bibitem{FouvryRadziwillUnbalanced}
+\'E. Fouvry and M. Radziwi{\l}{\l},
+\emph{Level of distribution of unbalanced convolutions},
+Ann. Sci. \'Ec. Norm. Sup\'er. \textbf{55} (2022), 537--568.
+\href{https://arxiv.org/abs/1811.08672}{arXiv:1811.08672}.
 
 \bibitem{BourgainGaraevRings}
 J. Bourgain and M. Z. Garaev,
