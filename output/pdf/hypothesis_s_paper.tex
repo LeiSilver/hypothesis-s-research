@@ -239,6 +239,10 @@ additive frequency grid.
 \Cref{thm:criticalgridpairorder} also deletes pairs whose
 sum or difference has a small reduced denominator in the
 second moment.
+\Cref{thm:criticalgridperiodicmoduli} gives a power saving
+when the signed prime counts are tested against short-period
+weights in the modulus, and removes the corresponding narrow
+rational arcs from the modulus second moment.
 \Cref{thm:criticalpowers} proves decay in density for the
 entire proper-power contribution through a fixed critical
 product cap and identifies the fixed rows needed for decay
@@ -9969,6 +9973,143 @@ $N/R$ are bounded by fixed powers of $L$, proving the last
 assertion.
 \end{proof}
 
+\clearpage
+\subsection{Periodic tests in the modulus variable}
+
+\begin{theorem}[Cancellation against periodic modulus weights]
+\label{thm:criticalgridperiodicmoduli}
+There is an absolute $\kappa>0$ with the following property.
+Suppose $2\le X\le Y^\kappa$ and $Y^2/Q\le XV\le CY^2$,
+and let $I\subset[X,2X)$ and $J\subset[V,2V)$ be intervals.
+Under Dirichlet GRH, for every interval $\mathcal I\subset[Y,2Y]$
+and every complex sequence $w$ of period $m\le Y^\kappa$ with
+$|w|\le1$ one has
+\begin{equation}
+ \left|
+   \sum_{\substack{N\in\mathcal I\\2\mid N}}
+            w(N) B_N^{\rm p}(I,J)
+ \right|\ll_{C,Q} Y^{2-\kappa}.
+ \label{eq:criticalgridperiodicmoduli}
+\end{equation}
+In particular, let
+\[
+ S_{I,J}(\alpha)=\sum_{\substack{Y\le N\le 2Y\\2\mid N}}
+                      B_N^{\rm p}(I,J)e(\alpha N),
+\]
+and let $\mathfrak M_Y\subset\mathbb R/\mathbb Z$ be the union
+of the arcs of radius $Y^{-1+\kappa/4}$ about the reduced
+fractions with denominator at most $Y^{\kappa/4}$.
+Then
+\begin{equation}
+ \sum_{\substack{Y\le N\le 2Y\\2\mid N}} |B_N^{\rm p}(I,J)|^2
+   =\int_{(\mathbb R/\mathbb Z)\setminus\mathfrak M_Y}
+        |S_{I,J}(\alpha)|^2\,\ud\alpha
+      +O_{C,Q}(Y^{3-3\kappa/4}).
+ \label{eq:criticalgridmodulusarcs}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+We use the power-saving form of the theorem of Assing, Blomer,
+and Junxian Li~\cite[Theorem~2.1]{AssingBlomerLi} under GRH.
+In the case needed here, there is an absolute $0<\delta<1/10$
+such that for $c,d\le t^\delta$, $d\mid c^\infty$,
+$(u,c)=(a,d)=1$, $0<|a|\le t^\delta$ and $Q_0\le t^{1/2+\delta}$,
+one has
+\begin{equation}
+ \sum_{\substack{q\le Q_0\\q\equiv u\bmod c\\(q,a)=1}}
+ \left(
+  \psi(t;dq,a)
+     -\frac{1}{\varphi(dq)}\sum_{\substack{n\le t\\(n,dq)=1}}\Lambda(n)
+ \right)
+ \ll t^{1-\delta}.
+ \label{eq:criticalgridmodulusabl}
+\end{equation}
+Here $d\mid c^\infty$ means that all prime factors of $d$
+divide $c$. Indeed, $q\equiv u\bmod c$ makes $(q,d)=1$.
+In the cited theorem take $a_1=a$, $a_2=1$ and $d_0=a\bmod d$.
+The two residue conditions on the prime argument then give
+precisely the class $a\bmod dq$. Take $\kappa=\delta/100$.
+
+In the original sum, replacing the center condition $bN\in J$
+by $bN\pm p\in J$ costs $O_C(YX\log Y)$. There are at most a
+bounded number of boundary terms per prime and per modulus,
+because $p\le2X=o(N)$, and $\sum_{p\in I}\log p\ll X$.
+Both resulting progressions cover all the corresponding values
+in $J$, since $t\in J$ is much larger than $p$ and hence the
+recovered integer $b=(t\mp p)/N$ is positive.
+Replacing $\Lambda_{\rm p}$ by $\Lambda$ now costs, for each
+smaller prime $p$, at most
+\[
+ \sum_{\substack{t=\ell^j\in J\\\ell\ {\rm prime},\ j\ge2}}
+       (\log\ell)\bigl(\tau(t-p)+\tau(t+p)\bigr)
+ \ll_C Y^{1/10}\sqrt V\log(2V).
+\]
+Indeed, at fixed $t$ the eligible moduli divide $t-p$ or $t+p$.
+Use $\tau(n)\ll n^{1/20}$ for $n\ll_C Y^2$, and count the
+larger prime powers by their bases. With the smaller prime weights
+this error is $O_C(XY^{11/10}\log Y)$.
+
+Put $c=2m$. For each modulus write $N=dq$ with
+$d\mid c^\infty$ and $(q,c)=1$, putting the entire prime power
+in $d$ for each prime dividing $c$. Then $N$ is even exactly
+when $d$ is even. Write $D=Y^{4\kappa}$.
+The number of moduli with $d>D$ is at most
+\[
+ 2Y\sum_{\substack{d>D\\d\mid c^\infty}}\frac1d
+ \le 2Y D^{-1/2}\prod_{\ell\mid c,\ \ell\ {\rm prime}}
+                            (1-\ell^{-1/2})^{-1}
+ \ll Y D^{-1/2} c^{1/8}
+ \ll Y^{1-15\kappa/8}.
+\]
+The product bound follows since $(1-\ell^{-1/2})^{-1}\le
+\ell^{1/8}$ for all sufficiently large primes. The original
+count is $O_C(Y\log Y)$ at each modulus, by bounding each summand
+by $O(\log Y)$ and counting the $O(V/Y)$ possible centers per
+smaller prime. Thus these moduli cost $O_C(Y^{2-\kappa})$.
+The two weight and endpoint replacements just proved apply
+on the remaining subset with the same errors.
+
+For each remaining $d$, group $q$ by the unit classes $u\bmod c$.
+Because $m\mid c$, the weight $w(dq)$ equals $w(du)$ in such
+a class. Fix $p$ with $(p,d)=1$ and take the difference of
+\cref{eq:criticalgridmodulusabl} for $a=p$ and $a=-p$. The
+principal terms cancel. Use differences of two cutoffs $Q_0$
+to impose $dq\in\mathcal I$ and two cutoffs $t$ to impose
+the interval $J$. All cutoffs $t$ used satisfy $t\asymp V$
+and $t\ge Y^{2-2\kappa}$ for large $Y$. The bounds on
+$Q_0,c,d,|a|$ required in \cref{eq:criticalgridmodulusabl}
+follow from $Q_0\le 2Y$, $c\le 2Y^\kappa$,
+$d\le Y^{4\kappa}$, and $|a|\le2X$.
+Thus the total bound from $O(Dc)$ choices of $(d,u)$, with
+the smaller prime weights, is
+\[
+ \ll X D c V^{1-\delta}
+ \ll_C Y^{2+5\kappa-(2-2\kappa)\delta}
+ \ll Y^{2-\kappa}.
+\]
+Together with the preceding errors this is
+\cref{eq:criticalgridperiodicmoduli}.
+
+For $\alpha=h/m+\beta$ on an arc in $\mathfrak M_Y$, apply
+\cref{eq:criticalgridperiodicmoduli} to the weight $e(hN/m)$
+and use summation by parts over $N$ with the factor $e(\beta N)$.
+It gives $|S_{I,J}(\alpha)|\ll_{C,Q}Y^{2-\kappa}(1+Y|\beta|)
+\ll_{C,Q}Y^{2-3\kappa/4}$. The arcs have total measure
+$O(Y^{-1+3\kappa/4})$, since there are $O(Y^{\kappa/2})$
+candidate fractions. Integrating over them and applying
+Parseval proves \cref{eq:criticalgridmodulusarcs}.
+\end{proof}
+
+For the high-denominator M\"obius projection of
+\cref{thm:criticalgridadditiveorder}, the same arcs can be removed
+with error $O_{C,Q,D,K}(Y^3L^{-D})$ for every fixed $D>0$.
+In fact, applying Parseval to the difference of the two sequences
+in \cref{eq:criticalgridjointfilter} bounds its squared Fourier
+norm by $O(Y^3L^{-D})$. The squared Fourier norm of the prime
+counts on the deleted arcs has the power saving just proved.
+The triangle inequality in $L^2(\mathfrak M_Y)$ gives the claim.
+
 \section{Conditional bounds from uniform prime-pair discrepancies}
 \label{sec:pairconditional}
 
@@ -10299,6 +10440,11 @@ The file \texttt{formalization/AdditivePairOrder.lean}
 checks the common-divisor bound for reduced denominators and
 the permutation of residues used in \cref{thm:criticalgridpairorder}.
 
+The file \texttt{formalization/PeriodicModulus.lean}
+checks the factorization of the modulus and the congruence
+used to hold the periodic weight constant in
+\cref{thm:criticalgridperiodicmoduli}.
+
 The file \texttt{formalization/PrefixPersistence.lean} checks
 the finite sum version of the large-prefix estimate used in
 \cref{thm:fixedrowmeansquare}.
@@ -10486,6 +10632,12 @@ H.~L. Montgomery and R.~C. Vaughan,
 \newblock \emph{The large sieve},
 \newblock Mathematika \textbf{20} (1973), 119--134.
 \newblock \url{https://doi.org/10.1112/S0025579300004708}.
+
+\bibitem{AssingBlomerLi}
+E.~Assing, V.~Blomer, and J.~Li,
+\newblock \emph{Uniform Titchmarsh divisor problems},
+\newblock Adv. Math. \textbf{393} (2021), article~108076.
+\newblock \url{https://arxiv.org/abs/2005.13915}.
 
 \bibitem{SoundararajanMobius}
 K.~Soundararajan,

@@ -4,6 +4,7 @@ This repository contains the English research manuscript and the code and data f
 
 - [Manuscript (PDF)](output/pdf/hypothesis_s_paper.pdf)
 - [LaTeX source](output/pdf/hypothesis_s_paper.tex)
+- [Lean verification of the factorization and residue-class rule for periodic modulus weights](formalization/PeriodicModulus.lean)
 - [Lean verification of residue translations and the common denominator divisor](formalization/AdditivePairOrder.lean)
 - [Lean verification of the additive frequency denominator and cofactor](formalization/AdditiveDenominator.lean)
 - [Lean verification of the complementary divisor cutoff and sign](formalization/ComplementaryDivisor.lean)
@@ -33,6 +34,8 @@ This repository contains the English research manuscript and the code and data f
 - [Lean verification of the signed progression rows](formalization/CriticalArithmetic.lean)
 
 ## Research checkpoint · 26 November 2026
+
+Theorem 13.12 uses the GRH form of the Assing–Blomer–Li progression estimate to bound the signed prefix sum over all even moduli against any bounded periodic weight of period at most $Y^\kappa$, with an absolute $\kappa>0$. The bound is $O(Y^{2-\kappa})$ on every subinterval of $[Y,2Y]$ for smaller input $X\le Y^\kappa$ at the critical product scale. Parseval then places the second moment on the complement of narrow arcs about the rationals with denominator at most $Y^{\kappa/4}$ in the modulus Fourier variable, with error $O(Y^{3-3\kappa/4})$.
 
 Theorem 13.11 removes pairs of large-denominator frequencies whose sum or difference has reduced denominator at most $Y/(XH(\log Y)^{D+2M+10})$, with $M=D+6$ and $H=\sqrt X(\log Y)^{(2D+13)/2}$. The removed pairs contribute $O(Y^3(\log Y)^{-D})$ in absolute value on the moduli with $\tau(N)\le(\log Y)^M$. The original second moment on the other moduli has the same error bound. On the prime-prefix grid the four retained denominators have a common divisor of size at least $N/(\log Y)^{C_2}$ for fixed $C_2$. The remaining correlations still require cancellation.
 
@@ -100,6 +103,7 @@ With Elan installed, run the Lean check from the repository root.
 
 ```sh
 elan toolchain install leanprover/lean4:v4.35.0
+elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/PeriodicModulus.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/AdditivePairOrder.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/AdditiveDenominator.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/ComplementaryDivisor.lean
