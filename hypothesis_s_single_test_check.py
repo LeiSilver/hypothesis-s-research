@@ -293,6 +293,33 @@ def check_presifted_large_factor():
     print(f"Certified the 121/200 large-factor example and {checked} disjoint sieve densities.")
 
 
+def check_switched_logarithmic_sieve():
+    # gamma < H_m - log(m). Bound exp(H_m) by its Taylor series
+    # with a geometric tail, keeping every operation rational.
+    harmonic = sum(Fraction(1, j) for j in range(1, 65))
+    exp_upper = (sum(harmonic**j/factorial(j) for j in range(37))
+                 + harmonic**37/(factorial(37)*(1-harmonic/38)))
+    e_gamma_upper = Fraction(9, 5)
+    tolerance = Fraction(1, 10**6)
+    if exp_upper/64 >= e_gamma_upper or 2*e_gamma_upper/(10*factorial(9)) >= tolerance:
+        raise AssertionError("linear sieve function enclosure")
+    a, b = Fraction(9, 10), Fraction(1, 2)
+    x = 1/a-1
+    log_upper = x-x**2/2+x**3/3
+    choices = [(Fraction(121, 200), Fraction(1, 50), Fraction(1, 3000)),
+               (Fraction(31, 50), Fraction(1, 220), Fraction(1, 600))]
+    for beta, eta, target in choices:
+        switch = b-a*eta
+        lower = ((1-b)*(1-tolerance) - 2*e_gamma_upper*eta*log_upper
+                 - (2/b)*(1+tolerance)*(beta-switch))
+        if not (eta < b-eta < switch < beta and min(b/eta, (1-beta)/eta-1) > 10
+                and lower > target):
+            raise AssertionError(("switched logarithmic mass", beta, eta, lower, target))
+    if not 19 < (1-choices[0][0])/choices[0][1] < 20:
+        raise AssertionError("switched cofactor multiplicity")
+    print("Certified both switched logarithmic mass bounds and the 19-factor cofactor limit.")
+
+
 def check_joint_sieve():
     beta, eps = Fraction(121, 200), Fraction(1, 100000)
     for eta, target in [(Fraction(1, 800), Fraction(1, 50)),
@@ -417,6 +444,7 @@ def main():
     check_upper_mark_sieve()
     check_presifted_large_factor()
     check_joint_sieve()
+    check_switched_logarithmic_sieve()
     check_interval_proportions()
 
 

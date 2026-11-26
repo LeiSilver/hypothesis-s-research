@@ -2820,6 +2820,144 @@ Taking the union of the two exceptional sets gives all three
 individual conclusions.
 \end{proof}
 
+\begin{proposition}[Sifting the product of a marked prime and its rough cofactor]
+\label[proposition]{prop:single-test-switched-log}
+The pointwise lower bound \eqref{eq:single-test-presifted} holds with
+\[
+ (\beta,\eta,\nu)=(121/200,\,1/50,\,1/3000)
+ \quad\hbox{and}\quad
+ (\beta,\eta,\nu)=(31/50,\,1/220,\,1/600).
+\]
+For the first choice, after removing the prime exceeding $N^{121/200}$,
+the cofactor has at most $19$ prime factors counted with multiplicity.
+More generally, for $3/5<\beta<5/8$ and $0<\nu<5/2-4\beta$
+the same lower bound holds for every sufficiently small fixed
+$\eta>0$ depending on $\beta,\nu$.
+\end{proposition}
+
+\begin{proof}
+Write $L=\log N$, $y=N^\eta$, $A(p)=F(p/N)\log p$, and
+$B_N=cN\SSS(N)e^{-\gamma}/\log y$ as in
+\cref{prop:single-test-presifted-large-factor}. Work at level $N^b$
+with $b<1/2$ close to $1/2$. Put $a=9/10$, $h=b-a\eta$ and
+$s_0=(1-\beta)/\eta-1$. In all applications $b/\eta>3$,
+$s_0>2$ and $\eta<h<\beta$. We show that the lower limit of
+the logarithmic mass at prime divisors $q>N^\beta$, divided by
+$B_NL$, is at least
+\begin{equation}
+ (1-b) f_{\rm lin}(b/\eta)
+ -2e^\gamma\eta\log(1/a)
+ -\frac{2}{b} F_{\rm lin}(s_0)(\beta-b+a\eta).
+ \label{eq:single-test-switched-log-budget}
+\end{equation}
+The mass here sums $A(p)\log q$ on the unit prime samples with
+$P^-(N-p)>y$ and $q\mid N-p$.
+
+The lower linear sieve on the prime samples, followed by
+$\log(N-p)=L+O(1)$, gives a base logarithmic mass at least
+$(f_{\rm lin}(b/\eta)-o(1))B_N L$. Divisibility by extra
+powers of primes above $y$ costs $o(B_N L)$ by
+\cref{prop:single-test-presifted-large-factor}. Write $t=\log q/L$.
+For $\eta<t\le b-\eta$ the upper linear sieve at level $N^b/q$
+on $p\equiv N\bmod q$ gives an integrated upper coefficient
+\[
+ \int_\eta^{b-\eta}F_{\rm lin}((b-t)/\eta)\,\ud t
+   =\eta\int_1^{b/\eta-1}F_{\rm lin}(s)\,\ud s
+   = b f_{\rm lin}(b/\eta).
+\]
+The equality uses $(s f_{\rm lin}(s))'=F_{\rm lin}(s-1)$ and
+$f_{\rm lin}(2)=0$. For $b-\eta<t\le h$ keep the level $N^b/q$
+but sift only through $(N^b/q)^{1/2}<y$. Its parameter is two;
+the larger local product costs the ratio $2\eta/(b-t)$.
+Since $F_{\rm lin}(2)=e^\gamma$, this portion costs at most
+$2e^\gamma\eta\log(1/a)+o(1)$ in the same units. Both integrated
+bounds follow first on a fixed partition in $t$ and then as the
+mesh tends to zero. One may take the level at each right endpoint
+and in the second range its square root as the cutoff. The
+remainders all have $qd\le N^b$; the sum of $\log q$ over the
+admissible prime divisors of a given modulus is at most $L$.
+Bombieri--Vinogradov therefore controls the total error, as in
+\cref{prop:single-test-joint-sieve}.
+
+For $h<t\le\beta$ assemble the marked products before sifting:
+\[
+ C(n)= F(n/N)\sum_{\substack{n=qk,\ N^h<q\le N^\beta\\
+                            q\ {\rm prime},\ P^-(k)>y}}\log q,
+ \qquad T=\sum_n C(n).
+\]
+For each $D>0$ they satisfy
+\begin{equation}
+ \sum_{\substack{d\le N^b\\(d,N)=1}}
+ \left|\sum_{n\equiv N\bmod d}C(n)-\frac{T}{\varphi(d)}\right|
+       \ll_{D,b,\eta,\beta} NL^{-D}.
+ \label{eq:single-test-switched-log-bv}
+\end{equation}
+To see this apply the bilinear Bombieri--Vinogradov estimate
+\cite[Theorem~0(b), (1.5)]{BFI1986} with coefficients
+$\mathbf1_{P^-(k)>y}$ and $\mathbf1_{q\ {\rm prime}}\log q$
+on dyadic boxes $k\asymp K,q\asymp Q$, $KQ\asymp N$.
+Both scales lie between $N^\delta$ and $N^{1-\delta}$ for
+some $\delta>0$. To avoid short end blocks, split the $q$ range
+into equal logarithmic intervals with ratio between $3/2$ and $2$
+for large $N$. The prime coefficient satisfies the Siegel--Walfisz
+condition there, including exclusion of primes dividing an auxiliary
+$d'$ at cost $O(\tau(d')L)$. Large progression moduli in that
+condition are handled by the trivial interval bound.
+The cofactor coefficient has squared norm $O(K)$. The product
+endpoint in (1.5) ranges over $x\asymp N$, allowing partial
+summation against $F(x/N)$. The $O(L^2)$ boxes and logarithmic
+weights are absorbed by choosing the saving in (1.5) large.
+That estimate is uniform in the reduced residue and centers at
+the weight coprime to $d$. Here $C(n)\ll L$ by the distinct
+marked prime divisors, and $C$ is supported on $y$-rough $n$.
+The omitted weight is $O(L\sum_{\ell\mid d,\,\ell>y}(N/\ell+1))$,
+where $\ell$ runs over primes. Restoring it divided by $\varphi(d)$
+over all $d\le N^b$ costs $O(N^{1-\eta}L^3)$.
+
+To bound $T$, fix $q$ and apply the ordinary upper linear sieve
+to the integers $k$ with weight $F(k/(N/q))$. Its level
+$y^{s_0}=N^{1-\beta-\eta}$ is at most $(N/q)N^{-\eta}$.
+Each weighted multiple count has error $O(1)$ by bounded
+variation. The local densities are $1/\ell$, so the count
+at $q$ is at most $(F_{\rm lin}(s_0)+o(1))c(N/q)e^{-\gamma}/\log y$,
+uniformly. Partial summation over primes gives
+\[
+ T\le (F_{\rm lin}(s_0)+o(1))\,
+          \frac{cN e^{-\gamma}}{\log y}(\beta-h)L .
+\]
+Now sieve $N-n$ on the sequence $C(n)$ with $d$ coprime to $N$.
+By \eqref{eq:single-test-switched-log-bv} the local densities
+are $1/(\ell-1)$ at $\ell\nmid N$. The upper linear sieve at
+cutoff $N^{b/2}$ bounds the surviving mass by
+$(2/b+o(1))T\SSS(N)/L+O_D(NL^{-D})$.
+Every relevant prime $p=N-n$ survives. Using $F(p/N)=F(n/N)$
+and $\log p\le L$ gives precisely the last cost in
+\eqref{eq:single-test-switched-log-budget}. Subtracting the three
+ranges proves that bound. Each remaining $n$ has just one prime
+factor above $N^\beta$ and $\log n\ge\log q$. Division by
+$N\SSS(N)$ gives \eqref{eq:single-test-presifted} for any
+$\nu$ strictly below \eqref{eq:single-test-switched-log-budget}
+at $b=1/2$, by continuity from below.
+
+For explicit constants use
+$0\le F_{\rm lin}(s)-f_{\rm lin}(s)=2e^\gamma\rho(s-1)/s$ for
+$s\ge1$. Indeed $s(F_{\rm lin}-f_{\rm lin})/(2e^\gamma)$
+equals one on $[1,2]$ and satisfies the shifted Dickman equation
+by subtracting the two sieve differential equations.
+For $u\ge1$, $u\rho(u)=\int_{u-1}^u\rho(v)\,\ud v$ and
+monotonicity give $\rho(u)\le1/\lfloor u\rfloor!$.
+Since $f_{\rm lin}\le1\le F_{\rm lin}$, at $s\ge10$ each
+function is within $10^{-6}$ of one. Both explicit choices have
+$s_0,1/(2\eta)>10$. In \eqref{eq:single-test-switched-log-budget}
+insert $e^\gamma<9/5$ and the upper bound
+$\log(10/9)\le x-x^2/2+x^3/3$ at $x=1/9$.
+Rational arithmetic gives respectively more than $1/3000$ and
+$1/600$. At the first cutoff the remaining cofactor is below
+$N^{79/200}$, and $50(79/200)<20$. Finally, at $b=1/2$ and
+fixed $\beta$, the right side tends to $5/2-4\beta$ as
+$\eta\downarrow0$, proving the general assertion.
+\end{proof}
+
 \section{Certification on the balanced window}
 \label{sec:certificate}
 
@@ -17002,6 +17140,12 @@ K. Matom\"aki and S. Zuniga-Alterman,
 \newblock \emph{Weighted sieves with switching},
 \newblock Math. Proc. Cambridge Philos. Soc. \textbf{179} (2025).
 \newblock \url{https://doi.org/10.1017/S0305004125000258}.
+
+\bibitem{BFI1986}
+E. Bombieri, J.~B. Friedlander and H. Iwaniec,
+\newblock \emph{Primes in arithmetic progressions to large moduli},
+\newblock Acta Math. \textbf{156} (1986), 203--251.
+\newblock \url{https://doi.org/10.1007/BF02399204}.
 
 \bibitem{BFI1987}
 E. Bombieri, J. B. Friedlander and H. Iwaniec,
