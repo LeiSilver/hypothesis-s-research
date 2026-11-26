@@ -4,6 +4,7 @@ This repository contains the English research manuscript and the code and data f
 
 - [Manuscript (PDF)](output/pdf/hypothesis_s_paper.pdf)
 - [LaTeX source](output/pdf/hypothesis_s_paper.tex)
+- [Lean verification of the local progression density cases](formalization/ProgressionLocalDensity.lean)
 - [Lean verification of the truncated inclusion-exclusion bound](formalization/TruncatedInclusionExclusion.lean)
 - [Lean verification of coprime factors of squarefree values](formalization/SquarefreeFactors.lean)
 - [Lean verification of signed residue counts in complete and incomplete blocks](formalization/ResidueBlocks.lean)
@@ -23,6 +24,8 @@ This repository contains the English research manuscript and the code and data f
 - [Lean verification of the signed progression rows](formalization/CriticalArithmetic.lean)
 
 ## Research checkpoint · 26 November 2026
+
+Theorem 9.9 replaces both von Mangoldt weights by screened Type II weights through $xy\le CN^2$ on supports $x,y\ge N^{1/2+\eta}$ for any fixed $\eta>0$ in the stated range. Under Dirichlet GRH the normalized operator error saves a power of $N$ uniformly over the even moduli. The proof samples Prachar's short-interval mean-square bound at the congruence-line centers and computes the matching Type I density, including nonunit residue classes.
 
 Theorems 9.7 and 9.8 restrict the Type II approximation through each fixed critical product cap to squarefree expanded values with no prime factor at most $(\log N)^B$, for any fixed $B>0$. The two factors are consequently squarefree and coprime. Under Dirichlet GRH the discarded contributions have a power-saving normalized operator bound uniformly over the even moduli. Theorem 9.7 also bounds the Type II contribution restricted by any individual nontrivial square divisor.
 
@@ -68,6 +71,7 @@ With Elan installed, run the Lean check from the repository root.
 
 ```sh
 elan toolchain install leanprover/lean4:v4.35.0
+elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/ProgressionLocalDensity.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/TruncatedInclusionExclusion.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/SquarefreeFactors.lean
 elan run leanprover/lean4:v4.35.0 lean -DwarningAsError=true formalization/ResidueBlocks.lean

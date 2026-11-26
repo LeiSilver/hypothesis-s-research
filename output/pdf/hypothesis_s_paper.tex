@@ -164,6 +164,9 @@ critical product cap.
 Type~II terms to squarefree integers and coprime factors.
 \Cref{thm:roughcriticaltypeii} also removes prime factors
 up to any fixed power of $\log N$ from the expanded values.
+\Cref{thm:doublecriticaltypeii} replaces both von Mangoldt
+weights by screened Type~II weights when both inputs exceed
+$N^{1/2+\eta}$.
 \Cref{thm:shiftmean} bounds the mean norm of translated pairs of
 high-support windows at a single modulus.
 \Cref{thm:upperproduct} gives a uniform upper cutoff on the product
@@ -3249,6 +3252,284 @@ this and the two progression errors power savings.
 Summation over the packets proves the first comparison
 in \cref{eq:roughcriticaltypeii}. The other follows from
 \cref{thm:squarefreecriticaltypeii}.
+\end{proof}
+
+\subsection{Type II weights in both coordinates}
+
+Write $s_z(t)=\mu^2(t)w_z(t)$ and let $I_{U,V}$ denote the
+sum of the two Type~I terms of Vaughan's identity, with their
+signs as in the proof of \cref{thm:criticaltypeii}. Thus
+$\Lambda(t)=I_{U,V}(t)+\mathcal L_{U,V}(t)$ for $t>V$.
+Fix $0<\eta<1/2$, put $\sigma=\min(\theta,\eta,1/32)/200$
+and let $U_0=V_0=\lfloor N^\sigma\rfloor$.
+Let $\mathcal K^{\mathrm{both},z}_{N,C}$ be the form
+$\mathcal K^{\mathrm{sf},z}_{N,C}$ of
+\cref{thm:roughcriticaltypeii} with the unexpanded weight
+$\Lambda(n)$ replaced by $s_z(n)\mathcal L_{U_0,V_0}(n)$.
+In the equal-packet case make this replacement in both
+terms of the prescribed average.
+
+\begin{theorem}[A Type II approximation in both coordinates]
+\label{thm:doublecriticaltypeii}
+Fix $C\ge1$, $0<\theta<1/6$, $B>0$ and $0<\eta<1/2$.
+Under global Dirichlet GRH, for tests supported in
+$x,y\ge N^{1/2+\eta}$, one has
+\begin{equation}
+ \left|\mathcal B_{N,C}(F,G)
+       -\mathcal K^{\mathrm{both},z}_{N,C}(F,G)\right|
+  \ll_{C,\theta,B,\eta} N^{-c_{\theta,B,\eta}}\NN(F)\NN(G)
+  \label{eq:doublecriticaltypeii}
+\end{equation}
+with $z=(\log N)^B$ and some $c_{\theta,B,\eta}>0$.
+Both Type~II weights are supported on squarefree values with
+no prime factor at most $z$. The lower bounds for the two
+factors are $\lfloor N^\theta\rfloor$ in the originally
+expanded coordinate and $\lfloor N^\sigma\rfloor$ in the
+other coordinate. The norm comparison is uniform over the
+even moduli.
+\end{theorem}
+
+We use a sum of progression errors over the lines of
+one packet pair. Write $X\le Y$ for its scales, with $X$
+the scale of the unexpanded coordinate, so that
+$XY\ll_C N^2$ and $Y\gg N$ on contributing pairs.
+Suppose $X\gg N^{1/2+\eta}$ and $q\le N^{5\sigma}$.
+On each line of shift $h=bN$, consider all subintervals
+of the permitted range in the expanded variable $t$.
+For a reduced residue $a_h\bmod q$, let $M_h$ be the
+supremum on those subintervals $J$ of
+\[
+ \left|\sum_{\substack{t\in J\\t\equiv a_h\bmod q}}\Lambda(t)
+                               -\frac{|J|}{\varphi(q)}\right|.
+\]
+The residue is allowed to depend on $h$. For nonreduced
+residues use the same definition with main term zero.
+Then on either the physical or the sampled pairs, for
+each orientation separately,
+\begin{equation}
+ \frac1{\sqrt{XY}}\sum_h M_h
+       \ll_{C,\eta} L^2(N^{-\eta/4}+N^{-1/8}).
+ \label{eq:sampledshortprogressions}
+\end{equation}
+
+For $X\ge N^{3/4}$ the pointwise GRH progression estimate
+used in \cref{thm:fullcriticaltypeii} gives this bound,
+since $\sum_h M_h/\sqrt{XY}\ll_C
+ YL^2/(N\sqrt X)\ll_C NL^2/X^{3/2}$.
+Nonreduced residues contribute only prime powers over
+primes dividing $q$, with mass $O_C(L^2)$ per line.
+For $X<N^{3/4}$ the expanded value lies within $O(X)$
+of $h$, and the shifts are spaced by $N$. Put
+$\varepsilon_0=N^{-\eta/4}$ and $H=\varepsilon_0 X$.
+For each interval $J$ within $O(X)$ of $h$, use inner
+and outer intervals with endpoints on the grid
+$h+jH$, padded by one extra cell in each direction.
+After any common translation by $u\in[0,H]$, the outer
+interval still contains $J$ and the inner interval is
+still contained in $J$. The two lengths differ from
+$|J|$ by $O(H)$. If the inner interval is empty, its
+error is bounded by $O(H)$ in the lower comparison.
+Because the counting measure is nonnegative, averaging
+these comparisons over $u$ and applying Cauchy--Schwarz
+gives
+\[
+ M_h^2\ll H^2+
+ \frac1H\sum_{j,k}\int_0^H
+ \left|\psi(h+(j+k)H+u;q,a_h)
+       -\psi(h+jH+u;q,a_h)-\frac{kH}{\varphi(q)}\right|^2
+       \,\ud u
+\]
+for reduced residues. Here $|j|\ll \varepsilon_0^{-1}$,
+$1\le k\ll \varepsilon_0^{-1}$ covers all the padded
+intervals. One may use half-open intervals in the
+comparison and include endpoints at cost $O_C(L)$.
+
+For fixed $j,k$, the starting-point intervals on summing
+over $h$ are disjoint because $H<N$. They lie in a
+fixed multiplicative range about $Y$. Prachar's mean-square
+bound under GRH \cite{PracharShort,GoldstonYildirimShort}
+gives
+\[
+ \int_T^{2T}\sum_{a\bmod q}^{*}
+ \left|\psi(v+\ell;q,a)-\psi(v;q,a)-\ell/\varphi(q)\right|^2
+        \ud v\ll T\ell\log^2(2qT)
+         \qquad (q\le T,\ 1\le\ell\le T).
+\]
+Use $\ell=kH\ll X\ll Y$, with finitely many dyadic ranges
+for the starting points. Summing over the reduced residues
+bounds the integral with the varying $a_h$. Thus
+$\sum_h M_h^2\ll_C (Y/N)H^2+Y\varepsilon_0^{-3}L^2$
+on the reduced lines. Cauchy--Schwarz over $O_C(Y/N)$
+lines, then division by $\sqrt{XY}$, gives
+\[
+ \ll_C \frac{\sqrt{XY}}N
+          \left(\varepsilon_0+
+             \frac{\sqrt N\,\varepsilon_0^{-3/2}L}{X}\right).
+\]
+The $O_C(L^2)$ errors on the nonreduced lines and the
+endpoint errors satisfy a smaller bound. This proves
+\cref{eq:sampledshortprogressions}.
+
+\begin{proof}[Proof of \cref{thm:doublecriticaltypeii}]
+It suffices by \cref{thm:roughcriticaltypeii} to replace
+the remaining $\Lambda(n)$ in $\mathcal K^{\mathrm{sf},z}_{N,C}$.
+Use the same unit log packets for each physical or sampled
+term, with $X$ the unexpanded scale and $Y$ the originally
+expanded scale. On the sampled terms $t=bN\pm n$ is
+comparable to the sampling point $bN$.
+Replacing $\Lambda(n)$ by $s_z(n)\Lambda(n)$ only removes
+proper powers, since a prime at the scale $X$ exceeds $z$.
+There are $O(\sqrt X L)$ such powers and, for each, there
+are $O_C(Y/N)$ candidates for $t$ in its two unit classes.
+The pair weights are $O_\varepsilon(N^\varepsilon)$
+for every $\varepsilon>0$, before multiplying by the
+physical tests, by the divisor bound. The normalized
+error on unit packet tests is
+$O_{C,\varepsilon}(N^\varepsilon L\sqrt Y/N)$, a power saving
+since $\sqrt Y/N\ll_C X^{-1/2}$.
+
+Expand $\Lambda(n)$ by Vaughan's identity at $U_0,V_0$.
+The short term vanishes on the supports. We need only
+show that the resulting cross term
+$s_z(n)I_{U_0,V_0}(n)\,s_z(t)\mathcal L_{U,V}(t)$
+is small in the critical norm.
+In the expanded variable write $\mathcal L_{U,V}(t)$ as
+$\Lambda(t)-I_{U,V}(t)$. The product $s_z(t)\Lambda(t)$ in
+this difference may be replaced by $\Lambda(t)$.
+Indeed only proper powers change, with at most
+$O((X/\sqrt Y+1)L)$ per line as in
+\cref{thm:squarefreecriticaltypeii}, and the other
+weights are $O_\varepsilon(N^\varepsilon)$.
+The resulting normalized error is bounded by
+$O_{C,\varepsilon}(N^\varepsilon L(\sqrt{XY}/N)
+ (Y^{-1/2}+X^{-1}))$.
+
+Put $D=N^\sigma$ and use the truncated squarefree sum and
+the truncated inclusion--exclusion of \cref{eq:truncrough},
+with $\xi=\sigma$, for $s_z(n)$ and for $s_z(t)$ in the
+remaining Type~I weight. In the expanded coordinate the
+discarded weights have power-saving norm by the
+large-square and small-prime bounds in
+\cref{thm:squarefreecriticaltypeii,thm:roughcriticaltypeii}.
+For the unexpanded coordinate, count over $n\ll X$.
+The large-square count is $O(X/D)$ by summing $X/r^2$
+for $r>D$. The error count of the small-prime truncation,
+with multiplicity, is
+$O(X\sum_{a\in\mathcal E_{k+1}}a^{-1})$ by counting multiples.
+Both bounds are multiplied by $O_C(Y/N)$ candidates
+in the other coordinate. This again gives power savings
+by \cref{eq:truncroughrec} and the product cap. The
+truncation coefficients and other arithmetic weights
+cost only $O_\varepsilon(N^\varepsilon)$.
+
+Each of the at most $D^2U_0V_0$ divisor patterns of the
+unexpanded Type~I weight imposes $q\mid n$ with
+$q=\operatorname{lcm}(r_0^2,a_0,d_0)\le D^3U_0V_0\le N^{5\sigma}$.
+Here $d_0\le U_0V_0$ is a divisor from the two Vaughan
+terms. Keep their individual coefficient weights, bounded
+by $O_C(L)$, including total variation on each line.
+On a congruence line of shift $h$, the condition $q\mid n$
+is one progression $t\equiv \pm h\bmod q$. Both original
+unit conditions modulo $N$ reduce to $(t,N)=1$ on this line.
+For $\Lambda(t)$ the unit condition costs only prime powers
+of weight $O_C(L^2)$ per line, which are absorbed in
+\cref{eq:sampledshortprogressions}. The main density is
+$\mathbf1_{(q,h)=1}/\varphi(q)$.
+Partial summation uses the supremum plus total variation
+of the test weight, of size $O_C(L/\sqrt{XY})$ on unit
+packet tests including the unexpanded Type~I coefficient.
+The product cutoff leaves at most two intervals on each
+physical line, and the centered cutoffs leave an interval
+on each sampled line. Thus the normalized sum of the
+$\Lambda(t)$ errors for all the patterns is
+$O_{C,\eta}(D^2U_0V_0 L^3(N^{-\eta/4}+N^{-1/8}))$.
+
+It remains to match this main density for the Type~I part
+in $t$. To enforce $(t,N)=1$, use
+$\sum_{j\mid(t,N)}\mu(j)$. For a fixed such squarefree $j$,
+the two sieve divisors $r,a\le D$ in the expanded coordinate
+and the unit divisor together require
+$M_0=\operatorname{lcm}(r^2,a,j)\mid t$.
+In the first Vaughan term put $\ell=1$; in the second
+take $\ell\le V$ with weight $\Lambda(\ell)$.
+Before the divisor $d\le U$ is imposed, the congruences
+are compatible exactly when
+$(q,\operatorname{lcm}(M_0,\ell))\mid h$.
+If compatible, put $M=\operatorname{lcm}(q,M_0,\ell)$.
+On imposing $d\ell\mid t$ the density is
+$1/\operatorname{lcm}(q,M_0,d\ell)$ if the updated
+congruences are compatible, and zero otherwise.
+The Chinese remainder theorem counts each progression
+with an additive error $O(1)$ on every interval.
+The resulting normalized error after partial summation,
+summing over shifts and all divisor patterns, is
+\[
+ O_{C,\varepsilon}\left(
+     \frac{D^4 U_0 V_0 UV\,L^3 N^\varepsilon}{X}\right).
+\]
+Indeed the line weights cost $O_C(L^2/\sqrt{XY})$,
+the unit inclusion has $\tau(N)\ll_\varepsilon N^\varepsilon$
+terms, and $(Y/N)/\sqrt{XY}\ll_C1/X$.
+
+For compatible base congruences, multiply the new density
+by $M$ and denote the result by $g(d)$, including the
+value zero when compatibility is lost. On squarefree $d$
+this is multiplicative by the prime-power congruences.
+For one prime $p$, $g(p)$ is $0$, $1$, or $1/p$.
+Outside $qM_0$ it equals $1/p$. Consequently
+$\sum_{d\ge1}\mu(d)g(d)d^{-s}=\zeta(1+s)^{-1}E(s)$,
+where the coefficients of $E$ have absolute sum with
+weight $k^{1/4}$ at most $O_\nu(qra\,j^{1/4+\nu})$ for
+$0<\nu<1/4$. Indeed, after division by $1-p^{-1-s}$,
+the exceptional local absolute sums are $O(p^{1/4})$.
+The product over primes dividing $qra j$ is
+$O_\nu((qra j)^{1/4+\nu})$ by absorbing the absolute
+constant at large primes. The factors outside this set
+are one.
+
+The M\"obius sum argument of \cref{eq:typeimoebius}
+therefore bounds the truncated sum in $d\le U$ by
+$O_\nu(qra\,j^{1/4+\nu}U^{-1/4})$. The corresponding
+logarithmic sum, with a minus sign, equals $E(0)$
+up to the same error times $\log(2U)$.
+For $\ell=1$, if $M_0>1$ then any prime dividing $M_0$
+has $g(p)=1$, so $E(0)=0$. If $M_0=1$ but
+$(q,h)>1$, the same is true at any prime dividing
+$(q,h)$. The only other case has $M_0=1$ and $(q,h)=1$.
+There $M=q$, and at $p\mid q$ one has $g(p)=0$.
+Thus $E(0)/M=\prod_{p\mid q}(1-1/p)^{-1}/q
+=1/\varphi(q)$. This is exactly the density of the
+$\Lambda(t)$ term. It arises only at $r=a=j=1$,
+whose sieve coefficients are all one.
+
+For the errors with $\ell\le V$, use
+\[
+ \sum_{\ell\le V}\frac{\Lambda(\ell)}{M}
+   \le \frac1j\sum_{\ell\le V}
+                  \frac{\Lambda(\ell)(j,\ell)}{\ell}
+   \ll \frac{L}{j}.
+\]
+For prime powers over $p\mid j$ the last sum is
+$O(\sum_{p\mid j}\log p)$ because $j$ is squarefree.
+The other prime powers have the usual harmonic sum
+$O(\log(2V))$. For $\ell=1$ one also has $1/M\le1/j$.
+After summing over $j\mid N$,
+$\sum_{j\mid N,\ \mu^2(j)=1} j^{-3/4+\nu}\ll_\nu N^\nu$
+by the Euler product. Then the sum over $r,a\le D$
+gives a Type~I density error
+$O_\nu(q D^4 U^{-1/4} L N^\nu)$ per unexpanded
+pattern. Each line has length $O(X)$ and there
+are $O_C(Y/N)$ lines. Including the test weights and
+the $D^2U_0V_0$ patterns, the normalized error is at most
+\[
+ O_{C,\nu}\bigl(N^{13\sigma+\nu}U^{-1/4}L^2\bigr).
+\]
+Taking $\nu=\sigma$, the exponent is negative by
+the choice of $\sigma$. The progression and sampling
+errors also save powers since $2\theta<1/3$ and
+$X\gg N^{1/2+\eta}$. Summing the $O_C(L^2)$ packet
+pairs preserves a power saving, proving the replacement
+and \cref{eq:doublecriticaltypeii}.
 \end{proof}
 
 \section{Dirichlet-zero covariance when both variables are large}
@@ -8017,6 +8298,8 @@ coprime factorizations of squarefree expanded values
 are needed through these caps.
 \Cref{thm:roughcriticaltypeii} also excludes every prime
 factor below a prescribed log-power cutoff.
+\Cref{thm:doublecriticaltypeii} gives screened Type~II
+weights in both coordinates above $N^{1/2+\eta}$.
 \Cref{thm:fixedrowmeansquare} bounds the mean square of the
 centered norm for bounded smaller inputs by
 $O_{A,C,\varepsilon}((\log Y)^{-2+\varepsilon})$ over even
@@ -8142,6 +8425,10 @@ in \cref{eq:squarefreevaughan}.
 The file \texttt{formalization/TruncatedInclusionExclusion.lean}
 verifies the finite alternating sum and the error bound
 by the next binomial coefficient in \cref{eq:truncrough}.
+
+The file \texttt{formalization/ProgressionLocalDensity.lean}
+checks the exponent changes and compatibility cases in the
+local progression densities of \cref{thm:doublecriticaltypeii}.
 
 The file \texttt{formalization/PrefixPersistence.lean} checks
 the finite sum version of the large-prefix estimate used in
@@ -8333,6 +8620,20 @@ S.~W. Graham and G.~Kolesnik,
 \newblock \emph{Van der Corput's Method of Exponential Sums},
 \newblock Cambridge University Press, 1991.
 \newblock \url{https://doi.org/10.1017/CBO9780511661976}.
+
+\bibitem{PracharShort}
+K.~Prachar,
+\newblock \emph{Generalisation of a theorem of A.~Selberg on primes
+in short intervals},
+\newblock in \emph{Topics in Number Theory}, Colloq. Math. Soc.
+J\'anos Bolyai \textbf{13}, North-Holland, Amsterdam, 1976,
+267--280.
+
+\bibitem{GoldstonYildirimShort}
+D.~A. Goldston and C.~Y. Y{\i}ld{\i}r{\i}m,
+\newblock \emph{Primes in short segments of arithmetic progressions},
+\newblock Canad. J. Math. \textbf{50} (1998), 563--580.
+\newblock \url{https://doi.org/10.4153/CJM-1998-031-9}.
 
 \bibitem{MaynardIII}
 J. Maynard,
