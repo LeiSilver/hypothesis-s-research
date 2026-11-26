@@ -172,6 +172,10 @@ zero ordinates, with a consequence for central nonvanishing.
 closer to the physical scale $N$. It also gives a mixed
 microscopic covariance estimate across that scale and a
 local pair-correlation consequence of hypothesis S.
+\Cref{thm:primorialmodel} determines the additional model
+term on packets at $N(\log N)^A$ for primorial moduli.
+\Cref{thm:typicalpolylogcovariance} gives the uncorrected
+formula at log-power supports outside a sparse set of moduli.
 \Cref{thm:almostall} bounds the entire supported norm on a growing
 window for almost all even moduli.
 \Cref{thm:mixedpower} bounds mixed windows with upper scales
@@ -4461,6 +4465,259 @@ bin-count estimate in the proof of \cref{eq:restrictedgaptransfer}
 gives $\nu_{N,f_H}([j,j+1])/H\ll_{f,\beta}1+\log(2+|j|)$
 for $LH\ge1$. This proves \cref{eq:fullpairshrinking}.
 
+\subsection{The model correction on primorial moduli}
+
+Let $y$ tend to infinity, and let $N=N(y)$ be a multiple of
+$\prod_{p\le y}p$ such that $L=\log N\le C_0y$ for a fixed
+$C_0>0$. The prime number theorem gives $L\asymp_{C_0}y$.
+Fix $A>0$ and a log width $W>0$, and set $X=NL^A$.
+Define
+\[
+ \mathcal R(A)=1+
+ \sum_{1\le k\le A}\frac{1}{k!}
+  \int_{\substack{u_1,\ldots,u_k\ge1\\
+                   u_1+\cdots+u_k\le A}}
+                     \frac{\ud u_1\cdots\ud u_k}{u_1\cdots u_k},
+ \qquad
+ d(A)=e^{-\gamma_{\mathrm E}}(A+1)-\mathcal R(A).
+\]
+The sum is over positive integers $k$.
+
+\begin{theorem}[A Buchstab correction at polylogarithmic supports]
+\label{thm:primorialmodel}
+Assume $\grh(N)$. Uniformly for tests $F,G$ supported in
+$[\log X,\log X+W]$,
+\begin{align}
+ \frac{\mathcal D(F,G)+\mathcal M(F,G)-\mathcal W_N(F,G)}
+                 {\SSS(N)}
+    &=d(A)\int_{\mathbb R}F(r)\overline{G(r)}\,\ud r
+                   +o_{A,W,C_0}(1)\NN(F)\NN(G).
+ \label{eq:primorialdefect}
+\end{align}
+Thus the covariance formula on these packets is
+\cref{eq:zeroform} with $\mathcal W_N$ increased by
+$\SSS(N)d(A)\int F\overline G$, at error
+$o_{A,W,C_0}(\SSS(N))$ in form norm.
+For fixed $0<A_1<A_2$, the correction on the full log
+window $[L+A_1\log L,L+A_2\log L]$ is instead
+\begin{equation}
+ \SSS(N)\int_{\mathbb R}
+       d\!\left(\frac{r-L}{\log L}\right)
+                         F(r)\overline{G(r)}\,\ud r.
+ \label{eq:primorialfullwindow}
+\end{equation}
+The error there is $o_{A_1,A_2,C_0}(\SSS(N))$ in form norm.
+The function $d(A)$ is nonzero for arbitrarily large $A$.
+In particular, for every fixed $A_0>0$, the uncorrected
+formula \eqref{eq:zeroform} fails at error $o(\SSS(N))$
+uniformly on supports above $N(\log N)^{A_0}$.
+\end{theorem}
+
+\begin{proof}
+Write $R=X/N=L^A$ and $I=\int F\overline G$.
+After scaling both physical variables by $X$, the model
+has the expression used in the proof of
+\cref{eq:modelresidue},
+\[
+ \mathcal M(F,G)=
+       \sum_{k\ge1}\SSS(kN)J(k/R).
+\]
+Here $J$ is defined by \cref{eq:model} using the rescaled
+weights, and is supported in a fixed interval $[0,T_W]$.
+We have $J(0)=2I$ and $\int_0^\infty J(t)\,\ud t=0$.
+Putting one derivative on each factor in the convolutions
+gives $\|J''\|_{1}\ll_W\NN(F)\NN(G)$, since the rescaled
+weights have $H^1$ norms bounded by the test energies.
+For $v>0$ let $B_J(v)=\sum_{m\ge1}J(mv)$. The trapezoidal
+rule, with error at most $O(v^2\|J''\|_1)$ for the
+integral, gives
+\[
+ B_J(v)=-I+O_W(v\NN(F)\NN(G)).
+\]
+Also $B_J(v)=0$ for $v>T_W$, so
+$\sup_{v>0}|B_J(v)|\ll_W\NN(F)\NN(G)$.
+
+By the divisor expansion of the singular series in
+\cref{sec:cutoff},
+\begin{equation}
+ \frac{\mathcal M(F,G)}{\SSS(N)}
+     =\sum_{d\ge1}a_N(d)B_J(d/R).
+ \label{eq:primorialmodeldivisors}
+\end{equation}
+We show that, for each fixed $w>0$,
+\begin{equation}
+ \sum_{d\le y^w}a_N(d)\longrightarrow \mathcal R(w).
+ \label{eq:primorialroughsum}
+\end{equation}
+The nonzero terms have $d$ squarefree and all prime
+factors $p>y$, with weight $\prod_{p\mid d}(p-2)^{-1}$.
+Omitting $p\mid N$ from these primes changes the total
+one-prime mass by $O_{C_0}(1/\log y)$ because
+\[
+ \sum_{\substack{p\mid N\\p>y}}\frac{1}{p-2}
+   \ll\frac{1}{y\log y}\sum_{p\mid N}\log p
+   \ll_{C_0}\frac1{\log y}.
+\]
+On any fixed interval $[1,w_1]$, $w_1>1$, the measures
+$\sum_{y<p\le y^{w_1},\,p\nmid N}(p-2)^{-1}
+\delta_{\log p/\log y}$ converge weakly to
+$\mathbf 1_{[1,w_1]}(u)\,\ud u/u$ by Mertens' theorem.
+Replacing $1/(p-2)$ by $1/p$ costs $O(1/y)$ in total.
+There are at most $\lfloor w\rfloor$ distinct factors in
+$d\le y^w$. In the $k$th product of the one-prime
+measure, tuples with a repeated prime have mass
+$O_{k,w_1}(1/y)$ by summing the squares of the prime
+weights and bounding the other factors by their
+total mass. The boundary $u_1+\cdots+u_k=w$ has
+zero measure in each limiting product for $k\ge1$.
+Taking the limit and dividing the ordered tuple
+count by $k!$ gives the corresponding integral.
+The term $d=1$ contributes one. This proves
+\cref{eq:primorialroughsum}.
+
+Fix $0<\epsilon<A$. Since $R\asymp_{A,C_0}y^A$,
+the terms $d\le y^{A-\epsilon}$ in
+\cref{eq:primorialmodeldivisors} have
+$B_J(d/R)=-I+O_{A,W,C_0}(y^{-\epsilon}\NN(F)\NN(G))$.
+The remaining terms can only have
+$y^{A-\epsilon}<d\le T_WR\le y^{A+\epsilon}$ for
+sufficiently large $y$. Their contribution is bounded
+by the reciprocal weight of that range times
+$O_W(\NN(F)\NN(G))$. By \cref{eq:primorialroughsum}
+and the continuity of $\mathcal R$ at positive arguments,
+letting $\epsilon\downarrow0$ gives
+\[
+ \mathcal M(F,G)/\SSS(N)
+      =-\mathcal R(A)I+o_{A,W,C_0}(1)\NN(F)\NN(G).
+\]
+
+The local Euler factors and Mertens' theorem give
+$\SSS(N)\sim e^{\gamma_{\mathrm E}}\log y$.
+Indeed the factors up to $y$ give
+$\prod_{p\le y}(1-1/p)^{-1}$ and the remaining factors
+have product $1+o(1)$, by the above estimate on $p\mid N$
+with $p>y$ and the convergent product over $p>y$.
+Similarly $c_N=\sum_{p\mid N}\log p/(p-1)\sim\log y$,
+since the terms $p>y$ contribute $O_{C_0}(1)$.
+The diagonal calculation in \cref{sec:zeros} gives
+$\mathcal D(F,G)=(\log X)I+O_W(\NN(F)\NN(G))$.
+The archimedean term is
+$(L-c_N)I+O_W(\NN(F)\NN(G))$ by \cref{eq:archdensity}
+and the estimate for $b_N$ following
+\cref{eq:condconstant}. Since $\log X-L=A\log L$
+and $\log L\sim\log y$, we obtain \cref{eq:primorialdefect}.
+The explicit formula replaces the character pairing by
+the zero pairing with power-saving error on these packets,
+as in \cref{eq:zeroform}, because $\log X\ge L$.
+
+For the full window, the convergence in
+\cref{eq:primorialroughsum} is uniform when $w$ lies
+in a compact positive interval. This follows by
+bracketing $w$ on a fixed fine grid, using monotonicity
+of the partial sums and continuity of $\mathcal R$.
+The preceding proof of \cref{eq:primorialdefect} is
+therefore uniform for $A$ in compact positive intervals.
+Split the full window into unit log packets as in
+\cref{sec:cutoff}. For a fixed $B_1>3$, any pair with
+center separation at most $B_1$ is contained in a
+single log interval of bounded width, starting at
+$L+A\log L$ for some $A$ within $O(1/\log L)$ of
+$[A_1,A_2]$. On its overlap, replace the constant
+$d(A)$ by $d((r-L)/\log L)$ at $o(1)$ normalized cost,
+by uniform continuity. There are only $O(B_1)$ such
+pairs per row or column. For a pair at separation
+$|k-j|>B_1$, the diagonal and the correction vanish.
+In the proof of \cref{eq:Mpacket}, before bounding the
+sum over divisors, the normalized model bound is
+\[
+ O\!\left(e^{-|k-j|/2}\NN(F_j)\NN(G_k)
+          \sum_{d\le 2e^{\max(j,k)+1}/N}a_N(d)\right).
+\]
+The divisor sum is $O_{A_2,C_0}(1)$ by
+\cref{eq:primorialroughsum}, since its upper endpoint
+is at most $y^{A_2+1}$ for sufficiently large $y$.
+The far archimedean kernel has exponential decay as
+in \cref{sec:zeros}. The far normalized Schur sums
+are thus $O_{A_2,C_0}(e^{-B_1/2})$. Taking the upper
+limit in $y$ and then letting $B_1$ increase proves
+the full-window assertion.
+
+For the final assertion, $\mathcal R=1$ on $(0,1]$ and
+\begin{equation}
+ A\mathcal R'(A)=\mathcal R(A-1)\qquad (A>1).
+ \label{eq:primorialdelay}
+\end{equation}
+To see this, differentiate each simplex integral
+in its upper boundary. On $\sum_i u_i=A$ multiplication
+by $A$ gives a sum of $k$ terms, each cancelling one
+denominator $u_i$. By symmetry their integrals agree.
+Cancelling $u_k$ leaves exactly the $(k-1)$-fold term
+at $A-1$, with its factorial. This proves the recurrence,
+initially away from integers and then by continuity
+of the derivatives for $A>1$. It identifies
+$\mathcal R'(A)$ with Buchstab's function for $A>1$
+\cite[Section~1]{WeingartnerBuchstab}.
+If $\mathcal R(A)=e^{-\gamma_{\mathrm E}}(A+1)$ on a tail,
+\cref{eq:primorialdelay} propagates that identity backward
+in steps of one until it holds on an interval in $(0,1)$.
+That contradicts $\mathcal R=1$ there.
+Thus for any $A_0$ one may choose $A>A_0$ with $d(A)\ne0$.
+Take $N=\prod_{p\le y}p$ and a fixed nonzero smooth
+profile translated into $[\log X,\log X+W]$ in both slots.
+Its energy norms are uniformly bounded and its $L^2$ norm
+is fixed. Equation \eqref{eq:primorialdefect} then gives
+a nonvanishing normalized error on supports above
+$N(\log N)^{A_0}$.
+\end{proof}
+
+\begin{theorem}[Log-power supports for almost all moduli]
+\label{thm:typicalpolylogcovariance}
+Fix $D>0$. There is $A_D>0$ such that for every $K>0$
+the error in \cref{eq:zeroform} is
+$O_D(L^{-D}\NN(F)\NN(G))$ on
+$r,s\ge L+A_D\log L$ for all but
+$O_K(Y(\log Y)^{-K})$ even $N\in[Y,2Y]$ satisfying
+$\grh(N)$. The same $A_D$ works for every $K$.
+\end{theorem}
+
+\begin{proof}
+On the fixed Mellin line $\Re z=-1/8$ the Euler product
+satisfies
+\[
+ \SSS(N)|H_N(z)|\ll
+ B_N,\qquad B_N=\prod_{p\mid N}(1+C_1p^{-7/8}),
+\]
+for an absolute $C_1$. For $p\nmid N$ the factors have
+summable deviation from one. For $p\mid N$ combine the
+bound $1+p^{-7/8}$ with the local factor of $\SSS(N)$.
+For a positive integer $m$ put
+$t_m(p)=(1+C_1p^{-7/8})^m-1$ and extend this
+multiplicatively over squarefree integers. Expanding
+the product and counting multiples gives
+\[
+ \sum_{N\le2Y}B_N^m
+ \le 2Y\sum_{\substack{d\ge1\\ d\ {\rm squarefree}}}
+                 \frac{t_m(d)}{d}
+ =2Y\prod_p(1+t_m(p)/p)\ll_m Y.
+\]
+The product converges because $t_m(p)\ll_m p^{-7/8}$.
+Thus $B_N\le\log Y$ outside
+$O_K(Y(\log Y)^{-K})$ moduli, by choosing $m\ge K$.
+
+Apply the fixed-line calculation for \cref{eq:modelresidue}
+on this set with $B_N$ in the error in place of $N^\nu$.
+For a packet pair with $|j-k|\le B_0\log L$,
+the error coefficient in energy is
+$O(L^{1+2B_0}(e^{\min(j,k)}/N)^{-1/8})$.
+Take $B_0$ sufficiently large that the far-packet
+Schur sums from \cref{eq:Mpacket} and the archimedean
+kernel are $O(L^{-D})$, as in
+\cref{thm:nearcriticalcovariance}. On the remaining
+packets take $A_D>8(D+2B_0+3)$ to make the near-packet
+Schur sums $O(L^{-D})$. The diagonal and the
+explicit-formula errors are power savings as before.
+\end{proof}
+
 \section{Norm decay for almost all moduli on growing windows}
 \label{sec:almostall}
 
@@ -6445,6 +6702,11 @@ window bound under hypothesis S.
 error closer to the physical scale $N$ and gives, under
 hypothesis S, the full local gap law
 \eqref{eq:fullpairshrinking} on shrinking height windows.
+\Cref{thm:primorialmodel} shows why a further extension
+to every log-power support requires retaining a term
+that depends on the small prime divisors of the modulus.
+\Cref{thm:typicalpolylogcovariance} gives the log-power
+threshold with arbitrarily few exceptional moduli.
 Known variance obstructions of the type studied by Fiorilli and
 Martin and by Hayani occur at $N\asymp\log\log x$
 \cite{FiorilliMartin,Hayani}. These support scales lie beyond
@@ -6512,6 +6774,9 @@ and its transfer through a signed error in
 The file \texttt{formalization/PairHeightSymmetry.lean}
 checks the interchange of the two zero-label sums and the
 height symmetrization used in \cref{eq:fullpairshrinking}.
+The file \texttt{formalization/PrimorialModel.lean}
+checks the discrete trapezoidal endpoint identity used
+in the proof of \cref{thm:primorialmodel}.
 The file \texttt{formalization/CriticalArithmetic.lean}
 verifies the two congruence branches and the reduced
 proper-power threshold in \cref{thm:criticalpowers}.
@@ -6556,6 +6821,12 @@ R.~Khan, D.~Mili\'cevi\'c and H.~T. Ngo,
 \newblock \emph{Nonvanishing of Dirichlet $L$-functions, II},
 arXiv:1911.10268, 2020.
 \newblock \url{https://arxiv.org/abs/1911.10268}.
+
+\bibitem{WeingartnerBuchstab}
+A.~Weingartner,
+\newblock \emph{Explicit bounds for Buchstab's function},
+arXiv:2607.21883, 2026.
+\newblock \url{https://arxiv.org/abs/2607.21883}.
 
 \bibitem{YLiu}
 Y.~Liu,
