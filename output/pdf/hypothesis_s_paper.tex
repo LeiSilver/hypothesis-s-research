@@ -223,6 +223,9 @@ to product ranges, including the smallest inputs
 on a family of positive lower density.
 \Cref{thm:ppcut} reduces the full problem to a prime-only form
 and a finite set of opposite-residue progression sums.
+\Cref{thm:small-input-gram} compresses these sums to a matrix
+whose largest eigenvalue, together with the prime-only norm,
+gives a criterion for \eqref{eq:goal} at all large even moduli.
 \Cref{thm:criticalprofiles} bounds those sums near the square
 of the modulus using equidistribution in progressions with
 factored moduli.
@@ -11322,6 +11325,119 @@ For instance, $A=L^2(\log L)^4$, $Q=(\log L)^2$ and
 $\kappa=\log\log L$ give a vanishing error. The resulting
 window runs from $N^{2-o(1)}$ to
 $N^{\log\log N+O(\log\log\log N)}$.
+
+\subsection{A smaller matrix for the mixed progression term}
+
+\begin{theorem}[Compression of the small-input criterion]
+\label{thm:small-input-gram}
+Under $\grh(N)$, use the parameters of \eqref{eq:ppwindow} with
+$Y_-\ge N$, $2\le A\le N/8$, and put $b=\log(2A)$.
+For each integer $k\ge1$ there is an explicit positive semidefinite matrix
+of order at most $2k+1$ whose largest eigenvalue is $j_k^2$ and
+which satisfies
+\begin{equation}
+ 0\le J_N^{\rm win}-j_k
+   \ll \frac{b^{3/2}}{k}\sqrt{L+P_N(A)} .
+ \label{eq:small-input-gram}
+\end{equation}
+In particular take $A=L^2(\log L)^4$, $Q=(\log L)^2$,
+$\kappa=\log\log L$, and
+$k=\lceil\sqrt L\,b^{3/2}\log\log L\rceil$.
+Then \eqref{eq:goal} is equivalent to
+$P_N(A)\to0$ and $j_k\to0$. The mixed term uses a matrix of
+order $O(\sqrt L(\log L)^{3/2}\log\log L)$ at every sufficiently
+large even modulus.
+\end{theorem}
+
+\begin{proof}
+On $[0,b]$ put
+\[
+ \mu=\sum_{\substack{2\le n\le 2A\\(n,N)=1}}
+          \frac{\Lambda(n)^2}{n}\,\delta_{\log n}.
+\]
+Its mass $M$ is $O(b^2)$ by Chebyshev's bound on unit log
+intervals, as in the proof of \cref{eq:DMtotal}.
+Take the uniform grid of $k$ intervals and adjoin, for
+$1\le i<k$, the first point where the cumulative mass reaches
+$iM/k$ (omit these points if $M=0$). Retain distinct nodes.
+Each open cell $I$ of the union has $|I|\le b/k$ and
+$\mu(I)\le M/k$: a larger open-cell mass would cross a quantile
+strictly after its left endpoint and before its right endpoint.
+An arbitrarily heavy atom at a node causes no error below.
+
+In the energy space with support $r\le b$, project orthogonally
+onto the evaluation representers at the nodes $t_i<b$; the
+right endpoint already has zero trace. Denote the projection
+by $\Pi$. The residual $R=F-\Pi F$ vanishes at all nodes and
+has energy at most that of $F$. For $\NN(F)\le1$,
+\[
+ \int |R|^2\,\ud\mu
+ \le \max_I\{|I|\mu(I)\}\int_0^b|R'(t)|^2\,\ud t
+ \ll b^3/k^2 .
+\]
+Here $W_N\gg1$ on $[0,b]$ and the energy controls the weighted
+$H^1$ norm by \eqref{eq:logenergy}. On the first coordinate odd
+character orthogonality gives exactly this integral as
+$\|U(R)\|_\chi^2$, since distinct positive integers up to $2A$
+are neither equal nor opposite modulo $N$.
+
+For a unit test $G$ on $[Y_-,Y_+]$ in physical coordinates,
+let $U_{\rm pr}(G)$ contain only ordinary primes.
+Positivity in \eqref{eq:split} gives
+$\|U_{\rm pr}(G)\|_\chi^2\ll\SSS(N)(P_N(A)+L)$:
+both supports are above $A$, the prime diagonal is at most the
+original diagonal on $(G,G)$, and \eqref{eq:DMtotal} bounds the
+diagonal and model. The lower bound on $Y_-$ ensures that all
+primes in this vector satisfy the cutoff in \eqref{eq:pprows}.
+Pair with $U(R)$ and use $\SSS(N)\gg1$. This proves
+\eqref{eq:small-input-gram} with $j_k$ the restricted norm on
+the range of $\Pi$, keeping every supported $G$.
+
+Here is the matrix explicitly. Write $w(t)=W_N(t)^{-1}e^{-2t}$.
+On the small side the evaluation kernel is
+\[
+ K_b(r,t)=2\pi e^{r+t}\int_{\max(r,t)}^b w(v)\,\ud v .
+\]
+This follows by using the coordinate $\int_r^b w$ in
+\eqref{eq:exactdirichlet}, as for \eqref{eq:fullenergykernel}.
+Set $S=(K_b(t_i,t_j))_{ij}$, which is positive definite since
+the evaluations at distinct interior points of $(-\infty,b)$
+are independent. Let $\ell=\log Y_-$, $u=\log Y_+$ and
+$d(t)=\int_\ell^t w(v)\,\ud v$. The large-side kernel is
+\[
+ K_{\ell,u}(r,t)=2\pi e^{r+t}
+   \left(d(\min(r,t))-\frac{d(r)d(t)}{d(u)}\right).
+\]
+Indeed both traces vanish, so in the $d$ coordinate one projects
+the derivative onto functions of integral zero.
+For primes $p$ in the large window define
+\[
+ V_{ip}=\frac{\log p}{\sqrt p}
+   \sum_{\substack{2\le n\le 2A\\(n,N)=1}}
+   \frac{\Lambda(n)}{\sqrt n}\,K_b(t_i,\log n)
+       \bigl({\bf1}_{p\equiv n\ (N)}-{\bf1}_{p\equiv-n\ (N)}\bigr).
+\]
+Writing $K=(K_{\ell,u}(\log p,\log p'))_{p,p'}$, the matrix is
+$\SSS(N)^{-2} S^{-1/2}V K V^* S^{-1/2}$. The small-side
+coefficient vector has Gram matrix $S$; on the large side
+Riesz duality takes the supremum over all $G$ exactly.
+There is also a formula avoiding a dense matrix indexed by
+pairs of primes. Put $B(t)=\sum_{\log p\le t}pV_{\cdot p}$
+over the same primes and $\bar B=d(u)^{-1}\int_\ell^u B\,\ud d$.
+Then
+\[
+ VKV^*=2\pi\int_\ell^u (B(t)-\bar B)(B(t)-\bar B)^*\,\ud d(t).
+\]
+Expanding this covariance gives the displayed Dirichlet kernel,
+including its endpoint correction. The integral is a finite
+sum over intervals between consecutive prime logarithms.
+
+For the stated parameters $Y_-\ge N$ eventually and the error
+in \eqref{eq:ppwindow} tends to zero. If $P_N(A)\to0$ the
+right side of \eqref{eq:small-input-gram} is $O(1/\log\log L)$.
+Combining these comparisons with \cref{thm:ppcut} gives both
+directions of the criterion.
+\end{proof}
 
 \section{Norm decay of the progression profiles near the square of the modulus}
 \label{sec:criticalprofiles}
