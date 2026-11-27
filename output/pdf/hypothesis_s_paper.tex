@@ -237,6 +237,8 @@ the lower bound can be tested on two finite-dimensional spaces.
 \Cref{thm:halfcell-upper} shows that the upper bound alone forces
 two-sided norm decay on each fixed multiple of the modulus, and gives
 a quantitative upper-edge criterion on growing multiples.
+\Cref{thm:window-probe-variance} characterizes fixed-window decay
+by one explicit cumulative integral per positive half-modulus cell.
 \Cref{thm:criticalprofiles} bounds those sums near the square
 of the modulus using equidistribution in progressions with
 factored moduli.
@@ -575,7 +577,7 @@ in the definition of $d_N^{\mathrm{line}}(R)$.
 \label{thm:macroscopiclines}
 For fixed $R\ge1$ and some absolute $c>0$, we have
 \begin{align*}
- W_N(R)&\ll_R \bigl(d_N^{\mathrm{line}}(R)\bigr)^{1/3}+N^{-c},\\
+ W_N(R)&\ll_R \bigl(d_N^{\mathrm{line}}(R)\bigr)^{1/2}+N^{-c},\\
  d_N^{\mathrm{line}}(R)&\ll_R W_N(R)^{1/2}+N^{-c}.
 \end{align*}
 These are estimates for the physical form. Under $\grh(N)$
@@ -627,8 +629,12 @@ $f(u)=u^{-1/2}F(\log(Nu))$. For the variation apply
 Cauchy--Schwarz in log coordinates, using the bounded
 unweighted $H^1$ norm there and
 $\int_{\log(N\eta)}^{\log(NR)}N e^{-r}\,\ud r\le1/\eta$.
-The product weight $f(u)\overline{g(b-\sigma u)}$
-has supremum and variation $O_R(\eta^{-1})$.
+On each line at least one coordinate is at least $1/2$. Split
+at the points where either coordinate equals $1/2$. On each
+resulting interval the larger-side bound for the supremum and
+variation is $O_R(1)$ by the same estimate with lower endpoint
+$1/2$. Hence the product weight $f(u)\overline{g(b-\sigma u)}$
+has supremum and variation $O_R(\eta^{-1/2})$.
 On each line, partial summation bounds the integral
 against the discrepancy measure by this bound times
 the supremum of its interval discrepancy. Transposing
@@ -637,9 +643,9 @@ bounded number of lines and accounting for the unit
 condition gives
 \[
  W_N(R)\ll_R\eta^{1/2}+N^{-c_0}
-                 +\eta^{-1}\bigl(d_N^{\mathrm{line}}(R)+L^4/N\bigr).
+                 +\eta^{-1/2}\bigl(d_N^{\mathrm{line}}(R)+L^4/N\bigr).
 \]
-Take $\eta=\max\{N^{-1/100},(d_N^{\mathrm{line}}(R))^{2/3}\}$
+Take $\eta=\max\{N^{-1/100},d_N^{\mathrm{line}}(R)\}$
 when this is below a sufficiently small constant depending on $R$.
 For larger discrepancy take $\eta$ equal to that constant.
 
@@ -11902,6 +11908,112 @@ The resulting bound is $O_R(\eta^{-1}a_R+\eta)$.
 Take $\eta=\sqrt{a_R}$ when it lies below the fixed upper
 cutoff, using \eqref{eq:halfcell-gap} for the lower cutoff.
 For larger $a_R$ the fixed-line mass bound suffices.
+\end{proof}
+
+\subsection{Cumulative integrals for a fixed window}
+
+Fix $R\ge1$ and use the full physical form with its normalization
+$B=\B/\SSS(N)$. For $1\le j<2R$ let
+$C_j=(j/2,\min((j+1)/2,R))$ and let $g_j$ equal the distance
+to the endpoints inside $C_j$, extended by zero elsewhere.
+There are $\lceil2R\rceil-1$ such tests. For each $j$ define a
+real signed measure $\rho_j$ on $(0,R)$ by the following arithmetic
+and continuous terms. Its atom at $m/N\in(0,R)$ for $(m,N)=1$ is
+\[
+ \frac{\Lambda(m)}{N\SSS(N)}
+ \sum_{\substack{1\le n<RN\\(n,N)=1,\ n\ne m}}
+ \Lambda(n)g_j(n/N)
+ \bigl(\mathbf1_{m\equiv n\bmod N}-\mathbf1_{m\equiv-n\bmod N}\bigr).
+\]
+Its density is
+\[
+ -\sum_{1\le b\le2R}\frac{\SSS(bN)}{\SSS(N)}
+       \bigl(g_j(u+b)+g_j(u-b)-g_j(b-u)\bigr).
+\]
+With the energy coefficient $a$ in \cref{eq:coeff}, put
+\begin{equation}
+ P_j(t)=\int_{(0,t]}\sqrt u\,\ud\rho_j(u),\qquad
+ V_N(R)^2=\sum_{1\le j<2R}\int_0^R
+                  \frac{|P_j(t)|^2}{a(t)t^3}\,\ud t .
+ \label{eq:window-probe-variance}
+\end{equation}
+
+\begin{theorem}[A finite family of cumulative integrals]
+\label{thm:window-probe-variance}
+For every fixed $R\ge1$ and large even $N$, unconditionally,
+\[
+ V_N(R)\ll_R w_R,\qquad
+ d_N^{\rm line}(R)\ll_R V_N(R)^{2/5}+N^{-c},\qquad
+ w_R\ll_R V_N(R)^{1/5}+N^{-c}
+\]
+for some absolute $c>0$. Thus on any sequence of even moduli
+tending to infinity the full physical norm on $x,y\le RN$
+tends to zero exactly when $V_N(R)$ does. For $R=1$ the sum
+in \cref{eq:window-probe-variance} has just one term.
+\end{theorem}
+
+For $R=1$, put $z=\min(t,1/2)$ and
+$q(u)=\sqrt u\min(u,1/2-u)$ on $[0,1/2]$. Then the sole
+cumulative function is the weighted Goldbach discrepancy
+\[
+ P_1(t)=\int_0^z q(u)\,\ud u-
+ \frac{1}{N\SSS(N)}
+ \sum_{\substack{1\le m\le Nz\\(m,N)=1}}
+     q(m/N)\Lambda(m)\Lambda(N-m).
+\]
+Thus the single integral retains the discrepancies of all prefixes
+up to $N/2$, including their signs before squaring.
+
+\begin{proof}
+By \cref{eq:form} we have $B(f,g_j)=\int f\,\ud\rho_j$.
+Writing $f(u)=\sqrt u\,h(u)$ in \cref{eq:energy} gives the
+exact identity $\E(f)=\int_0^R a(u)u^3|h'(u)|^2\,\ud u$.
+Since $h(R)=0$, integration by parts for compactly supported
+tests gives $\int f\,\ud\rho_j=-\int_0^R h'(t)P_j(t)\,\ud t$.
+The integral in \cref{eq:window-probe-variance} is finite:
+below the first possible atom the density is bounded for fixed
+$N,R$ and $P_j(t)=O_{N,R}(t^{3/2})$, while $a(t)^{-1}$ is
+integrable at zero. The functions $\sqrt{a(t)t^3}\,h'(t)$
+for smooth compactly supported $h$ are dense in $L^2(0,R)$.
+Indeed an orthogonal vector would be a constant times
+$(a(t)t^3)^{-1/2}$ by distributional differentiation, and this
+is not square integrable at zero. Thus the $j$th integral is
+exactly the squared energy-dual norm of $B(\,\cdot\,,g_j)$.
+The energies of the finitely many $g_j$ are $O_R(1)$ by
+\cref{eq:sturm}, proving the first inequality.
+
+For the converse fix an interval on one of the lines defining
+$d_N^{\rm line}(R)$. Delete the portions within $4s$ of $0,R$
+or a half-integer in either coordinate, where
+$N^{-1/100}\le s\le c_R$ and $c_R>0$ is a sufficiently small
+constant. There are $O_R(1)$ deleted intervals and their total
+normalized arithmetic and model mass is $O_R(s)$. This is the
+padded-strip estimate at the end of \cref{thm:halfcell-upper},
+including the unit and diagonal corrections.
+On each remaining interval the two half-cells are fixed and
+at least one has index $j\ge1$, as both coordinates cannot be
+in $(0,1/2)$. By symmetry take that cell as the second one.
+In the resulting rectangle there is only the prescribed line
+$v=\phi(u)$, with $\phi$ a translation or a reflection, by
+the cell calculation in \cref{thm:macroscopiclines}.
+
+Approximate the interval indicator in the first coordinate by
+a piecewise linear cutoff $r$ with slopes $O(1/s)$ and at most
+two ramps of width $s$. Intervals shorter than $2s$ can be
+discarded by the same strip bound. Use the test
+$f(u)=r(u)/g_j(\phi(u))$ on its support, extending it by zero.
+The ramps can be taken inside the interval. On the support the
+denominator is at least $s$. The ramp derivatives contribute
+$O(s^{-3})$ to $\|f'\|_2^2$. The reciprocal denominator
+contributes at most $O(\int_s^\infty t^{-4}\,\ud t)=O(s^{-3})$
+on each linear half of the tent. Therefore
+$\E(f)^{1/2}\ll_R s^{-3/2}$ by \cref{eq:energy}.
+On the isolated line the test product equals $r$. Accounting
+for the two ramp strips, the absolute normalized discrepancy of
+each retained interval is $O_R(s+V_N(R)s^{-3/2})$. Sum these
+bounds and take $s=\max(N^{-1/100},V_N(R)^{2/5})$ when this
+is below $c_R$. Otherwise the fixed-line total mass bound suffices.
+The last inequality now follows from \cref{thm:macroscopiclines}.
 \end{proof}
 
 \section{Norm decay of the progression profiles near the square of the modulus}
