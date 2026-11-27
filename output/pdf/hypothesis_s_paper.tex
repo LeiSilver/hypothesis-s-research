@@ -239,6 +239,8 @@ two-sided norm decay on each fixed multiple of the modulus.
 \Cref{thm:criticalprofiles} bounds those sums near the square
 of the modulus using equidistribution in progressions with
 factored moduli.
+\Cref{thm:power-small-factors} gives an unconditional mean-square
+bound up to a power-sized smaller input on a larger family of moduli.
 \Cref{thm:fixedrowmeansquare} gives a quantitative mean-square
 estimate for bounded smaller inputs over all even moduli,
 including the progression correction for identical zero labels.
@@ -17855,6 +17857,151 @@ zero throughout.
 \end{proof}
 
 \clearpage
+\subsection{Power-sized smaller inputs on moduli with two divisors}
+
+Let $\mathcal G(Y)$ consist of even $N\in[Y,2Y]$ admitting a
+factorization $N=q_1q_2q_3$ with
+\[
+ Y^{0.039}\le q_2\le Y^{0.041},\qquad
+ Y^{0.169}\le q_3\le Y^{0.171}.
+\]
+The factors may be composite. Put $\eta=1/10000$.
+Write $M_N(S)$ for the normalized physical form norm on arbitrary
+tests after restricting both terms of \cref{eq:form} to the pairs
+$x\le N^\eta$, $xy\le S$.
+
+\begin{theorem}[Power-sized smaller inputs on factored moduli]
+\label{thm:power-small-factors}
+For every fixed $B\ge0$ and $D>0$, unconditionally,
+\begin{equation}
+ \sum_{N\in\mathcal G(Y)}
+  \sup_{N^2\le S\le N^2(\log N)^B} M_N(S)^2
+ \ll_{B,D}Y(\log Y)^{-D}.
+ \label{eq:power-small-factors}
+\end{equation}
+The same bound holds for the pair restriction
+$\min(x,y)\le N^\eta$, $xy\le S$. The set
+$\mathcal G(Y)\setminus\mathcal F(Y)$ contains $\gg Y$
+moduli. Under global Dirichlet GRH, \cref{eq:productfactored}
+holds with $\mathcal G(Y)$ in place of $\mathcal F(Y)$ for the
+full sharp product restriction.
+\end{theorem}
+
+\begin{proof}
+Write $\lambda=\log Y$, fix a large $K$ in terms of $B,D$, and put
+$T=Y^{2-\eta}\lambda^{-K}$. We first record the following bound
+for a single integer $a\ne0$, uniform in $a$. Let $V$ be a dyadic
+scale with $T/2\le V\ll_B Y^2\lambda^B$. For every fixed $U$,
+\begin{equation}
+ \sum_{\substack{N\in\mathcal G(Y)\\(a,N)=1}}
+ \sup_{V\le v\le 2V}|D_{N,a}(v)|^2
+       \ll_{B,K,U} (V^2/Y)\lambda^{-U},
+ \label{eq:power-small-max}
+\end{equation}
+where $D_{N,a}(v)=\pi(v;N,a)-\pi(v)/\varphi(N)$.
+For $V\le v\le2V$ we have
+$2-\eta-o(1)\le\log v/\lambda\le2+o(1)$. Apply Maynard's
+three-factor theorem \cite[Theorem~1.2]{MaynardIII} with
+$\delta=1/10000$. Bin $q_2,q_3$ dyadically with upper endpoints
+$Q_2,Q_3$ and take $Q_1=v^{1/2+\delta}/(Q_2Q_3)$.
+Indeed $(2-\eta)(1/2+\delta)>1$, so $8Y<v^{1/2+\delta}$
+eventually. The factor inequalities follow with strict margins from
+\begin{align*}
+ 2(40\delta)&<0.039, &
+ 0.041&<(2-\eta)(1/20-7\delta),\\
+ 2(1/10+12\delta)&<0.208, &
+ 0.171+0.6(0.041)&<(2-\eta)(1/10-4\delta).
+\end{align*}
+As in \cref{eq:profiledistribution}, the outer residue can be
+chosen as $a\bmod q_1q_2$. Summing the nonnegative bounds over
+$O(\lambda^2)$ bins gives $\sum_N |D_{N,a}(v)|\ll_{B,K,J}
+V\lambda^{-J}$ for every fixed $J$, with the coprimality in
+\cref{eq:power-small-max}. At any endpoint $|D_{N,a}(v)|
+\ll \lambda V/Y$ by counting integers. On a grid of spacing
+at most $V\lambda^{-J_1}$ with $O(\lambda^{J_1})$ points,
+the variation from the nearest endpoint is
+$O(1+(V/Y)\lambda^{1-J_1})$, by the same count for each
+progression interval and $\varphi(N)\gg Y/\lambda$ for the
+common term. Sum the squared grid values using the first
+moment and the endpoint bound, then add the squared variation
+over $O(Y)$ moduli. Since $V/Y\gg Y^{1-\eta}\lambda^{-K}$,
+taking first $J_1$ and then $J$ sufficiently large proves
+\cref{eq:power-small-max}.
+
+The signed continuous model on the small support costs
+$O(N^{\eta-1}+S^{-1/4}N^{3\eta/4})$ by the indicator
+difference calculation in the proof of \cref{thm:productfactored},
+with $2M=N^\eta$ there. That calculation differentiates only
+the larger test and integrates the smaller weight in absolute
+value, so the sharp cutoff in $x$ is allowed. The arithmetic terms with $y<T$ cost
+$O(\lambda^{-K/2}+Y^{-2/5})$, since $xy\ll Y^2\lambda^{-K}$
+and the arithmetic bound of \cref{sec:subcritical} is absolute.
+Among the remaining terms, larger proper prime powers have total
+von Mangoldt weight $O_B(Y^{1/20})$ in either unit residue
+class up to $4Y^2(\log(2Y))^B$. This is the root count in the
+proof of \cref{eq:fixedrowmoduluscontinuity}: for each of finitely
+many exponents the number of roots modulo $N$ is $Y^{o(1)}$,
+with at most a logarithmic power of periods for the bases; for
+all sufficiently large exponents count the bases directly.
+This bound is uniform in the unit class. Point evaluation and
+Chebyshev's bound on the smaller weights give a total cost
+$O_B(Y^{\eta/2+1/20}/\sqrt T)$, a power saving.
+
+It remains to pair $X\le n<2X$ with ordinary primes
+$V\le p<2V$, where $X,V$ are dyadic. A nonempty pair of
+blocks has $XV\ll_B Y^2\lambda^B$. For each admissible $n$,
+the constraints $p\ge T$, $np\le S$ clip the prime block to
+an interval. The two opposite residues have the same main
+term. Partial summation on that interval bounds their signed
+row on any unit test by
+\[
+ \frac{O(\lambda)}{\sqrt V}
+ \sum_{\pm}\sup_{V\le v\le2V}|D_{N,\pm n}(v)|.
+\]
+The weight $r e^{-r/2}G(r)$ has supremum and total variation
+$O(\lambda/\sqrt V)$ on the packet by the unweighted $H^1$
+bound. One-sided endpoint limits give the same estimate up to
+$O(\lambda/\sqrt V)$, harmless also in \cref{eq:power-small-max}.
+Thus the estimate is uniform in the sharp endpoint and in
+both tests. Take the $\ell^2$ norm over $N$ \emph{before}
+summing the smaller weights. Minkowski's inequality,
+\cref{eq:power-small-max} for each $a=\pm n$, and
+$\sum_{X\le n<2X}\Lambda(n)/\sqrt n\ll\sqrt X$ bound the
+block by
+\[
+ \ll_{B,K,U} \lambda^{1-U/2}\sqrt{XV/Y}
+ \ll_{B,K,U} \sqrt Y\,\lambda^{1+B/2-U/2}.
+\]
+Here terms with $(n,N)>1$ are set to zero. Summing
+$O_B(\lambda^2)$ blocks, choosing $U$ large and squaring
+proves \cref{eq:power-small-factors}. The transposed mask has
+the same norm. Their intersection contains no line since
+$2N^\eta<N$, so adding the two forms gives the minimum mask.
+
+The original family is contained in $\mathcal G(Y)$. For a
+disjoint subfamily, choose two distinct primes with exponents
+$\log p/\lambda$ in $(0.0198,0.0200]$ and two in
+$(0.0848,0.0850]$. Their pairwise products in the respective
+bands supply $q_2,q_3$. For each product $d$ of the four primes,
+count even multiples of $d$ and exclude multiples of any prime
+in the first required band for $\mathcal F(Y)$. The excluded
+proportion is at most $\log(0.0405/0.0400)+o(1)$ by the
+prime reciprocal sum and the union bound: the endpoint errors
+are $O(Y^{0.0405})$ against a count $\asymp Y/d$, uniformly
+since $d\le Y^{0.21}$. The sum of $1/d$ over the choices is
+bounded below by a positive constant by the same reciprocal
+sum in each band. Each modulus has only boundedly many such
+choices since all four primes exceed $Y^{0.0198}$. This proves
+the density assertion.
+
+Finally apply the low/high test partition in the proof of
+\cref{thm:productfactored}. Its two high pieces are covered
+by \cref{thm:productwindow} under global Dirichlet GRH, and its
+low pieces have support at most a fixed power of $\log N$,
+hence below $N^\eta$ eventually. Use \cref{eq:power-small-factors}
+on those pieces and symmetry for the transposed term.
+\end{proof}
+
 \section{Conditional bounds from uniform prime-pair discrepancies}
 \label{sec:pairconditional}
 
