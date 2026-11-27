@@ -226,6 +226,8 @@ and a finite set of opposite-residue progression sums.
 \Cref{thm:small-input-gram} compresses these sums to a matrix
 whose largest eigenvalue, together with the prime-only norm,
 gives a criterion for \eqref{eq:goal} at all large even moduli.
+\Cref{thm:basecut} removes all proper prime powers on primorial
+moduli in the criterion for decay on unrestricted supports.
 \Cref{thm:criticalprofiles} bounds those sums near the square
 of the modulus using equidistribution in progressions with
 factored moduli.
@@ -11437,6 +11439,100 @@ in \eqref{eq:ppwindow} tends to zero. If $P_N(A)\to0$ the
 right side of \eqref{eq:small-input-gram} is $O(1/\log\log L)$.
 Combining these comparisons with \cref{thm:ppcut} gives both
 directions of the criterion.
+\end{proof}
+
+\subsection{A prime-only criterion on primorial moduli}
+
+For real $z\ge2$, let $\mathcal B_{N,z}$ be the form in \cref{eq:form}
+with all proper powers $p^a$, $p\ge z$, deleted in both arithmetic
+coordinates. Write $E_z=\|\mathcal B_{N,z}\|/\SSS(N)$ and
+$E=\|\B\|/\SSS(N)$. Both norms use the full energy space.
+
+\begin{theorem}[Removing proper powers by prime base]
+\label{thm:basecut}
+Under $\grh(N)$, put $L=\log N$, $\sigma=\SSS(N)$ and
+$e=\min(E,E_z)$. There is an absolute $c>0$ such that, uniformly
+for sufficiently large even $N$ and $z\ge2$,
+\begin{equation}
+ \frac{\|\B-\mathcal B_{N,z}\|}{\sigma}
+ \ll N^{-c}+
+     \sqrt{\frac{\log(2z)}{z}}\,
+     \frac{\sqrt{L+\sigma e}}{\sigma}.
+ \label{eq:basecut}
+\end{equation}
+Let $p_0$ be the least prime not dividing $N$. Along every sequence
+of even moduli for which
+\[
+ \frac{L\log(2p_0)}{p_0\sigma^2}\longrightarrow0,
+\]
+\eqref{eq:goal} is equivalent to decay of the normalized form norm
+with only ordinary primes in both arithmetic coordinates.
+In particular, on $N=\prod_{p\le y}p$, if either normalized norm
+is bounded, the normalized norm of the difference of the forms is
+$O((\log L)^{-1/2})$.
+\end{theorem}
+
+\begin{proof}
+First remove the selected powers of size at least $N^{1/8}$.
+By \cref{eq:ppchar} their character-vector norm on a unit test is
+$O(N^{-c_1})$ for some absolute $c_1>0$. The full vector has norm
+$O(L)$ by \cref{eq:Utail} and a cutoff at $r=2$; any deletion of
+proper powers costs $O(1)$ in vector norm by \cref{eq:ppchar} at
+$A=2$. The deleted diagonal obeys the power-saving diagonal bound
+in the proof of \cref{thm:ppcut} at $A=N^{1/8}$. Expanding
+\cref{eq:split} thus costs $O(N^{-c})$ in normalized form norm,
+after decreasing $c$.
+
+Let $D$ consist of the remaining selected powers below $N^{1/8}$.
+Two elements of $D$ cannot interact off the diagonal, since their
+sum and the absolute value of their difference are below $N$.
+The difference left to estimate is therefore the sum of two
+transposed mixed terms with one coordinate in $D$ and the other
+among the retained integers. In the latter coordinate split the
+test by a smooth cutoff on the physical interval
+$[N^{3/2},2N^{3/2}]$, with uniformly bounded log derivative.
+The lower piece has product at most $2N^{13/8}$.
+The unsigned arithmetic bound in the proof of \cref{thm:subcritical}
+with $Q=N^{3/8}/2$ bounds this piece by $O(N^{-c})$ on the
+normalized scale. It applies to any subset of the off-diagonal
+pairs and both cutoff multipliers are bounded in energy.
+
+For the upper piece $G$, the retained vector is exactly the
+character vector for $\mathcal B_{N,z}$. It differs from the full
+vector by $O(N^{-1/5}\NN(G))$ by \cref{eq:ppchar}, since here
+$y\ge N^{3/2}$. To bound it, use the form of smaller norm.
+On $(G,G)$ the retained diagonal is bounded above by the full
+diagonal and the model is unchanged. The proof of \cref{thm:zeros}
+at $\delta=1/2$ gives
+\[
+ (\mathcal D+\mathcal M)(G,G)
+   =\mathcal W_N(G,G)+O(N^{-c}\NN(G)^2)
+   \ll L\NN(G)^2 .
+\]
+Indeed the multiplier in \cref{eq:archdensity} is
+$O(L+\log(2+|t|))$, and the energy controls the unweighted $H^1$
+norm on this support. Positivity in \cref{eq:split} now bounds
+the retained vector by $O(\sqrt{L+\sigma e}\,\NN(G))$.
+The unnormalized deterministic bound here supplies the full
+factor $\sigma^{-1}$ in \cref{eq:basecut}.
+
+If $D$ is nonempty, $z^2<N^{1/8}$ and each member is at least
+$z^2$. Applying \cref{eq:ppchar} at $A=z^2$ gives
+$\|U_D(F)\|_\chi\ll(\sqrt{\log(2z)/z}+N^{-1/5})\NN(F)$.
+The last term is absorbed into the first in this range. Pairing
+the vectors and treating the transposed term gives \cref{eq:basecut}.
+If $D$ is empty, the first deletion already proves the bound.
+
+Set $z=p_0$. Every proper prime power with smaller base has
+zero arithmetic weight in the reduced residue classes. Under the
+displayed limit, the part of \cref{eq:basecut} involving $\sqrt L$
+tends to zero. The coefficient of $\sqrt e$ stays bounded since
+$\sigma\gg1$. The reverse triangle inequality therefore proves the
+equivalence whenever either norm tends to zero. On primorials,
+Chebyshev's estimates and Bertrand's postulate give
+$L\asymp y\asymp p_0$, and Mertens' product formula in
+\cref{eq:series} gives $\sigma\asymp\log L$. Substitution proves
+the stated rate.
 \end{proof}
 
 \section{Norm decay of the progression profiles near the square of the modulus}
