@@ -287,6 +287,11 @@ can be removed from the character square on the full energy space.
 \Cref{thm:sampled-major-arc-model} evaluates the major arcs in
 this sine square at each modulus on the window $x,y\le N^{1.01}$.
 They reproduce the entire continuous model on its retained inputs.
+\Cref{thm:near-root-arcs} makes the same reduction on every
+window $x,y\le N^{1+\eta}$ with fixed $\eta<1/7$. On fixed
+multiples of $N$ the major-arc denominators reach $\sqrt N$
+up to a logarithmic factor. The arc estimate also applies to
+one short input paired with a test of arbitrary support.
 \Cref{thm:criticalprofiles} bounds those sums near the square
 of the modulus using equidistribution in progressions with
 factored moduli.
@@ -13518,6 +13523,187 @@ sum gives $H_Q=\log Q+\gamma+G'(0)+O(Q^{-1/4})$, where
 $G'(0)=\sum_p(\log p)/(p(p-1))$. The error follows by using the
 absolute $1/3$ moment on the tails, including the logarithm.
 Subtraction proves the uniform band estimate.
+\end{proof}
+
+\subsection{Averaging over rational numerators at each modulus}
+
+Write $\mathfrak M(Q,B)$ for the union of arcs of radius $B/N$
+at reduced fractions of denominator at most $Q$. For a grid
+vector use squared norm $(2/N)\sum_{k\bmod N}|s(k)|^2$.
+The rational centers in this definition need not be grid points.
+
+\begin{theorem}[Larger support windows and near-square-root denominators]
+\label{thm:near-root-arcs}
+Assume Dirichlet GRH. Fix $0<\eta<1/7$ and exponents satisfying
+\[
+ \eta<a<b,\qquad \eta<q,\qquad q+3b/2+\eta<1/2 .
+\]
+In \eqref{eq:sampled-major-arc-model} one may take
+$Y=N^{1+\eta}$, $X=N^{1-a}$, $Q=N^q$, $B=N^b$ and
+$\mathfrak m=\mathfrak M(Q,B)^c$, with error $O(N^{-c})$ for
+some $c>0$ depending on the exponents. This holds for all unit
+tests supported in $x,y\le Y$ at every sufficiently large even
+$N$. On inputs supported in $[X,Y]$, the band formula
+\eqref{eq:sampled-arc-shell} holds with error $O(N^{-c'})$
+for $N^{q_0}\le Q_1\le Q_2\le Q$, whenever $q_0>\eta$ is
+fixed and $q_0\le q$.
+
+For a fixed $R>0$ and $D\ge1$, take $A=2D+12$, $K=A+D+5$,
+and $C=2K+D+12$. Set
+\[
+ X=N/L^A,\quad B=L^K,\quad Q=\sqrt N/L^C .
+\]
+On $x,y\le RN$ the same minor-arc formula holds with
+unnormalized error $O_{R,D}(L^{-D})$. The major arcs on
+$[X,RN]$ supply the continuous model and the coefficient
+$H_Q=\tfrac12 L-C\log L+\gamma+G'(0)+O_D(N^{-1/9})$
+of the log-coordinate inner product, with $G'(0)$ as in the
+proof of \cref{thm:sampled-major-arc-model}.
+
+For these same arcs there is a mixed estimate with no upper
+bound on the second input. If the first unit test is supported in
+$x\le U=N/(B L^{2D+12})$, then for every unit test $G$,
+\begin{equation}
+ \left|\frac2N\sum_{k/N\in\mathfrak M(Q,B)}
+           S_F(k/N)\overline{S_G(k/N)}\right|\ll_D L^{-D}.
+ \label{eq:short-major-unrestricted}
+\end{equation}
+Here and below a sum over grid points uses one period. The bound
+also holds for a subset of these grid points.
+\end{theorem}
+
+\begin{proof}
+For $1\le x\le Y\le N^2$, let $E_a(x)$ be the partial sum of
+the odd prime-power Mangoldt weights times $e(an/r)$ up to $x$,
+minus $x\mu(r)/\varphi(r)$, for $(a,r)=1$. Uniformly for
+$r\le\sqrt N$,
+\[
+ \left(\sum_{a\bmod r}^{*}|E_a(x)|^2\right)^{1/2}
+       \ll \sqrt{rx}\,L^2 .
+\]
+Indeed, on the unit residue classes $t$ put
+$P_t=\sum_{n\le x,\,n\equiv t\bmod r}\Lambda(n)-x/\varphi(r)$.
+Multiplicative Parseval and the GRH character prime number
+theorem give $\sum_t^* |P_t|^2\ll xL^4$. Extend by zero on
+nonunits and apply additive Parseval over all numerators. On
+reduced numerators the transform of the subtracted main term is
+$x\mu(r)/\varphi(r)$. The powers at bases dividing $r$, and
+those of two, change each partial sum by $O(L^2)$. This proves
+the bound also at $r=1$.
+
+Suppose a unit test is supported in $1\le x\le Y$. For each
+reduced $a$ choose \emph{independently} an offset
+$|\beta_a|\le B/N$. Partial summation against
+$w_F(x)e(\beta_a x)$ and the triangle inequality in $\ell^2(a)$
+cost at most
+\[
+ \sqrt r\,L^2
+ \int_1^Y \sqrt x\bigl(|w_F'(x)|+(2\pi B/N)|w_F(x)|\bigr)\,\ud x
+ \ll \sqrt r\,L^3(1+BY/N).
+\]
+Here $w_F=x^{-1/2}F(\log x)$ and the unit energy controls the
+unweighted log $H^1$ norm for $x\ge1$. The negative phase obeys
+the same estimate. On each arc there are $O(B+1)$ samples, so
+they can be indexed in that many layers with at most one sample
+per numerator in each layer. For $B\ge1$ and $2BQ^2<N$ the
+arcs are disjoint. Squaring and adding over layers and denominators
+bounds the grid norm of the error in replacing $S_F(a/r+\beta)$
+by $\mu(r)u_F(\beta)/\varphi(r)$ by
+\begin{equation}
+ \Delta\ll L^3 Q\sqrt{B/N}\,(1+BY/N).
+ \label{eq:numerator-mean-grid}
+\end{equation}
+The full sine grid has norm $O(L^{3/2})$ for any unit input by
+the full-square estimate in the proof of
+\cref{thm:full-sine-denominators} at modulus $N$. Hence the
+replacement in a pairing costs $O(\Delta(L^{3/2}+\Delta))$,
+also for any subcollection of the arcs. Both estimates allow
+bounded-energy cutoff inputs by homogeneity.
+
+On $[X,Y]$, completing the shifted grids in Poisson summation
+costs $O(L^2N/(XB))$ as in \cref{thm:sampled-major-arc-model}.
+For any fixed $0<\epsilon<1$, the singular-series tail on a
+positive even shift $h$ satisfies
+\[
+ \sum_{r>Q}\frac{\mu(r)^2|c_r(h)|}{\varphi(r)^2}
+        \ll_\epsilon Q^{-1+\epsilon}h^\epsilon .
+\]
+Insert $(r/Q)^{1-\epsilon}$. The majorant has Euler factors
+$1+p^{1-\epsilon}(p,h)/(p-1)^2$ using $|c_r(h)|\le(r,h)$.
+Away from $h$ their product converges. At $p\mid h$ the extra
+product is at most $\prod_{p\mid h}(1+O(p^{-\epsilon}))
+\ll_\epsilon h^\epsilon$, by separating finitely many small
+primes. There are at most $2Y/N$ positive translates and each
+integral is bounded. Their total completion error is thus
+$O_\epsilon((Y/N)Q^{-1+\epsilon}(2Y)^\epsilon)$.
+
+With the power parameters the error vector in
+\eqref{eq:numerator-mean-grid} is $O(L^3
+N^{-1/2+q+3b/2+\eta})$. The shifted-grid completion costs
+$O(L^2N^{a-b})$. The translate tail saves a power for $\epsilon$
+sufficiently small since $q>\eta$. The same applies uniformly
+at any cutoff at least $N^{q_0}$ in the band statement. Cutting
+off either low input in the original form costs
+$O(\SSS(N)N^{-(a-\eta)/2})$ by \cref{thm:subcritical}, since
+its product with the other input is at most $2XY$. Subtract
+the prime diagonal as in \cref{thm:sampled-major-arc-model};
+on a band the model cancels and $H_{Q_2}-H_{Q_1}$ supplies
+the stated logarithm. The exponent assumptions imply
+$2q+b<1$ and permit $a,b,q$ all sufficiently close to $\eta$
+from above precisely when $7\eta<1$.
+
+For the logarithmic parameters, $2BQ^2/N=2L^{K-2C}=o(1)$.
+The pairing replacement is $O_{R,D}(L^{9/2+3K/2-C})$ and
+the completion of the shifted grids costs $O(L^{2+A-K})$.
+There are $O_R(1)$ translates and their coefficient tails save
+a power of $N$. The low-input cutoff costs
+$O_R(\SSS(N)L^{-A/2})$ and the diagonal evaluation saves a
+power. These estimates give the fixed-window assertion, including
+the stated $H_Q$ expansion by the $O(Q^{-1/4})$ bound above.
+
+Finally multiply the short input by a smooth physical cutoff
+zero below one and one above two. This preserves all its odd
+prime-power samples and keeps its energy bounded. Its continuous
+sine transform is $O(\sqrt U)$ by Cauchy--Schwarz in log
+coordinates. Counting the $O(B)$ points per arc and summing
+$\sum_{r\le Q}1/\varphi(r)\ll L^2$ bounds its main grid norm
+by $O(L\sqrt{BU/N})$. The error bound
+\eqref{eq:numerator-mean-grid} with $Y=U$ is
+$O(L^{3+K/2-C})$. Their sum times $O(L^{3/2})$ is
+$O_D(L^{-D})$. The latter factor bounds the other test on
+the entire grid, proving \eqref{eq:short-major-unrestricted}.
+\end{proof}
+
+\begin{corollary}[The two leading grid masses on macroscopic supports]
+\label{cor:two-grid-masses}
+Fix $0<s<R$ and use the logarithmic parameters of
+\cref{thm:near-root-arcs}. For unit tests supported in
+$[sN,RN]$, let $I(F,G)=\int F(v)\overline{G(v)}\,\ud v$.
+At every sufficiently large even modulus the pairings on the
+major arcs and on their complement, respectively, are
+\[
+ H_Q I(F,G)+O_{s,R,D}(\SSS(N)),\qquad
+ (L-H_Q) I(F,G)+O_{s,R,D}(\SSS(N)).
+\]
+The major arcs contain at most $O_D(NL^{K-2C})$ grid points.
+In particular for $G=F$ and $\|F\|_2$ bounded below, each set
+carries a fraction $\tfrac12+O_{s,R,D,\|F\|_2^{-1}}
+((\log L)/L)$ of the total sampled sine energy.
+\end{corollary}
+
+\begin{proof}
+The continuous form is $O_R(\SSS(N))$, since it has only
+$O_R(1)$ translates, each with bounded integral and
+$\SSS(jN)\ll_R\SSS(N)$. This gives the first formula.
+On the full grid the diagonal is $L I(F,G)+O_{s,R}(1)$
+because $v=L+O_{s,R}(1)$ on the supports. Each off-diagonal
+line has weighted Mangoldt mass $O_R(N\SSS(N))$ by the
+two-prime sieve and proper-power count in the proof of
+\cref{thm:macroscopiclines}; the two physical weights contribute
+$O_s(1/N)$ by Sobolev point evaluation. Subtraction gives the
+second formula. Counting $O(B)$ samples on each of $O(Q^2)$
+arcs proves the cardinality bound. For the energy fractions use
+$H_Q=L/2+O_D(\log L)$ and $\SSS(N)\ll\log L$.
 \end{proof}
 
 \section{Norm decay of the progression profiles near the square of the modulus}
