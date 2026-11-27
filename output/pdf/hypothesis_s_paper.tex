@@ -258,6 +258,9 @@ a quantitative upper-edge criterion on growing multiples.
 by one explicit cumulative integral per positive half-modulus cell.
 \Cref{thm:window-long-divisors} leaves only pairs of long divisors
 in those integrals at every large even modulus, without GRH.
+\Cref{cor:far-small-primes} restricts the far mixed matrix to
+ordinary primes in its small coordinate, with a lower cutoff tending
+to infinity whenever the upper edge of the prime-only form tends to zero.
 \Cref{thm:criticalprofiles} bounds those sums near the square
 of the modulus using equidistribution in progressions with
 factored moduli.
@@ -12244,6 +12247,87 @@ In the weighted squared norm the deleted prefix stops at
 $\min(t,y)$: integrate these bounds on $t\le y$, then keep the
 value at $y$ constant for $t>y$. Using $a(t)^{-1}\ll_R
 1+(Nt)^{-1/4}$ gives $O_R(y^3+N^{-1})$ for this squared cost.
+
+\subsection{The small coordinate of the far mixed matrix}
+
+Keep $I_1,I_2,H,b,m,k$ from \cref{thm:mixed-far}. Let $a$ be
+the upper edge $a_+(B)$ of the normalized prime-only form on
+$x\ge A$, as in \cref{thm:lower-edge}, so that $0\le a\le P$.
+Define $j_m^{>X}(I_2)$ by using the same projection and both
+evaluation kernels as for $j_m(I_2)$, and restricting the sum
+over $n$ in $V_{ip}$ to ordinary primes $X<n\le2A$.
+
+\begin{corollary}[Small inputs that can be deleted from the far matrix]
+\label{cor:far-small-primes}
+Under Dirichlet GRH, for some absolute $c>0$ put
+$r_N=\sqrt a+1/\log L+N^{-c}$. At every sufficiently large even
+modulus and uniformly for $2\le X\le2A$,
+\begin{equation}
+ \big|j_m(I_2)-j_m^{>X}(I_2)\big|
+ \ll r_N\sqrt{\log(2X)/\sigma}.
+ \label{eq:far-small-primes}
+\end{equation}
+For $X_N=\exp(\min\{b,\max\{\log 2,\sigma/r_N\}\})$, the full
+norm condition \eqref{eq:goal} is equivalent to
+\[
+ P\longrightarrow0,\qquad j_k(I_1)\longrightarrow0,\qquad
+ j_m^{>X_N}(I_2)\longrightarrow0 .
+\]
+Whenever $P\to0$, one has $X_N\to\infty$. If $X_N=2A$, the
+last matrix is zero.
+
+There is also a bound below the far cutoff. In \eqref{eq:pprows}
+restrict the small coordinate to proper prime powers $X\le n\le2A$
+and the large test to $y\ge e^h$, with $h\ge3L/2$. The normalized
+norm of this restricted form is
+\begin{equation}
+ \ll \frac{X^{-1/4}\sqrt{\log(2X)}}{\sqrt\sigma}
+       \left(\sqrt a+\sqrt{L/\sigma}\,e^{-h/L}+N^{-c}\right).
+ \label{eq:mixed-height-powers}
+\end{equation}
+For example, if $a=O(1)$ and $h=\tfrac14 L\log L$, the proper
+powers $n\ge L(\log L)^4$ contribute $O((\log L)^{-1/2})$ there.
+\end{corollary}
+
+\begin{proof}
+For a unit test $G$ supported on $y\ge e^h$, its prime-only
+self-pairing is at most $a$ on the normalized scale. The
+character-square identity used in \cref{eq:mixed-tail-vector} gives
+\[
+ \|U_{\rm pr}(G)\|_\chi^2
+ \le \sigma a+(\mathcal D+\mathcal M)(G,G)
+ \ll \sigma a+L e^{-2h/L}+N^{-2c}.
+\]
+Indeed, for $h\ge3L/2$ the deterministic comparison in the proof of
+\cref{thm:basecut} has a power-saving error uniform on this support.
+The energy weight gives $\|G\|_{H^1}\ll e^{-h/L}$ and the multiplier
+in \eqref{eq:archdensity} is $O(L(1+t^2))$. We decrease $c$ to
+absorb the comparison error. With $h=H$ this gives
+$\|U_{\rm pr}(G)\|_\chi\ll\sqrt\sigma\,r_N$.
+
+For a unit small test $F$, odd-character orthogonality identifies the
+squared character norm of any selection of rows with its diagonal
+sum, since $2A<N/3$. The log-packet diagonal bound used for
+\eqref{eq:ppboundrows}, summed only over packets meeting $[2,X]$,
+gives $O(\log(2X))$ for the rows $n\le X$. For any selection of
+proper powers in $[X,2A]$, the small-coordinate estimate preceding
+\eqref{eq:ppchar} gives $O(X^{-1/2}\log(2X))$ for the squared
+norm. Pairing the latter vector with $U_{\rm pr}(G)$ and dividing
+by $\sigma$ proves \eqref{eq:mixed-height-powers}. In the example,
+$\sqrt L e^{-h/L}=L^{1/4}$ and $\sigma\gg1$.
+
+On $I_2$ the deleted rows are the disjoint union of $n\le X$ and
+proper powers $n>X$. Their character norm is
+$O(\sqrt{\log(2X)})$. The same bound applies to projected unit
+tests since the projection is an energy contraction. Pairing with
+the vector at height $H$ and taking the difference of the two
+operator norms proves \eqref{eq:far-small-primes}. Here the cutoff
+acts only on the arithmetic sum, so no sharp cutoff of an energy
+test is required. If $P\to0$, then $r_N\to0$ and $\sigma\gg1$.
+Consequently $X_N\to\infty$ and
+$r_N\sqrt{\log(2X_N)/\sigma}\ll\sqrt{r_N}$. Substituting in
+\cref{thm:mixed-far} proves both implications.
+\end{proof}
 
 \section{Norm decay of the progression profiles near the square of the modulus}
 \label{sec:criticalprofiles}

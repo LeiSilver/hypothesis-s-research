@@ -14,6 +14,8 @@ The manuscript uses global Dirichlet GRH, including RH for the zeta function. It
 
 The intermediate ranges in Theorem 13.39 and Corollary 13.40 describe the reach of the estimates proved without GRH. The GRH bound in the third row already covers those ranges in mean square on $\mathcal G(Y)$. The fixed positive test in Section 3 gives a separate sufficient condition for a Goldbach representation. The exceptional-zero implications in 3.26–3.32 examine a counterfactual exceptional real zero, which Dirichlet GRH excludes. The finite-modulus certificates below check individual examples. [Manuscript](output/pdf/hypothesis_s_paper.pdf)
 
+Corollary 12.9 refines the mixed-matrix condition at each sufficiently large even modulus. If $P_N(A)\to0$, the far matrix can discard every proper prime power in its small coordinate, along with all ordinary primes up to a cutoff $X_N\to\infty$ specified by the prime-only upper spectral bound. This reduction requires no rate for $P_N(A)\to0$. Decay of the near matrix and of the retained far prime rows still needs proof on general moduli.
+
 - [Manuscript (PDF)](output/pdf/hypothesis_s_paper.pdf)
 - [LaTeX source](output/pdf/hypothesis_s_paper.tex)
 - [Lean verification of the least-prime divisor split, logarithm weight, and factor-count inequality](formalization/LeastPrimeSplit.lean)
