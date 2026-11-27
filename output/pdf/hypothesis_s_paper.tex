@@ -280,6 +280,13 @@ local weights on the continuous shifts.
 \Cref{cor:conductor-sparse-lines} shows that centering at each
 conductor preserves the arithmetic diagonal and the contribution
 on any prescribed sparse family of shift lines up to a power saving.
+\Cref{thm:full-sine-denominators,cor:full-primitive-sines} treat
+the small and large inputs together. The sine sums use the same
+odd prime powers at every denominator, and low reduced denominators
+can be removed from the character square on the full energy space.
+\Cref{thm:sampled-major-arc-model} evaluates the major arcs in
+this sine square at each modulus on the window $x,y\le N^{1.01}$.
+They reproduce the entire continuous model on its retained inputs.
 \Cref{thm:criticalprofiles} bounds those sums near the square
 of the modulus using equidistribution in progressions with
 factored moduli.
@@ -13175,6 +13182,342 @@ at most $K$ times in each argument. This proves
 \eqref{eq:conductor-sparse-lines}, also for any coefficients of
 absolute value at most one multiplying the mask. Each shift has
 at most three partners per input, which proves the last assertion.
+\end{proof}
+
+\subsection{Reduced additive denominators on the full energy space}
+
+Use all odd prime powers $b=p^j$, with coefficient
+$a_b(F)=(\log p)F(\log b)/\sqrt b$, including powers of primes
+dividing the modulus. Set
+\[
+ \begin{gathered}
+ S_F(\alpha)=\sum_b a_b(F)\sin(2\pi b\alpha),\qquad
+ D_{\rm odd}(F,G)=\sum_b a_b(F)\overline{a_b(G)},\\
+ A_q^*(F,G)=\frac2q\sum_{k\bmod q}^{*}
+                 S_F(k/q)\overline{S_G(k/q)} .
+ \end{gathered}
+\]
+The star denotes reduced residues, with $A_1^*=A_2^*=0$.
+The sums are initially taken on compact tests. Write $\mathcal M_N$
+for the original continuous form in physical coordinates.
+
+\begin{theorem}[A denominator cutoff for the full sine square]
+\label{thm:full-sine-denominators}
+Under Dirichlet GRH fix $D>0$, put $R=R_{D+6}(N)$ as in
+\cref{thm:conductorcutoff} and $Z=L^{D+6}$. Retain the divisors
+\[
+ \mathcal T=\{d\mid N:d\le R,\ p^j\le Z\ \text{for every }p^j\Vert d\}.
+\]
+On the full energy space, with no restrictions on the two supports,
+\begin{equation}
+ \left\|\B-
+ \left(\sum_{d\in\mathcal T}\frac1d A_{N/d}^*
+             -D_{\rm odd}-\mathcal M_N\right)\right\|
+ \ll_D L^{-D}.
+ \label{eq:full-sine-denominators}
+\end{equation}
+The omitted sine square is positive semidefinite and itself has
+unnormalized norm $O_D(L^{-D})$. Thus \eqref{eq:goal} is equivalent
+to decay of the normalized norm of the single form in parentheses.
+It includes the mixed pairs with a bounded input. The retained
+fractions $k/N$ have reduced denominator $N/d$ with $d\in\mathcal T$.
+\end{theorem}
+
+\begin{proof}
+Full sine orthogonality at $N$ supplies the weights
+$\mathbf1_{N\mid b-b'}-\mathbf1_{N\mid b+b'}$. Two congruent or
+opposite residues have the same gcd with $N$. Consequently every
+extra off-diagonal pair from restoring the nonunit labels has the
+form $(p^j,p^k)$ with $p\mid N$ odd, $j\ne k$. The congruence
+forces $\max(p^j,p^k)\ge N/2$. On the unit energy ball
+$|F(\log b)|\ll1$. A geometric sum over the large power is
+$O(N^{-1/2})$ with the logarithmic coefficient removed, and the
+sum over the other power is $1/(\sqrt p-1)$. Both orientations
+therefore cost $O(L^2/\sqrt N)$ in unnormalized norm.
+The actual diagonal of the full sine square has coefficient
+$1-\mathbf1_{N\mid2b}$ at $b$. Replacing it by $D_{\rm odd}$
+costs $O(L^2/N)$, since every affected $b$ is at least $N/2$
+and has base dividing $N$. Hence \eqref{eq:form} equals the
+full sine square minus $D_{\rm odd}+\mathcal M_N$, up to
+$O(L^2/\sqrt N)$. Grouping $k/N$ by its reduced denominator
+gives the full square as $\sum_{d\mid N}A_{N/d}^*/d$.
+
+Uniformly for every $q\mid N$, $\|A_q^*\|\ll L^3$ in the
+ambient energy. Indeed the square with all frequencies modulo
+$q$ bounds the primitive square. On labels coprime to $q$,
+odd-character orthogonality identifies that full square with
+the character square modulo $q$ (it vanishes for $q=1,2$).
+Each odd character induces one modulo $N$. On the labels coprime
+to $N$ its vector has the bound $O(L^{3/2})$ proved in
+\cref{thm:conductor-progression-gram}. Restoring bases dividing
+$N$ costs at most $O(\sum_{p\mid N}\log p/(\sqrt p-1))=O(L)$,
+both for the missing character coefficients on units modulo $q$
+and for the nonunit sine vector by the triangle inequality.
+These estimates require no comparison of energy spaces at small $q$.
+
+The sum of $1/d$ over $d>R$ is $L^{-D-6+o(1)}$ by
+\eqref{eq:largeprimedivisortail}. If $p\mid N$, let $j_p$ be
+the first exponent with $p^{j_p}>Z$. The reciprocal sum on
+divisors divisible by $p^{j_p}$ is at most
+$p^{-j_p}\sum_{d\mid N}1/d$. The latter divisor sum is at most
+$N/\varphi(N)\ll\log L$, and there are $O(L)$ distinct primes.
+The union thus costs $O(L\log L/Z)$. Multiplying both tail
+bounds by $O(L^3)$ proves the theorem by positivity and density.
+\end{proof}
+
+There is also a comparison in which the arithmetic, diagonal and
+continuous terms all carry the same local weights. For an even
+kernel $K$ on the integers let $\mathcal L(K)$ use the distinct
+odd prime powers above with weight $K(b-b')-K(b+b')$, and
+subtract $\sum_{h>0,\,2\mid h}K(h)\SSS(h)J_{w_F,w_G}(h)$.
+The sum excludes $b=b'$ and allows distinct powers of the same
+prime. This form is linear in $K$ on compact tests. For integer
+$q\ge1$ let
+\[
+ V_q=\mathcal L(c_q/q),
+\]
+where $c_q$ is the Ramanujan sum. Its arithmetic square is
+$A_q^*$, and its deleted diagonal coefficient at $b$ is
+$(\varphi(q)-c_q(2b))/q$. This dependence on $b$ includes
+the nonunit labels.
+
+\begin{corollary}[Primitive-frequency tests including the mixed term]
+\label{cor:full-primitive-sines}
+Under Dirichlet GRH fix $0<\rho<1$ and $D>0$. For even $N$
+let $E_N=\|\B\|/\SSS(N)$ and let $H_N$ be the norm, divided by
+$\SSS(N)$, of $\mathcal L(k_{N,S(N)}^{\rm add})$, where the
+kernel is the $1/p$ version of \cref{thm:physical-primitivity}
+and $S(N)$ is its set of large odd prime factors. For
+$\mathcal I_D(N)=\{n\mid N:2\mid n,\ n\ge N/R_{D+6}(N)\}$,
+\begin{align}
+ H_N&\ll_{\rho,D}\max_{n\in\mathcal I_D(N)}E_n+L^{-D},
+ &E_N&\ll_{\rho,D}\max_{n\in\mathcal I_D(N)}H_n+L^{-D}.
+ \label{eq:full-local-sine-transfer}
+\end{align}
+In particular $H_N\to0$ through all even moduli is equivalent
+to the full hypothesis S of \eqref{eq:goal}.
+
+If one instead retains only frequencies of \emph{exact}
+denominator $n$, write $v_n=\|V_n\|$ in native energy, without
+singular-series normalization. Then
+\begin{align}
+ E_N&\ll_D\max_{n\in\mathcal I_D(N)}v_n+L^{-D},
+ &v_N&\ll_D\SSS(N)^2\max_{n\in\mathcal I_D(N)} E_n+L^{-D}.
+ \label{eq:full-exact-sine-transfer}
+\end{align}
+Thus unnormalized decay of the exact-denominator remainder is
+sufficient at all even moduli and is equivalent on each family
+$\SSS(N)\le C$ with $C$ fixed.
+\end{corollary}
+
+\begin{proof}
+Put $B_q^0=\mathcal L(\mathbf1_{q\mid h})$. The nonunit-pair
+bound in the proof of \cref{thm:full-sine-denominators} gives
+$\|B_N^0-\B\|\ll L^2/\sqrt N$. The local
+identities in \eqref{eq:physical-primitive-inversion} apply to
+$\mathcal L$ with coefficients $1/d$ in the additive version.
+There is now a common arithmetic label set at every divisor,
+so the identities are exact on all pairs, including mixed ones.
+
+Here are the uniform bounds needed in their application. On the
+ambient space, all full and restricted sine squares at $q\mid N$
+have norm $O(L^3)$ by \cref{thm:full-sine-denominators}. If one
+input has log support $r\ge H\ge2L$, its sine vector gains
+$O(e^{-H/L})$ relative to the bound $O(L^{3/2})$. This follows
+from the unit-packet individual zero bound used in
+\cref{thm:physical-primitivity} for the characters induced to $N$;
+the geometric tail for all restored bases dividing $N$ costs
+$O(Le^{-H/2})$. A sine diagonal has coefficients between zero
+and two, so the packet estimate of \cref{eq:DMtail} applies also
+to the restored labels. For even $q\mid N$ the unfiltered model
+in ambient energy is $O(\SSS(q)L)$ and costs
+$O(\SSS(q)(1+H)e^{-2H/L})$ with one high input, by the model
+argument in \cref{thm:physical-primitivity}. This argument covers
+negative log supports: on packets $j\le k$ the model vanishes
+for $2e^{k+1}<2$, and for the remaining $k$ the exponential
+in \eqref{eq:Mpacket} is summable also for $j<0$. For odd $q$
+the model is the one at $2q$ since all shifts are even. A
+filtered model obeys the sum of these bounds with weights $1/d$
+on the selected losses.
+
+In \eqref{eq:full-local-sine-transfer} the reciprocal divisor
+product on the selected primes is bounded in terms of $\rho$.
+Cut off both tests smoothly above $(D+6)L\log L$ with a
+transition of width $L$. The preceding bounds cost $O_D(L^{-D})$.
+The terms with loss $d>R_{D+6}$ have the same error by
+\eqref{eq:largeprimedivisortail}. For the other terms the native
+energy is bounded by a constant times the ambient energy on the
+truncated tests, by the weight comparison in
+\cref{thm:physical-primitivity}; for $r<0$ the native weight is
+already at most the ambient weight. The threshold adjustment
+in that theorem applies unchanged, since it only telescopes
+one local shift factor. There is no error from changing the
+allowed bases at the smaller modulus. Replacing $B_n^0$ by the
+original form at the retained even divisors costs a power saving.
+Summing the coefficients, with $\SSS(n)\le\SSS(N)$, proves
+\eqref{eq:full-local-sine-transfer}.
+
+For all primes together, Ramanujan's divisor identity and its
+M\"obius inverse give on the common labels
+\[
+ B_N^0=\sum_{d\mid N}\frac1d V_{N/d},\qquad
+ V_N=\sum_{d\mid N}\frac{\mu(d)}d B_{N/d}^0 .
+\]
+When $q$ is odd, every arithmetic and model shift is even,
+so $B_q^0=B_{2q}^0$ and $V_q=2V_{2q}$, using $c_2(h)=1$
+on even shifts. Thus each retained $q$ has an even representative
+in $\mathcal I_D(N)$. In the model bounds one now uses
+$\sum_{d\mid N}1/d\le N/\varphi(N)\ll\SSS(N)\ll\log L$,
+instead of the bounded product. The preceding cutoff and tail
+estimates still cost $O_D(L^{-D})$ even before normalization:
+the tail is $L^{-D-6+o(1)}$ times at most $O(L^3(\log L)^2)$.
+In the first identity the sum of the weights divided by
+$\SSS(N)$ is bounded. In the inverse identity the sum of the
+weights times the singular series of the even representatives
+is $O(\SSS(N)^2)$. These are the two estimates in
+\eqref{eq:full-exact-sine-transfer}. The even representatives
+are divisors of $N$, so the bounded-series family is closed
+under the comparisons.
+\end{proof}
+
+\subsection{Cancellation of the sampled major arcs with the continuous model}
+
+Put $\eta=1/100$, $Y=N^{1+\eta}$, $X=N^{1-2\eta}$ and
+$Q=B=N^{1/12}$. On $\mathbb R/\mathbb Z$ use the arcs of radius
+$B/N$ around the reduced fractions $a/r$ with $1\le r\le Q$.
+They are disjoint for large $N$. Denote their complement by
+$\mathfrak m$, and set
+$H_Q=\sum_{r\le Q}\mu(r)^2/\varphi(r)$. Let $F_0$ be $F$
+multiplied by a smooth physical cutoff zero for $x\le X$ and
+one for $x\ge2X$, with bounded log derivative. Use the same
+multiplier for $G_0$.
+
+\begin{theorem}[A minor-arc formula on a growing window at every modulus]
+\label{thm:sampled-major-arc-model}
+Under Dirichlet GRH, for unit tests supported in $x,y\le Y$
+at every sufficiently large even $N$,
+\begin{align}
+ \B(F,G)={}&\frac2N\sum_{\substack{0\le k<N\\k/N\in\mathfrak m}}
+       S_{F_0}(k/N)\overline{S_{G_0}(k/N)}
+ -\int_{\mathbb R}(v-H_Q)F_0(v)\overline{G_0(v)}\,\ud v
+ +O(N^{-1/400}).
+ \label{eq:sampled-major-arc-model}
+\end{align}
+For every fixed $D>0$ the sum may further be restricted to
+$\gcd(k,N)\in\mathcal T$ of \cref{thm:full-sine-denominators}
+with total error $O_D(L^{-D})$. In particular the restricted norm
+on this window is determined, to that accuracy, by the minor-arc
+square and the explicit diagonal in \eqref{eq:sampled-major-arc-model}.
+
+More precisely keep the radius $B/N$ fixed and retain only arcs
+with $Q_1<r\le Q_2$, where $N^{1/16}\le Q_1\le Q_2\le N^{1/12}$.
+On $[X,Y]$ the full grid sine pairing on these arcs, with weight
+$2/N$, is
+\begin{equation}
+ \log(Q_2/Q_1)\int_{\mathbb R}F(v)\overline{G(v)}\,\ud v
+                  +O(N^{-1/100})
+ \label{eq:sampled-arc-shell}
+\end{equation}
+uniformly on the unit energy balls. In particular the entire band
+between the two endpoint powers contributes $L/48$ times the
+log-coordinate inner product to this precision.
+\end{theorem}
+
+\begin{proof}
+The pieces with either input below $2X$ have product at most
+$2XY=2N^{2-\eta}$. The bounded cutoff multipliers and
+\cref{thm:subcritical} with product parameter $N^\eta/2$ show
+that replacing $(F,G)$ by $(F_0,G_0)$ costs
+$O(\SSS(N)N^{-\eta/2})$. In the rest of the proof both tests
+are thus supported in $[X,Y]$ and have bounded energy. Drop
+the subscripts and put
+$u_F(\beta)=\int w_F(x)\sin(2\pi\beta x)\,\ud x$.
+
+On an arc $\alpha=a/r+\beta$ one has uniformly
+\[
+ S_F(\alpha)=\frac{\mu(r)}{\varphi(r)}u_F(\beta)
+        +O\big(\sqrt r\,L^3(1+|\beta|Y)\big).
+\]
+Indeed the GRH prime number theorem for each Dirichlet character
+gives a partial-sum error $O(\sqrt x\log^2(2rx))$ for the von
+Mangoldt weights on $[2,x]$. Expanding the additive phase on
+units modulo $r$ has sum of absolute Fourier coefficients at most
+$\sqrt{\varphi(r)}$ by Parseval. The principal coefficient is
+$c_r(a)/\varphi(r)=\mu(r)/\varphi(r)$. Powers at nonunit bases
+and the omitted powers of two cost $O(\log^2(2rx))$ in these
+partial sums. Apply partial summation with $w_F(x)e^{2\pi i\beta x}$:
+$\int\sqrt x\,|w_F'(x)|\,\ud x\ll\sqrt L$ and
+$\int\sqrt x\,|w_F(x)|\,\ud x\ll Y$. Taking the difference of
+the two exponential phases gives the sine estimate also for
+complex $F$.
+
+There are $O(B)$ grid points per arc. In the grid norm with weight
+$2/N$, the error vector is therefore
+$O(L^3 N^{-1/2+\eta} Q^{3/2}B^{3/2})$.
+The main vector has norm $O(L^2(BY/N)^{1/2})$ by
+$|u_F|\ll\sqrt Y$ and $\sum_{r\le Q}1/\varphi(r)\ll L^2$.
+Cauchy--Schwarz shows that the replacement in the major-arc
+pairing costs $O(N^{-1/10})$ with the stated parameters.
+
+On the arc at $a/r$ the main vector samples $\beta=(k-z)/N$,
+$z=aN/r$, with $|k-z|\le B$. Complete $k$ to all integers.
+Integration by parts gives
+$|u_F(\beta)|\ll X^{-1/2}/|\beta|$ because
+$\int |w_F'|\ll X^{-1/2}$. Summing the squared tail over
+$k$ and then over $a,r$ bounds the completion error in the
+pairing by $O(L^2N/(XB))$. Poisson summation and the sine product
+identity give exactly
+\[
+ \frac2N\sum_{k\in\mathbb Z}u_F((k-z)/N)
+                     \overline{u_G((k-z)/N)}
+ =\int F\overline G+
+       \sum_{j\ge1}\cos(2\pi jz)J_{w_F,w_G}(jN).
+\]
+The zero translate gives the integral, and the reflected zero
+translate has no intersection with positive supports. Summing
+over reduced $a$ with weight $\mu(r)^2/\varphi(r)^2$ gives
+$H_Q\int F\overline G$ and the first $Q$ denominators of the
+singular series on each translate $jN$.
+
+For even $h$ the full coefficient
+$\sum_{r\ge1}\mu(r)^2c_r(h)/\varphi(r)^2$ equals $\SSS(h)$ by
+its Euler factors. Its tail is $O_\epsilon(Q^{-1/2}h^\epsilon)$:
+use $|c_r(h)|\le(r,h)$ for squarefree $r$ and expand
+$(r,h)=\sum_{d\mid(r,h)}\varphi(d)$ in the convergent sum
+after inserting $(r/Q)^{1/2}$. Each shift integral is $O(1)$
+by $\|w_F\|_2=\|F\|_2$ and there are at most $2Y/N$ shifts.
+Thus their total error is $O_\epsilon(N^\eta Q^{-1/2}Y^\epsilon)$.
+The major arcs have now supplied $\mathcal M_N+H_Q\int F\overline G$
+up to $O(N^{-1/50})$, taking $\epsilon$ small.
+
+Finally $D_{\rm odd}(F,G)=\int v F(v)\overline{G(v)}\,\ud v+
+O(L^5 X^{-1/2})$. The proper-power diagonal obeys this error
+bound by the dyadic estimate preceding \eqref{eq:ppchar}. On
+ordinary primes use $\sum_{p\le x}\log p=x+O(\sqrt x\log^2 x)$
+and partial summation against $(\log x)w_F(x)\overline{w_G(x)}$;
+its derivative integrated with weight $\sqrt x$ is
+$O(L X^{-1/2})$ by Cauchy--Schwarz in log coordinates.
+Subtract this diagonal and the continuous form in
+\cref{thm:full-sine-denominators}, using its full-grid comparison
+with error $O(L^2/\sqrt N)$. Combining the errors gives
+\eqref{eq:sampled-major-arc-model}. For the additional denominator
+restriction the deleted minor-arc square is bounded in positive
+form order by the whole omitted square in
+\cref{thm:full-sine-denominators}. This gives the additional cutoff.
+
+For \eqref{eq:sampled-arc-shell}, apply the major-arc computation
+at both cutoffs with the same radius. Even at $Q_1=N^{1/16}$,
+$N^\eta Q_1^{-1/2}Y^\epsilon=O(N^{-1/50})$ for sufficiently
+small $\epsilon$. The shift terms cancel between the two formulas.
+To evaluate the difference of diagonal coefficients, factor the
+Dirichlet series of $\mu(r)^2/\varphi(r)$ as $\zeta(1+s)G(s)$,
+where $G$ has local coefficients $g(p)=1/(p(p-1))$,
+$g(p^2)=-g(p)$ and $g(p^k)=0$ for $k>2$. Thus $G(0)=1$ and
+$\sum_d |g(d)|d^{1/3}<\infty$. Convolving with the harmonic
+sum gives $H_Q=\log Q+\gamma+G'(0)+O(Q^{-1/4})$, where
+$G'(0)=\sum_p(\log p)/(p(p-1))$. The error follows by using the
+absolute $1/3$ moment on the tails, including the logarithm.
+Subtraction proves the uniform band estimate.
 \end{proof}
 
 \section{Norm decay of the progression profiles near the square of the modulus}
