@@ -265,6 +265,12 @@ to infinity whenever the upper edge of the prime-only form tends to zero.
 using character-dependent zero sums at heights between $1/T$ and
 $T$, where $T=o(\log N)$ and $1/T$ is larger than $1/\log N$
 by a factor tending to infinity.
+\Cref{thm:conductor-twist-mixed} bounds the contribution of the
+mean at each exact conductor within each twist group, in both
+mixed windows.
+\Cref{cor:conductor-mean-support} also localizes the conductor-mean
+term in the prime-only norm $P_N(A)$ to two inputs above a threshold
+of size $N^{2-o(1)}$.
 \Cref{thm:criticalprofiles} bounds those sums near the square
 of the modulus using equidistribution in progressions with
 factored moduli.
@@ -12454,6 +12460,233 @@ $O(\delta(H+L)\sqrt D)=O(1/\log\log L)$. Orthogonal projection
 does not increase the rounding error. Assign endpoints to bins
 inside the retained set, keeping the cut at $u$ open and the cut
 at $T$ closed in absolute value.
+\end{proof}
+
+\subsection{A bound for the mixed contribution from conductor averages}
+
+For any $d\mid N$ partition the odd characters modulo $N$ by
+the pair $(\chi\mathcal H_d,q_\chi)$, where $q_\chi$ is the
+exact primitive conductor. Write $Q_d$ for averaging on each
+nonempty part, with the uniform character measure. This is an
+orthogonal projection. At $d=N$ the partition is by conductor alone.
+
+\begin{theorem}[Conductor averages in the near and far mixed tests]
+\label{thm:conductor-twist-mixed}
+Use $A=L^2(\log L)^4$, $b=\log(2A)$ and the small vector $c(F)$
+of \cref{thm:far-twisted-ordinates}. Set $B_{\mathcal R}=\sqrt b$
+if every selected row is an ordinary prime and $B_{\mathcal R}=b$
+otherwise. For each fixed $\epsilon>0$, uniformly in $d\mid N$,
+$\mathcal R$ and unit small tests at all sufficiently large even $N$,
+\begin{equation}
+ \|Q_d c(F)\|_\chi\ll_\epsilon B_{\mathcal R}d^{-1/2+\epsilon}.
+ \label{eq:conductor-small-projection}
+\end{equation}
+This estimate uses no zero-location hypothesis.
+
+Under Dirichlet GRH replace the large prime vector in either mixed
+test by $(1-Q_d)U_{\rm pr}(G)$. The change in the normalized form
+norm, with or without its small-side projection, is at most
+\[
+ \ll_\epsilon B_{\mathcal R}d^{-1/2+\epsilon}
+ \begin{cases}
+ \sqrt{(L+P)/\sigma}, & I_1,\\
+ r_N/\sqrt\sigma, & I_2,
+ \end{cases}
+\]
+where $r_N$ is as in \cref{cor:far-small-primes}. For $d=N$ the
+change is $O_\epsilon(N^{-1/2+\epsilon})$ on both windows,
+without any bound assumed on $P$.
+
+In the criterion of \cref{thm:far-twisted-ordinates}, one can
+center the far bin counts by $Q_d$ for any $d\mid N$ satisfying
+$d\ge b^{1+\eta}$, for fixed $\eta>0$. In the near matrix one
+can center the large prime vector by $Q_{d'}$ for any divisor
+$d'\ge L^{1+\eta}$. These choices preserve the equivalence with
+\eqref{eq:goal}, including along moduli where the divisors used
+in the two windows differ.
+\end{theorem}
+
+\begin{proof}
+For $g\mid N$ the coarse projection $\Pi_g c$ retains precisely
+the rows $n\equiv\pm1\bmod g$, by even-character orthogonality.
+We first show, for every fixed integer $s\ge2$,
+\begin{equation}
+ \|\Pi_g c(F)\|_{2s,\mathrm{odd}}
+ \ll_{s,\epsilon} B_{\mathcal R}g^{-1/2+\epsilon}.
+ \label{eq:conductor-row-moment}
+\end{equation}
+For large $N$ we have $2(2A)^s<N$. Expanding the $2s$th moment
+and using odd-character orthogonality therefore gives precisely
+the moment obtained by replacing the values at unit primes by
+independent uniform unit complex numbers. Group the terms by
+prime base $p$, and let $M_p$ be the sum of the absolute values
+of their coefficients after the residue restriction. Each group
+is centered. In the expansion every contributing base occurs at
+least twice, so the moment is $O_s((\sum_p M_p^2)^s)$, by grouping
+equal indices and using $\sum_p M_p^j\le(\sum_p M_p^2)^{j/2}$
+for $j\ge2$.
+
+Cauchy--Schwarz over exponents with weights $k^{-2}$ and
+$k\Lambda(p^k)=\log(p^k)$ give
+\[
+ \sum_p M_p^2\ll
+ \sum_{\substack{2\le n\le2A\\n\equiv\pm1\bmod g}}
+       \frac{(\log n)^2}{n}|F(\log n)|^2 .
+\]
+On a packet $J=[j,j+1]$ with $j\ge0$ integral, the reciprocal
+mass of these integers is $O(1/g)$: if the packet meets a row,
+$e^{j+1}\ge g-1$, and each class has $O(1+e^j/g)$ entries.
+Also $\sum_j\sup_J|F|^2\ll1$ by local Sobolev and the energy
+bound on $r\ge0$. This gives $O(b^2/g)$ for the squared sum.
+For ordinary-prime rows, retain only primes on the right. If
+$e^j\ge(2g)^2$, Brun--Titchmarsh \cite{MontgomeryVaughanSieve}
+bounds their number in the packet by $O(e^j/(\varphi(g)(1+j)))$,
+using the prime count up to $e^{j+1}$ in the two reduced classes.
+On the other packets $\log n\ll\log(2g)$, so integer counting
+there suffices. The total squared bound is then
+$O(b/\varphi(g)+\log^2(2g)/g)$. This proves
+\eqref{eq:conductor-row-moment} in both cases.
+
+Fix a coset $C=\chi_0\mathcal H_d$. Let $h$ be the product of
+those $p^a\Vert d$ for which the local conductor exponent of
+$\chi_0$ is greater than $a$. Their conductor exponents are fixed
+on $C$, as are the local characters outside $d$. The other local
+conductors have product $q\mid d/h$. Denote the stratum of exact
+product $q$ by $S_q$. For $e\mid q$ let $E_e$ be the subset of
+$C$ where that product divides $e$. Every nonempty $E_e$ is a
+coset of $\mathcal H_{he}$: the ratio of two of its characters
+is an even twist of conductor dividing $he$, and all such twists
+preserve membership.
+
+If $S_q$ is nonempty, then $|S_q|\ge4^{-\omega(d)}\varphi(hq)$.
+Indeed, fix the local parities of one member. At each factor of
+$h$ at least half the local twists have the prescribed twist
+parity. At a factor $p^v\Vert q$ at least $\varphi(p^v)/4$
+primitive local characters have the prescribed character parity
+whenever it occurs. For $v=1$ delete the principal character
+from the two parity counts, and for $v\ge2$ subtract the
+corresponding counts modulo $p^{v-1}$. At $2$ there is no
+primitive character of conductor $2$, and at $4$ the single
+primitive character is odd. The factors with local conductor
+one each give one choice. Multiplication of these counts proves
+the claim, also when the global parity allows only one pattern.
+
+By M\"obius inversion the sum of $c(F)$ on $S_q$ is the signed
+sum of its sums on $E_e$ for $e\mid q$. On a nonempty such
+$E_e$ the latter sum is exactly $|E_e|\Pi_{he}c$ evaluated there.
+Cauchy--Schwarz in the divisor sum bounds the contribution of
+$S_q$ to $\|Q_dc\|_\chi^2$ by
+\[
+ \tau(d)\sum_{e\mid q}\frac{|E_e|}{|S_q|}
+          \int_{E_e}|\Pi_{he}c|^2\,\ud\Pr_{\rm odd},
+\]
+omitting empty sets. Here $|E_e|/|S_q|\le4^{\omega(d)}$.
+For fixed $h,q,e$, the union of the indicated $E_e$ over
+participating cosets has measure at most
+$|\mathcal H_{he}|/|\mathcal H_d|\ll\varphi(he)/\varphi(d)$.
+Put $g=he$. H\"older and \eqref{eq:conductor-row-moment} bound
+the integral on this union by
+\[
+ \ll_{s,\alpha} B_{\mathcal R}^2 g^{-1+2\alpha}
+                   (\varphi(g)/\varphi(d))^{1-1/s}
+ \qquad(\alpha>0).
+\]
+There are at most $\tau(d)^3$ triples. Since $g\mid d$,
+$\varphi(g)/\varphi(d)\ll_\alpha (g/d)d^\alpha$.
+The divisor factors are $O_\alpha(d^\alpha)$ after adjusting
+$\alpha$. Choosing $s$ sufficiently large and then $\alpha$
+sufficiently small in terms of $\epsilon$ proves
+\eqref{eq:conductor-small-projection}.
+
+The discarded pairing is $\langle Q_dc,U_{\rm pr}(G)\rangle_\chi
+/\sigma$. The vector estimates in the proofs of
+\cref{thm:small-input-gram,cor:far-small-primes} give the two
+window bounds. For $d=N$ use instead the GRH bound $O(L)$ for
+the prime vector from \cref{eq:Utail,eq:ppchar}, absorbing log
+factors by decreasing the exponent loss. For binned zero data
+the truncation and rounding errors in the proof of
+\cref{thm:far-twisted-ordinates} bound the character norm of the
+vector error before pairing. Contraction of $1-Q_d$ thus preserves
+their stated normalized error bound. In the equivalence $P\to0$
+is required in both directions. Then $r_N=O(1)$, and for the
+far ordinary-prime rows $\sqrt b\,d^{-1/2+\epsilon}=o(1)$ at
+the stated cutoff if $\epsilon$ is small enough. For the near
+rows the bound $b(d')^{-1/2+\epsilon}\sqrt L=o(1)$ holds by
+the same choice. This proves the equivalence.
+\end{proof}
+
+\begin{corollary}[Support needed for the conductor means in the full and prime-only forms]
+\label{cor:conductor-mean-support}
+Write $U$ for either the full or the ordinary-prime character
+vector and define
+\[
+ X_*=\left(\frac{\varphi(N)}{\tau(N)^2 L^6}\right)^2
+       =N^{2-o(1)}.
+\]
+Under Dirichlet GRH, for unit tests $F,G$ with physical support
+of $F$ in $x\le X_*$ and arbitrary support of $G$,
+\begin{equation}
+ |\langle Q_NU(F),Q_NU(G)\rangle_\chi|\ll L^{-2}.
+ \label{eq:conductor-mean-support}
+\end{equation}
+For support $x\le N^{2-\eta}$, $0<\eta<2$ fixed, the bound is
+$O_{\eta,\epsilon}(N^{-\eta/2+\epsilon})$.
+
+Choose a smooth cutoff $\theta$ in the log coordinate, zero for
+$x\le X_*/2$ and one for $x\ge X_*$, with bounded log derivative.
+In either full-space character square, or on the support defining
+$P_N(A)$, one may replace $\langle U(F),U(G)\rangle_\chi$ by
+\[
+ \langle(1-Q_N)U(F),(1-Q_N)U(G)\rangle_\chi
+ +\langle Q_NU(\theta F),Q_NU(\theta G)\rangle_\chi
+\]
+at cost $O(L^{-2})$ in unnormalized form norm. The first term is
+the average of the covariances within each primitive conductor.
+The same substitution in the physical forms retains their original
+diagonal and continuous terms.
+\end{corollary}
+
+\begin{proof}
+For a unit test supported in $x\le X$, $X\ge2$, primitive-character
+orthogonality gives the following bound before using GRH:
+\[
+ \|Q_NU(F)\|_{1,\mathrm{odd}}
+ \ll \frac{\tau(N)^2\sqrt X\log(2X)}{\varphi(N)} .
+\]
+Indeed this norm is $2/\varphi(N)$ times the sum over $q\mid N$
+of the absolute character sums of $\ell_\chi(F)$ at conductor $q$,
+with the selected arithmetic rows. For a unit $n$ the odd primitive
+character sum at $q$ is
+$\tfrac12\sum_{e\mid q}\mu(q/e)\varphi(e)
+(\mathbf1_{n\equiv1\bmod e}-\mathbf1_{n\equiv-1\bmod e})$.
+For either class the reciprocal square roots of $2\le n\le X$ sum
+to $O(\sqrt X/e)$: the possible entries have the form $je\pm1$
+with $j\ge1$, up to the coincident classes at $e=1,2$ which satisfy
+the same bound. Sobolev point evaluation bounds $|F(\log n)|$.
+Summing over $e\mid q\mid N$ proves the estimate.
+
+For any fixed even $s\ge4$ the GRH moment bound \eqref{eq:charhighmoment}
+gives $\|U(G)\|_{s,\mathrm{odd}}\ll_s L$. This holds also for
+ordinary primes. Indeed weighted Sobolev evaluation gives
+$|G(\log n)|\ll n^{-1/L}$ for $n\ge2$. The deleted squares cost
+$O(\sum_p(\log p)p^{-1-2/L})=O(L)$ by Chebyshev and partial
+summation, and the sum over higher powers is bounded absolutely.
+Conditional expectation contracts these norms. H\"older and
+interpolation therefore bound the pairing by
+\[
+ \ll_s L^{1+1/(s-1)}
+  \left(\frac{\tau(N)^2\sqrt X\log(2X)}{\varphi(N)}
+       \right)^{(s-2)/(s-1)} .
+\]
+For $X=X_*$ the parentheses are $O(L^{-5})$. Taking $s=4$
+gives \eqref{eq:conductor-mean-support}. Since $\tau(N)=N^{o(1)}$
+and $\varphi(N)=N^{1-o(1)}$, the same formula at $X=N^{2-\eta}$
+with sufficiently large fixed $s$ gives the stated power saving.
+Finally, orthogonally decompose the character square with $Q_N$.
+In its mean term insert $\theta$ on the first test and then the
+second. Each change has one factor supported below $X_*$, and all
+cutoff multipliers have uniformly bounded energy norm. Applying
+\eqref{eq:conductor-mean-support} twice proves the substitution.
 \end{proof}
 
 \section{Norm decay of the progression profiles near the square of the modulus}

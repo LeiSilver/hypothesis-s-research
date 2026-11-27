@@ -18,6 +18,10 @@ Corollary 12.9 refines the mixed-matrix condition at each sufficiently large eve
 
 Theorem 12.10 gives a zero-count version of the remaining far test. With $b=\log(2A)$ and $T=Lb(\log\log L)^2/(\mathfrak S(N)(\log L)^2)$, it uses only ordinates $1/T<|\gamma|\le T$ of the inducing primitive Dirichlet characters. Here $T=o(\log N)$ and $(\log N)/T\to\infty$. The discarded ranges and rounding within the specified bins cost $O(1/\log\log L)$ at each modulus under GRH. Only differences of bin counts from their averages over even twists enter the pairing. A uniform estimate for the retained weighted sum is still needed.
 
+Theorem 12.11 bounds the contribution from bin counts shared by characters of the same primitive conductor. At every even modulus, subtracting the mean at each conductor changes either mixed prime form by $O_\epsilon(N^{-1/2+\epsilon})$ under GRH. The theorem also permits averages within smaller groups of twists at fixed conductor. The remaining far estimate concerns variation among characters inside these groups.
+
+Corollary 12.12 also applies to $P_N(A)$ itself. Decompose its character square into the average covariance within each primitive conductor and the product of the conductor means. The latter costs $O((\log N)^{-2})$ in unnormalized form norm whenever either input is supported below $X_*=(\varphi(N)/(\tau(N)^2(\log N)^6))^2=N^{2-o(1)}$. The within-conductor covariance on general supports and the means with two large inputs remain in the form.
+
 - [Manuscript (PDF)](output/pdf/hypothesis_s_paper.pdf)
 - [LaTeX source](output/pdf/hypothesis_s_paper.tex)
 - [Lean verification of the least-prime divisor split, logarithm weight, and factor-count inequality](formalization/LeastPrimeSplit.lean)
