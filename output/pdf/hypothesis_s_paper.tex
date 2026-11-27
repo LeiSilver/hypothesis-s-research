@@ -87,9 +87,9 @@ when $0<\eta<1/3$. For inputs above
 $N^\delta$, the power saving holds through the exact product
 cutoff $xy\le N^{2+\gamma}$ for $0<\gamma<\delta/2$ and
 every fixed $0<\delta<1$.
-For moduli with two suitably sized prime factors, a
-product cutoff at $N^2(\log N)^B$ gives mean-square decay
-with arbitrary test supports, for every fixed $B\ge0$.
+For even moduli with the two divisors specified in Section~13,
+Dirichlet GRH gives mean-square decay with arbitrary test supports
+uniformly over sharp caps from $N^2$ to $N^2(\log N)^B$.
 At each modulus, all but $O(\log N\log\log N)$ proper prime
 powers can be removed from the arithmetic form while preserving
 the full-norm smallness criterion.
@@ -131,6 +131,23 @@ They also verify the same Dirichlet statements in the shorter
 Lean development released on 25 November 2026~\cite{ShortGRH}.
 The notation $\grh(N)$ in individual statements specifies the
 modulus-specific zero-location input used in each argument.
+
+\paragraph{Status of the proof under Dirichlet GRH.}
+For $L=\log N$ and $A=L^2(\log L)^4$, \cref{thm:small-input-gram}
+reduces the unrestricted goal \eqref{eq:goal} to the vanishing
+of both the ordinary-prime form norm $P_N(A)$ and the mixed
+matrix quantity $j_k$ as $N$ runs through all even moduli.
+The first permits arbitrarily large inputs above $A$. The second
+measures the signed progression rows \eqref{eq:pprows}.
+Both limits remain open. On each fixed window $x,y\le RN$,
+\cref{thm:quantitativenormexceptions,thm:window-probe-variance}
+give a mean-square estimate with a possible exceptional set.
+For the sharp critical product range on the factored family
+$\mathcal G(Y)$, \cref{thm:power-small-factors} already covers
+all input sizes in mean square using GRH. The intermediate
+range in \cref{thm:unconditional-upper-inputs} concerns the
+estimates obtained independently of GRH. Neither averaged
+statement supplies the two limits above through all even moduli.
 
 The norm in \cref{eq:goal} is a supremum over test functions whose supports
 may move with $N$. When both supports lie in $(N/3,2N/3)$, the only
@@ -3112,6 +3129,12 @@ including the negligible repeated factors. Dividing the remaining
 lower bound by $c\,c_3(5)$ gives
 $4(\log(3/2)-c_4(5))/c_3(5)>3.84$ by the same recurrence.
 \end{proof}
+
+The following exceptional-zero results consider the alternative
+in which a primitive quadratic character has a real zero above
+$1/2$. Dirichlet GRH excludes this premise. These implications
+describe the fixed Goldbach test and supply no input to the
+proof of \eqref{eq:goal} under GRH.
 
 \begin{proposition}[The fixed test in the range of an exceptional real zero]
 \label[proposition]{prop:single-test-exceptional-character}
@@ -11954,6 +11977,16 @@ tends to zero exactly when $V_N(R)$ does. For $R=1$ the sum
 in \cref{eq:window-probe-variance} has just one term.
 \end{theorem}
 
+With Dirichlet GRH, the first inequality and
+\cref{thm:quantitativenormexceptions} give, for fixed $R$,
+\[
+ \sum_{\substack{Y\le N\le2Y\\2\mid N}} V_N(R)^2
+        \ll_R Y^{1/2}(\log Y)^C
+\]
+with an absolute $C$. Thus at threshold $(\log Y)^{-D}$ the
+number of possible exceptions is $O_R(Y^{1/2}(\log Y)^{C+2D})$.
+The pointwise criterion still requires control on those moduli.
+
 For $R=1$, put $z=\min(t,1/2)$ and
 $q(u)=\sqrt u\min(u,1/2-u)$ on $[0,1/2]$. Then the sole
 cumulative function is the weighted Goldbach discrepancy
@@ -18237,9 +18270,15 @@ For every fixed $B\ge0$ and $D>0$, unconditionally,
 The same bound holds for the pair restriction
 $\min(x,y)\le N^\eta$, $xy\le S$. The set
 $\mathcal G(Y)\setminus\mathcal F(Y)$ contains $\gg Y$
-moduli. Under global Dirichlet GRH, \cref{eq:productfactored}
-holds with $\mathcal G(Y)$ in place of $\mathcal F(Y)$ for the
-full sharp product restriction.
+moduli. Under global Dirichlet GRH, let $E_N^{\rm cap}(S)$ in the
+following display denote the unrestricted normalized norm with
+the sharp pair mask $xy\le S$ in both terms of \cref{eq:form}.
+Then, for every fixed $B\ge0$ and $D>0$,
+\[
+ \sum_{N\in\mathcal G(Y)}\sup_{N^2\le S\le N^2(\log N)^B}
+ E_N^{\rm cap}(S)^2\ll_{B,D}Y(\log Y)^{-D}.
+\]
+This includes the fixed cap of \cref{eq:productfactored}.
 \end{theorem}
 
 \begin{proof}
@@ -18355,12 +18394,21 @@ sum in each band. Each modulus has only boundedly many such
 choices since all four primes exceed $Y^{0.0198}$. This proves
 the density assertion.
 
-Finally apply the low/high test partition in the proof of
-\cref{thm:productfactored}. Its two high pieces are covered
-by \cref{thm:productwindow} under global Dirichlet GRH, and its
-low pieces have support at most a fixed power of $\log N$,
-hence below $N^\eta$ eventually. Use \cref{eq:power-small-factors}
-on those pieces and symmetry for the transposed term.
+Finally take $\eta=1/10000$ for the last assertion and put
+$M=(\log Y)^K$. Use the smooth partition of each test from
+\cref{thm:productfactored}, with low support $x\le2M$ and high
+support $x\ge M$; both multiplier norms are bounded. For the
+high-high term take $C_N=S/N^2$ in \cref{lem:criticalmeanmoving},
+with $\varepsilon=1/4$ and $C_0$ depending only on $B$.
+The bound there is $O_B(Y(\log Y)^{B+A_{1/4}-K/4})$. Choose
+$K$ large enough for the desired $D$. The estimate holds for
+arbitrary choices of $C_N$ independently at each modulus, so
+taking a supremum inside the sum costs no extra factor (take
+near-maximizing choices on the finite set of moduli).
+For each term with a low piece, $2M<N^\eta$ eventually and
+\cref{eq:power-small-factors} applies uniformly in the cap,
+with transposition if needed. The triangle inequality in
+$\ell^2(\mathcal G(Y))$ gives the asserted full-input bound.
 \end{proof}
 
 \subsection{An unconditional upper input range at the critical product}
@@ -18863,6 +18911,11 @@ for arbitrary arc functions cannot follow from their size,
 their energy, and the conductor cutoffs alone.
 A uniform estimate through the retained range, including the
 critical region for general moduli, remains open.
+In particular, the uniform-in-cap mean square in
+\cref{thm:power-small-factors} uses GRH and permits exceptional
+members of $\mathcal G(Y)$. The pointwise limits for $P_N(A)$
+and $j_k$ in \cref{thm:small-input-gram} remain the two estimates
+needed for the unrestricted criterion.
 The conditional range in \cref{thm:pairconditional} specifies
 the strength of individual line estimates needed for uniform
 decay below the square of the modulus.
