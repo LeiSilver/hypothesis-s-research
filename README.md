@@ -22,6 +22,10 @@ Theorem 12.11 bounds the contribution from bin counts shared by characters of th
 
 Corollary 12.12 also applies to $P_N(A)$ itself. Decompose its character square into the average covariance within each primitive conductor and the product of the conductor means. The latter costs $O((\log N)^{-2})$ in unnormalized form norm whenever either input is supported below $X_*=(\varphi(N)/(\tau(N)^2(\log N)^6))^2=N^{2-o(1)}$. The within-conductor covariance on general supports and the means with two large inputs remain in the form.
 
+Theorem 12.13 approximates the conductor-mean term on arbitrary supports using only differences of the two progressions $+1$ and $-1$ at divisors $e\mid N$ with $N/e\le R$. For any fixed $D>0$, the positive semidefinite residual has unnormalized norm $O_D(L^{-D})$, where $\log R=(D+4)(\log L)^2/\log\log L$. In the support threshold of Corollary 12.12 the new divisor factor is $\sum_{t\mid N,\,t\le R}2^{\omega(t)}$, where $\omega(t)$ counts distinct prime factors. With $D=2$, the new threshold is at least $L^2 X_*$ at every sufficiently large even modulus. Comparing the within-conductor covariance and the retained high-input term with the diagonal and continuous model remains open.
+
+Equation (12.23) evaluates that retained term without a matrix inverse. It is a positively weighted sum of squared differences between the weighted counts with $\gcd(n-1,N)=N/t$ and $\gcd(n+1,N)=N/t$, over $t\mid N$ with $t\le R$ and nonzero weight. In $P_N(A)$ these counts use ordinary primes. Extending the sum to every divisor recovers the exact conductor-mean form up to $O_\epsilon(N^{-1+\epsilon})$ under GRH.
+
 - [Manuscript (PDF)](output/pdf/hypothesis_s_paper.pdf)
 - [LaTeX source](output/pdf/hypothesis_s_paper.tex)
 - [Lean verification of the least-prime divisor split, logarithm weight, and factor-count inequality](formalization/LeastPrimeSplit.lean)

@@ -271,6 +271,9 @@ mixed windows.
 \Cref{cor:conductor-mean-support} also localizes the conductor-mean
 term in the prime-only norm $P_N(A)$ to two inputs above a threshold
 of size $N^{2-o(1)}$.
+\Cref{thm:conductor-progression-gram} gives an explicit error of
+arbitrary logarithmic order for this term using only the classes
+$\pm1$ at divisors close to $N$, and sharpens the support threshold.
 \Cref{thm:criticalprofiles} bounds those sums near the square
 of the modulus using equidistribution in progressions with
 factored moduli.
@@ -12687,6 +12690,190 @@ In its mean term insert $\theta$ on the first test and then the
 second. Each change has one factor supported below $X_*$, and all
 cutoff multipliers have uniformly bounded energy norm. Applying
 \eqref{eq:conductor-mean-support} twice proves the substitution.
+\end{proof}
+
+\subsection{The conductor means from two residue classes at large divisors}
+
+For $e\mid N$ write $v_e(\chi)=\mathbf1_{q_\chi\mid e}$ on the
+odd characters modulo $N$. Put $h_j=\varphi(j)/2$ for $j>2$ and
+$h_1=h_2=0$, the number of odd characters modulo $j$.
+For $R\ge1$ take $\mathcal E_R=\{e\mid N:N/e\le R\}$ and use
+the real positive semidefinite matrix
+\[
+ K_{ef}=h_{\gcd(e,f)}/h_N,\qquad e,f\in\mathcal E_R .
+\]
+Let $a_n(F)=\Lambda(n)F(\log n)/\sqrt n$, zeroing the proper
+powers for the ordinary-prime form. Define a column $b(F)$ by
+\begin{equation}
+ b_e(F)=\frac{\varphi(e)}{\varphi(N)}
+ \sum_{\substack{n\ge2\\(n,N)=1}}a_n(F)
+    \big(\mathbf1_{n\equiv1\bmod e}-\mathbf1_{n\equiv-1\bmod e}\big).
+ \label{eq:conductor-two-classes}
+\end{equation}
+Write $\Gamma_R(F,G)=b(G)^*K^\dagger b(F)$, with the
+Moore--Penrose inverse to allow dependent columns.
+
+\begin{theorem}[A progression matrix for the conductor means]
+\label{thm:conductor-progression-gram}
+Under Dirichlet GRH fix $D>0$, let $B=D+4$ and put
+\[
+ u=\log L,\qquad v=\log u,\qquad R=\exp(Bu^2/v),\qquad
+ M_N(R)=\sum_{\substack{t\mid N\\t\le R}}2^{\omega(t)}.
+\]
+At every sufficiently large even modulus, for either character
+vector $U$ in \cref{cor:conductor-mean-support}, the form
+$\langle Q_NU(F),Q_NU(G)\rangle_\chi-\Gamma_R(F,G)$ is positive
+semidefinite and has unnormalized norm $O_D(L^{-D})$ on arbitrary
+supports. The order of $K$ is at most $\min(\tau(N),\lfloor R\rfloor)$.
+
+There is an exact diagonal formula for the retained form. Put
+$\alpha_t=\varphi(N/t)/\varphi(N)$ for $t\mid N$ and
+$r_{p,j}=\alpha_{p^j}/\alpha_{p^{j-1}}$. For $t\mid N$ define
+\[
+ H_t(F)=\sum_{\substack{n\ge2\\(n,N)=1}}a_n(F)
+ \big(\mathbf1_{\gcd(n-1,N)=N/t}-\mathbf1_{\gcd(n+1,N)=N/t}\big).
+\]
+Then
+\begin{equation}
+ \Gamma_R(F,F)=
+ \sum_{\substack{t\mid N,\ t\le R\\r_{p,j}<1\ (p^j\Vert t)}}
+  \frac{\alpha_t}{\prod_{p^j\Vert t}(1-r_{p,j})}\,|H_t(F)|^2 .
+ \label{eq:conductor-gcd-squares}
+\end{equation}
+For $t=1$ the product is one. The formula needs no primitive
+character counts or matrix inversion. Extending the sum on the
+right to \emph{all} $t\mid N$ recovers the original conductor-mean
+form up to $O_\epsilon(N^{-1+\epsilon})$ in unnormalized norm.
+The sum of the omitted nonnegative terms with $t>R$ has norm
+$O_D(L^{-D})$ on arbitrary supports.
+
+The bound \eqref{eq:conductor-mean-support} holds with error
+$O_D(L^{-D})$ when one test has physical support below
+\[
+ X_D=\left(\frac{\varphi(N)}{L^{D+3}M_N(R)}\right)^2,\qquad
+ \log(N^2/X_D)\le 2B\,u^2/v+O_D(u).
+\]
+In particular, in the substitution of
+\cref{cor:conductor-mean-support} one may use $\Gamma_R(\theta F,\theta G)$
+for the high mean term, with $\theta$ transitioning between
+$X_D/2$ and $X_D$. The total unnormalized error is $O_D(L^{-D})$.
+\end{theorem}
+
+\begin{proof}
+The vectors $v_e$ have Gram matrix $K$: membership in both families
+is equivalent to induction from $\gcd(e,f)$. Odd-character
+orthogonality gives $b_e(F)=\langle U(F),v_e\rangle_\chi$,
+including the coprimality condition at primes dividing $N$.
+The Gram formula for orthogonal projection identifies $\Gamma_R$
+with the character square projected onto the span of these $v_e$.
+This space is contained in the range of $Q_N$, which proves the
+sign of the difference.
+
+To prove \eqref{eq:conductor-gcd-squares}, put $t_\chi=N/q_\chi$
+and $V_t=\mathbf1_{t\mid t_\chi}=v_{N/t}$. For averages over
+\emph{all} characters, the local losses are independent by the
+Chinese remainder theorem, with
+$\mathbf E V_{p^j}=\alpha_{p^j}$. The Gram matrix of the $V_t$,
+$t\le R$, is identical for the all-character and odd-character
+measures: their product asks for induction from
+$N/\operatorname{lcm}(t,t')\ge N/R^2>2$, where exactly half the
+characters are odd. Thus orthogonalization can use the product law.
+With $V_1=1$, set
+\[
+ W_t=\prod_{p^j\Vert t}(V_{p^j}-r_{p,j}V_{p^{j-1}}).
+\]
+At a fixed prime the factors at different positive levels are
+orthogonal: the higher difference has mean zero and is supported
+where the lower difference is constant. Its squared norm at
+level $j$ is $\alpha_{p^j}(1-r_{p,j})$. Independence shows that
+the $W_t$ are orthogonal, with squared norms
+$\alpha_t\prod_{p^j\Vert t}(1-r_{p,j})$. Expansion into the $V_s$
+is triangular over $s\mid t$ with leading coefficient one, so
+the nonzero $W_t$ span the same retained space. This argument
+also covers the vanishing last difference at the prime $2$.
+
+To compute $\langle U(F),W_t\rangle_\chi$, expand the product.
+For $a\mid\operatorname{rad}(t)$ the coefficient of $V_{t/a}$
+is $\mu(a)\alpha_t/\alpha_{t/a}$. In
+\eqref{eq:conductor-two-classes} the factor for this column is
+$\alpha_{t/a}$, leaving a common coefficient $\alpha_t$. For
+either sign, the resulting sum of divisibility indicators is
+\[
+ \sum_{a\mid\operatorname{rad}(t)}\mu(a)
+ \mathbf1_{(N/t)a\mid n\pm1}
+ =\mathbf1_{\gcd(n\pm1,N)=N/t}.
+\]
+The coefficient is therefore $\alpha_t H_t(F)$. Squaring and
+dividing by the nonzero squared norms gives the formula.
+
+We use two uniform bounds. First, for any fixed $k\ge0$,
+\begin{equation}
+ \sum_{\substack{t\mid N\\ t>R}}\frac{\tau(t)^k}{t}
+ \le L^{-B+o(1)} .
+ \label{eq:weighted-conductor-loss}
+\end{equation}
+With $s=v/u$, the divisor sum weighted by $t^{s-1}\tau(t)^k$
+is at most $\prod_{p\mid N}\sum_{j\ge0}(j+1)^k p^{-j(1-s)}$.
+Its logarithm is $O_k(\sum_{p\mid N}p^{s-1})=o(u)$, as in
+\eqref{eq:largeprimedivisortail}; here $s\le1/4$ eventually.
+Multiplication by $R^{-s}=L^{-B}$ gives the bound.
+
+Second, for every unit test and every odd character,
+$|U_\chi(F)|\ll L^{3/2}$. To see this, cut off smoothly below
+$\log 2$, leaving all arithmetic evaluations intact and a fixed
+positive lower log support. The unit-packet zero estimate in
+the proof of \cref{thm:largeprimeconductors} bounds the individual
+zero sum by $O(L^{3/2})$. In \eqref{eq:poslogexplicit} the trivial
+zeros cost $O(1)$ on this support, and the missing Euler factors
+cost $O(\sum_{p\mid N}(\log p)/(\sqrt p-1))=O(L)$.
+Removing proper powers costs $O(L)$ by the pointwise square and
+higher-power estimates in \cref{cor:conductor-mean-support}.
+
+For the unrestricted divisor sum, use the uniform measure on
+all characters and the vector $Z$ equal to $2U$ on odd characters
+and zero on even ones. Then $\langle Z,V_t\rangle_{\rm all}=
+b_{N/t}$ for every divisor. Under this measure the nonzero $W_t$
+on all divisors form an orthogonal basis of the functions of the
+conductor, by the same product and triangularity argument.
+Consequently the full sum in \eqref{eq:conductor-gcd-squares}
+is exactly the squared norm of the projection of $Z$ onto these
+functions. To compare the two measures, let $a_q$ and $o_q$ be
+the counts of all and odd primitive characters at $q$, and let
+$f_q$ be the odd mean of $U(F)$ there (zero for an empty stratum).
+In the odd norm $|f_q|^2$ has coefficient $2o_q/\varphi(N)$.
+In the all-character projection it has coefficient
+$4o_q^2/(a_q\varphi(N))$ when $a_q>0$. Primitive orthogonality
+at $-1$ gives $a_q-2o_q=\mu(q)+\mathbf1_{2\mid q}\mu(q/2)$,
+where the second summand is used only for even $q$.
+The absolute coefficient difference is therefore at most
+$4/\varphi(N)$. As $|f_q|\ll L^{3/2}$, summing gives form norm
+$O(L^3\tau(N)/\varphi(N))=O_\epsilon(N^{-1+\epsilon})$.
+
+Write $w_t=\|W_t\|_{2,\rm all}^2$. Local independence also gives
+$\mathbf E_{\rm all}|W_t|=2^{\omega(t)}w_t$: a single centered
+indicator difference has absolute mean $2\alpha_{p^j}(1-r_{p,j})$.
+It follows that $|\alpha_t H_t(G)|\ll L^{3/2}2^{\omega(t)}w_t$
+for every unit test. Each nonzero mode thus contributes at most
+$O(L^3 4^{\omega(t)} w_t)$ on the unit ball. Use
+$w_t\le\alpha_t\le N/(t\varphi(N))$, $N/\varphi(N)\ll u$, and
+\eqref{eq:weighted-conductor-loss} with $k=2$. The omitted sum
+has norm $O(L^{3-B+o(1)})$, proving the uniform approximation.
+
+If $F$ is supported in $x\le X$, integer counting in the two
+classes modulo $N/t$, as in \cref{cor:conductor-mean-support},
+gives $|H_t(F)|\ll t\sqrt X\log(2X)/N$. Pair this with the
+preceding bound for $|\alpha_t H_t(G)|$ in each retained mode.
+Using $\alpha_t t/N\le1/\varphi(N)$ gives
+\[
+ |\langle Q_NU(F),Q_NU(G)\rangle_\chi|
+ \ll L^{3/2} M_N(R)\frac{\sqrt X\log(2X)}{\varphi(N)}
+              +L^{3-B+o(1)} .
+\]
+At $X_D$ this is $O_D(L^{-D})$. Since
+$M_N(R)\le\sum_{t\le R}\tau(t)\le R(1+\log R)$, the asserted
+support estimate follows. The cutoff comparison follows by
+applying the one-small-input bound in each argument and the
+projection estimate to the two high tests.
 \end{proof}
 
 \section{Norm decay of the progression profiles near the square of the modulus}
