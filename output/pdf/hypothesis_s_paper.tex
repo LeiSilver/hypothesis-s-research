@@ -234,6 +234,8 @@ the shorter window at every even modulus.
 \Cref{thm:lower-edge} separates the upper and lower bounds for
 the prime-only norm and for the full operator. In both cases
 the lower bound can be tested on two finite-dimensional spaces.
+\Cref{thm:halfcell-upper} shows that the upper bound alone forces
+two-sided norm decay on each fixed multiple of the modulus.
 \Cref{thm:criticalprofiles} bounds those sums near the square
 of the modulus using equidistribution in progressions with
 factored moduli.
@@ -11748,6 +11750,109 @@ inequality of \cref{eq:lower-edge}. The lower inequality follows
 by restriction. On each spline space $v_i$ is the nonnegative
 part of the negative of the smallest generalized eigenvalue,
 using the energy Gram matrix.
+\end{proof}
+
+\subsection{The upper bound alone on macroscopic windows}
+
+For either physical form $B$ of \cref{thm:lower-edge}, let
+$a_R$ be its nonnegative upper spectral bound on $x\le RN$
+and $w_R$ its norm on that same space. Keep the lower support
+constraint $x\ge A$ for the prime-only form.
+
+\begin{theorem}[One-sided control through the half-modulus cells]
+\label{thm:halfcell-upper}
+Uniformly for large even $N$, $1\le R\le N^{1/1000}$ and
+$N^{-1/100}\le\eta\le1/32$, one has
+\begin{equation}
+ w_R\ll R^3 a_R/\eta + R^2\eta+R^{3/2}N^{-1/2}(\log N)^3 .
+ \label{eq:halfcell-upper}
+\end{equation}
+In particular, $R^5a_R\to0$ implies $w_R\to0$ throughout
+this range, and for fixed $R$ one has
+$w_R\ll_R\sqrt{a_R}+N^{-c}$ for an absolute $c>0$ whenever
+$a_R\le1$. These statements hold for the physical forms without GRH.
+For the full physical form and fixed $R$,
+\[
+ d_N^{\rm line}(R)\ll_R\sqrt{a_R}+N^{-c}.
+\]
+Thus the uniform upper bound alone implies the asymptotics on
+each fixed sum and difference line of \cref{thm:macroscopiclines}.
+\end{theorem}
+
+\begin{proof}
+In the scaled variable $u=x/N$, use the open cells
+$(j/2,(j+1)/2)$ for $j\ge0$. A test supported inside one cell
+has zero self-pairing: the absolute difference of two arguments
+is less than $1/2$, and their sum lies strictly between successive
+integers. The arithmetic diagonal is excluded in \cref{eq:form}.
+This also proves the assertion for the continuous model.
+
+Take a unit test $F$ with upper support $RN$. Around every
+positive half-grid point $s=j/2$ put a smooth cutoff equal to one
+for $|u-s|\le\eta/2$ and zero for $|u-s|\ge\eta$, valued in
+$[0,1]$ with derivative $O(1/\eta)$. Their supports are disjoint.
+Multiply $F$ by their sum to obtain $F_b$, and split $F-F_b$
+at the grid points into the cell tests $F_j$. The first cell
+needs no cutoff at zero. All pieces belong to the original
+support space and only $O(R)$ meet the test. They satisfy
+\begin{equation}
+ \NN(F_b)^2+\sum_j\NN(F_j)^2\ll 1+R^2/\eta .
+ \label{eq:halfcell-energy}
+\end{equation}
+Indeed the terms without a differentiated cutoff are bounded
+by the energy of $F$ with bounded overlap. The log derivative
+of a cutoff at $s$ is $O(s/\eta)$ on a log interval of length
+$O(\eta/s)$. The function $W_N^{1/2}F$ is uniformly bounded
+by the weighted $H^1$ estimate following \eqref{eq:split},
+Sobolev embedding, and the bound on $W_N'/W_N$.
+Thus the derivative cost in squared norm at this point is
+$O(s/\eta)$. Summing over $s\le R+\eta$ proves
+\cref{eq:halfcell-energy}.
+
+On the boundary strips the scaled physical weight of $F_b$ is
+bounded absolutely, since $f(u)=u^{-1/2}F(\log(Nu))$ and
+$u\ge1/2-\eta$. We bound the total unsigned mass that these
+strips see in $B(F_b,F_b)$. On each of the $O(R)$ lines with
+shift $bN$, $1\le b\le2R$, the first coordinate runs through
+at most $O(R)$ strips of physical length $2\eta N$.
+When both coordinates are prime they lie between $N/3$ and $RN$.
+The two-linear-form sieve \eqref{eq:uniformsieve} on each padded
+strip gives weighted count $O(\eta N\SSS(bN))$: the logarithms
+of the strip length and both primes are comparable to $\log N$.
+The sieve remainder times the two logarithmic weights is absorbed
+in the same bound. The continuous contribution obeys the same
+length estimate with its line density. Pairs involving a proper
+power cost $O(\sqrt{RN}(\log N)^3)$ on an entire line, since one
+coordinate determines the other. Summing the line densities by
+\eqref{eq:subseries} and using the normalization in \eqref{eq:form}
+gives, for either form,
+\[
+ |B(F_b,F_b)|\ll R^2\eta+R^{3/2}N^{-1/2}(\log N)^3 .
+\]
+
+On the restricted space $K=a_R\langle\cdot,\cdot\rangle_{\NN}-B$
+is positive semidefinite. Its seminorm on $F_j$ is exactly
+$\sqrt{a_R}\NN(F_j)$. On $F_b$ it is at most
+$\sqrt{a_R}\NN(F_b)+|B(F_b,F_b)|^{1/2}$. Apply the triangle
+inequality, square, and bound the squared sum of the energy norms
+by $O(R)$ times \eqref{eq:halfcell-energy}. This bounds $K(F,F)$
+by the right side of \cref{eq:halfcell-upper}; the positive edge
+is already bounded by $a_R$. Take
+$\eta=\min(1/32,\max(N^{-1/100},\sqrt{R a_R}))$.
+The lower cutoff costs $O(R^2 N^{-1/100})=o(1)$ in the stated
+range. The upper cutoff is inactive eventually when $R^5a_R\to0$.
+For fixed $R$ and $a_R\le1$ it changes only the implied constant.
+
+For the line discrepancy, the two ramp tests used to isolate a
+line in \cref{thm:macroscopiclines} are in distinct half-grid
+cells: the image of cell $j$ has index $2b-j-1$ for reflection
+and $2b+j$ for translation. Their energy inner product vanishes
+by disjoint support, and each self-pairing is zero. Cauchy--Schwarz
+for $K$ therefore gives $|B(F,G)|\le a_R\NN(F)\NN(G)$ on these
+tests. In the interval approximation in that proof the resulting
+bound is $O_R(\eta^{-1}a_R+\eta+N^{-c_0})$. Balancing the first
+two terms, with the same lower cutoff on $\eta$ and the total mass
+bound for large $a_R$, proves the last assertion.
 \end{proof}
 
 \section{Norm decay of the progression profiles near the square of the modulus}
