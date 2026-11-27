@@ -3245,9 +3245,6 @@ Uniformly in $b$ and $H$, the mean with weights $N\SSS(N)$ satisfies
 \end{equation}
 In particular, every such interval and class contains some $N$
 with $P_N\ge cV/\eta$ for sufficiently large parameters.
-If $(\log\eta)^2\le V\le\sqrt\eta/2$, the proportion of members
-of $\mathcal J_b$ satisfying this inequality is
-$\gg_\varepsilon(\log\eta)^{-12}$ by ordinary counting.
 \end{proposition}
 
 \begin{proof}
@@ -3316,20 +3313,113 @@ dividing $q$ the local factor is $\ell/(\ell-1)$ if $\ell\mid b$
 and $\ell(\ell-2)/(\ell-1)^2$ otherwise; the factor at two is
 always two. As $N/X=1+o(1)$, the denominator is therefore
 $(1+o(1))XH|A|/\varphi(q)^2$. Division proves the asymptotic.
+\end{proof}
 
-For the counting assertion the pointwise error in the proof of
-\cref{prop:single-test-exceptional-character} gives
-$P_N\ll (V/\eta)(\log\eta)^6$ on $\mathcal J_b$ in the narrower
-range. Both exponential errors there are $o(1/\eta)$ since
-$V\ge(\log\eta)^2$ and $\log q\to\infty$.
-The mean just proved therefore puts a fraction
-$\gg(\log\eta)^{-6}$ of the $N\SSS(N)$ weight on
-$P_N\ge cV/\eta$. The mean of $(\SSS(N)/D_b)^2$ is bounded
-uniformly: expanding the square as above replaces $h(\ell)$ by
-$2h(\ell)+h(\ell)^2$, whose squarefree products sum to
-$O((\log X)^2)$ up to $2X$ and have bounded Euler sum after
-division by $d$. Since the mean of $\SSS(N)/D_b$ is at least
-one, Cauchy--Schwarz gives the claimed ordinary fraction.
+\begin{proposition}[Ordinary moments in an exceptional class]
+\label[proposition]{prop:single-test-zero-class-density}
+Under the hypotheses of \cref{prop:single-test-zero-class-mean},
+let $\mathbb E_b$ be the ordinary mean on $\mathcal J_b$ and put
+$s=V/\eta$. Uniformly in the interval and the exceptional class,
+\[
+ \mathbb E_b P_N\sim 2cs,\qquad \mathbb E_b P_N^2\ll_\varepsilon s^2.
+\]
+In particular, for each fixed $0<t<2$, the proportion of
+$N\in\mathcal J_b$ with $P_N\ge tcs$ is $\gg_{\varepsilon,t}1$.
+\end{proposition}
+
+\begin{proof}
+Retain $A,Q,D_b,z$ from the preceding proof and write $L=\log X$,
+$Y=H/Q$, $D=Q|A|/\varphi(q)^2$ and $U_N=N\SSS(N)P_N$.
+Then $|\mathcal J_b|\sim Y$, $D\asymp D_b$ and
+$\mathbb E_b U_N\sim cXD(1-z^2)$. Fix
+$\delta=\min(1/100,\varepsilon/4)$. For squarefree
+$d\le X^\delta$ coprime to $Q$,
+\begin{equation}
+ \frac{\mathbb E_b[U_N{\bf1}_{d\mid N}]}{\mathbb E_b U_N}
+       \ll_\varepsilon\frac1{\varphi(d)} .
+ \label{eq:single-test-zero-class-lift}
+\end{equation}
+For bounded $d$ the ratio is $(1+o(1))/\varphi(d)$.
+Indeed, on imposing $d\mid N$ the first prime in a pair has
+$|A|\varphi(d)$ admissible residues modulo $qd$. The second
+has the prescribed residue modulo $q$ and is the negative of the
+first modulo $d$. The character induced modulo $qd$ still has
+the exceptional zero: $(1-\beta)\log(3qd)=o(1)$ since $s=o(1)$.
+Apply Theorem~1.1 of \cite{ThornerZamanAP} with modulus $qd$ to
+both primes as in \cref{prop:single-test-zero-class-mean}.
+For the smaller sign factor $1-z\asymp s\ge X^{-o(1)}$,
+so even the inner interval satisfies
+$H(1-z)/\varphi(qd)\ge X^{32/37+\varepsilon/2}$ for large $X$.
+The theorem gives a uniform upper bound by a constant times the
+main term. For bounded $d$ it gives relative error $o(1)$ since
+$\log(qd)=o(L)$. The two prime denominators are
+$\varphi(qd)^2$, giving \eqref{eq:single-test-zero-class-lift}.
+
+The reciprocal singular series on $\mathcal J_b$ is
+\[
+ \frac{D_b}{\SSS(N)}
+   =\sum_{\substack{d\mid N\\(d,Q)=1}}\frac{\mu(d)}{\varphi(d)} .
+\]
+Terms $d>X^\delta$ have total absolute value
+$X^{-\delta+o(1)}$ uniformly in $N$, by the divisor bound and
+$1/\varphi(d)\le d^{-1+o(1)}$. Up to $X^\delta$ the lifted
+estimate dominates the mean of each term against $U_N$ by
+$O_\varepsilon(\mathbb E_b U_N/\varphi(d)^2)$. This majorant
+is summable after division by $\mathbb E_b U_N$. Applying the
+bounded-$d$ asymptotic first and then letting the truncation grow
+gives
+\[
+ \frac{\mathbb E_b[U_N D_b/\SSS(N)]}{\mathbb E_b U_N}
+  =\prod_{\ell\nmid Q}\left(1-\frac1{(\ell-1)^2}\right)+o(1)
+  =D_b/D+o(1),
+\]
+where the product is over primes. The last equality follows from
+the Euler product for $D/D_b$ in the preceding proof. As
+$N/X=1+o(1)$, this proves the ordinary first moment.
+
+For the second moment let $\mathcal P$ be the primes
+$X/3\le p\le2X/3$ with $p\bmod q\in A$ and $\chi(p)=1$, and set
+\[
+ B=\frac{X|A|(1-z)}{L\varphi(q)} .
+\]
+The same prime estimate gives $|\mathcal P|\ll B$ and, for a
+unit $u\bmod d$ and $d$ as in \eqref{eq:single-test-zero-class-lift},
+\[
+ \#\{p\in\mathcal P:p\equiv u\bmod d\}\ll B/\varphi(d).
+\]
+Each ordered pair contributing to $U_N$ has exactly one member
+in $\mathcal P$ with character value $+1$, so
+$U_N\le 2L^2\sum_{p\in\mathcal P}{\bf1}_{N-p\ {\rm prime}}$
+for large $X$ (both primes are below $X$).
+For distinct $p_1,p_2\in\mathcal P$, sieve $N-p_1,N-p_2$ on
+the progression of step $Q$. Primes dividing $Q$ exclude no
+residue of the progression index. At other primes the two
+excluded residues coincide exactly when the prime divides
+$k=p_1-p_2$. Thus \eqref{eq:uniformsieve} and Mertens' product
+bound the number of surviving $N$ by
+\[
+ \ll \frac{Y}{L^2}\left(\frac Q{\varphi(Q)}\right)^2 G(k),
+ \qquad
+ G(k)=\sum_{\substack{d\mid k\\(d,Q)=1}}h(d).
+\]
+Here $\log Y\asymp L$, and the additive sieve error $Y^{2/5}$
+is absorbed. For fixed $p_1$, the sum of $G(p_1-p_2)$ over
+$p_2\ne p_1$ in $\mathcal P$ is $O(B)$. Indeed, for
+$d\le X^\delta$ the congruence estimate costs at most
+$B\sum_d h(d)/\varphi(d)\ll B$, and $p_1>d$.
+For $d>X^\delta$ the divisor sum for each nonzero $k$ is
+$X^{-\delta+o(1)}$ at most, since $h(d)\le d^{-1+o(1)}$.
+The diagonal $p_1=p_2$ costs $O(YB)$ before log weights.
+As $B\ge X^{1-o(1)}$ and $\varphi(Q)=\varphi(q)$, we obtain
+\[
+ \mathbb E_b U_N^2
+   \ll L^4 B+L^2 B^2(Q/\varphi(Q))^2
+   \ll (XDs)^2 .
+\]
+Now $\SSS(N)\ge D_b\asymp D$, proving the second moment for
+$P_N$. The first moment leaves at least
+$(2-t+o(1))cs$ in $\mathbb E_b[P_N{\bf1}_{P_N\ge tcs}]$.
+Cauchy--Schwarz and the second moment give the stated proportion.
 \end{proof}
 
 \section{Certification on the balanced window}

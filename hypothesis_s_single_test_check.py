@@ -339,7 +339,7 @@ def check_exceptional_character_classes():
     two_parts = [(1, {0: 1}), (4, {1: 1, 3: -1}),
                  (8, {1: 1, 3: -1, 5: -1, 7: 1}),
                  (8, {1: 1, 3: 1, 5: -1, 7: -1})]
-    checked = zero_classes = 0
+    checked = zero_classes = lifts = 0
     for two_part, local in two_parts:
         for odd in (1, 3, 5, 7, 11, 15, 21, 35, 105):
             q = two_part*odd
@@ -375,6 +375,16 @@ def check_exceptional_character_classes():
                     # Coefficients of (1-s*z)(1-t*z) for each admissible ordered pair.
                     if any(s+t != 0 or s*t != -1 for s, t in pairs):
                         raise AssertionError(("secondary prime-pair term", q, n))
+                    for divisor in (3, 5, 7, 15, 35):
+                        if gcd(divisor, period) != 1:
+                            continue
+                        lifted_n = divisor * (n * pow(divisor, -1, q) % q)
+                        modulus = q*divisor
+                        admissible = sum(gcd(a*(lifted_n-a), modulus) == 1 for a in range(modulus))
+                        phi_divisor = prod(p-1 for p in factors(divisor))
+                        if admissible != len(pairs)*phi_divisor:
+                            raise AssertionError(("divisible sum in lifted class", q, n, divisor))
+                        lifts += 1
                     vanishing.add(n)
                 checked += 1
             zero_classes += len(vanishing)
@@ -391,7 +401,35 @@ def check_exceptional_character_classes():
             if witness % period not in vanishing:
                 raise AssertionError(("zero-free witness", q, witness))
     print(f"Verified the character and singular-series factors on {checked} even classes "
-          f"and the secondary term on {zero_classes} vanishing classes.")
+          f"and the secondary term on {zero_classes} vanishing classes, with {lifts} CRT lifts.")
+
+
+def check_exceptional_pair_moment():
+    checked = 0
+    for period, residue, p1, p2 in [(6, 0, 11, 41), (8, 4, 13, 37), (30, 0, 17, 101)]:
+        for ell in (2, 3, 5, 7, 11, 13):
+            roots = sum((residue + i*period - p1)*(residue + i*period - p2) % ell == 0
+                        for i in range(ell))
+            if period % ell == 0:
+                expected = 0
+            elif (p1-p2) % ell == 0:
+                expected = 1
+            else:
+                expected = 2
+            if roots != expected:
+                raise AssertionError(("partner sieve", period, p1, p2, ell))
+            checked += 1
+    for n in range(1, 320):
+        for period in (6, 8, 30):
+            ps = sorted(set(p for p in factors(n) if period % p))
+            divisors = [(1, 1)]
+            for p in ps:
+                divisors += [(d*p, -mu) for d, mu in divisors]
+            reciprocal = sum(Fraction(mu, prod(p-1 for p in factors(d))) for d, mu in divisors)
+            if reciprocal != prod(Fraction(p-2, p-1) for p in ps):
+                raise AssertionError(("reciprocal singular series", n, period))
+            checked += 1
+    print(f"Verified {checked} partner-sieve and reciprocal singular-series identities.")
 
 
 def check_switched_logarithmic_sieve():
@@ -548,6 +586,7 @@ def main():
     check_switched_logarithmic_sieve()
     check_interval_proportions()
     check_exceptional_character_classes()
+    check_exceptional_pair_moment()
 
 
 if __name__ == "__main__":
