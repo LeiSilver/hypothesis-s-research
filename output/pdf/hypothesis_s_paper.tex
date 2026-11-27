@@ -239,6 +239,8 @@ two-sided norm decay on each fixed multiple of the modulus, and gives
 a quantitative upper-edge criterion on growing multiples.
 \Cref{thm:window-probe-variance} characterizes fixed-window decay
 by one explicit cumulative integral per positive half-modulus cell.
+\Cref{thm:window-long-divisors} leaves only pairs of long divisors
+in those integrals at every large even modulus, without GRH.
 \Cref{thm:criticalprofiles} bounds those sums near the square
 of the modulus using equidistribution in progressions with
 factored moduli.
@@ -12016,6 +12018,200 @@ is below $c_R$. Otherwise the fixed-line total mass bound suffices.
 The last inequality now follows from \cref{thm:macroscopiclines}.
 \end{proof}
 
+\subsection{Two long divisors in the fixed-window integrals}
+
+Fix $R\ge1$, $0<\epsilon<1/100$ and $L=\log N$. Put
+\[
+ D=\sqrt N\,e^{-\sqrt L},\qquad T=N^{20/39-\epsilon},
+ \qquad Z=N^{45/44-\epsilon}.
+\]
+For $m,n>1$ define
+\[
+ H_D(m,n)=
+ \sum_{\substack{d\mid m,\ e\mid n\\ d,e>D\\
+                  \max(d,e)>T,\ de>Z}}
+       \mu(d)\mu(e)\log(d/D)\log(e/D).
+\]
+On an oriented line $n=\pm m\pm h$ in the window, $h=bN$ with
+$1\le b\le2R$, take any interval $J$ of scaled coordinates
+$m/N$ on which $0<m,n<RN$. Write $\sum_J^*$ for the sum with $m/N\in J$,
+$m,n>1$ and $(m,h)=1$.
+
+\begin{theorem}[Unconditional long-divisor remainder on every line]
+\label{thm:window-long-divisors}
+For each fixed $A>0$, uniformly in the line and in $J$,
+\begin{equation}
+ \sum_J^*\Lambda(m)\Lambda(n)-N\SSS(h)|J|
+       =\sum_J^* H_D(m,n)+O_{R,\epsilon,A}(NL^{-A}).
+ \label{eq:window-long-divisors}
+\end{equation}
+In \cref{eq:window-probe-variance} replace the signed arithmetic
+weight $\Lambda(m)\Lambda(n)$ on each line by $H_D(m,n)$ with the
+starred restriction and discard the continuous density. Denote the
+resulting norm by $\widetilde V_N(R)$. Then
+$|V_N(R)-\widetilde V_N(R)|\ll_{R,\epsilon,A}L^{-A}$.
+In particular $w_R\to0$ exactly when $\widetilde V_N(R)\to0$ on
+the sequence of even moduli under consideration. For complementary
+factors $m=ud$, $n=ve$, the retained sum has
+$\min(u,v)\ll_R N^{19/39+\epsilon}$ and $uv\ll_R N^{43/44+\epsilon}$.
+\end{theorem}
+
+\begin{proof}
+We first give the uniform arithmetic main terms. For $b\le N^C$
+and $N^{1/3}\le X\le N^C$, with $C$ fixed, one has
+\begin{align*}
+ \sum_{\substack{k\le X\\(k,b)=1}}\frac{\mu(k)}{k}
+    &\ll_{A,C} L^{-A},\\
+ \sum_{\substack{k\le X\\(k,b)=1}}\frac{\mu(k)}{k}\log(X/k)
+    &= b/\varphi(b)+O_{A,C}(L^{-A}).
+\end{align*}
+Indeed for $b=1$ these estimates follow by partial summation from
+the classical zero-free-region bound for the summatory M\"obius
+function (see also \cite{LeeLeongMertens}), using the simple
+zero of $1/\zeta(s)$ at one for the
+two limiting constants. For general $b$ convolve $\mu(k)/k$
+with $1/l$ on integers supported on the primes of $b$.
+For $\gamma=1/\log L$ the latter coefficients have absolute
+$l^\gamma$ moment $\prod_{p\mid b}(1-p^{-1+\gamma})^{-1}
+\ll_C L^{O(1)}$. For $p\le L^2$ use $p^\gamma\le e^2$ and
+Mertens' bound, separating the finitely many small primes. The
+larger primes contribute $O_C(1)$ to the logarithm of the product
+since there are $O_C(L)$ of them. Thus $l>\sqrt X$ gives
+arbitrary log saving even after trivial logarithmic factors.
+For $l\le\sqrt X$ apply the unrestricted bounds at $X/l$.
+
+The same convolution proves
+\[
+ M=\sum_{\substack{d\le D\\(d,h)=1}}
+      \frac{\mu(d)\log(D/d)}{\varphi(d)}
+      =\SSS(h)+O_{R,A}(L^{-A}).
+\]
+Here the correction to $\mu(k)/k$ has prime-power coefficient
+$1/p^j$ for $p\mid h$ and $-1/(p^j(p-1))$ for $p\nmid h$,
+$j\ge1$, by multiplying the local series. Its absolute
+$l^\gamma$ moment satisfies the same bound, the extra factors
+being $1+O(p^{-2+\gamma})$. The sum of the correction coefficients
+is $\prod_{p\mid h}(1-1/p)^{-1}
+\prod_{p\nmid h}(1-1/(p-1)^2)=\SSS(h)$ since $h$ is even.
+
+Set $b_d=\mu(d)\log(D/d)$ for $d\le D$, and recall
+$\Lambda_D(m)=\sum_{d\mid m}b_d$ with these short coefficients.
+In either mixed sum $\sum_J^*\Lambda(m)\Lambda_D(n)$ or its
+transpose, extend the prime coordinate to the whole interval
+after retaining only $(d,h)=1$. Extra prime powers have base
+dividing $h$, total weight $O_R(L^2)$, and the other factor costs
+$N^{o(1)}$ by the divisor bound. Each short divisor prescribes
+one reduced class $\pm h\bmod d$. The Bombieri--Vinogradov
+theorem with the maximum over endpoints as stated in
+\cite[Introduction]{AkbaryHambrook}, at height $O_R(N)$,
+gives $N|J|M+O_{R,A}(NL^{-A})$ for each mixed sum: $|b_d|\le L$
+and $D$ is below $\sqrt N/L^K$ for every fixed $K$ eventually.
+Endpoint choices and the restriction to coordinates exceeding
+one have negligible cost.
+
+We detail the sharp-interval use of the coprime divisor
+calculation in \cref{prop:single-test-uniform-coprime}.
+On dyadic divisor scales $D_1,D_2$, the zero frequency for
+one pair of coprime divisors, both prime to $h$, is
+$N|J|\varphi(h)/(hde)$. An incompatible pair contributes zero.
+For a smooth test $F(m/h)$ this follows on inserting
+$\sum_{s\mid(m,h)}\mu(s)$ and taking the zero frequency in
+\cref{eq:single-test-physical-poisson}, with $X=h/s$ and either
+sign of $X$ in the phase. The interval length in this formula is
+replaced by $h\int F$. For bounded separated divisor coefficients
+the total nonzero frequencies per box are bounded by
+$N^{o(1)}\mathcal K(D_1,D_2)$, where
+\[
+ \mathcal K(P,Q)=(PQ)^{17/20}(P+Q)^{1/4}
+                  +(PQ)^{7/8}(P+Q)^{1/8}.
+\]
+Here and below $N^{o(1)}$ permits an arbitrarily small fixed
+power. This is \cite[Theorem~1]{BettinChandeeFractions} with the separation of the
+Fourier amplitude proved in \cref{prop:single-test-uniform-coprime};
+it uses neither GRH nor a M\"obius cancellation estimate. More
+precisely the proof uses the decay of $\widehat F,\widehat F'$
+through order three. For a sharp interval convolve its indicator
+in $m/h$ with a smooth unit-mass kernel of radius $L^{-K}$.
+Its support is bounded in terms of $R$ and three integrations by
+parts give the required decay with constants $O_R(L^{O(K)})$.
+This cost, the divisor count of $h$ and the logarithmic coefficient
+weights are absorbed in $N^{o(1)}$. The smoothing can be removed
+after summing the divisor terms: in the two endpoint strips their
+absolute weight per integer is $O(L^2\tau(|m|)\tau(|n|))$.
+Cauchy--Schwarz and the fourth divisor moment up to $O_R(N)$
+bound the error by $O_R(NL^{C_0-K/2})$ with absolute $C_0$.
+Zero coordinates are excluded by the unit condition, including
+on the padded strips. The smoothed integral preserves the interval
+length. Choose $K$ in terms of $A$. The sharp condition $de\le Z$
+costs only a further $O(L)$ by the Fourier separation in
+\cref{prop:single-test-delete-products}; the endpoint-strip
+bound also holds for this subset.
+
+For the two short sums $D_1,D_2\ll D$, so the nonzero
+frequencies total at most $N^{39/40+o(1)}$. Their zero frequency
+is $N|J|$ times
+\[
+ \frac{\varphi(h)}h\sum_{\substack{d\le D\\(d,h)=1}}\frac{b_d}{d}
+       \sum_{\substack{e\le D\\(e,dh)=1}}\frac{b_e}{e}
+       =M+O_{R,A}(L^{-A})
+\]
+by the restricted logarithmic M\"obius sum above, with a stronger
+saving to absorb $\sum |b_d|/d$. Subtracting the two mixed sums
+and adding the short-short sum shows that the left side of
+\cref{eq:window-long-divisors} equals $\sum_J^*U_D(m)U_D(n)$
+up to the claimed error.
+
+In the long-divisor expansion remove the union of
+$\max(d,e)\le T$ and $de\le Z$. Its square and product pieces
+and their intersection have nonzero frequencies bounded, respectively,
+by $N^{o(1)}T^{39/20}$ or
+$N^{o(1)}(Z^{11/10}D^{-1/4}+ZD^{-1/8})$ as in
+\cref{prop:single-test-delete-products}. Both bounds save a
+fixed power for the stated $\epsilon$. In the zero frequency,
+for each $d$ the deleted $e>D$ form an interval (or a bounded
+union) with $(e,dh)=1$. Partial summation of the first restricted
+M\"obius estimate above gives
+$\sum_e\mu(e)\log(e/D)/e\ll_{R,A}L^{-A}$ on each such interval.
+This absorbs the absolute logarithmic cost of the outer $d$ sum.
+The signs of the two long remainders multiply to give $H_D$.
+This proves \cref{eq:window-long-divisors}.
+
+Replacing units modulo $N$ by units modulo $h$ in the original
+prime counts costs $O_R(L^3)$ per interval since a removed
+coordinate is a power of a prime dividing $h$. For a probe on
+the line $v=v(u)$, put $q_j(u)=\sqrt u\,g_j(v(u))$. Every
+integer is a zero of the extended tent, in particular $v(0)=\pm b$.
+Its Lipschitz bound gives $\sup_{[0,t]}|q_j|+
+\int_0^t|q_j'|\ll_R t^{3/2}$. Partial summation of
+\cref{eq:window-long-divisors}, with the sign of the oriented
+line, gives $|P_j(t)-\widetilde P_j(t)|\ll_{R,\epsilon,A}
+t^{3/2}L^{-A}$ after normalization. As $\int_0^R a(t)^{-1}
+\,\ud t\ll_R1$ uniformly for large $N$, this proves the norm
+comparison even at the singular endpoint. The bounds on $u,v$
+follow from $m,n\le RN$ and the two retained divisor constraints.
+\end{proof}
+
+The original integrals also admit an ordinary-prime version with
+a quantitative lower cutoff. Delete proper powers from either
+arithmetic coordinate and discard $u\le y$ from both parts of
+$\rho_j$, for $0<y\le1/2$. These changes together alter $V_N(R)$
+by $O_R(y^{3/2}+N^{-1/2}L^3)$. Indeed, on each fixed line
+there are $O_R(\sqrt N L)$ pairs involving a proper power.
+The weight $q_j$ up to $t$ is $O_R(t^{3/2})$, so their normalized
+prefix contributes $O_R(t^{3/2}N^{-1/2}L^3)$, sufficient in
+\cref{eq:window-probe-variance}. For $t\ge N^{-1/2}$ the
+two-linear-form sieve on the interval of length $Nt$ bounds
+the ordinary-prime pair weight by $O_R(Nt\SSS(h))$ per line.
+Primes below the sifting level are bounded directly as in
+\cref{thm:halfcell-upper}. Thus the ordinary-prime discrepancy
+prefix is $O_R(t^{5/2})$ up to $t=1/2$. For $1/N\le t<N^{-1/2}$
+the integer count gives $O_R(t^{5/2}L^2)$, and below $1/N$
+only the continuous bound $O_R(t^{5/2})$ is needed.
+In the weighted squared norm the deleted prefix stops at
+$\min(t,y)$: integrate these bounds on $t\le y$, then keep the
+value at $y$ constant for $t>y$. Using $a(t)^{-1}\ll_R
+1+(Nt)^{-1/4}$ gives $O_R(y^3+N^{-1})$ for this squared cost.
+
 \section{Norm decay of the progression profiles near the square of the modulus}
 \label{sec:criticalprofiles}
 
@@ -19189,6 +19385,12 @@ J\'anos Bolyai \textbf{13}, North-Holland, Amsterdam, 1976,
 A.~Chirre and M.~V.~Hagen,
 \newblock \emph{On Goldbach numbers in short intervals},
 \newblock \url{https://arxiv.org/abs/2512.23534}.
+
+\bibitem{LeeLeongMertens}
+E.~S. Lee and N. Leong,
+\newblock \emph{New explicit bounds for Mertens function and the
+reciprocal of the Riemann zeta-function}.
+\newblock \url{https://arxiv.org/abs/2208.06141}.
 
 \bibitem{AkbaryHambrook}
 A.~Akbary and K.~Hambrook,
