@@ -242,7 +242,7 @@ factored moduli.
 \Cref{thm:power-small-factors} gives an unconditional mean-square
 bound up to a power-sized smaller input on a larger family of moduli.
 \Cref{thm:unconditional-upper-inputs} treats all even moduli
-unconditionally above the smaller-input exponent $2/7$ in the
+unconditionally above the smaller-input exponent $4/17$ in the
 critical product range.
 \Cref{thm:fixedrowmeansquare} gives a quantitative mean-square
 estimate for bounded smaller inputs over all even moduli,
@@ -18007,13 +18007,13 @@ on those pieces and symmetry for the transposed term.
 
 \subsection{An unconditional upper input range at the critical product}
 
-For $B\ge0$, put $R_N^*=N^2(\log N)^B$ and fix $0<\epsilon<5/7$.
+For $B\ge0$, put $R_N^*=N^2(\log N)^B$ and fix $0<\epsilon<13/17$.
 Let $U_N(S;\epsilon)$ be the normalized norm of the physical
 form on arbitrary tests with both terms restricted to
 \[
- xy\le S,\qquad \min(x,y)\ge N^{2/7+\epsilon}.
+ xy\le S,\qquad \min(x,y)\ge N^{4/17+\epsilon}.
 \]
-\begin{theorem}[Critical products with smaller input above the $2/7$ exponent]
+\begin{theorem}[Critical products with smaller input above the $4/17$ exponent]
 \label{thm:unconditional-upper-inputs}
 For every fixed $D>0$, unconditionally,
 \[
@@ -18023,14 +18023,14 @@ For every fixed $D>0$, unconditionally,
 \]
 In particular, on $\mathcal G(Y)$, through $N^2\le S\le R_N^*$
 the sharp product form differs in normalized form norm from the
-part with $N^{1/10000}<\min(x,y)<N^{2/7+\epsilon}$ by an error
+part with $N^{1/10000}<\min(x,y)<N^{4/17+\epsilon}$ by an error
 whose squared sum, even after the supremum over $S$, satisfies
 the same bound.
 \end{theorem}
 
 \begin{proof}
 We first prove a maximal line estimate at unequal scales. Let
-$V^{1/6+\delta}\le X\le V$ with fixed sufficiently small $\delta>0$,
+$V^{2/15+\delta}\le X\le V$ with fixed sufficiently small $\delta>0$,
 $J=[V,2V)$, $\lambda=\log(2V)$, and $\sigma=\pm1$. For
 $0<|h|\le4V$ set
 $d(h)=\sup_{I\subset[X,2X)}|\Delta_\sigma(h;I,J)|$, with interval
@@ -18055,19 +18055,60 @@ integral. Hence the product on this region has squared integral
 $O(VX^2\lambda^{-G})$ for any prescribed $G$, on choosing $k$
 sufficiently large.
 
-On each remaining arc outside its core $|\beta|\le\beta_0$,
-use the estimate of Matom\"aki, Radziwi\l\l{} and Tao
-\cite[Proposition~3.4(i)]{MRTLong} on the \emph{larger} dyadic
-sum. For $|\beta|\le2Q/X$ we have
-$|\beta|\le V^{-1/6-\delta/2}$ eventually. The proposition gives
-an integral of $|S_J(a/q+\beta)|^2$ over the annulus of size
-$O(V\lambda^{-G-2k-3})$. Its denominator exponent may be chosen
-larger than $k$ to achieve this saving; then choose $k'$ to
-meet its lower frequency threshold. Changing dyadic endpoint
-inclusion costs $O(\lambda)$ in the sum and is harmless on these
-arcs. If $\beta_1=\beta_0$ the annulus is empty.
-Since $|S_I|\ll X$ and there are $O(Q^2)$ arcs, the required
-squared integral bound follows here as well.
+Set $H=V^{2/15+\delta/2}$, with $0<\delta<1/20$. Uniformly for
+$q\le Q$ and every fixed $M$ we have
+\[
+ \sum_{b\bmod q}^{*}\int_V^{2V}|\Delta\pi(u,H,q,b)|^2\,\ud u
+       \ll_{k,\delta,M} H^2V\lambda^{-M}.
+\]
+Here $\Delta\pi$ counts primes in $(u-H,u]$ in the reduced
+class $b$, less $\varphi(q)^{-1}\int_{u-H}^u\ud t/\log t$.
+Choose $A=30/13+\xi$ with $\xi>0$ so small that
+$1-2/A<2/15+\delta/4$. For $T\ge\max(3,q)$ the modulus is
+$T$-smooth. On $1/2<s\le4/5$, \cite[Theorem~1.2]{ChenGuptaLi}
+then gives $\sum_{\chi\bmod q}N(s,T,\chi)\ll_\xi(qT)^{A(1-s)}$.
+Indeed $1-s\ge1/5$ absorbs the subpower loss. Uniformity follows
+by monotonicity on a sufficiently fine fixed mesh in $s$, using
+the total zero count $O(qT\log(qT))$ near $1/2$.
+For $4/5\le s\le1$ the same bound follows from the log-free
+estimate of \cite[Theorem~1, (1.7)]{JutilaLinnik}.
+Thus Condition~1.2 of \cite{HarmShortAP} holds with $g=1$ and
+$T_0=\max(3,q)$. Its Corollary~2.12 for polylogarithmic $q$
+gives the displayed estimate, since $H$ exceeds $V^{1-2/A}$ by
+a fixed power and its exponential saving absorbs $\lambda^M$.
+
+For reduced $a/q$ form the complex measure
+\[
+ \nu=\sum_{n\in J}\Lambda(n)e(an/q)\delta_n
+       -\frac{\mu(q)}{\varphi(q)}{\bf1}_J(t)\,\ud t .
+\]
+For windows contained in $J$, multiply the prime count by $\log u$
+and sum the reduced classes with phase $e(ab/q)$. Replacing
+$\log u$ by $\log p$ for the primes, and by $\log t$ in the
+integral, costs $O(H^2/V)$ per window after summing the classes.
+Every prime in $J$ is coprime to $q$ and the reduced phases sum
+to $\mu(q)$. Cauchy--Schwarz in $b$ costs $\varphi(q)$ in the
+squared bound, absorbed with $\log^2 u$ by increasing $M$.
+The proper prime powers have total weight $O(\sqrt V\lambda^2)$
+in $J$ and weight $O(H\lambda)$ in any window of length $H$.
+Their integrated squared contribution is $O(H^2\sqrt V\lambda^3)$,
+since each power occurs over a set of endpoints of length $H$.
+Windows crossing either endpoint of $J$ contribute $O(H^3\lambda^2)$
+in all. It follows that
+\[
+ \int_{\mathbb R}|\nu((u-H,u])|^2\,\ud u\ll H^2V\lambda^{-M}.
+\]
+The interval indicator has Fourier modulus
+$|\sin(\pi H\beta)/(\pi\beta)|\gg H$ for $|\beta|\le1/(2H)$.
+Plancherel therefore bounds the integral of $|\widehat\nu|^2$
+on this band by $O(V\lambda^{-M})$.
+The annulus $\beta_0<|\beta|\le\beta_1$, when nonempty, lies in
+this band since $2Q/X\le1/(2H)$. The squared integral of the
+real main term there is $O(1/\beta_0)$ by $|v_J(\beta)|\ll|\beta|^{-1}$.
+Consequently the squared integral of $S_J(a/q+\beta)$ over the
+annulus is $O(V(\lambda^{-M}+\lambda^{-k'}))$.
+Since $|S_I|\ll X$ and there are $O(Q^2)$ arcs, choosing
+$M,k'>G+2k+3$ gives the required squared product bound.
 
 On the cores, Siegel--Walfisz and partial summation give the
 main terms
@@ -18116,9 +18157,9 @@ $\sum d(h)^4\le(\sup d(h)^2)\sum d(h)^2$ prove
 For the operator, tile the physical coordinates by dyadic
 intervals, ordering their scales $X\le V$ and transposing when
 needed. Nonempty boxes have $V\gg Y$, $X\gg Y^a$ and
-$XV\ll_B Y^2(\log Y)^B$, where $a=2/7+\epsilon$.
-Since $a/(2-a)>1/6$, every such pair has
-$X\ge V^{1/6+\delta}$ for some fixed sufficiently small
+$XV\ll_B Y^2(\log Y)^B$, where $a=4/17+\epsilon$.
+Since $a/(2-a)>2/15$, every such pair has
+$X\ge V^{2/15+\delta}$ for some fixed sufficiently small
 $\delta=\delta(\epsilon)>0$ and large $Y$.
 On a line with signed shift $h=\pm bN$, each sharp restriction
 cuts out at most a bounded number of intervals in the smaller
@@ -18729,6 +18770,23 @@ K. Matom\"aki, M. Radziwi\l\l{} and T. Tao,
 \newblock \emph{Correlations of the von Mangoldt and higher divisor functions I.
 Long shift ranges}.
 \newblock \url{https://arxiv.org/abs/1707.01315}.
+
+\bibitem{ChenGuptaLi}
+B. Chen, V. Gupta and Y.~C. Li,
+\newblock \emph{Large value estimates for Dirichlet polynomials with
+characters and zero density of Dirichlet $L$-functions}.
+\newblock \url{https://arxiv.org/abs/2507.08296}.
+
+\bibitem{HarmShortAP}
+M. Harm,
+\newblock \emph{Refinements for primes in short arithmetic progressions}.
+\newblock \url{https://arxiv.org/abs/2507.15334}.
+
+\bibitem{JutilaLinnik}
+M. Jutila,
+\newblock \emph{On Linnik's constant}.
+\newblock Math. Scand. \textbf{41} (1977), 45--62.
+\newblock \url{https://doi.org/10.7146/math.scand.a-11701}.
 
 \bibitem{GuthMaynard}
 L. Guth and J. Maynard,
