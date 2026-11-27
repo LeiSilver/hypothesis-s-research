@@ -235,7 +235,8 @@ the shorter window at every even modulus.
 the prime-only norm and for the full operator. In both cases
 the lower bound can be tested on two finite-dimensional spaces.
 \Cref{thm:halfcell-upper} shows that the upper bound alone forces
-two-sided norm decay on each fixed multiple of the modulus.
+two-sided norm decay on each fixed multiple of the modulus, and gives
+a quantitative upper-edge criterion on growing multiples.
 \Cref{thm:criticalprofiles} bounds those sums near the square
 of the modulus using equidistribution in progressions with
 factored moduli.
@@ -11768,19 +11769,27 @@ constraint $x\ge A$ for the prime-only form.
 
 \begin{theorem}[One-sided control through the half-modulus cells]
 \label{thm:halfcell-upper}
-Uniformly for large even $N$, $1\le R\le N^{1/1000}$ and
-$N^{-1/100}\le\eta\le1/32$, one has
+For all large even $N$ and all $R\ge1$, one has
 \begin{equation}
- w_R\ll R^3 a_R/\eta + R^2\eta+R^{3/2}N^{-1/2}(\log N)^3 .
+ w_R\ll R^2\sqrt{a_R}+R^3a_R .
  \label{eq:halfcell-upper}
 \end{equation}
-In particular, $R^5a_R\to0$ implies $w_R\to0$ throughout
-this range, and for fixed $R$ one has
-$w_R\ll_R\sqrt{a_R}+N^{-c}$ for an absolute $c>0$ whenever
-$a_R\le1$. These statements hold for the physical forms without GRH.
+In particular, $R^4a_R\to0$ implies $w_R\to0$. For a lower bound
+take $I=[1/4,1/3]$ and partition it at all interior points $n/N$
+where $(n,N-n)$ contributes to the arithmetic part of the chosen
+form. If $\ell_i$ are the resulting gap lengths, then
+\begin{equation}
+ a_R\gg \Big(\sum_i\ell_i^3\Big)^{1/2}
+       \gg \frac{(\log N)^2}{N\SSS(N)} .
+ \label{eq:halfcell-gap}
+\end{equation}
+For the prime-only form, each gap between successive prime-pair
+coordinates in $I$, including the endpoint gaps, has length
+$O(a_R^{2/3})$ in the scaled variable.
+These statements hold for the physical forms without GRH.
 For the full physical form and fixed $R$,
 \[
- d_N^{\rm line}(R)\ll_R\sqrt{a_R}+N^{-c}.
+ d_N^{\rm line}(R)\ll_R\sqrt{a_R}.
 \]
 Thus the uniform upper bound alone implies the asymptotics on
 each fixed sum and difference line of \cref{thm:macroscopiclines}.
@@ -11793,6 +11802,25 @@ has zero self-pairing: the absolute difference of two arguments
 is less than $1/2$, and their sum lies strictly between successive
 integers. The arithmetic diagonal is excluded in \cref{eq:form}.
 This also proves the assertion for the continuous model.
+
+To prove \eqref{eq:halfcell-gap}, let $h$ equal
+$(u-c)(d-u)/2$ on each gap $(c,d)$ and vanish outside $I$.
+It is a continuous energy test with
+$\int h=\int |h'|^2=\sum_i\ell_i^3/12$. Write $f=h/(\int h)^{1/2}$.
+Its energy is bounded by \eqref{eq:sturm} and Poincar\'e on $I$.
+Choose a fixed smooth $g$ supported in $(1/2,1)$ equal to one
+on $1-I$. The two self-pairings vanish. In the cross term only
+$u+v=1$ can occur; its arithmetic part vanishes at every sampled
+point and its normalized continuous term is $+\int f$.
+Thus testing on $f+g$, of bounded energy, gives
+$a_R\gg(\int h)^{1/2}$. Both supports satisfy the lower cutoff
+of the prime-only form for large $N$. If there are $k$ interior
+nodes, convexity gives $\sum_i\ell_i^3\ge |I|^3/(k+1)^2$.
+The two-linear-form sieve \eqref{eq:uniformsieve} gives
+$O(N\SSS(N)/\log^2 N)$ prime pairs on $I$; any further node
+has a proper power in one coordinate, giving $O(\sqrt N\log N)$
+additional points. This proves the lower bound, in particular
+$a_R\gg 1/N$ since $\SSS(N)\ll\log N$.
 
 Take a unit test $F$ with upper support $RN$. Around every
 positive half-grid point $s=j/2$ put a smooth cutoff equal to one
@@ -11816,26 +11844,30 @@ Thus the derivative cost in squared norm at this point is
 $O(s/\eta)$. Summing over $s\le R+\eta$ proves
 \cref{eq:halfcell-energy}.
 
-On the boundary strips the scaled physical weight of $F_b$ is
-bounded absolutely, since $f(u)=u^{-1/2}F(\log(Nu))$ and
-$u\ge1/2-\eta$. We bound the total unsigned mass that these
-strips see in $B(F_b,F_b)$. On each of the $O(R)$ lines with
-shift $bN$, $1\le b\le2R$, the first coordinate runs through
-at most $O(R)$ strips of physical length $2\eta N$.
-When both coordinates are prime they lie between $N/3$ and $RN$.
-The two-linear-form sieve \eqref{eq:uniformsieve} on each padded
-strip gives weighted count $O(\eta N\SSS(bN))$: the logarithms
-of the strip length and both primes are comparable to $\log N$.
-The sieve remainder times the two logarithmic weights is absorbed
-in the same bound. The continuous contribution obeys the same
-length estimate with its line density. Pairs involving a proper
-power cost $O(\sqrt{RN}(\log N)^3)$ on an entire line, since one
-coordinate determines the other. Summing the line densities by
-\eqref{eq:subseries} and using the normalization in \eqref{eq:form}
-gives, for either form,
-\[
- |B(F_b,F_b)|\ll R^2\eta+R^{3/2}N^{-1/2}(\log N)^3 .
-\]
+On the strips $u\ge1/2-\eta$ the physical weight of $F_b$ is
+$O(u^{-1/2})$ by point evaluation. Group both scaled coordinates
+in dyadic intervals of sizes $U,V\ge1/4$, ordering them so that
+$U\le V\le R$. For each of the three line orientations the shift
+has $1\le b\ll V$. On each line the smaller coordinate meets
+$O(U)$ strips of physical length $2\eta N$, and the product
+weight is $O((UV)^{-1/2})$. The continuous model thus contributes
+$O(\eta\sqrt{UV})$ on this box by \eqref{eq:subseries}.
+The sum of $\sqrt{UV}$ over all such dyadic boxes is $O(R)$.
+
+First take $1\le R\le N$ and $N^{-2/3}\le\eta\le1/32$. When both
+coordinates are prime, the two-linear-form sieve
+\eqref{eq:uniformsieve} on each padded strip gives weighted
+count $O(\eta N\SSS(bN))$. Indeed the primes are at
+least $N/3$, their logarithms are $O(\log N)$, and the strip
+length $H=2\eta N$ exceeds $N^{1/3}$. The sieve remainder with
+the two logarithmic weights is absorbed in this bound. In a
+strip on a fixed line, each coordinate runs over an interval of
+length $H$. It contains at most $1+H^{1/k}$ positive $k$th
+powers since $(t+h)^k-t^k\ge h^k$. Summing over
+$2\le k\le\log_2(RN)$ and inserting both logarithmic weights
+costs $O(\sqrt H\log^3 N)=O(H)$ per strip for pairs with a
+proper power. After normalization the dyadic sum above gives
+$|B(F_b,F_b)|\ll R\eta$ for either form.
 
 On the restricted space $K=a_R\langle\cdot,\cdot\rangle_{\NN}-B$
 is positive semidefinite. Its seminorm on $F_j$ is exactly
@@ -11843,12 +11875,15 @@ $\sqrt{a_R}\NN(F_j)$. On $F_b$ it is at most
 $\sqrt{a_R}\NN(F_b)+|B(F_b,F_b)|^{1/2}$. Apply the triangle
 inequality, square, and bound the squared sum of the energy norms
 by $O(R)$ times \eqref{eq:halfcell-energy}. This bounds $K(F,F)$
-by the right side of \cref{eq:halfcell-upper}; the positive edge
-is already bounded by $a_R$. Take
-$\eta=\min(1/32,\max(N^{-1/100},\sqrt{R a_R}))$.
-The lower cutoff costs $O(R^2 N^{-1/100})=o(1)$ in the stated
-range. The upper cutoff is inactive eventually when $R^5a_R\to0$.
-For fixed $R$ and $a_R\le1$ it changes only the implied constant.
+by $O(R^3a_R/\eta+|B(F_b,F_b)|)$; the positive edge is at most
+$a_R$. For $R\le N$ take $\eta=\min(1/32,R\sqrt{a_R})$.
+By \eqref{eq:halfcell-gap} this is at least $N^{-2/3}$ for
+large $N$, so the boundary estimate proves \eqref{eq:halfcell-upper}.
+For $R>N$ take $\eta=1/32$ and count all integers in each strip
+on each line, at cost $O(N\log^2(2RN))$ including the
+logarithmic weights. The same box summation gives boundary cost
+$O(R\log^2(2RN))$. Since $R>N$, we have
+$\log^2(2RN)\ll R\le R^2/N\ll R^2a_R$, as required.
 
 For the line discrepancy, the two ramp tests used to isolate a
 line in \cref{thm:macroscopiclines} are in distinct half-grid
@@ -11856,10 +11891,17 @@ cells: the image of cell $j$ has index $2b-j-1$ for reflection
 and $2b+j$ for translation. Their energy inner product vanishes
 by disjoint support, and each self-pairing is zero. Cauchy--Schwarz
 for $K$ therefore gives $|B(F,G)|\le a_R\NN(F)\NN(G)$ on these
-tests. In the interval approximation in that proof the resulting
-bound is $O_R(\eta^{-1}a_R+\eta+N^{-c_0})$. Balancing the first
-two terms, with the same lower cutoff on $\eta$ and the total mass
-bound for large $a_R$, proves the last assertion.
+tests. In its interval approximation take $\eta\ge N^{-2/3}$.
+The deleted strips on each fixed line have normalized mass
+$O_R(\eta)$ by the same sieve and short-interval proper-power
+count just proved. Near zero, primes below the sifting level
+$H^c$ cost at most $O_R(H^c\log^2 N)$ before normalization,
+absorbed by the padded length $H\asymp_R\eta N$. The unit and
+diagonal correction $O_R((\log N)^4/N)$ is also absorbed.
+The resulting bound is $O_R(\eta^{-1}a_R+\eta)$.
+Take $\eta=\sqrt{a_R}$ when it lies below the fixed upper
+cutoff, using \eqref{eq:halfcell-gap} for the lower cutoff.
+For larger $a_R$ the fixed-line mass bound suffices.
 \end{proof}
 
 \section{Norm decay of the progression profiles near the square of the modulus}
