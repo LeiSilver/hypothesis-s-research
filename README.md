@@ -16,6 +16,8 @@ The intermediate ranges in Theorem 13.39 and Corollary 13.40 describe the reach 
 
 Corollary 12.9 refines the mixed-matrix condition at each sufficiently large even modulus. If $P_N(A)\to0$, the far matrix can discard every proper prime power in its small coordinate, along with all ordinary primes up to a cutoff $X_N\to\infty$ specified by the prime-only upper spectral bound. This reduction requires no rate for $P_N(A)\to0$. Decay of the near matrix and of the retained far prime rows still needs proof on general moduli.
 
+Theorem 12.10 gives a zero-count version of the remaining far test. With $b=\log(2A)$ and $T=Lb(\log\log L)^2/(\mathfrak S(N)(\log L)^2)$, it uses only ordinates $1/T<|\gamma|\le T$ of the inducing primitive Dirichlet characters. Here $T=o(\log N)$ and $(\log N)/T\to\infty$. The discarded ranges and rounding within the specified bins cost $O(1/\log\log L)$ at each modulus under GRH. Only differences of bin counts from their averages over even twists enter the pairing. A uniform estimate for the retained weighted sum is still needed.
+
 - [Manuscript (PDF)](output/pdf/hypothesis_s_paper.pdf)
 - [LaTeX source](output/pdf/hypothesis_s_paper.tex)
 - [Lean verification of the least-prime divisor split, logarithm weight, and factor-count inequality](formalization/LeastPrimeSplit.lean)

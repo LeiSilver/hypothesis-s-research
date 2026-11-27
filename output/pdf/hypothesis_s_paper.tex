@@ -261,6 +261,10 @@ in those integrals at every large even modulus, without GRH.
 \Cref{cor:far-small-primes} restricts the far mixed matrix to
 ordinary primes in its small coordinate, with a lower cutoff tending
 to infinity whenever the upper edge of the prime-only form tends to zero.
+\Cref{thm:far-twisted-ordinates} expresses the remaining far test
+using character-dependent zero sums at heights between $1/T$ and
+$T$, where $T=o(\log N)$ and $1/T$ is larger than $1/\log N$
+by a factor tending to infinity.
 \Cref{thm:criticalprofiles} bounds those sums near the square
 of the modulus using equidistribution in progressions with
 factored moduli.
@@ -12327,6 +12331,129 @@ test is required. If $P\to0$, then $r_N\to0$ and $\sigma\gg1$.
 Consequently $X_N\to\infty$ and
 $r_N\sqrt{\log(2X_N)/\sigma}\ll\sqrt{r_N}$. Substituting in
 \cref{thm:mixed-far} proves both implications.
+\end{proof}
+
+\subsection{The zero ordinates seen by the far mixed matrix}
+
+For any selection $\mathcal R$ of the small arithmetic inputs
+$2\le n\le2A$, write $c_\chi(F)$ for $\ell_\chi(F)$ restricted
+to $\mathcal R$. Let $j_m(\mathcal R;I_2)$ denote the corresponding
+far norm, using exactly the projection in \cref{thm:mixed-far}.
+For $d\mid N$ let $\mathcal H_d$ be the group of even characters
+induced from modulus $d$ to modulus $N$, and write
+\[
+ (\Pi_d z)_\chi=|\mathcal H_d|^{-1}\sum_{\psi\in\mathcal H_d}
+                         z_{\chi\psi}.
+\]
+Thus $\Pi_d$ averages over twists of an odd character by this group.
+For a unit large test $G$ supported in $I_2$, define
+\[
+ z_\chi(G)=\sum_{u<|\gamma|\le T}\widehat G(\gamma),
+\]
+using the zero multiset of the primitive character inducing $\chi$.
+Let $z_m(\mathcal R;u,T,d)$ be the supremum of
+$|\langle c(F),(1-\Pi_d)z(G)\rangle_\chi|/\sigma$ over these
+$G$ and projected unit-ball small tests $F$.
+
+\begin{theorem}[An intermediate range of ordinates for the far matrix]
+\label{thm:far-twisted-ordinates}
+Under Dirichlet GRH put $D=Lb/(\sigma(\log L)^2)$. Uniformly for
+$0\le u\le1$, $2\le T\le L^2$, every $\mathcal R$ as above and
+every divisor $d>2A+1$ of $N$, one has
+\begin{equation}
+ \big|j_m(\mathcal R;I_2)-z_m(\mathcal R;u,T,d)\big|
+ \ll \sqrt D\left(\sqrt{u+1/L}+T^{-1/2}\right)+N^{-c}
+ \label{eq:far-twisted-ordinates}
+\end{equation}
+for an absolute $c>0$. In particular, set
+\[
+ T=D(\log\log L)^2,\qquad u=1/T .
+\]
+Then $T=o(L)$, $Lu\to\infty$, and the error in
+\eqref{eq:far-twisted-ordinates} is $O(1/\log\log L)$ at every
+sufficiently large even modulus. Taking $\mathcal R$ to be the
+ordinary primes in $(X_N,2A]$ from \cref{cor:far-small-primes},
+the full norm condition \eqref{eq:goal} is equivalent to
+\[
+ P\to0,\qquad j_k(I_1)\to0,\qquad z_m(\mathcal R;1/T,T,d)\to0 .
+\]
+One may always take $d=N$. The error estimate itself is independent
+of $P$ and also applies with all small rows retained.
+
+For these $u,T$, partition each retained ordinate interval into
+bins of width at most
+\[
+ \delta=\big((H+L)\sqrt D\,\log\log L\big)^{-1}.
+\]
+If $C_{\chi,i}$ is the count with multiplicity in bin $i$ of
+midpoint $t_i$, then the same criterion and error order hold
+with $(1-\Pi_d)z_\chi(G)$ replaced by
+$\sum_i ((1-\Pi_d)C_{\cdot,i})_\chi\,\widehat G(t_i)$.
+Thus the only large-coordinate arithmetic data for this test
+are the counts in the indicated bins, centered within each
+group of twists.
+\end{theorem}
+
+\begin{proof}
+Odd-character orthogonality bounds the character norm of $c(F)$
+by $O(\sqrt b)$ uniformly in the row selection, since deleting
+rows decreases its squared diagonal sum. On the second support
+$y\ge e^H>N^{3/2}$, \eqref{eq:ppchar} removes proper powers at
+cost $O(N^{-1/5})$ in character norm. The correction for inducing
+characters and the trivial-zero integral in \eqref{eq:poslogexplicit}
+cost $O(L e^{-H/2})$. Hence the original prime vector can be
+replaced by minus the full zero sum with error $O(N^{-c})$ in
+the normalized pairing, after decreasing $c$.
+
+For the low ordinates first restrict $G$ to a log packet of
+length $O(L)$. The interval $[-u,u]$ meets $O(1+Lu)$ of the bins
+of length $1/L$ in \eqref{eq:shortzerosampling}. Their zero counts
+have bounded character $L^2$ norm by \eqref{eq:shortzerocount}.
+The triangle inequality followed by Cauchy--Schwarz over these
+bins bounds the character norm of the low sum by
+$O(\sqrt{L(1+Lu)}\,\|G\|_2)$. The argument includes zeros at
+the central point with their multiplicities. Decompose a general
+$G$ on $I_2$ into length-$O(L)$ packets as in \eqref{eq:Utail}.
+The unweighted norms of successive packets gain the summable
+factors $O(e^{-H/L-j})$ relative to their energy norms. This
+gives $O(Le^{-H/L}\sqrt{u+1/L})$ for the low sum on the unit
+ball. The high sum has norm $O(Le^{-H/L}/\sqrt T)$ by
+\eqref{eq:globalzeroshigh}, since $T\le L^2$.
+Pair with $c(F)$ and use
+$\sqrt b\,Le^{-H/L}/\sigma=\sqrt D$.
+
+Finally, $\Pi_d$ is an orthogonal projection for the character
+inner product. For each unit $n$ in $\mathcal R$ the average of
+$\psi(n)$ over $\mathcal H_d$ is the indicator of
+$n\equiv\pm1\bmod d$. This follows by orthogonality on
+$(\mathbb Z/d\mathbb Z)^*/\{\pm1\}$ and surjectivity of
+reduction on unit groups. The indicator vanishes since
+$2\le n\le2A<d-1$. Nonunits already have coefficient zero.
+Thus $\Pi_d c(F)=0$, and subtracting $\Pi_d z(G)$ changes the
+pairing by exactly zero. Taking suprema gives
+\eqref{eq:far-twisted-ordinates}. Since $b\asymp\log L$ and
+$1\ll\sigma\ll\log L$, we have $D\to\infty$ and
+$D/L\ll1/\log L$. The specified choices give the stated error
+and height limits. The equivalence follows from
+\cref{cor:far-small-primes}.
+
+For the assertion about counts, on a single length-$O(L)$ packet
+the change from $\widehat G(\gamma)$ to $\widehat G(t_i)$ is
+bounded by $\delta$ times the local supremum of $|\widehat{rG}|$.
+Here $\delta\le1/L$, so the segment between the two arguments
+meets at most the original $1/L$ bin and its neighbors.
+Apply the weighted sampling estimate \eqref{eq:shortzerosampling}
+to $rG$, and \eqref{eq:shortzerocount} to the original bins.
+Cauchy--Schwarz gives a total character norm
+$O(\delta L\|rG\|_{H^1})$, since the sum of
+$(1+\log(2+|t_j|)/L)^2/(1+t_j^2)$ on the $1/L$ grid is $O(L)$.
+On packet $j\ge0$, multiplication by $r$ costs
+$O(H+(j+1)L)$ in $H^1$. Summing with the same exponential packet
+weights as above and pairing with $c(F)$ costs
+$O(\delta(H+L)\sqrt D)=O(1/\log\log L)$. Orthogonal projection
+does not increase the rounding error. Assign endpoints to bins
+inside the retained set, keeping the cut at $u$ open and the cut
+at $T$ closed in absolute value.
 \end{proof}
 
 \section{Norm decay of the progression profiles near the square of the modulus}
