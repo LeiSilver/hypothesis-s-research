@@ -241,6 +241,9 @@ of the modulus using equidistribution in progressions with
 factored moduli.
 \Cref{thm:power-small-factors} gives an unconditional mean-square
 bound up to a power-sized smaller input on a larger family of moduli.
+\Cref{thm:unconditional-upper-inputs} treats all even moduli
+unconditionally above the smaller-input exponent $2/7$ in the
+critical product range.
 \Cref{thm:fixedrowmeansquare} gives a quantitative mean-square
 estimate for bounded smaller inputs over all even moduli,
 including the progression correction for identical zero labels.
@@ -18000,6 +18003,150 @@ by \cref{thm:productwindow} under global Dirichlet GRH, and its
 low pieces have support at most a fixed power of $\log N$,
 hence below $N^\eta$ eventually. Use \cref{eq:power-small-factors}
 on those pieces and symmetry for the transposed term.
+\end{proof}
+
+\subsection{An unconditional upper input range at the critical product}
+
+For $B\ge0$, put $R_N^*=N^2(\log N)^B$ and fix $0<\epsilon<5/7$.
+Let $U_N(S;\epsilon)$ be the normalized norm of the physical
+form on arbitrary tests with both terms restricted to
+\[
+ xy\le S,\qquad \min(x,y)\ge N^{2/7+\epsilon}.
+\]
+\begin{theorem}[Critical products with smaller input above the $2/7$ exponent]
+\label{thm:unconditional-upper-inputs}
+For every fixed $D>0$, unconditionally,
+\[
+ \sum_{\substack{Y\le N\le2Y\\2\mid N}}
+       \sup_{0<S\le R_N^*} U_N(S;\epsilon)^2
+       \ll_{B,D,\epsilon}Y(\log Y)^{-D}.
+\]
+In particular, on $\mathcal G(Y)$, through $N^2\le S\le R_N^*$
+the sharp product form differs in normalized form norm from the
+part with $N^{1/10000}<\min(x,y)<N^{2/7+\epsilon}$ by an error
+whose squared sum, even after the supremum over $S$, satisfies
+the same bound.
+\end{theorem}
+
+\begin{proof}
+We first prove a maximal line estimate at unequal scales. Let
+$V^{1/6+\delta}\le X\le V$ with fixed sufficiently small $\delta>0$,
+$J=[V,2V)$, $\lambda=\log(2V)$, and $\sigma=\pm1$. For
+$0<|h|\le4V$ set
+$d(h)=\sup_{I\subset[X,2X)}|\Delta_\sigma(h;I,J)|$, with interval
+$I$ and either endpoint convention, as in
+\cref{lem:maximalcriticalmeansquare}. For every fixed $F>0$ we have
+\begin{equation}
+ \sum_{0<|h|\le4V} \tau(|h|)d(h)^2
+           \ll_{\delta,F}VX^2\lambda^{-F}.
+ \label{eq:unequal-uncond-max}
+\end{equation}
+First fix $I$ and omit the divisor weight. Use the sums and real
+interval transforms of \cref{eq:pairlog}. Set $Q=\lambda^k$,
+$\beta_0=\lambda^{k'}/V$ and
+$\beta_1=\max(\beta_0,2Q/X)$, choosing $k,k'$ below. The arcs of
+radius $\beta_1$ about reduced $a/q$, $q\le Q$, are disjoint for
+large $V$. Outside them Dirichlet approximation at height
+$\lfloor X/Q\rfloor$ gives $Q<q\le X/Q$ and an approximation
+within $1/q^2$. Vaughan's bound on the smaller interval sum is
+$O((X/\sqrt Q+X^{4/5})\lambda^4)$, as in \cref{eq:almostminor}.
+Parseval on the larger sum gives $O(V\lambda)$ for its squared
+integral. Hence the product on this region has squared integral
+$O(VX^2\lambda^{-G})$ for any prescribed $G$, on choosing $k$
+sufficiently large.
+
+On each remaining arc outside its core $|\beta|\le\beta_0$,
+use the estimate of Matom\"aki, Radziwi\l\l{} and Tao
+\cite[Proposition~3.4(i)]{MRTLong} on the \emph{larger} dyadic
+sum. For $|\beta|\le2Q/X$ we have
+$|\beta|\le V^{-1/6-\delta/2}$ eventually. The proposition gives
+an integral of $|S_J(a/q+\beta)|^2$ over the annulus of size
+$O(V\lambda^{-G-2k-3})$. Its denominator exponent may be chosen
+larger than $k$ to achieve this saving; then choose $k'$ to
+meet its lower frequency threshold. Changing dyadic endpoint
+inclusion costs $O(\lambda)$ in the sum and is harmless on these
+arcs. If $\beta_1=\beta_0$ the annulus is empty.
+Since $|S_I|\ll X$ and there are $O(Q^2)$ arcs, the required
+squared integral bound follows here as well.
+
+On the cores, Siegel--Walfisz and partial summation give the
+main terms
+\[
+ \frac{\mu(q)}{\varphi(q)}v_I(\sigma\beta),\qquad
+ \frac{\mu(q)}{\varphi(q)}v_J(\beta).
+\]
+The errors are $O(X\lambda^{-M})$ and $O(V\lambda^{-M})$ for
+any fixed $M$.
+Here $X$ is a fixed power of $V$ or larger, and
+$V\beta_0=\lambda^{k'}$. The core measure is $O(Q^2\beta_0)$,
+so the integrated squared product error is
+$O(VX^2\lambda^{-G})$ by taking $M$ large enough.
+
+We complete the real transforms in mean square to keep the
+small scale $X$ in this estimate. Write
+$v(\beta)=v_I(\sigma\beta)v_J(\beta)$. On
+$\beta_0<|\beta|\le1/2$ its squared integral is
+$O(X^2/\beta_0)$ by $|v(\beta)|\ll X/|\beta|$.
+On $[-1/2,1/2]$ the sum of the translates $v(\beta+l)$ for
+nonzero integers $l$ is absolutely $O(1)$, since both factors
+are $O(1/|\beta+l|)$. Periodizing $v$ therefore completes the
+core at $L^2$ cost $O(1+X/\sqrt{\beta_0})$ per rational before
+its coefficient. The sum of the absolute coefficients
+$\mu(q)^2/\varphi(q)^2$ over reduced numerators and $q\le Q$
+is at most $Q$. Increasing $k'$ absorbs this loss. The
+periodized transform has Fourier coefficient $L_\sigma(h;I,J)$
+by real Fourier inversion. The rational shifts supply the
+Ramanujan coefficients $A_q(h)$. The tail beyond $Q$ costs
+$O(X\tau(|h|)\lambda^3/Q)$ per shift by the divisor bound in
+the proof of \cref{lem:maximalcriticalmeansquare}. Since
+$\sum_{h\le4V}\tau(h)^2\ll V\lambda^3$, a sufficiently large
+initial choice of $k$ absorbs its mean square. Parseval now gives
+the fixed-interval estimate with arbitrary log saving.
+
+For the supremum in $I$, use a mesh of spacing at most
+$X\lambda^{-j}$ with $O(\lambda^j)$ cells. Rounding the endpoints
+changes the count and model by $O((1+X\lambda^{-j})\lambda^2)$
+uniformly in $h$. Choose $j$ for the desired saving and apply the
+fixed-interval result to the $O(\lambda^{2j})$ mesh intervals
+with a stronger saving. Finally $d(h)\ll X\lambda^2$ pointwise.
+Cauchy--Schwarz, the divisor second moment, and
+$\sum d(h)^4\le(\sup d(h)^2)\sum d(h)^2$ prove
+\cref{eq:unequal-uncond-max}.
+
+For the operator, tile the physical coordinates by dyadic
+intervals, ordering their scales $X\le V$ and transposing when
+needed. Nonempty boxes have $V\gg Y$, $X\gg Y^a$ and
+$XV\ll_B Y^2(\log Y)^B$, where $a=2/7+\epsilon$.
+Since $a/(2-a)>1/6$, every such pair has
+$X\ge V^{1/6+\delta}$ for some fixed sufficiently small
+$\delta=\delta(\epsilon)>0$ and large $Y$.
+On a line with signed shift $h=\pm bN$, each sharp restriction
+cuts out at most a bounded number of intervals in the smaller
+variable: the product along the line is quadratic and the two
+lower bounds are linear. Partial summation costs
+$O((XV)^{-1/2})$ on unit tests, by the packet supremum and
+variation estimates in the proof of \cref{lem:maximalcriticalmeansquare}
+and the packet estimate following it. Imposing coprimality and
+removing equal coordinates costs $O(\lambda^4)$ in the unweighted
+line discrepancy, as there. These estimates are uniform in $S$.
+There are $O(V/Y)$ shifts per modulus in each orientation.
+After Cauchy--Schwarz over those shifts, a given $h$ occurs for
+at most $\tau(|h|)$ moduli. Thus the sum of the squared box norms
+costs at most a constant times
+\[
+ \frac{V/Y}{XV}
+ \sum_{\sigma=\pm1}\sum_{0<|h|\le4V}\tau(|h|)
+       (d_\sigma(h)+\lambda^4)^2
+ \ll_{\delta,F} \frac{XV}{Y}\lambda^{-F},
+\]
+where $d_\sigma$ denotes the respective maximal discrepancy.
+The additive logarithmic term is absorbed since $X$ grows as
+a power of $Y$. The product bound absorbs $(\log Y)^B$, and
+there are $O_B((\log Y)^2)$ box pairs. Minkowski's inequality
+over the moduli with a sufficiently large $F$ proves the first
+assertion. The two complementary masks outside the stated
+intermediate range are disjoint; \cref{eq:power-small-factors}
+and the first assertion bound their sum.
 \end{proof}
 
 \section{Conditional bounds from uniform prime-pair discrepancies}
