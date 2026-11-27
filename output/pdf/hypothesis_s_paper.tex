@@ -274,6 +274,12 @@ of size $N^{2-o(1)}$.
 \Cref{thm:conductor-progression-gram} gives an explicit error of
 arbitrary logarithmic order for this term using only the classes
 $\pm1$ at divisors close to $N$, and sharpens the support threshold.
+\Cref{thm:physical-primitivity} reduces the entire $P_N(A)$ test
+to characters primitive at the large prime factors, with explicit
+local weights on the continuous shifts.
+\Cref{cor:conductor-sparse-lines} shows that centering at each
+conductor preserves the arithmetic diagonal and the contribution
+on any prescribed sparse family of shift lines up to a power saving.
 \Cref{thm:criticalprofiles} bounds those sums near the square
 of the modulus using equidistribution in progressions with
 factored moduli.
@@ -12874,6 +12880,301 @@ $M_N(R)\le\sum_{t\le R}\tau(t)\le R(1+\log R)$, the asserted
 support estimate follows. The cutoff comparison follows by
 applying the one-small-input bound in each argument and the
 projection estimate to the two high tests.
+\end{proof}
+
+\subsection{Local conductor projections for the entire prime-only form}
+
+For a set $S$ of odd prime divisors of an even integer $n$, put
+\[
+ k_{n,S}(h)=
+ \prod_{\substack{p^\nu\Vert n\\p\notin S}}\mathbf1_{p^\nu\mid h}
+ \prod_{\substack{p^\nu\Vert n\\p\in S}}
+ \left(\mathbf1_{p^\nu\mid h}
+ -\frac{\varphi(p^{\nu-1})}{\varphi(p^\nu)}
+                    \mathbf1_{p^{\nu-1}\mid h}\right).
+\]
+Write $B_{n,S}^{[M]}$ for the following form, with $n\mid M$.
+Use ordinary primes coprime to $M$ in both coordinates, with
+coefficients $(\log p)F(\log p)/\sqrt p$ on the first coordinate
+and the corresponding conjugates on the second. On distinct
+primes $p,p'$ use the weight $k_{n,S}(p-p')-k_{n,S}(p+p')$.
+Subtract the continuous form
+\[
+ \sum_{\substack{h>0\\2\mid h}}
+       k_{n,S}(h)\SSS(h) J_{w_F,w_G}(h),
+ \qquad w_F(x)=F(\log x)/\sqrt x ,
+\]
+where \eqref{eq:model} is taken in physical coordinates. In
+particular $B_{n,\varnothing}^{[n]}$ is the form defining $P_n$
+before normalization. Fix $0<\rho<1$. For sufficiently large $n$
+let $A_n=(\log n)^2(\log\log n)^4$, $S(n)=\{p\mid n:p \text{ odd},
+\ p>(\log n)^\rho\}$, and let $P_n^{\rm loc}$ be the norm of
+$B_{n,S(n)}^{[n]}/\SSS(n)$ on $x,y\ge A_n$, in the energy for $n$.
+
+\begin{theorem}[Local primitivity on unrestricted upper supports]
+\label{thm:physical-primitivity}
+Under Dirichlet GRH let $\mathcal I(N)$ be the even divisors $n$
+with $N/R_{10}(N)\le n\le N$, using the cutoff of
+\cref{thm:conductorcutoff}. Uniformly for sufficiently large even $N$,
+\begin{align*}
+ P_N^{\rm loc}
+   &\ll_\rho \max_{n\in\mathcal I(N)} P_n(A_n)+L^{-1/2},\\
+ P_N(A_N)
+   &\ll_\rho \max_{n\in\mathcal I(N)} P_n^{\rm loc}+L^{-1/2}.
+\end{align*}
+Consequently \eqref{eq:goal} is equivalent to $P_N^{\rm loc}\to0$
+and $j_k\to0$ through all even moduli, with the mixed matrix of
+\cref{thm:small-input-gram}. The arithmetic character square in
+$P_N^{\rm loc}$ uses only odd characters with full local conductor
+exponent at every $p\in S(N)$.
+
+There is a second equivalent criterion using ordinary prime sine
+sums. Replace $\varphi(p^{\nu-1})/\varphi(p^\nu)$ by $1/p$ in
+every selected local factor, in both the arithmetic and the
+continuous terms. The same two inequalities and criterion hold
+for this norm. Writing $m=\prod_{p^\nu\Vert n,\,p\in S}p^\nu$,
+its arithmetic square, before deleting the diagonal, is
+\begin{equation}
+ \frac2n\sum_{\substack{0\le k<n\\(k,m)=1}}
+ \left|\sum_{\substack{p\ {\rm prime}\\p\nmid n}}
+       \frac{\log p}{\sqrt p}F(\log p)\sin(2\pi kp/n)\right|^2 .
+ \label{eq:physical-primitive-sines}
+\end{equation}
+Each retained frequency has reduced denominator divisible by $m$.
+
+On the family $\SSS(N)\le C$ for fixed $C$, the same inequalities
+hold with $S(n)$ equal to \emph{all} odd prime divisors of $n$
+and constants depending on $C$. In particular decay of the two
+prime-only norms is equivalent on that family.
+\end{theorem}
+
+\begin{proof}
+Fix an ambient even $N$, retaining the same physical weights at
+all its even divisors. Write $\mathcal D_n(S)$ for the divisors
+of $n$ supported on $S$, including one. With $n\mid M$ fixed,
+expansion of the local factors and inversion give
+\begin{align}
+ B_{n,S}^{[M]}&=\sum_{d\in\mathcal D_n(S)}
+   \mu(d)\frac{\varphi(n/d)}{\varphi(n)}B_{n/d,\varnothing}^{[M]},
+       \notag\\
+ B_{n,\varnothing}^{[M]}&=\sum_{d\in\mathcal D_n(S)}
+   \frac{\varphi(n/d)}{\varphi(n)}
+          B_{n/d,S\cap\{p:p\mid n/d\}}^{[M]} .
+ \label{eq:physical-primitive-inversion}
+\end{align}
+The second identity telescopes at each prime, including a complete
+loss of its exponent. Both identities hold shift by shift for the
+model and off the diagonal for the primes. By odd-character
+orthogonality, before removing the diagonal the arithmetic sum
+is the character square on the stated primitive subfamily with
+weight $2/\varphi(n)$ per character. Its diagonal equals
+$(k_{n,S}(0)-k_{n,S}(2))\mathcal D_{\rm pr}^{[M]}$, since each
+input is a unit modulo $n$. This is exactly the diagonal deleted
+in $B_{n,S}^{[M]}$. Equivalently, in the odd residue profiles the
+orthogonal projection subtracts the average over the unit lifts
+modulo $n/p$ for each $p\in S$. These projections commute because
+they are diagonal on the characters.
+
+We record bounds with the ambient energy $\mathcal N_N$ and
+support $x\ge A_N$. First, uniformly for the divisors in the sums
+with $M=N$, the unnormalized arithmetic square has norm $O(L^3)$.
+Indeed every odd character at such a divisor induces one modulo
+$N$ with exactly the same prime vector when primes
+dividing $N$ are omitted. The individual GRH bound in
+\cref{thm:conductor-progression-gram} applies. On a test supported
+at log height $r\ge H\ge 2L$ that proof gives the individual
+bound $O(L^{3/2}e^{-H/L})$: sum the unit-packet estimates from
+$H$ onwards. The squares removed from the full vector cost
+$O(\sum_{p\ge e^{H/2}}(\log p)p^{-1-2/L})=O(Le^{-H/L})$;
+higher powers gain the same exponential weight by point
+evaluation and absolute summability. The separated arithmetic
+diagonal is $O(L)$ and has the tail bound of \cref{eq:DMtail}.
+
+For an unfiltered model at an even divisor $m$, the proof of
+\cref{eq:Mpacket} uses $\SSS(m)$ and $1+(k-\log m)_+$ in its
+arithmetic coefficient and the \emph{ambient} weights $s_j,s_k$
+in its test estimates. Bounding this factor by $1+k$ for $k\ge0$
+gives norm $O(\SSS(m)L)$, or $O(\SSS(m)(1+H)e^{-2H/L})$
+when one support starts at $H\ge2L$, by the Schur sum in
+\cref{eq:DMtail}. For the filtered model use the first identity
+in \eqref{eq:physical-primitive-inversion} and
+\cref{eq:largeprimenormalization}. The sum of $1/d$ on the
+allowed primes is $O_\rho(1)$ by the reciprocal-prime estimate
+in \cref{thm:largeprimeconductors}. This also holds if the
+threshold changes by at most one. On the bounded-series family
+the product over all odd $p\mid N$ of $(1-1/p)^{-1}$ is $O_C(1)$
+by \eqref{eq:series}. These bounds apply also at the divisors.
+It follows that the normalized form norms at every such $m$ cost
+$O_\rho(L^3)$ in ambient energy. Taking a smooth upper cutoff
+across $[9L\log L,10L\log L]$ in log coordinates costs
+$O_\rho(L^{-2})$ in normalized norm when applied at $N$, and
+its multiplier and complement are bounded in energy.
+
+Apply \eqref{eq:physical-primitive-inversion} with the coprimality
+condition $[N]$ throughout. After normalization, the coefficient
+of a form at $n=N/d$, normalized by $\SSS(n)$, is at most $1/d$
+in absolute value by \cref{eq:largeprimenormalization}.
+Terms with $d>R_{10}(N)$ cost $O(L^{-2})$ by
+\cref{eq:largeprimedivisortail} and the preceding crude bounds.
+In the reverse identity the threshold is initially $L^\rho$.
+For $d\le R_{10}(N)$ the interval between
+$(L-\log R_{10}(N))^\rho$ and $L^\rho$ has length $o(1)$.
+If a surviving factor $p_*$ in this interval should be included
+at $n$ but was absent at $N$, telescope its local factor by
+the second identity, leaving all other factors fixed. The new
+divisor losses are $dp_*^i$ with telescoping coefficients. They
+occur at most once since $p_*\nmid d$, and above the cutoff
+they obey the same tail bound. At every remaining modulus the
+threshold now selects exactly $S(n)$, as in the boundary argument
+of \cref{thm:largeprimeconductors}. The bounded-series case uses
+all odd factors throughout and requires no threshold adjustment.
+
+It remains to replace $[N]$ by the native $[n]$ in the retained
+forms. The lost primes satisfy $p\mid d$ and $p\ge A_N$.
+Their vector on unit tests is pointwise
+$O(\sum_{p\mid d,\,p\ge A_N}(\log p)/\sqrt p)=O(L/\sqrt{A_N})$.
+Expanding the restricted character square and correcting the
+diagonal therefore costs at most $O(L^{3/2})$ times this sum
+before normalization. No model term changes. The reciprocal
+loss weights on multiples of each $p$ sum to $O_\rho(1/p)$
+by factoring out $p$ in the same bounded divisor product.
+This includes the possible extra factor $p_*$ above. Thus the
+total error on the normalized scale is
+\[
+ \ll_\rho L^{3/2}\sum_{\substack{p\mid N\\p\ge A_N}}
+                  \frac{\log p}{p^{3/2}}
+ \le L^{5/2}O_\rho(A_N^{-3/2})\ll_\rho L^{-1/2}.
+\]
+Finally $A_n\le A_N$ for the retained divisors and
+$W_n(r)/W_N(r)\le\exp(2r(1/\log n-1/L))=1+o(1)$ on the
+truncated support. Thus each test is admissible at $n$ with
+bounded native energy. Sum the normalized coefficients using
+the bounded reciprocal divisor product to obtain the inequalities.
+Every retained divisor tends to infinity with $N$ and
+$\SSS(n)\le\SSS(N)$. This proves the assertions on decay.
+
+For the additive version, local Fourier orthogonality on
+$\mathbb Z/p^\nu\mathbb Z$ after removing frequencies divisible
+by $p$ gives $\mathbf1_{p^\nu\mid h}-p^{-1}\mathbf1_{p^{\nu-1}\mid h}$.
+The Chinese remainder theorem and
+$2\sin u\sin v=\cos(u-v)-\cos(u+v)$ give
+\eqref{eq:physical-primitive-sines}, including its diagonal.
+In \eqref{eq:physical-primitive-inversion} the coefficients
+$\varphi(n/d)/\varphi(n)$ now become $1/d$ in both identities.
+After normalization they are bounded by $1/d$ since
+$\SSS(n/d)\le\SSS(n)$. The restricted sine square is bounded
+by the full sine square, which by odd-character orthogonality
+is the unrestricted character square on the same unit primes.
+This gives the same ambient and tail bounds. By Parseval the
+vector removed in the change of coprimality condition has norm
+at most a constant times the sum of its absolute coefficients,
+also after restriction of the frequencies. The diagonal change
+obeys the same bound used above. Hence the model estimates,
+divisor sums, threshold adjustment and native-energy comparison
+give the same inequalities for the additive version.
+\end{proof}
+
+\paragraph{Additive frequencies in the multiplicative-character test.}
+Use the totient ratios in $k_{n,S}$, put
+$m=\prod_{p^\nu\Vert n,\,p\in S}p^\nu$ and write $n_0=n/m$.
+Write $s_F(a)$ for the difference of the weighted prime sums in
+the unit classes $a$ and $-a$ modulo $n$, using the coprimality
+condition of the form. On the units let $s_F^S$ be the result
+of applying $1-\mathrm{Av}_p$ for each $p\in S$, where
+$\mathrm{Av}_p$ averages over the unit lifts modulo $n/p$.
+Extend it by zero to all residue classes and use the unnormalized
+finite Fourier transform. The filtered character square equals
+\[
+ \frac1{2n}\sum_{\substack{0\le k<n\\(k,m)=1}}
+       \widehat{s_F^S}(k)\overline{\widehat{s_G^S}(k)}.
+\]
+Indeed it is half the counting-measure inner product of the
+two odd projected profiles. When $p\mid k$, the additive phase
+is constant on the lifts modulo $n/p$ and the projected profile
+sums to zero there. Parseval gives the formula.
+
+On the continuous side let $c_m$ denote the Ramanujan sum,
+with $c_1=1$, and put
+\[
+ \beta=\frac1m\prod_{\substack{p\in S\\p\Vert n}}
+                   \frac{p(p-2)}{(p-1)^2}.
+\]
+The model divided by $\SSS(n)$ is exactly
+\begin{equation}
+ \beta\sum_d a_n(d)\sum_{\ell\ge1}c_m(\ell)
+                     J_{w_F,w_G}(n_0 d\ell),
+ \label{eq:physical-primitive-model}
+\end{equation}
+where $a_n(d)$ is the squarefree divisor weight of
+\cref{sec:cutoff}, supported on $(d,2n)=1$. For $p\Vert n$ in
+$S$, multiplying $\mathbf1_{p\mid h}-1/(p-1)$ by the singular-series
+factor $1+\mathbf1_{p\mid h}/(p-2)$ gives $c_p(h)/(p-1)$.
+For $p^\nu\Vert n$ with $\nu\ge2$ the factor of $k_{n,S}$ is
+$c_{p^\nu}(h)/p^\nu$, supported on multiples of $p$. Division by
+$\SSS(n)$ therefore leaves the constant $\beta$ above.
+Multiplicativity and $(n_0d,m)=1$ give $c_m(n_0d\ell)=c_m(\ell)$.
+This proves \eqref{eq:physical-primitive-model} for compact tests.
+The two-sided translation comb on the grid $n_0d\mathbb Z$ before
+deleting its zero shift has only frequencies $k/(nd)$ with
+$(k,m)=1$, by the exponential expansion of $c_m$.
+
+\begin{corollary}[The diagonal and sparse shift lines after centering at the conductor]
+\label{cor:conductor-sparse-lines}
+At any even $N$ sufficiently large let $\mathcal Q$ be any
+selection of primitive conductors, including the selection in
+\cref{thm:physical-primitivity}. In the character square on this
+family keep the weight $2/\varphi(N)$, and center the vector by
+subtracting its odd-character mean at each exact conductor.
+Let $E$ be a set of ordered pairs $(m,n)$ of unit arithmetic
+inputs such that each first or second input has at most $K$
+partners. On restricting both kernels to $E$, the change in
+unnormalized form norm satisfies
+\begin{equation}
+ \ll \frac{K L^2\tau(N)^2}{\varphi(N)} .
+ \label{eq:conductor-sparse-lines}
+\end{equation}
+This holds on arbitrary physical supports, for ordinary primes
+or for all prime powers, without GRH. In particular the centered
+arithmetic diagonal differs from the original family diagonal
+by $O_\epsilon(N^{-1+\epsilon})$. For a union of $J$ prescribed
+shifts $h$, allowing $m-n=\pm h$ and $m+n=h$, one can take
+$K=3J$. Thus $J\le N^{1-\eta}$ gives a power saving for each
+fixed $\eta>0$, uniformly in the sizes of the shifts.
+\end{corollary}
+
+\begin{proof}
+Write $o_q$ for the number of odd characters at exact conductor
+$q$ and $m_q(n)$ for their mean at a unit $n$, with value zero
+when $o_q=0$. The discarded kernel on individual labels is
+\[
+ C(m,n)=\frac{2}{\varphi(N)}
+     \sum_{q\in\mathcal Q}o_q m_q(m)\overline{m_q(n)}.
+\]
+Its diagonal $d(n)=C(n,n)$ is nonnegative. Since $|m_q(n)|\le1$,
+primitive orthogonality as in \cref{cor:conductor-mean-support}
+gives
+\[
+ d(n)\le\frac1{\varphi(N)}
+   \sum_{q\mid N}\sum_{e\mid q}\varphi(e)
+          (\mathbf1_{n\equiv1\bmod e}+\mathbf1_{n\equiv-1\bmod e}).
+\]
+On each log packet $[j,j+1)$, $j\ge0$ integral, the reciprocal
+sum of the integers $n\ge2$ in either class is $O(1/e)$, as in
+\eqref{eq:conductor-row-moment}. Bound $\Lambda(n)^2$ by
+$(1+j)^2$ there. Local Sobolev bounds $\sup |F|^2$ by a constant
+times $e^{-2j/L}$ times the local weighted $H^1$ norm squared.
+Summing the packet energies, and using
+$\sup_{j\ge0}(1+j)^2 e^{-2j/L}\ll L^2$, yields
+\[
+ \sum_{(n,N)=1} d(n)|a_n(F)|^2
+    \ll \frac{L^2\tau(N)^2}{\varphi(N)}\,\NN(F)^2 .
+\]
+Positivity gives $|C(m,n)|\le\sqrt{d(m)d(n)}$. Applying
+Cauchy--Schwarz over $E$ counts each weighted diagonal summand
+at most $K$ times in each argument. This proves
+\eqref{eq:conductor-sparse-lines}, also for any coefficients of
+absolute value at most one multiplying the mask. Each shift has
+at most three partners per input, which proves the last assertion.
 \end{proof}
 
 \section{Norm decay of the progression profiles near the square of the modulus}

@@ -26,6 +26,12 @@ Theorem 12.13 approximates the conductor-mean term on arbitrary supports using o
 
 Equation (12.23) evaluates that retained term without a matrix inverse. It is a positively weighted sum of squared differences between the weighted counts with $\gcd(n-1,N)=N/t$ and $\gcd(n+1,N)=N/t$, over $t\mid N$ with $t\le R$ and nonzero weight. In $P_N(A)$ these counts use ordinary primes. Extending the sum to every divisor recovers the exact conductor-mean form up to $O_\epsilon(N^{-1+\epsilon})$ under GRH.
 
+Theorem 12.14 gives an equivalent test for the entire prime-only norm, including inputs between $A$ and the modulus. Fix $0<\rho<1$. Keep the odd characters whose local conductor exponent is maximal at each odd $p\mid N$ above $(\log N)^\rho$, and apply the same local weights to the continuous shifts. Through all even moduli the resulting normalized norm tends to zero if and only if $P_N(A)$ does. On any family defined by $\mathfrak S(N)\le C$ one may impose this condition at every odd prime divisor. The mixed matrix still enters the full criterion.
+
+Corollary 12.15 bounds the effect of subtracting the mean at each exact conductor on individual arithmetic shift lines. For $J$ prescribed shifts of arbitrary sizes the change costs $O(J(\log N)^2\tau(N)^2/\varphi(N))$ in unnormalized norm, uniformly in the supports. The diagonal alone costs $O_\epsilon(N^{-1+\epsilon})$. The discrepancy between the centered arithmetic term and the continuous model on these lines still requires an estimate.
+
+The additive version of Theorem 12.14 uses the usual weighted prime sine sums. Only frequencies whose reduced denominator contains the full power of each selected prime are needed, with the corresponding $1/p$ weights in the continuous shifts and the diagonal removed.
+
 - [Manuscript (PDF)](output/pdf/hypothesis_s_paper.pdf)
 - [LaTeX source](output/pdf/hypothesis_s_paper.tex)
 - [Lean verification of the least-prime divisor split, logarithm weight, and factor-count inequality](formalization/LeastPrimeSplit.lean)
