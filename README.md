@@ -45,7 +45,9 @@ This repository contains the English research manuscript and the code and data f
 - [Lean verification of the prefix rectangle test](formalization/CriticalPrefix.lean)
 - [Lean verification of the signed progression rows](formalization/CriticalArithmetic.lean)
 
-## Research checkpoint · 27 November 2026
+## Research checkpoint · 28 November 2026
+
+Theorem 12.4 splits the mixed term at $\log y=H=L(\tfrac12\log(L/\sigma)+\kappa)$, with $L=\log N$, $\sigma=\mathfrak S(N)$ and $\kappa=\log\log L$. Under the modulus-wise GRH assumption the far interval needs a matrix of order only $O(1+(\log L)^{3/2}/\sqrt{\sigma})$ at every even modulus. On primorials, and more generally when $\log L\ll\sigma$, the entire far term tends to zero once the high-input prime-only norm $P_N(A)$ tends to zero. The remaining mixed matrix then uses primes only up to $e^{H+L}$, reducing the leading coefficient of $\log L$ in the exponent of $N$ from one to one half. Decay of $P_N(A)$ and of the remaining mixed matrix is open.
 
 Theorem 12.3 gives a prime-only criterion for the full norm on primorial moduli under the paper's modulus-wise GRH assumption. For $N$ equal to the product of the primes up to $y$, removing every proper prime power from both arithmetic coordinates changes the form by $O((\log\log N)^{-1/2})$ in normalized operator norm whenever either normalized norm stays bounded. The supports are unrestricted. More generally the same equivalence of decay holds when $L\log(2p_0)/(p_0\mathfrak S(N)^2)\to0$, where $L=\log N$ and $p_0$ is the least prime not dividing $N$. The ordinary-prime form still includes pairs at widely separated scales, and its decay remains open even on primorials.
 

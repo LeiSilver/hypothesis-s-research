@@ -228,6 +228,9 @@ whose largest eigenvalue, together with the prime-only norm,
 gives a criterion for \eqref{eq:goal} at all large even moduli.
 \Cref{thm:basecut} removes all proper prime powers on primorial
 moduli in the criterion for decay on unrestricted supports.
+\Cref{thm:mixed-far} shortens the mixed window on those moduli
+and bounds the number of small-input directions required beyond
+the shorter window at every even modulus.
 \Cref{thm:criticalprofiles} bounds those sums near the square
 of the modulus using equidistribution in progressions with
 factored moduli.
@@ -11533,6 +11536,96 @@ Chebyshev's estimates and Bertrand's postulate give
 $L\asymp y\asymp p_0$, and Mertens' product formula in
 \cref{eq:series} gives $\sigma\asymp\log L$. Substitution proves
 the stated rate.
+\end{proof}
+
+\subsection{The upper part of the mixed window}
+
+Use the parameters $A,Q,\kappa,k$ of \cref{thm:small-input-gram}
+and put $b=\log(2A)$, $\sigma=\SSS(N)$ and $P=P_N(A)$. Define
+\[
+ H=L\left(\tfrac12\log(L/\sigma)+\kappa\right),\qquad
+ I_1=[Y_-,e^{H+L}],\qquad I_2=[e^H,Y_+].
+\]
+These are physical intervals; for large $N$, $Y_-<e^H<e^{H+L}<Y_+$
+since $\sigma\asymp N/\varphi(N)\ll\log L$ and $\sigma\gg1$.
+Write $J(I)$ for the normalized mixed norm \eqref{eq:pprows}
+with the second support in $I$, and $j_s(I)$ for its restriction
+to the small-side projection of \cref{thm:small-input-gram}
+at mesh parameter $s$. The large-side Dirichlet kernel is taken
+on $\log I$ in each case.
+
+\begin{theorem}[Fewer small-input directions above the shorter cutoff]
+\label{thm:mixed-far}
+Assume $\grh(N)$. With $m=\lceil b^{3/2}/\sqrt{\sigma}\rceil$,
+the full norm condition \eqref{eq:goal} on any sequence of even
+moduli tending to infinity is equivalent to
+\[
+ P\longrightarrow0,\qquad j_k(I_1)\longrightarrow0,\qquad
+ j_m(I_2)\longrightarrow0 .
+\]
+The matrix on $I_2$ has order at most $2m+1$. For some absolute
+$c>0$, the estimates there are
+\begin{align}
+ 0\le J(I_2)-j_m(I_2)&\ll \sqrt P+e^{-\kappa}+N^{-c},\notag\\
+ J(I_2)&\ll
+ \sqrt{b/\sigma}\,(\sqrt P+e^{-\kappa}+N^{-c}).
+ \label{eq:mixed-far}
+\end{align}
+The far term tends to zero whenever $bP/\sigma\to0$. In particular,
+on sequences with $b\ll\sigma$, including primorials, only $P$ and
+$j_k(I_1)$ need tend to zero. The latter tests larger primes only
+up to $N^{\frac12\log(L/\sigma)+\kappa+1}$.
+\end{theorem}
+
+\begin{proof}
+For a unit test $G$ supported on $r\ge H$, the high-support
+deterministic comparison used in \cref{thm:basecut} gives
+\[
+ (\mathcal D+\mathcal M)(G,G)
+ \le |\mathcal W_N(G,G)|+O(N^{-c_1})
+ \ll L e^{-2H/L}+N^{-c_1}.
+\]
+Here $H\ge3L/2$ eventually, $W_N(r)\gg e^{2r/L}$ on the
+support, and \eqref{eq:logenergy} controls the weighted $H^1$
+norm. Thus $\|G\|_{H^1}\ll e^{-H/L}$; the multiplier in
+\eqref{eq:archdensity} is bounded by $O(L(1+t^2))$.
+Both arguments of the prime-only form at $(G,G)$ lie above $A$.
+Its diagonal is at most $\mathcal D(G,G)$, and positivity in
+\eqref{eq:split} gives
+\begin{equation}
+ \frac{\|U_{\rm pr}(G)\|_\chi}{\sqrt{\sigma}}
+ \ll \sqrt P+e^{-\kappa}+N^{-c},
+ \label{eq:mixed-tail-vector}
+\end{equation}
+since $Le^{-2H/L}=\sigma e^{-2\kappa}$. This estimate is uniform
+in the upper endpoint of the support.
+
+For a unit small test $F$, the proof of \cref{eq:ppboundrows}
+gives $\|U(F)\|_\chi\ll\sqrt b$. For its projection residual
+$R_s$, the cell estimate in \cref{thm:small-input-gram} gives
+$\|U(R_s)\|_\chi\ll b^{3/2}/s$. Pair each vector with
+$U_{\rm pr}(G)$ in \eqref{eq:mixed-tail-vector} and divide the
+pairing by $\sigma$. Using $b^{3/2}/m\le\sqrt{\sigma}$
+proves both parts of \cref{eq:mixed-far}.
+
+On $I_1$ the original projection error bound
+\eqref{eq:small-input-gram} still holds: restricting the second
+test preserves its vector bound. Thus $P\to0$ makes that error
+$o(1)$ at the specified $k$. For a test supported in
+$[Y_-,Y_+]$, a smooth partition of unity across $[H,H+L]$ in log
+coordinates gives two tests supported on $I_1,I_2$, respectively.
+Their $\NN$ norms are bounded by a constant times the initial norm
+by the multiplier estimate following \eqref{eq:split}.
+Consequently
+\[
+ \max(J(I_1),J(I_2))\le J_N^{\rm win}
+       \ll J(I_1)+J(I_2).
+\]
+The equivalence now follows from \cref{thm:ppcut} and
+\eqref{eq:ppwindow}. Since $b\asymp\log L$, $\sigma\gg1$ and
+$e^{-\kappa}=1/\log L$, the second bound in \eqref{eq:mixed-far}
+removes $I_2$ whenever $bP/\sigma\to0$.
+On primorials $\sigma\asymp\log L\asymp b$ by \cref{thm:basecut}.
 \end{proof}
 
 \section{Norm decay of the progression profiles near the square of the modulus}
