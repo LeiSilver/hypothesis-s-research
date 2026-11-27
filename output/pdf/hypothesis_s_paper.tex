@@ -3536,6 +3536,131 @@ $\log(y^2)/\log y=2$. The union bound and the normalization
 above give $O_a(s^2)$. The factor count follows from $N-p<N$.
 \end{proof}
 
+\begin{proposition}[Distribution of the positive-character primes on average]
+\label[proposition]{prop:single-test-rare-bv}
+Assume the hypotheses of \cref{prop:single-test-zero-class-pointwise}.
+Use either interval $J$ and the mass $M_J$ of its proof. For any
+fixed $0<\gamma<1/2$ and $B,C>0$, put $D=N^{1/2-\gamma}$ and
+$w(p)={\bf1}_{p\bmod q\in A_+}\log p$ on $J$. Then
+\[
+ \sum_{\substack{d\le D\\(d,2qN)=1}}\mu^2(d)
+ \max_{(u,d)=1}\left|
+ \sum_{\substack{p\in J\\p\equiv u\bmod d}} w(p)
+       -\frac{M_J}{\varphi(d)}\right|
+ \ll_{a,\gamma,B,C} Ns^B L^{-C}.
+\]
+\end{proposition}
+
+\begin{proof}
+Set $T=s^{-B-2}L^{C+20}$ and $K_0=\log(1/s)$.
+Here $\log L\ll_a K_0=o(L)$, so $qT=N^{o(1)}$.
+For $k\le T$, $(k,2qN)=1$, the argument for
+\eqref{eq:single-test-rare-prime-level} works in every unit
+class modulo $k$, with relative error $O_{a,B,C}(T^{-3})$.
+Indeed the size hypothesis holds at modulus $qk=N^{o(1)}$,
+and in (3.5) of \cite{ThornerZamanAP} the denominator
+$\log(3qk)+\sqrt{K_0L}=o(L)$ uniformly. Hence the exponential
+beats any fixed multiple of $K_0$ in the exponent, including
+the prefactor $L$ and three powers of $T$. The positive-sign
+integral and the number of admissible classes above a unit
+are independent of that unit. By character orthogonality,
+\[
+ S(\psi):=\sum_{p\in J} w(p)\psi(p)
+ \ll M_J T^{-3}
+\]
+for each nonprincipal primitive $\psi$ of conductor $k\le T$
+in this range. For the trivial character the same bound holds
+after subtraction of $M_J$.
+
+Expand the class indicator modulo $d$ and collect characters by
+primitive conductor $k\mid d$. All $p\in J$ exceed $d$, so
+induction leaves their values unchanged. The sum of $1/\varphi(d)$
+over the squarefree multiples of $k$ up to $D$ is
+$O(L/\varphi(k))$. Thus the small conductors, including the
+principal error, cost $O(M_J L T^{-2})$ in total.
+
+For the large conductors a structural property of the zero classes
+is essential. Every prime $\ell\ge5$ dividing $q$ divides $N$.
+On primes in $J$ the only possible additional condition for
+$(N-p,q)=1$ is $p\equiv -N\bmod 3$ when $3\mid q$, $3\nmid N$.
+The positive-sign indicator is $(1+\chi(p))/2$ on these primes.
+Consequently $w(p)/\log p$ is a linear combination of at most
+four characters, with coefficients bounded by one and primitive
+conductors dividing $q$: the possible extra class indicator is
+$(1+\chi_3(-N)\chi_3(p))/2$ for the nontrivial character modulo
+three. Fix one primitive constituent $\xi$ of conductor $f\mid q$.
+Since $(k,q)=1$, $\xi\psi$ is primitive modulo $fk$, and the
+map $(k,\psi)\mapsto(fk,\xi\psi)$ is injective.
+
+On a dyadic block $Z<k\le 2Z$, $T\le Z\le D$, apply Vaughan's
+mean value inequality in \cite[Theorem~1.2]{AkbaryHambrook}
+at $x=N$, $Q=2fZ$. The weight $1/\varphi(k)$ is at most
+$Z^{-1}fk/\varphi(fk)$. Taking endpoint differences and removing
+proper prime powers shows that the sum over this block of
+$\varphi(k)^{-1}\sum_\psi^*|\sum_{p\in J}\log p\,\xi(p)\psi(p)|$
+is bounded by an absolute constant times
+\[
+ L^5\left(N/Z+N^{1/2}f^2Z
+        +N^{2/3}f^{3/2}Z^{1/2}+N^{5/6}f+Z\sqrt N\right).
+\]
+The last term covers the prime powers, which cost
+$O(\sqrt N L^2)$ per character. Coprimality restrictions on
+$k$ are retained before enlarging to the full primitive family.
+Since $f\le q=N^{o(1)}$, all terms except $N/Z$ have a fixed
+power saving for $Z\le D$. Summing the blocks and paying the
+factor $O(L)$ for induced characters gives
+$O(N L^7/T+N^{1-c_\gamma})$ for some $c_\gamma>0$.
+As $s=N^{-o(1)}$, the asserted relative estimate follows.
+\end{proof}
+
+\begin{corollary}[At most three factors on the exceptional class]
+\label[corollary]{cor:single-test-rare-three}
+Under the same hypotheses, fix $0<\epsilon<1/20$ and put
+$y=N^{1/4-\epsilon}$, $z=N^{1/2-\epsilon}$. At every such $N$,
+the $W(p)$-mass on $\chi(p)=1$, $\chi(n)=-1$, $n=N-p$,
+$P^-(n)>y$, is $\asymp_{a,\epsilon}s$.
+After removing mass $O_{a,\epsilon}(s^2)$, each $n$ in this sum
+has one of the following factorizations:
+\begin{itemize}
+\item a prime of negative character;
+\item two primes of opposite character, the positive one exceeding $z$;
+\item three distinct primes of negative character.
+\end{itemize}
+\end{corollary}
+
+\begin{proof}
+Apply \cref{prop:single-test-rare-bv} with $\gamma=\epsilon/2$.
+Use the upper and lower linear sieves as in
+\cref{prop:single-test-zero-class-pointwise}, now at level
+$D=N^{1/2-\epsilon/2}$ and cutoff $y$. Their ratio of logarithms
+exceeds two. The same product $T_N(y)$ and the two intervals
+$J$ therefore give the stated upper and lower bounds.
+
+To remove all positive-character prime factors $y<r\le z$, use
+the upper sieve on $r\mid n$, at the auxiliary cutoff
+$v=N^{\epsilon/5}<y$. The available level $D/r\ge N^{\epsilon/2}$
+gives an upper constant uniform in $r$. As $r>v$, the main
+term per $r$ is $O_\epsilon(M_J T_N(v)/(r-1))$. Every modulus
+$rd\le D$ in the sum of the absolute remainders is counted
+$O_\epsilon(1)$ times since $r>y$; all primes dividing $2qN$
+can be omitted as before. Taking $B=3$, $C=5$ in the proposition
+therefore costs $O_{a,\epsilon}(Ns^3L^{-5})$ in log weight.
+The positive-character prime estimate on dyadic intervals used
+in the preceding pointwise sieve gives
+$\sum_{y<r\le z,\,\chi(r)=1}1/(r-1)\ll_\epsilon s$, since
+$\log z/\log y$ is bounded. Multiplication by
+$O(L/(N\SSS(N)))$ gives total removed mass $O_{a,\epsilon}(s^2)$.
+Squareful partners cost $o(s^2)$: count multiples of $r^2$
+for $r>y$ by $O(N/y+\sqrt N)$ and use $W(p)\ll L^2/N$.
+
+Since $y^5>N$, at most four factors remain. Four would require
+a positive one, while each would be less than $N/y^3<z$.
+Three with product of negative character must either all be
+negative or have two positive factors. The latter would give
+$n>z^2y>N$. For two factors the character product forces the
+stated signs, and all surviving positive factors exceed $z$.
+\end{proof}
+
 \section{Certification on the balanced window}
 \label{sec:certificate}
 
@@ -17824,6 +17949,11 @@ J\'anos Bolyai \textbf{13}, North-Holland, Amsterdam, 1976,
 A.~Chirre and M.~V.~Hagen,
 \newblock \emph{On Goldbach numbers in short intervals},
 \newblock \url{https://arxiv.org/abs/2512.23534}.
+
+\bibitem{AkbaryHambrook}
+A.~Akbary and K.~Hambrook,
+\newblock \emph{A variant of the Bombieri--Vinogradov theorem with explicit constants and applications},
+\newblock \url{https://arxiv.org/abs/1309.2730}.
 
 \bibitem{ThornerZamanAP}
 J.~Thorner and A.~Zaman,

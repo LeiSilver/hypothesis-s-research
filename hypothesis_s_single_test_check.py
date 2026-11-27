@@ -375,6 +375,13 @@ def check_exceptional_character_classes():
                     # Coefficients of (1-s*z)(1-t*z) for each admissible ordered pair.
                     if any(s+t != 0 or s*t != -1 for s, t in pairs):
                         raise AssertionError(("secondary prime-pair term", q, n))
+                    for unit in range(q):
+                        if not chi[unit]:
+                            continue
+                        class_filter = (q % 3 != 0 or n % 3 == 0 or unit % 3 == -n % 3)
+                        indicator = (1+chi[unit])*class_filter
+                        if indicator != 2*(chi[unit] == 1 and chi[(n-unit) % q] != 0):
+                            raise AssertionError(("character expansion on prime residues", q, n, unit))
                     small = [p for p in (3, 5, 7, 11, 13) if n % p]
                     local_product = prod(Fraction(p-2, p-1) for p in small if q % p)
                     positive = sum(first == 1 for first, _ in pairs)
@@ -442,12 +449,15 @@ def check_oriented_rough_partners():
     limit = 3600
     prime_factors = [factors(n) for n in range(limit)]
     tested = marked = prime_pairs = 0
+    three_factor_cases = [0, 0, 0, 0]
     for modulus, positive, negative, zero_residue in [
         (3, {1}, {2}, 0), (4, {1}, {3}, 0), (8, {1, 7}, {3, 5}, 4)
     ]:
         for n in range(300, limit, 2):
             if n % modulus != zero_residue:
                 continue
+            # epsilon = 1/40. Compare powers exactly at both cutoffs.
+            rough_threshold, positive_threshold = n**9, n**19
             ordered = oriented_primes = 0
             for p in range(5*n//12+1, (7*n-1)//12+1):
                 if len(prime_factors[p]) != 1 or p == n-p:
@@ -458,6 +468,12 @@ def check_oriented_rough_partners():
                     continue
                 if (n-p) % modulus not in negative:
                     raise AssertionError(("rough partner character", modulus, n, p))
+                if (min(partner)**40 > rough_threshold and len(set(partner)) == len(partner)
+                        and all(r**40 > positive_threshold for r in partner if r % modulus in positive)):
+                    positive_factors = sum(r % modulus in positive for r in partner)
+                    if len(partner) > 3 or positive_factors != int(len(partner) == 2):
+                        raise AssertionError(("exceptional three-factor classification", modulus, n, p))
+                    three_factor_cases[len(partner)] += 1
                 oriented_primes += len(partner) == 1
                 small_positive = {r for r in partner if r <= 25 and r % modulus in positive}
                 if bool(small_positive) != any((n-p) % r == 0 and r % modulus in positive
@@ -470,8 +486,11 @@ def check_oriented_rough_partners():
             prime_pairs += oriented_primes
     if not (0 < marked < tested and 0 < prime_pairs < tested):
         raise AssertionError("missing rough-partner cases")
+    if not all(three_factor_cases[1:]):
+        raise AssertionError("missing prime, semiprime or triple example")
     print(f"Verified orientation on {tested} rough samples, including {prime_pairs} prime "
           f"partners and {marked} samples with a marked positive factor.")
+    print(f"Checked the three-factor classification on {sum(three_factor_cases)} surviving samples.")
 
 
 def check_switched_logarithmic_sieve():
