@@ -241,6 +241,8 @@ of the modulus using equidistribution in progressions with
 factored moduli.
 \Cref{thm:power-small-factors} gives an unconditional mean-square
 bound up to a power-sized smaller input on a larger family of moduli.
+\Cref{cor:smooth-critical-inputs} extends the smaller-input exponent
+to any fixed value below $2/21$ on squarefree smooth moduli.
 \Cref{thm:unconditional-upper-inputs} treats all even moduli
 unconditionally above the smaller-input exponent $4/17$ in the
 critical product range.
@@ -17868,7 +17870,7 @@ factorization $N=q_1q_2q_3$ with
  Y^{0.039}\le q_2\le Y^{0.041},\qquad
  Y^{0.169}\le q_3\le Y^{0.171}.
 \]
-The factors may be composite. Put $\eta=1/10000$.
+The factors may be composite. Fix $0<\eta<2/1501$.
 Write $M_N(S)$ for the normalized physical form norm on arbitrary
 tests after restricting both terms of \cref{eq:form} to the pairs
 $x\le N^\eta$, $xy\le S$.
@@ -17879,7 +17881,7 @@ For every fixed $B\ge0$ and $D>0$, unconditionally,
 \begin{equation}
  \sum_{N\in\mathcal G(Y)}
   \sup_{N^2\le S\le N^2(\log N)^B} M_N(S)^2
- \ll_{B,D}Y(\log Y)^{-D}.
+ \ll_{B,D,\eta}Y(\log Y)^{-D}.
  \label{eq:power-small-factors}
 \end{equation}
 The same bound holds for the pair restriction
@@ -17891,7 +17893,8 @@ full sharp product restriction.
 \end{theorem}
 
 \begin{proof}
-Write $\lambda=\log Y$, fix a large $K$ in terms of $B,D$, and put
+Constants in the proof may depend on $\eta$. Write $\lambda=\log Y$,
+fix a large $K$ in terms of $B,D$, and put
 $T=Y^{2-\eta}\lambda^{-K}$. We first record the following bound
 for a single integer $a\ne0$, uniform in $a$. Let $V$ be a dyadic
 scale with $T/2\le V\ll_B Y^2\lambda^B$. For every fixed $U$,
@@ -17905,7 +17908,8 @@ where $D_{N,a}(v)=\pi(v;N,a)-\pi(v)/\varphi(N)$.
 For $V\le v\le2V$ we have
 $2-\eta-o(1)\le\log v/\lambda\le2+o(1)$. Apply Maynard's
 three-factor theorem \cite[Theorem~1.2]{MaynardIII} with
-$\delta=1/10000$. Bin $q_2,q_3$ dyadically with upper endpoints
+$\eta/(2(2-\eta))<\delta<1/3000$. Such a fixed $\delta$
+exists precisely when $\eta<2/1501$. Bin $q_2,q_3$ dyadically with upper endpoints
 $Q_2,Q_3$ and take $Q_1=v^{1/2+\delta}/(Q_2Q_3)$.
 Indeed $(2-\eta)(1/2+\delta)>1$, so $8Y<v^{1/2+\delta}$
 eventually. The factor inequalities follow with strict margins from
@@ -17915,6 +17919,10 @@ eventually. The factor inequalities follow with strict margins from
  2(1/10+12\delta)&<0.208, &
  0.171+0.6(0.041)&<(2-\eta)(1/10-4\delta).
 \end{align*}
+For the third inequality the left side is strictly below
+$2(1/10+12/3000)=0.208$. In the other three inequalities
+substitution of the limiting values $\eta=2/1501$ and
+$\delta=1/3000$ still leaves a strict margin.
 As in \cref{eq:profiledistribution}, the outer residue can be
 chosen as $a\bmod q_1q_2$. Summing the nonnegative bounds over
 $O(\lambda^2)$ bins gives $\sum_N |D_{N,a}(v)|\ll_{B,K,J}
@@ -18021,11 +18029,12 @@ For every fixed $D>0$, unconditionally,
        \sup_{0<S\le R_N^*} U_N(S;\epsilon)^2
        \ll_{B,D,\epsilon}Y(\log Y)^{-D}.
 \]
-In particular, on $\mathcal G(Y)$, through $N^2\le S\le R_N^*$
+In particular, for each fixed $0<\eta<2/1501$, on
+$\mathcal G(Y)$ through $N^2\le S\le R_N^*$
 the sharp product form differs in normalized form norm from the
-part with $N^{1/10000}<\min(x,y)<N^{4/17+\epsilon}$ by an error
+part with $N^\eta<\min(x,y)<N^{4/17+\epsilon}$ by an error
 whose squared sum, even after the supremum over $S$, satisfies
-the same bound.
+the same bound with a constant also depending on $\eta$.
 \end{theorem}
 
 \begin{proof}
@@ -18188,6 +18197,70 @@ over the moduli with a sufficiently large $F$ proves the first
 assertion. The two complementary masks outside the stated
 intermediate range are disjoint; \cref{eq:power-small-factors}
 and the first assertion bound their sum.
+\end{proof}
+
+\begin{corollary}[Small inputs on squarefree smooth moduli]
+\label[corollary]{cor:smooth-critical-inputs}
+Fix $0<\eta<2/21$. There exists $\kappa=\kappa(\eta)>0$ such
+that the even squarefree $N\in[Y,2Y]$ with all prime factors at
+most $Y^\kappa$ form a set $\mathcal H_\kappa(Y)\subset\mathcal G(Y)$
+of size $\gg_\eta Y$. On this set the unconditional bound
+\cref{eq:power-small-factors} holds with this $\eta$, including
+the restriction $\min(x,y)\le N^\eta$. Thus, for every fixed
+$0<\epsilon<13/17$, the reduction in
+\cref{thm:unconditional-upper-inputs} holds on $\mathcal H_\kappa(Y)$
+with intermediate range $N^\eta<\min(x,y)<N^{4/17+\epsilon}$.
+\end{corollary}
+
+\begin{proof}
+Put $\theta=21/40$. Since $(2-\eta)\theta>1$, choose $\zeta>0$
+so that $(2-\eta)(\theta-\zeta)>1$. Take $\delta>0$ from
+Stadlmann's theorem \cite[Theorem~1]{Stadlmann} for this $\zeta$,
+and fix $0<\kappa<\min(0.001,(2-\eta)\delta)$.
+Use $T=Y^{2-\eta}(\log Y)^{-K}$ as in
+\cref{thm:power-small-factors}. At every endpoint
+$T/2\le v\ll_B Y^2(\log Y)^B$ we have
+$2Y<v^{\theta-\zeta}$ and $Y^\kappa<v^\delta$ for large $Y$.
+Every modulus in $\mathcal H_\kappa(Y)$ then divides the product
+of the primes below $v^\delta$. For each integer $a$ the cited
+theorem gives a first absolute moment $O_{\eta,J}(v(\log Y)^{-J})$
+over these moduli coprime to $a$, uniformly in $a$.
+Its coprime prime-count main term differs from $\pi(v)/\varphi(N)$
+by at most $\omega(N)/\varphi(N)$ per modulus, with $\omega(N)$
+the number of distinct prime factors. The total correction
+is $O((\log Y)^2)$.
+
+The grid argument of \cref{eq:power-small-max} now applies for
+each $a$, and the signed row estimate and the dyadic summation
+in \cref{thm:power-small-factors} use this estimate only for
+$a=\pm n$ before summing the smaller weights. The other errors
+there are uniform on this family: the continuous model costs
+$O(N^{\eta-1}+N^{-1/2+3\eta/4})$, and the larger proper powers
+cost $O_B(Y^{-1+\eta+1/20}(\log Y)^{K/2})$.
+Both are power savings throughout the asserted range. The
+subcritical bound is unchanged since $N^\eta T\ll Y^2(\log Y)^{-K}$.
+This proves the small-input estimate and its transpose. Combining
+their minimum mask with \cref{thm:unconditional-upper-inputs}
+gives the intermediate range.
+
+For the inclusion in $\mathcal G(Y)$, multiply successive prime
+factors until the product first reaches $Y^{0.039}$, and repeat
+with unused factors until reaching $Y^{0.169}$. Each overshoot
+is by a factor at most $Y^\kappa$, so the two products lie in
+the required bands and enough unused factors remain at both steps.
+To see the density directly, choose a fixed integer $m>2/\kappa$
+and put $u=(1-3\kappa/4)/m$, $w=(1-\kappa/2)/m$.
+For each product $d$ of $m$ distinct primes in $(Y^u,Y^w]$,
+count $N=2dr$ with $Y/(2d)\le r\le Y/d$. The interval for $r$
+has length $\gg Y^{\kappa/2}$ and $r\le Y^{3\kappa/4}$.
+A positive proportion of its integers are odd and squarefree,
+by the elementary squarefree count for odd integers on $[z,2z]$.
+Excluding the $m$ primes dividing $d$ removes proportion
+$O_m(Y^{-u}+Y^{-\kappa/2})$. Each resulting $N$ belongs to
+$\mathcal H_\kappa(Y)$. The sum of $1/d$ is bounded below by a
+positive constant by Mertens' prime reciprocal formula (repeated
+prime choices cost $o(1)$). Each $N$ has only $O_u(1)$ prime
+factors above $Y^u$, hence bounded multiplicity in this count.
 \end{proof}
 
 \section{Conditional bounds from uniform prime-pair discrepancies}
@@ -18770,6 +18843,13 @@ K. Matom\"aki, M. Radziwi\l\l{} and T. Tao,
 \newblock \emph{Correlations of the von Mangoldt and higher divisor functions I.
 Long shift ranges}.
 \newblock \url{https://arxiv.org/abs/1707.01315}.
+
+\bibitem{Stadlmann}
+J. Stadlmann,
+\newblock \emph{On primes in arithmetic progressions and bounded gaps
+between many primes}.
+\newblock Adv. Math. (2025), article 110190.
+\newblock \url{https://doi.org/10.1016/j.aim.2025.110190}.
 
 \bibitem{ChenGuptaLi}
 B. Chen, V. Gupta and Y.~C. Li,
