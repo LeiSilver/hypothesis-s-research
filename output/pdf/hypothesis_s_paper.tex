@@ -3422,6 +3422,120 @@ $(2-t+o(1))cs$ in $\mathbb E_b[P_N{\bf1}_{P_N\ge tcs}]$.
 Cauchy--Schwarz and the second moment give the stated proportion.
 \end{proof}
 
+\begin{proposition}[A pointwise sieve on the positive-character primes]
+\label[proposition]{prop:single-test-zero-class-pointwise}
+Fix $a>0$. Assume the real zero $\beta=1-1/(\eta\log q)$ of
+\cref{prop:single-test-exceptional-character}. Let $N$ run through
+even integers satisfying \eqref{eq:single-test-exceptional-classes},
+and put $L=\log N$, $V=L/\log q$ and $s=V/\eta$. Suppose
+$V\to\infty$ and $s\le L^{-a}$. There exists a constant
+$\rho=\rho(a)>0$ with the following property. Let $R_N$ be the
+sum of $W(p)$ over primes $p$ in the fixed window for which
+\[
+ \chi(p)=1,\qquad \chi(N-p)=-1,\qquad P^-(N-p)>N^\rho .
+\]
+Uniformly at each such $N$,
+\[
+ R_N\asymp_a s,\qquad P_N\le 2R_N\ll_a s .
+\]
+The part of $R_N$ with some prime $r\le N^{2\rho}$ dividing
+$N-p$ and satisfying $\chi(r)=1$ is $O_a(s^2)$. Consequently
+there is mass $\gg_a s$ with at most $\lfloor1/\rho\rfloor$
+prime factors of $N-p$, counted with multiplicity, and with
+every factor up to $N^{2\rho}$ of negative character.
+\end{proposition}
+
+\begin{proof}
+Set $A_+=\{u\bmod q:(u(N-u),q)=1,\ \chi(u)=1\}$ and let
+$A$ be the full set of admissible residues. Reflection reverses
+sign in the specified classes, so $|A_+|=|A|/2$ and
+$\chi(N-u)=-1$ on $A_+$. We first count primes with weight
+$\log p$ on either of the intervals $J=(5N/12,7N/12]$ and
+$J=(11N/24,13N/24]$. Write
+\[
+ M_J=\frac{|A_+|}{\varphi(q)}\int_J(1-t^{\beta-1})\,\ud t
+       \asymp Ns\,|A_+|/\varphi(q).
+\]
+For a sufficiently small fixed $\delta=\delta(a)>0$, let
+$D=N^\delta$. Uniformly for squarefree $d\le D$ coprime to
+$2qN$ we claim
+\begin{equation}
+ \sum_{\substack{p\in J,\ p\bmod q\in A_+\\ d\mid N-p}}\log p
+   =\frac{M_J}{\varphi(d)}(1+O_a(L^{-5})).
+ \label{eq:single-test-rare-prime-level}
+\end{equation}
+There are $|A_+|$ classes modulo $m=qd$, with the same integral
+main term. The induced character has the exceptional zero for
+modulus $m$, since $(1-\beta)\log(3m)=O(s)=o(1)$.
+For clarity, the log saving here uses the zero-repulsion estimate
+in \cite[Theorem~2.3 and (3.5)]{ThornerZamanAP}. Write
+$K=\log(1/s)\ge a\log L$. We have $K=o(L)$ by their effective
+bound $1-\beta\gg q^{-1/2}$ and $V\to\infty$. Thus the main
+term per class on either interval is $N^{1-\delta-o(1)}$ or
+larger. Taking $\delta<1/100$, this exceeds the required threshold
+$x^{32/37+\epsilon}$ at the upper endpoint $x$ for a fixed
+sufficiently small $\epsilon>0$. Since $|J|\asymp N$, (3.5)
+bounds the relative error by
+\[
+ O\!\left(L\exp\left\{-\frac{c_0 KL}
+   {\log(3m)+\sqrt{KL}}\right\}+N^{-c_0}\right)
+\]
+with an absolute $c_0>0$ (decreased to allow $x\asymp N$).
+The denominator is at most $3\delta L$ for large $N$, since
+$q=N^{o(1)}$. Choose $\delta$ so that $c_0 a/(3\delta)>7$.
+Summing over the admissible classes proves
+\eqref{eq:single-test-rare-prime-level}.
+
+Sift $N-p$ at $y=N^\rho$ with $\rho=\delta/4$.
+Primes dividing $2q$ are excluded from $N-p$ already. A prime
+below $y$ dividing $N$ cannot divide $N-p$ since $p>y$.
+The other local densities are $1/(\ell-1)$. Their product
+\[
+ T_N(y)=\prod_{\substack{\ell\le y\\\ell\nmid 2qN}}
+                  \left(1-\frac1{\ell-1}\right)
+\]
+is over primes. The ordinary dimension-one upper and lower
+linear sieves at level $D$ bound the sifted log weight above
+and below by constant multiples of $M_J T_N(y)$:
+the level ratio is four, the lower sieve function is positive,
+and omitting primes preserves the uniform dimension-one product
+bound \cite[Chapter~11]{OperaCribro}. The absolute remainder
+is $O_a(M_JL^{-5}\sum_{d\le D}\mu^2(d)/\varphi(d))
+=O_a(M_JL^{-4})$, whereas $T_N(y)\gg1/L$.
+Every prime of $q$ is below $y$ eventually. At each odd
+$\ell\mid q$ with $\ell\nmid N$, the factor
+$(\ell-2)/(\ell-1)$ in $|A|/\varphi(q)$ restores the omitted
+sieve factor. At $\ell\mid(q,N)$ the unit proportion is one.
+Mertens' product and \eqref{eq:series} therefore give
+\[
+ \frac{|A|}{\varphi(q)} T_N(y)\asymp
+                 \frac{\SSS(N)}{\log y}.
+\]
+The odd prime factors of $N$ above $y$ contribute $1+o(1)$
+to this comparison, as there are at most $1/\rho$ of them.
+For the upper bound use the full window and $F\le1$; for
+the lower bound use the inner interval, where $F$ is bounded
+below. The remaining factor in $W(p)$ is
+$F(p/N)\log(N-p)/(N\SSS(N))$. This proves $R_N\asymp_a s$.
+Every distinct prime pair has exactly one positive sign and
+both entries exceed $y$, so symmetry gives $P_N\le2R_N$.
+
+For a positive-character prime $y<r\le y^2$ dividing $N-p$,
+we may assume $(r,2qN)=1$. Impose $r\mid N-p$ and use the
+upper sieve at level $D/r\ge y^2$. All its divisors are
+coprime to $r$. Formula \eqref{eq:single-test-rare-prime-level}
+with modulus divisor $rd$ bounds the sifted log weight by
+$O_a(M_J T_N(y)/(r-1))$, including the remainder. On each
+dyadic interval at scale $t$ between $y/2$ and $2y^2$,
+the positive-character primes have log weight $O_a(ts)$:
+apply \cite[Theorem~1.1]{ThornerZamanAP} modulo $q$ with
+$q=t^{o(1)}$ and $1-t^{\beta-1}\asymp_a s=t^{-o(1)}$.
+Summing the reciprocal primes on these dyadic intervals gives
+$\sum_{y<r\le y^2,\,\chi(r)=1}1/(r-1)\ll_a s$, since
+$\log(y^2)/\log y=2$. The union bound and the normalization
+above give $O_a(s^2)$. The factor count follows from $N-p<N$.
+\end{proof}
+
 \section{Certification on the balanced window}
 \label{sec:certificate}
 

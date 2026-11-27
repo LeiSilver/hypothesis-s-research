@@ -375,6 +375,12 @@ def check_exceptional_character_classes():
                     # Coefficients of (1-s*z)(1-t*z) for each admissible ordered pair.
                     if any(s+t != 0 or s*t != -1 for s, t in pairs):
                         raise AssertionError(("secondary prime-pair term", q, n))
+                    small = [p for p in (3, 5, 7, 11, 13) if n % p]
+                    local_product = prod(Fraction(p-2, p-1) for p in small if q % p)
+                    positive = sum(first == 1 for first, _ in pairs)
+                    expected = prod(Fraction(p-2, p-1) for p in small)
+                    if 2*Fraction(positive, phi)*local_product != expected:
+                        raise AssertionError(("oriented sieve normalization", q, n))
                     for divisor in (3, 5, 7, 15, 35):
                         if gcd(divisor, period) != 1:
                             continue
@@ -430,6 +436,42 @@ def check_exceptional_pair_moment():
                 raise AssertionError(("reciprocal singular series", n, period))
             checked += 1
     print(f"Verified {checked} partner-sieve and reciprocal singular-series identities.")
+
+
+def check_oriented_rough_partners():
+    limit = 3600
+    prime_factors = [factors(n) for n in range(limit)]
+    tested = marked = prime_pairs = 0
+    for modulus, positive, negative, zero_residue in [
+        (3, {1}, {2}, 0), (4, {1}, {3}, 0), (8, {1, 7}, {3, 5}, 4)
+    ]:
+        for n in range(300, limit, 2):
+            if n % modulus != zero_residue:
+                continue
+            ordered = oriented_primes = 0
+            for p in range(5*n//12+1, (7*n-1)//12+1):
+                if len(prime_factors[p]) != 1 or p == n-p:
+                    continue
+                partner = prime_factors[n-p]
+                ordered += len(partner) == 1
+                if p % modulus not in positive or min(partner) <= 5:
+                    continue
+                if (n-p) % modulus not in negative:
+                    raise AssertionError(("rough partner character", modulus, n, p))
+                oriented_primes += len(partner) == 1
+                small_positive = {r for r in partner if r <= 25 and r % modulus in positive}
+                if bool(small_positive) != any((n-p) % r == 0 and r % modulus in positive
+                                               for r in (7, 11, 13, 17, 19, 23)):
+                    raise AssertionError(("marked rough partner", modulus, n, p))
+                marked += bool(small_positive)
+                tested += 1
+            if ordered != 2*oriented_primes:
+                raise AssertionError(("ordered prime-pair orientation", modulus, n))
+            prime_pairs += oriented_primes
+    if not (0 < marked < tested and 0 < prime_pairs < tested):
+        raise AssertionError("missing rough-partner cases")
+    print(f"Verified orientation on {tested} rough samples, including {prime_pairs} prime "
+          f"partners and {marked} samples with a marked positive factor.")
 
 
 def check_switched_logarithmic_sieve():
@@ -587,6 +629,7 @@ def main():
     check_interval_proportions()
     check_exceptional_character_classes()
     check_exceptional_pair_moment()
+    check_oriented_rough_partners()
 
 
 if __name__ == "__main__":
