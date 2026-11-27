@@ -3224,6 +3224,114 @@ parity. Finally $\Delta_N-P_N=o(1)$ by
 \cref{prop:single-test-rough-pairs}.
 \end{proof}
 
+\begin{proposition}[Short-interval mass in each exceptional residue class]
+\label[proposition]{prop:single-test-zero-class-mean}
+Assume the exceptional-zero hypothesis of
+\cref{prop:single-test-exceptional-character}, with $\eta\to\infty$.
+Write $V=\log X/\log q$ and suppose $V\to\infty$, $V=o(\eta)$.
+Fix $0<\varepsilon<5/37$ and let
+$X^{32/37+\varepsilon}\le H\le X/\log X$.
+Choose any even residue $b$ satisfying
+\eqref{eq:single-test-exceptional-classes} and put
+\[
+ \mathcal J_b=\{X<N\le X+H:2\mid N,\ N\equiv b\pmod q\}.
+\]
+Uniformly in $b$ and $H$, the mean with weights $N\SSS(N)$ satisfies
+\begin{equation}
+ \frac{\sum_{N\in\mathcal J_b}N\SSS(N)P_N}
+      {\sum_{N\in\mathcal J_b}N\SSS(N)}
+   \sim c(1-e^{-2V/\eta})\sim 2cV/\eta .
+ \label{eq:single-test-zero-class-mean}
+\end{equation}
+In particular, every such interval and class contains some $N$
+with $P_N\ge cV/\eta$ for sufficiently large parameters.
+If $(\log\eta)^2\le V\le\sqrt\eta/2$, the proportion of members
+of $\mathcal J_b$ satisfying this inequality is
+$\gg_\varepsilon(\log\eta)^{-12}$ by ordinary counting.
+\end{proposition}
+
+\begin{proof}
+Let $\beta=1-1/(\eta\log q)$, $z=X^{\beta-1}$ and
+$m_\sigma=1-\sigma z$ for $\sigma=\pm1$. For $t\asymp X$ on a
+fixed compact scale we have
+$1-\sigma t^{\beta-1}=m_\sigma(1+O(1/\log X))$.
+For the smaller factor this follows from
+$1-z\asymp(1-\beta)\log X$.
+Theorem~1.1 of Thorner and Zaman \cite{ThornerZamanAP} gives,
+uniformly for $(a,q)=1$, $\chi(a)=\sigma$, and intervals
+$(x-h,x]$ contained in $[X/4,3X/4]$ of length
+$h\ge X^{32/37+\varepsilon}/\log X$,
+\[
+ \sum_{\substack{x-h<p\le x\\p\equiv a\bmod q}}\log p
+       =(1+o(1))\,h m_\sigma/\varphi(q).
+\]
+Indeed $\beta$ is in their exceptional region for large $\eta$.
+Their effective bound $1-\beta\gg q^{-1/2}$ and $q=X^{o(1)}$
+give $m_\sigma/\varphi(q)\ge X^{-o(1)}$, so their size
+hypothesis holds with exponent $32/37+\varepsilon/2$.
+The denominator in the exponential error of their theorem is
+$o(\log X)$ since $\log q=o(\log X)$ and $h$ is at least the
+stated power up to a logarithm. Thus the error is relative even
+for $\sigma=1$.
+
+Let $A=\{a\bmod q:(a(b-a),q)=1\}$. For every $a\in A$ the
+two signs are opposite by \cref{prop:single-test-exceptional-character},
+so the primes in such a pair are distinct. All primes counted
+exceed $q$. Fix the first prime $p\equiv a\bmod q$ and sum over
+the second in $(X-p,X+H-p]$, in the class $b-a$. The fixed
+weight is $F(p/(p+p'))$. Replacing it by $F(p/X)$ costs
+$O(H/X)$ per pair before log weights. The union of both supports
+has $p\in[X/3,2X/3]$ for large $X$, where the inner interval lies
+in $[X/4,3X/4]$. The prime estimate bounds the total logarithmic
+weight of these pairs per $a$ by
+$O(XH m_+m_-/\varphi(q)^2)$. Thus freezing costs a relative
+$O(H/X)$ on this scale. For the outer sum,
+\[
+ \sum_{p\equiv a\bmod q} F(p/X)\log p
+       =(c+o(1))X m_{\chi(a)}/\varphi(q).
+\]
+For example, partition $[X/3,2X/3]$ into $\lceil\log X\rceil$
+equal pieces, apply the uniform prime estimate on each and use
+the Lipschitz bound for $F$. Since $\int F=c$, summation of the
+inner and outer estimates gives the numerator in
+\eqref{eq:single-test-zero-class-mean} as
+$(c+o(1))XH |A|(1-z^2)/\varphi(q)^2$.
+
+For the denominator let $Q=\operatorname{lcm}(2,q)$ and factor
+\[
+ \SSS(N)=D_b\sum_{\substack{d\mid N\\(d,2q)=1}}h(d),
+ \qquad
+ D_b=2C_2\prod_{\substack{\ell\mid(q,b)\\\ell>2\ {\rm prime}}}
+                  \frac{\ell-1}{\ell-2},
+\]
+with the squarefree coefficients $h$ of \eqref{eq:series}
+($h(\ell)=1/(\ell-2)$ at odd primes).
+Counting multiples of $d$ in the even class gives $H/(Qd)+O(1)$.
+The bound $\sum_{d\le 2X}h(d)\ll\log X$ and partial summation
+for the Euler-sum tail show that the mean of $\SSS(N)$ on
+$\mathcal J_b$ is $(1+o(1))D_b\prod_{\ell\nmid 2q}
+(1+1/(\ell(\ell-2)))$, with the product over primes.
+This constant equals $Q|A|/\varphi(q)^2$: at an odd prime
+dividing $q$ the local factor is $\ell/(\ell-1)$ if $\ell\mid b$
+and $\ell(\ell-2)/(\ell-1)^2$ otherwise; the factor at two is
+always two. As $N/X=1+o(1)$, the denominator is therefore
+$(1+o(1))XH|A|/\varphi(q)^2$. Division proves the asymptotic.
+
+For the counting assertion the pointwise error in the proof of
+\cref{prop:single-test-exceptional-character} gives
+$P_N\ll (V/\eta)(\log\eta)^6$ on $\mathcal J_b$ in the narrower
+range. Both exponential errors there are $o(1/\eta)$ since
+$V\ge(\log\eta)^2$ and $\log q\to\infty$.
+The mean just proved therefore puts a fraction
+$\gg(\log\eta)^{-6}$ of the $N\SSS(N)$ weight on
+$P_N\ge cV/\eta$. The mean of $(\SSS(N)/D_b)^2$ is bounded
+uniformly: expanding the square as above replaces $h(\ell)$ by
+$2h(\ell)+h(\ell)^2$, whose squarefree products sum to
+$O((\log X)^2)$ up to $2X$ and have bounded Euler sum after
+division by $d$. Since the mean of $\SSS(N)/D_b$ is at least
+one, Cauchy--Schwarz gives the claimed ordinary fraction.
+\end{proof}
+
 \section{Certification on the balanced window}
 \label{sec:certificate}
 
@@ -17512,6 +17620,11 @@ J\'anos Bolyai \textbf{13}, North-Holland, Amsterdam, 1976,
 A.~Chirre and M.~V.~Hagen,
 \newblock \emph{On Goldbach numbers in short intervals},
 \newblock \url{https://arxiv.org/abs/2512.23534}.
+
+\bibitem{ThornerZamanAP}
+J.~Thorner and A.~Zaman,
+\newblock \emph{Refinements to the prime number theorem for arithmetic progressions},
+\newblock \url{https://arxiv.org/abs/2108.10878}.
 
 \bibitem{MatomakiMerikoskiSiegel}
 K. Matom\"aki and J. Merikoski,

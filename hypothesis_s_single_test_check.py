@@ -353,9 +353,11 @@ def check_exceptional_character_classes():
             d = len(local)
             base = odd//gcd(odd, 3)
             period = lcm(2, q)
+            phi = sum(value != 0 for value in chi)
             vanishing = set()
             for n in range(0, period, 2):
-                signs = [chi[a]*chi[(n-a) % q] for a in range(q) if chi[a] and chi[(n-a) % q]]
+                pairs = [(chi[a], chi[(n-a) % q]) for a in range(q) if chi[a] and chi[(n-a) % q]]
+                signs = [s*t for s, t in pairs]
                 predicted = (chi[-1]*(-1)**(n//d)*prod(Fraction(-1, p-2) for p in ps if n % p)
                              if n % d == 0 else 0)
                 missing_three = int(odd % 3 == 0 and n % 3 != 0)
@@ -365,7 +367,14 @@ def check_exceptional_character_classes():
                     raise AssertionError(("exceptional character class", q, chi[-1], n))
                 if n == 0 and predicted != chi[-1]:
                     raise AssertionError(("conductor multiple", q))
+                local_mean = 2*prod(Fraction(p, p-1) if n % p == 0 else Fraction(p*(p-2), (p-1)**2)
+                                    for p in ps)
+                if local_mean != Fraction(period*len(pairs), phi**2):
+                    raise AssertionError(("progression singular-series mean", q, n))
                 if zero:
+                    # Coefficients of (1-s*z)(1-t*z) for each admissible ordered pair.
+                    if any(s+t != 0 or s*t != -1 for s, t in pairs):
+                        raise AssertionError(("secondary prime-pair term", q, n))
                     vanishing.add(n)
                 checked += 1
             zero_classes += len(vanishing)
@@ -381,7 +390,8 @@ def check_exceptional_character_classes():
                 continue
             if witness % period not in vanishing:
                 raise AssertionError(("zero-free witness", q, witness))
-    print(f"Verified {checked} even character classes, including {zero_classes} vanishing classes.")
+    print(f"Verified the character and singular-series factors on {checked} even classes "
+          f"and the secondary term on {zero_classes} vanishing classes.")
 
 
 def check_switched_logarithmic_sieve():
