@@ -231,6 +231,9 @@ moduli in the criterion for decay on unrestricted supports.
 \Cref{thm:mixed-far} shortens the mixed window on those moduli
 and bounds the number of small-input directions required beyond
 the shorter window at every even modulus.
+\Cref{thm:lower-edge} separates the upper and lower bounds for
+the prime-only norm and for the full operator. In both cases
+the lower bound can be tested on two finite-dimensional spaces.
 \Cref{thm:criticalprofiles} bounds those sums near the square
 of the modulus using equidistribution in progressions with
 factored moduli.
@@ -11626,6 +11629,125 @@ The equivalence now follows from \cref{thm:ppcut} and
 $e^{-\kappa}=1/\log L$, the second bound in \eqref{eq:mixed-far}
 removes $I_2$ whenever $bP/\sigma\to0$.
 On primorials $\sigma\asymp\log L\asymp b$ by \cref{thm:basecut}.
+\end{proof}
+
+\subsection{Lower bounds for the prime-only and full forms}
+
+Consider either of the following normalized self-adjoint forms $B$:
+the full form $\B/\sigma$ on the energy space, or the prime-only
+form defining $P_N(A)$ on the space with physical support $x\ge A$.
+Here $\sigma=\SSS(N)$, $L=\log N$ and $A=L^2(\log L)^4$.
+In the second case the continuous model is retained. For a
+subspace $V$ define
+\[
+ d_-(B;V)=\max\bigl(0,\sup_{\substack{F\in V\\\NN(F)=1}}
+                              -B(F,F)\bigr).
+\]
+Write $a_+(B)$ for the analogous upper bound on the entire
+space of the chosen form.
+
+\begin{theorem}[Two finite tests for the lower spectral bound]
+\label{thm:lower-edge}
+Under $\grh(N)$, put $\tau=\log L$,
+$H=L(\tfrac12\log(L/\sigma)+\log\tau)$ and $t_0=L+L^{1/4}$.
+For sufficiently large even $N$ there are explicit energy spline
+spaces $V_1,V_2$ with log supports in
+\[
+ [L-\log4,t_0+1],\qquad [t_0,H+L],
+\]
+respectively. Their total dimension is $O(L^{3/2}\tau/\sqrt\sigma)$.
+For either choice of $B$, let $v_i=d_-(B;V_i)$. Then
+\begin{equation}
+ \max(a_+(B),v_1,v_2)\le\|B\|
+ \ll a_+(B)+v_1+v_2+\tau^{-2}.
+ \label{eq:lower-edge}
+\end{equation}
+Thus a uniform upper bound $B(F,F)\le o(1)\NN(F)^2$ together
+with the two lower bounds $v_i=o(1)$ suffices for norm decay.
+Only the upper bound is taken on unrestricted tests in the
+space of $B$.
+\end{theorem}
+
+\begin{proof}
+Use a smooth partition of unity in the log variable with
+transitions on $[L-\log4,L-\log3]$, $[t_0,t_0+1]$, and
+$[H,H+L]$. The four pieces of a unit test have uniformly
+bounded energy norms. On the first piece $x\le N/3$ the
+self-pairing is zero: no off-diagonal congruence or model line
+meets the square of this support. On the last piece, the first
+display in the proof of \cref{thm:mixed-far} bounds
+$(\mathcal D+\mathcal M)(G,G)/\sigma$ by
+$O(\tau^{-2})\NN(G)^2$. Both forms have a nonnegative character
+square and their diagonals are at most $\mathcal D$ on $(G,G)$.
+Hence $-B(G,G)\ll\tau^{-2}\NN(G)^2$ there.
+
+On the two middle intervals use the energy-orthogonal interpolation
+of \cref{eq:exactdirichlet}, with zero boundary traces and the
+left endpoint of the interval as the origin of the $\xi$ coordinate.
+The spline and the residual each have norm at most that of the
+input; the residual vanishes at every node. For $V_1$ subdivide
+its interval uniformly with maximum spacing
+$h_1=(L\tau^2)^{-1}$, using the least number of cells. For its
+residual $R$ we claim
+\[
+ |\mathcal D(R,R)|/\sigma+|\mathcal M(R,R)|/\sigma
+ \ll Lh_1\NN(R)^2 .
+\]
+Indeed, localize both arguments to unit log packets as in
+\cref{eq:meshDM}. Each localized residual retains the node
+zeros. Both point evaluations in the diagonal gain a factor
+$O(\sqrt{h_1})$ by \cref{eq:meshPoincare}, and the prime-power
+weight per packet is $O(L)$ here. For the model with $j\le k$,
+the lower packet is itself a residual: its physical $L^1$ bound
+in \cref{eq:Mpacket} gains $O(h_1)$ by the $L^2$ inequality in
+\cref{eq:meshPoincare}. The resulting coefficients are
+$O(Lh_1 e^{-|k-j|/2})$ since $j,k=L+O(L^{1/4})$ and $s_j,s_k$
+in that packet estimate are bounded. Summing by the Schur bound
+proves the claim. The prime-only diagonal satisfies the same
+upper bound. Positivity of the character square gives
+$-B(R,R)\ll\tau^{-2}\NN(R)^2$.
+
+For $V_2$ put $h=\sqrt{\sigma/L}/\tau$. Cut its interval at
+the integer multiples of $L$. In each nonempty intersection
+with $[jL,(j+1)L]$ use the least number of equal cells with
+length at most $he^j$. Cellwise Poincar\'e and
+$W_N(r)\gg e^{2j}$ give for the residual
+\[
+ \|R\|_2\ll h\NN(R),\qquad \|R'\|_2\ll\NN(R).
+\]
+The deterministic comparison proved for \cref{eq:nearcriticalsupport}
+with $D=2$ applies since $t_0-L=L^{1/4}$ exceeds its threshold
+for large $N$. It gives $\mathcal D+\mathcal M=\mathcal W_N$
+up to $O(L^{-2})$ in unnormalized form norm on this support.
+The symbol in \cref{eq:archdensity} is $O(L+|t|)$.
+Plancherel and Cauchy--Schwarz give
+\[
+ |\mathcal W_N(R,R)|\ll L\|R\|_2^2+\|R\|_2\|R'\|_2
+      \ll (Lh^2+h)\NN(R)^2 .
+\]
+After division by $\sigma$ this is $O(\tau^{-2})\NN(R)^2$.
+The same upper estimate applies with the smaller prime-only
+diagonal. This again bounds $-B(R,R)$ on the residual space.
+The two mesh sizes give dimensions $O(L^{5/4}\tau^2)$ and
+$O(\sum_{1\le j\le (H+L)/L}(1+Le^{-j}/h))=O(L/h)$.
+Their sum has the asserted order since $\sigma\ll\log L$.
+
+Finally the form $K=a_+(B)\langle\cdot,\cdot\rangle_{\NN}-B$
+is positive semidefinite, where the inner product is the energy
+inner product. Decompose a unit test into the two outer pieces
+and the two spline--residual pairs just constructed. On each
+of these six pieces $F_i$ we have
+\[
+ K(F_i,F_i)\ll
+ (a_+(B)+v_1+v_2+\tau^{-2})\NN(F_i)^2 .
+\]
+The seminorm $K(F,F)^{1/2}$ is subadditive, and
+$\sum_i\NN(F_i)\ll1$. This bounds the negative part on the
+whole space, including all cross terms, and proves the upper
+inequality of \cref{eq:lower-edge}. The lower inequality follows
+by restriction. On each spline space $v_i$ is the nonnegative
+part of the negative of the smallest generalized eigenvalue,
+using the energy Gram matrix.
 \end{proof}
 
 \section{Norm decay of the progression profiles near the square of the modulus}
