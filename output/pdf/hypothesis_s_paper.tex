@@ -213,6 +213,9 @@ contribution by a sum over bounded ordinates and separated
 zero pairs, with no lower restriction on either physical input.
 \Cref{thm:almostall} bounds the entire supported norm on a growing
 window for almost all even moduli.
+\Cref{thm:local-window-norm} localizes its logarithmic-window
+estimate to every interval of moduli of length $Y^{8/33+\varepsilon}$
+in the stated range, with a common exceptional set for all tests.
 \Cref{thm:mixedpower} bounds mixed windows with upper scales
 $N^a,N^b$ for $0<a\le b$ and $b+a/2<2$.
 \Cref{thm:productwindow,thm:powerproduct,thm:productfactored} extend the estimates
@@ -10981,6 +10984,125 @@ is $O_{B,D}(Y^{1/2}(\log Y)^{A_B+2D})$.
 By \cref{thm:macroscopiclines}, the bounded-window version
 also controls simultaneous interval discrepancies on the
 individual sum and difference lines of each modulus.
+
+\subsection{The supported norm in every short interval of moduli}
+
+\begin{theorem}[Local mean square on the logarithmic window]
+\label{thm:local-window-norm}
+Fix $A\ge0$, $D>0$ and $0<\varepsilon<1-8/33$. For integers
+$Y^{8/33+\varepsilon}\le H\le Y$, set $L=\log Y$. Then
+\[
+ \sum_{\substack{Y<N\le Y+H\\2\mid N}}
+   E_N\bigl(N(\log N)^A\bigr)^2
+     \ll_{A,D,\varepsilon} H L^{-D}.
+\]
+The estimate holds for the physical form, and under $\grh(N)$
+its summand is the square of the normalized restriction norm.
+In particular, for fixed $B,C>0$, outside $O_{A,B,C,\varepsilon}
+(HL^{-C})$ even moduli in each interval, every pair of unit-energy
+tests supported in this window has normalized pairing $O(L^{-B})$.
+This includes the balanced restriction.
+\end{theorem}
+
+\begin{proof}
+We localize the cell estimate used for \eqref{eq:almostlog}.
+Write $P\asymp YL^A$, with a sufficiently large constant to cover
+the cells of that proof. Uniformly for intervals $I,J\subset[0,P]$,
+either sign, and integers $1\le b\le 2P/Y$, we first show that,
+for every $F>0$,
+\begin{equation}
+ \sum_{\substack{Y<N\le Y+H\\2\mid N}}
+     |\Delta_\sigma(bN;I,J)|^2
+       \ll_{A,F,\varepsilon} HY^2L^{-F}.
+ \label{eq:local-cell-correlation}
+\end{equation}
+Write $\mathbf1_I$ as a difference of prefix indicators, allowing
+endpoint changes of $O(L^2)$ per shift in the count.
+Decompose each prefix $(0,t]$ into blocks $(X,2X]$ by successive
+halving while $X\ge YL^{-F-10}$. In the remaining prefix each
+integer determines the other coordinate. Its count and model
+therefore contribute $O(YL^{-F-8})$ per shift, using
+$\SSS(bN)\ll\log(2P)$ and increasing the cutoff exponent if needed.
+There are $O(\log Y)$ retained blocks, all with $\log X\asymp L$.
+
+For each block apply the minor-arc estimate of
+\cite[Proposition~3.4 and the deduction of Theorem~1.3]{MRTLong}
+to $\Lambda\mathbf1_{(X,2X]}$. Take the major arcs around
+denominators at most $Q=(\log X)^K$ of radius
+$\delta=X^{-1}(\log X)^{K'}$. Given any desired logarithmic
+saving, take $K$ and then $K'$ sufficiently large. The local
+minor-arc $L^2$ bound applies at radius $1/(2bH)$:
+$bH\ge X^{8/33+\varepsilon'}$ for a fixed sufficiently small
+$0<\varepsilon'<\varepsilon$, since $X\ll Y L^A$.
+Larger $bH$ only shrink the integration interval. The other
+factor is $\Lambda\mathbf1_J$, with squared $\ell^2$ norm
+$O(P L^2)$. Reflecting one factor if necessary gives both signs.
+The localized Bessel inequality
+\cite[proof of Corollary~3.2]{MRTLong} at the center of the
+shift interval bounds the sum of squared minor-arc contributions
+over all $bY<h\le b(Y+H)$ by $O(bH P^2 L^{-G})$ for arbitrary
+fixed $G$, on increasing $K,K'$. The inequality permits any
+integer center, so one may round the midpoint and use radius
+$bH+1$. Restricting the sum of squares to $h=bN$ preserves
+this upper bound.
+
+On the major arcs Siegel--Walfisz and partial summation give the
+real interval transforms with factors $\mu(d)/\varphi(d)$ at
+denominator $d$, as in the proof of \eqref{eq:pairlog}. This is
+uniform in the endpoints of $J$: $P/X$ and $P\delta$ are bounded
+by fixed log powers, so the integrated error is $O(YL^{-G})$ for
+any $G$ by choosing the saving in Siegel--Walfisz last.
+The product of the real transforms is bounded by $|\beta|^{-2}$
+off the central arc; its full integral with the shift phase is
+the signed-line overlap length $L_\sigma(h;(X,2X],J)$.
+Completing the integrals and series thus costs
+\[
+ O\left(\delta^{-1}\sum_{d\le Q}|A_d(h)|
+        + P\sum_{d>Q}|A_d(h)|\right)
+ \ll (\delta^{-1}+P Q^{-1/2})\tau(h).
+\]
+Here $A_d$ is as in \eqref{eq:almosttails} and
+$\sum_d\sqrt d\,|A_d(h)|\ll\tau(h)$ by the local factors in
+the proof of \cref{prop:single-test-local-semiprime}.
+On the sampled shifts $\tau(bN)\le\tau(b)\tau(N)$ and
+$\sum_{Y<N\le Y+H}\tau(N)^2\ll_\varepsilon H L^3$ by
+\cite[Theorem~1]{ShiuShort}. The bounded powers of $L$ coming
+from $b,P/Y$ and the number of blocks are absorbed by
+increasing $K,K'$ and the minor-arc saving. Cauchy--Schwarz
+over the blocks now gives \eqref{eq:local-cell-correlation}.
+
+Use the same lower cutoff $N/(2M)$ and cell width $W$ as for
+\eqref{eq:almostlog}, with upper support parameter $(\log(2Y))^A$.
+Choose $M$ a sufficiently large fixed power of $L$, and then
+$W\asymp YL^{-C_1}$ with $C_1$ sufficiently large. The cutoff,
+cell approximation and unit-removal errors from that proof are
+$O(L^{-D-1})$ at every modulus. The squared norm of the remaining
+step form is bounded by $O(W^{-2}\sum_{I,J,b,\sigma}
+|\Delta_\sigma(bN;I,J)|^2)$ before averaging. The number of
+terms is $O((P/W)^2(1+P/Y))$, a fixed power of $L$.
+Apply \eqref{eq:local-cell-correlation} with $F$ large enough
+to absorb it and $Y^2/W^2$. This gives the claimed mean square.
+Chebyshev's inequality with $D\ge 2B+C$ gives the common
+exceptional set after the supremum over both tests.
+\end{proof}
+
+\paragraph{Contribution to the full norm.}
+Put $R=N(\log N)^A$ in physical coordinates and choose a fixed
+smooth cutoff $\theta(t)$ equal to one for $0<t\le1/2$ and
+zero for $t\ge1$. Write $C_R f(u)=\theta(Nu/R)f(u)$.
+Under $\grh(N)$ let $T_N^{\rm rem}$ denote the form operator
+obtained by subtracting $\B(C_R f,C_R g)$ from $\B(f,g)$.
+The multiplier is uniformly bounded in the energy norm:
+its transition has fixed logarithmic width, as in the lower
+cutoff above. By the triangle inequality for the full-space norm,
+\[
+ \frac{\big|\|T_N\|-\|T_N^{\rm rem}\|\big|}{\SSS(N)}
+   \ll E_N(R).
+\]
+Thus in each interval of the theorem this replacement costs
+$O(L^{-B})$ outside the same exceptional set. The residual
+retains mixed pairs with one coordinate above $R/2$ as well as
+pairs with both coordinates above it.
 
 \section{Removing proper prime powers at a fixed modulus}
 \label{sec:ppcut}
