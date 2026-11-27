@@ -292,6 +292,14 @@ window $x,y\le N^{1+\eta}$ with fixed $\eta<1/7$. On fixed
 multiples of $N$ the major-arc denominators reach $\sqrt N$
 up to a logarithmic factor. The arc estimate also applies to
 one short input paired with a test of arbitrary support.
+\Cref{thm:minor-residual-grid} identifies the remaining grid
+discrepancy with the signed correlations of a Ramanujan remainder.
+Using different cutoffs on the two inputs,
+\cref{thm:two-level-packets} gives a physical formula also at
+separated scales on the critical hyperbola.
+\Cref{thm:full-far-long-divisor} removes short M\"obius
+divisors in the larger coordinate of all widely separated
+packets, with an unnormalized full-operator error.
 \Cref{thm:criticalprofiles} bounds those sums near the square
 of the modulus using equidistribution in progressions with
 factored moduli.
@@ -13706,6 +13714,281 @@ arcs proves the cardinality bound. For the energy fractions use
 $H_Q=L/2+O_D(\log L)$ and $\SSS(N)\ll\log L$.
 \end{proof}
 
+\subsection{Subtracting the rational-frequency model on integer inputs}
+
+Use the short divisor sum of Goldston and Y{\i}ld{\i}r{\i}m
+\cite[(1.1)]{GoldstonYildirimRamanujan} in its Ramanujan expansion,
+\[
+ \lambda_Q(n)=\sum_{r\le Q}\frac{\mu(r)c_r(n)}{\varphi(r)},\qquad
+ \rho_Q(n)=\Lambda(n)-\lambda_Q(n),\qquad \lambda_0=0.
+\]
+For a real arithmetic weight $b$, let
+$S_F^b(\alpha)=\sum_{n\ge1} b(n)w_F(n)\sin(2\pi n\alpha)$.
+Write $P_N H=N^{-1}\sum_{k\bmod N}H(k/N)$ and
+$P H=\int_0^1 H(\alpha)\,\ud\alpha$. For any two weights $b,d$
+define the physical form
+\[
+ \mathcal C_N(b,d;F,G)
+ =2(P_N-P)\big(S_F^b\,\overline{S_G^d}\big).
+\]
+By sine orthogonality this is the double sum with coefficient
+$b(m)d(n)w_F(m)\overline{w_G(n)}$ and kernel
+$\mathbf1_{N\mid m-n}-\mathbf1_{m=n}-\mathbf1_{N\mid m+n}$.
+In particular the reflected term includes $m=n$ when $N\mid 2n$.
+There is no coprimality restriction or continuous shift model in
+$\mathcal C_N$.
+
+\begin{theorem}[The minor-arc discrepancy as an integer correlation]
+\label{thm:minor-residual-grid}
+Use the power parameters of \cref{thm:near-root-arcs} under
+Dirichlet GRH, with the same low cutoffs $F_0,G_0$. On the
+whole window $x,y\le Y$ one has, uniformly on the unit balls,
+\begin{align}
+ \B(F,G)
+ &=2(P_N-P)\big(\mathbf1_{\mathfrak m}S_{F_0}
+                      \overline{S_{G_0}}\big)+O(N^{-c})\notag\\
+ &=\mathcal C_N(\rho_Q,\rho_Q;F_0,G_0)+O(N^{-c})
+ \label{eq:minor-residual-physical}
+\end{align}
+for some $c>0$. Both in the circle norm and in the grid norm,
+$S^{\rho_Q}_{F_0}$ differs from $\mathbf1_{\mathfrak m}S_{F_0}$
+by $O(N^{-c})$. On $x,y\le RN$ with fixed $R$, all three
+errors are $O_{R,D}(L^{-D})$ with the logarithmic parameters of
+\cref{thm:near-root-arcs} taken at precision $2D+12$, $D\ge1$.
+\end{theorem}
+
+\begin{proof}
+Use measures $2\,\ud\alpha$ and $(2/N)\sum_k\delta_{k/N}$ for
+the two norms. The cutoff inputs have bounded energy on $[X,Y]$;
+drop their subscripts. On the arc at $t=a/r$, put
+$M_F(\alpha)=b_t u_F(\alpha-t)$, $b_t=\mu(r)/\varphi(r)$,
+and put $M_F=0$ on the complement. On the grid,
+$\|\mathbf1_{\mathfrak M}S_F-M_F\|\ll\Delta$ by
+\eqref{eq:numerator-mean-grid}. The identical bound holds on the
+circle: at fixed offset take the squared numerator estimate in
+that proof, integrate over $[-B/N,B/N]$, and add over $r$.
+Sine Plancherel gives
+$2\int_{\mathbb R}u_F\overline{u_G}=\int F\overline G$.
+Truncating the left integral to the arc radius costs
+$O(N/(XB))$ by the derivative bound on $w_F,w_G$. Since
+$\sum_t |b_t|^2=H_Q$, the continuous major-arc pairing therefore
+supplies $H_Q\int F\overline G$ to the required precision.
+Here the full circle norm of $S_F$ is $O(\sqrt L)$ by its
+diagonal evaluation, and its full grid norm is $O(L^{3/2})$.
+Subtract the continuous major arcs from the exact circle
+diagonal and use \cref{thm:near-root-arcs} for the grid. This
+proves the first equality, including the original low-input error.
+
+For the second equality put $V_F=S_F^1$. Symmetry of the
+reduced residues gives the exact synthesis
+$S_F^{\lambda_Q}(\alpha)=\sum_t b_t V_F(\alpha-t)$.
+Abel summation gives $|V_F(z)|\ll X^{-1/2}/\|z\|_{\mathbb R/\mathbb Z}$
+from $\int |w_F'|\ll X^{-1/2}$. On $|z|\le B/N$ the sum
+differs from $u_F(z)$ by $O(X^{-1/2}+(B/N)\sqrt Y)$, using
+the total variation of $w_F(x)\sin(2\pi zx)$. In either norm,
+\begin{equation}
+ \|S_F^{\lambda_Q}-M_F\|^2
+ \ll H_Q\left\{\frac{N}{XB}+\frac{Q^2L^2}{X}
+        +\frac BN\big(X^{-1/2}+(B/N)\sqrt Y\big)^2\right\}.
+ \label{eq:ramanujan-synthesis-grid}
+\end{equation}
+Indeed the centers have separation at least $Q^{-2}$. Keep a
+nearest center, breaking ties arbitrarily. Outside its arc its
+squared tail integrates or sums to $O(|b_t|^2N/(XB))$ over
+its own cell, since $B\ge1$. Inside its arc use the variation
+estimate above. For the other centers the sum of reciprocal
+distances is $O(Q^2L)$ at each point by spacing. Cauchy--Schwarz
+then leaves $\sum_t |b_t|^2/\|\alpha-t\|$, restricted for
+each $t$ to distances at least $1/(2Q^2)$. Its integral or
+grid average is $O(LH_Q)$, since $Q^2<N$ and every interval
+of length $1/N$ contains at most two grid points. This proves
+\eqref{eq:ramanujan-synthesis-grid}.
+
+The powers of two omitted in $S_F$ cost $O(X^{-1/2})$ on
+either space by a geometric sum. Subtracting the synthesis
+estimate from the prime approximation on the arcs now gives
+the claimed vector estimate on the whole circle and grid.
+For the power parameters $2q+a<1$ and $a<b$, so all three
+terms in braces save a power, as does $\Delta$. For the
+logarithmic parameters at precision $J=2D+12$, the largest
+completion term $H_Q N/(XB)$ is $O(L^{2+A-K})=O(L^{-J-3})$;
+the other terms and $\Delta^2$ are smaller. Taking square
+roots and pairing with the full vectors of norm $O(L^{3/2})$
+preserves the required accuracy. Sine orthogonality now gives
+the second equality in \eqref{eq:minor-residual-physical}.
+\end{proof}
+
+\begin{theorem}[Different subtraction levels on separated inputs]
+\label{thm:two-level-packets}
+Assume Dirichlet GRH. Let the unit tests have physical supports
+$[V,2V]$ and $[W,2W]$, with $1\le V\le W$ and $W\ge N/4$.
+Fix $0<\delta<1/3$, put $\kappa=\delta/8$, and suppose
+$W\sqrt V\le N^{2-\delta}$. Set
+\[
+ Q_s=\left\lfloor N^{1-\kappa}\sqrt V/W\right\rfloor,\qquad
+ Q_\ell=\left\lfloor N^{1-\kappa}/\sqrt W\right\rfloor .
+\]
+At every sufficiently large even modulus,
+\begin{equation}
+ \B(F,G)=\mathcal C_N(\rho_{Q_s},\rho_{Q_\ell};F,G)
+                          +O_\delta(N^{-c_\delta})
+ \label{eq:two-level-packets}
+\end{equation}
+for some $c_\delta>0$. The smaller cutoff may be zero.
+The formula applies on every critical pair
+$V=N^\lambda,\ W=N^{2-\lambda}$ with fixed $0<\lambda\le1$
+by taking $\delta<\lambda/2$. On the whole window
+$x,y\le N^{4/3-\delta}$ the sum of these residual correlations
+over a smooth dyadic partition, with the cutoffs chosen for each
+pair, recovers the original form with a power-saving error in norm.
+\end{theorem}
+
+\begin{proof}
+Write $\Sigma_T(h)=\sum_{r\le T}\mu(r)^2 c_r(h)/\varphi(r)^2$,
+including $\Sigma_0=0$. We give the estimates on each of the
+three lines in $J(h)$ separately. Let $\Phi$ be the product
+of the two physical test weights along a line, conjugating the
+second, and let $I_h=\int\Phi$. In either coordinate,
+\[
+ \|\Phi\|_\infty+\int|\Phi'|\ll(VW)^{-1/2},
+ \qquad |I_h|\ll\sqrt{V/W}.
+\]
+Indeed on each input packet $\|w_F\|_\infty+\|w_F'\|_1
+\ll V^{-1/2}$ by log Sobolev and Cauchy--Schwarz, and the
+intersection on a line has length $O(V)$.
+
+The divisor expansion of $c_r$ gives
+\[
+ \lambda_T(n)=\sum_{\substack{d\mid n\\d\le T}}u_d,\qquad
+ u_d=d\sum_{\substack{r\le T\\d\mid r}}
+                   \frac{\mu(r)\mu(r/d)}{\varphi(r)} .
+\]
+The sum of $|u_d|$ is bounded by
+$\sum_{r\le T}\mu(r)^2\prod_{p\mid r}(1+2/(p-1))\ll T$,
+by expanding the last product and summing multiples.
+On a line $m\pm n=\pm h$ consider $\Lambda$ on the input
+of scale $Z$ and $\lambda_T$ on the other. Each divisor fixes
+one residue class for the prime coordinate. Under GRH, up to
+every endpoint at most $2Z$ the Mangoldt sum on this class
+has error $O(\sqrt Z L^2)$ from its principal term, including
+nonunit classes whose mass is $O(L^2)$. This bound is uniform
+for the polynomial ranges here. Partial summation gives the
+mixed line sum as
+\[
+ I_h\Sigma_T(h)+O(T\sqrt Z L^2/\sqrt{VW}).
+\]
+For the main term, the uniform unit average of $c_r(h\pm n)$
+modulo $r$ is $\mu(r)c_r(h)/\varphi(r)$. This agrees with
+the unit densities obtained in the divisor expansion, by
+averaging over units of a common multiple and reducing to each
+modulus. For $\lambda_{Q_s}$ against $\lambda_{Q_\ell}$ the
+main term is $I_h\Sigma_{\min(Q_s,Q_\ell)}(h)$: averaging the
+additive characters retains only equal reduced denominators.
+The error is $O(Q_sQ_\ell/\sqrt{VW})$ by bounded variation
+on each CRT class of the two divisor conditions. These
+estimates are zero for a factor $\lambda_0$.
+
+Expand the product of the two remainders. The model coefficients
+to be subtracted are
+\[
+ \Sigma_{Q_s}(h)+\Sigma_{Q_\ell}(h)
+          -\Sigma_{\min(Q_s,Q_\ell)}(h)=\Sigma_{Q_\ell}(h).
+\]
+Thus the singular-series tail is controlled by the larger cutoff
+also when $Q_s=0$. There are $O(W/N)$ nonzero shifts $h=jN$
+in the signed sum, since $W\ge N/4$. Using the tail bound in
+\cref{thm:near-root-arcs}, the total error for all three lines is
+\[
+ \ll_\epsilon L^2\frac W{N\sqrt{VW}}
+       (Q_\ell\sqrt V+Q_s\sqrt W+Q_sQ_\ell)
+       +N^\epsilon\frac{\sqrt{VW}}{N Q_\ell}.
+\]
+Here $h\le4W$ and a smaller exponent in the coefficient tail
+absorbs the powers of $h$ and $Q_\ell$ into $N^\epsilon$.
+The first two terms in parentheses cost $O(L^2 N^{-\kappa})$
+after multiplication. The third has $Q_\ell/\sqrt W
+\le4N^{-\kappa}$. Since $W\le N^{2-\delta}$,
+$Q_\ell\asymp N^{1-\kappa}/\sqrt W$ uniformly. The last term
+is $O(N^{\epsilon+\kappa}W\sqrt V/N^2)$, a power saving.
+Using the unrestricted $\Lambda$ labels in the initial signed
+line sum costs $O(L^2/\sqrt N)$ by the nonunit-pair argument of
+\cref{thm:full-sine-denominators}, also for the base two.
+This includes the reflected diagonal correction. The signed
+integrals with coefficient $\SSS(h)$ are exactly the original
+continuous form. Subtraction proves \eqref{eq:two-level-packets}.
+
+For the window assertion first cut off $x\le1$ with a smooth
+transition up to two, and likewise for $y$. The discarded
+original form has a power saving by \cref{thm:subcritical}.
+A smooth dyadic partition on the remaining supports uses
+$O(L)$ bounded-energy pieces per input (one may use a fixed
+finer geometric spacing so each support fits in $[V,2V]$).
+For $W<N/4$ all nonzero lines are empty. Otherwise
+$W\sqrt V\le W^{3/2}\le N^{2-3\delta/2}$, after choosing
+packet lower endpoints within the window. Sum the uniform
+errors over the $O(L^2)$ pairs, using symmetry when the larger
+input comes first. This still saves a power.
+\end{proof}
+
+\begin{theorem}[Short divisors on all widely separated inputs]
+\label{thm:full-far-long-divisor}
+Fix $D\ge1$ and use the unit log partition of \cref{sec:cutoff}.
+For indices $0\le j<k$ with $k-j\ge (2D+12)\log L$, put
+\[
+ T_{jk}=\left\lfloor e^{(k-j)/2} L^{-D-4}\right\rfloor .
+\]
+On each such packet pair keep the unit restrictions and signs
+of the original arithmetic sum, drop its continuous shift
+model, and replace $\Lambda(m)$ on the larger input by either
+$\rho_{T_{jk}}(m)$ or the exact long-divisor weight
+\[
+ U_{T_{jk}}(m)=-\sum_{\substack{d\mid m\\d>T_{jk}}}
+                         \mu(d)\log(d/T_{jk}).
+\]
+Make the transposed replacement for the reversed packets and
+use the original form on all other pairs. The difference from
+$\B$ has unnormalized operator norm $O_D(L^{-D})$, uniformly
+in every sufficiently large even modulus. In particular full
+hypothesis S is equivalent to normalized norm decay of the
+resulting form under Dirichlet GRH. There is no upper cutoff
+on $k$. For the long-divisor version the complementary factor
+$m/d$ is $O(L^{D+4}e^{(k+j)/2})$.
+\end{theorem}
+
+\begin{proof}
+Write $s_i=W_N(i)^{-1/2}\ll e^{-i/L}$ for $i\ge0$ and denote
+the two packet norms by $f_j,g_k$. Consider subtracting any
+$b(m)=\sum_{d\mid m,\,d\le T}u_d$ with $\sum_d|u_d|\ll T$
+from the larger input. This covers $\lambda_T$ by the preceding
+proof and $\Lambda_T(m)=\sum_{d\mid m,\,d\le T}\mu(d)\log(T/d)$
+by direct summation. Since $m>1$, $\Lambda-\Lambda_T=U_T$.
+Fix a small input $n$ coprime to $N$. The conditions $d\mid m$
+and $m\equiv\pm n\bmod N$ are soluble for both signs exactly
+when $(d,N)=1$. In that case each gives one residue class
+modulo $dN$ and already implies $(m,N)=1$. The two sums of
+the large physical weight on those classes have the same
+integral divided by $dN$. Their difference is
+$O(\|w_{G_k}'\|_1)\ll e^{-k/2}s_k g_k$, by bounded variation,
+uniformly also when the period exceeds the support length.
+The two supports are disjoint, so there is no diagonal term.
+Chebyshev's upper bound and log Sobolev give
+$\sum_n\Lambda(n)|w_{F_j}(n)|\ll e^{j/2}s_j f_j$. The deleted
+arithmetic contribution on this packet pair is therefore
+\[
+ \ll T e^{-(k-j)/2}s_js_k f_jg_k
+ \ll L^{-D-4} e^{-(j+k)/L} f_jg_k .
+\]
+Both Schur sums of the last coefficient are $O(L^{-D-3})$.
+For the deleted continuous part, \eqref{eq:Mpacket} bounds
+its unnormalized packet coefficient by
+$O(\SSS(N)L e^{-(k-j)/2})$, since
+$(1+(k-L)_+)s_js_k\ll L$. Summing the geometric tail in the
+gap gives Schur sums $O(\SSS(N)L^{1-(D+6)})=O(L^{-D})$.
+The square sums of the packet norms are bounded by the
+respective full energies. This proves the assertion first on
+compact tests and then by continuity on the entire space.
+\end{proof}
+
 \section{Norm decay of the progression profiles near the square of the modulus}
 \label{sec:criticalprofiles}
 
@@ -20933,6 +21216,11 @@ D.~A.~Goldston and C.~Y.~Y{\i}ld{\i}r{\i}m,
 \newblock \emph{Higher correlations of divisor sums related to primes I:
 triple correlations},
 \newblock \url{https://arxiv.org/abs/math/0111212}.
+
+\bibitem{GoldstonYildirimRamanujan}
+D.~A.~Goldston and C.~Y.~Y{\i}ld{\i}r{\i}m,
+\newblock \emph{Higher correlations of divisor sums related to primes II},
+\newblock \url{https://arxiv.org/abs/math/0412366}.
 
 \bibitem{BettinChandeeFractions}
 S.~Bettin and V.~Chandee,
