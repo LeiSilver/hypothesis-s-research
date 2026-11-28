@@ -305,6 +305,13 @@ power of the modulus on separated packets near $VW=N^2$,
 including smaller inputs of polynomial size.
 \Cref{thm:far-critical-small-pnt} gives a complementary cutoff
 using the progression estimate in the smaller prime coordinate.
+\Cref{thm:critical-reciprocal-sampling} treats the intervening
+scales by sampling the entire small-input polynomial at reciprocal
+residues. \Cref{thm:all-critical-long-cofactor} then gives a common
+power gain on the critical product for every ratio of input scales.
+\Cref{thm:sharp-common-cofactor} gives a single arithmetic
+weight with a sharp complementary-factor cutoff on the whole
+product cap.
 \Cref{thm:criticalprofiles} bounds those sums near the square
 of the modulus using equidistribution in progressions with
 factored moduli.
@@ -14248,6 +14255,392 @@ estimates and the preceding theorem permit packetwise selection
 of the largest cutoff. At $VW\asymp N^2$ the power in this
 second cutoff is $s/2$, which exceeds the power $1-s$ in
 $\sqrt{W/V}$ exactly when $s>2/3$.
+\end{proof}
+
+\subsection{Sampling the smaller input at reciprocal residues}
+
+\begin{theorem}[A divisor cutoff from the small-input second moment]
+\label{thm:critical-reciprocal-sampling}
+Fix $0<s_0\le s_1<1$ and
+$0<\gamma<\min(s_0/4,1-s_1)$. For some $\nu,c>0$, at every
+sufficiently large even $N$ the packet conclusion of
+\cref{thm:far-critical-inverse-band} holds with
+\[
+ N^{s_0}\le V\le N^{s_1},\qquad
+ N^{2-\nu}\le VW\le N^{2+\nu},\qquad
+ T=\lfloor N^\gamma\sqrt{W/V}\rfloor.
+\]
+In fact the signed arithmetic pairing with a divisor weight
+$\sum_{d\mid m,\,d\le T}b_d$ on the larger input is $O(N^{-c})$
+whenever $|b_d|\le L$. On the small side one may use arbitrary
+coefficients on the unit residues with squared sum $O(L)$,
+including the physical test weight in these coefficients.
+The arithmetic estimate is unconditional and permits any subset
+of the indicated divisors. For $s_0=3/8$, $s_1=2/3$ one may
+take $\gamma=1/12$.
+\end{theorem}
+
+\begin{proof}
+We first bound the number of reciprocal points in a short
+interval of the circle. For $V\ge4$, $1\le H\le N^2$ and
+$0<|h|<N/(2\sqrt V)$, write
+$t_d=h\bar d/N\bmod1$ for $H<d\le2H$, $(d,N)=1$.
+Every interval of length $1/V$ contains, with multiplicities,
+\begin{equation}
+ O_\epsilon\big(N^\epsilon(1+H/\sqrt V)\big)
+ \label{eq:reciprocal-small-occupancy}
+\end{equation}
+of these points. Indeed approximate its center by $a/r$ with
+$1\le r\le\lfloor\sqrt V\rfloor$ and distance at most
+$1/(r\lfloor\sqrt V\rfloor)$. For each point in the interval
+there is a signed integer $t\equiv rh\bar d\bmod N$ with
+$|t|\ll N/\sqrt V$. Thus $dt=rh+\ell N$, with
+$|\ell|\ll1+H/\sqrt V$. The right-hand side is nonzero since
+$0<|rh|<N$, and its size is polynomial in $N$. The divisor
+bound gives \eqref{eq:reciprocal-small-occupancy}; this argument
+does not require $h$ to be a unit.
+
+Let $P(t)=\sum_{n\asymp V}a_ne(nt)$ with
+$\sum|a_n|^2\ll L$. Partition the circle into $\lceil V\rceil$
+equal intervals. On each, the supremum of $|P|^2$ is at most
+its local average plus the integral of $2|P P'|$. Summing and
+applying Parseval and Cauchy--Schwarz gives
+$\sum_I\sup_I |P|^2\ll V\sum_n|a_n|^2$. Therefore
+\begin{align}
+ \sum_{\substack{H<d\le2H\\(d,N)=1}}|P(t_d)|^2
+       &\ll_\epsilon N^\epsilon L(V+H\sqrt V),\notag\\
+ \sum_{\substack{H<d\le2H\\(d,N)=1}}|P(t_d)|
+       &\ll_\epsilon N^\epsilon\big(\sqrt{HV}+HV^{1/4}\big).
+ \label{eq:reciprocal-small-first}
+\end{align}
+For the actual small input $a_n=\mathbf1_{(n,N)=1}
+\Lambda(n)w_F(n)$ the squared-sum bound follows from
+Chebyshev's estimate and $|w_F(n)|\ll V^{-1/2}$.
+
+Take a small $\omega>0$ and $\nu<\omega/10$, to be specified
+by the strict exponent margins. The two supports are disjoint.
+For $d\le N^{-\omega}\sqrt{W/V}$ use the equal densities
+in the signed classes modulo $dN$ as in
+\cref{thm:full-far-long-divisor}. Their cost is
+$O(L^2 N^{-\omega})$ since $\sum |a_n|\ll\sqrt{VL}$.
+For the remaining blocks smooth the larger test at relative
+scale $N^{-\omega}$ as in \cref{thm:far-critical-inverse-band}.
+The physical error is $O_\epsilon(N^{-\omega/2+\epsilon}
+\sqrt{VW}/N)$ by the divisor bound, also for arbitrary $b_d$
+as stated. Fix $H<d\le2H$ and put $M=W/H$.
+The signed Poisson formula of that theorem now contains the
+small-input polynomials $P(t_d)-P(-t_d)$ after summing in $n$.
+The zero frequency vanishes. The large-input transform is
+uniformly bounded, and $b_d$ costs at most $L$. Repeated
+integration by parts again gives the cutoff
+$|h|\le N^{2\omega}N/M$ with negligible error. It implies
+$|h|\ll N^{2\omega+\gamma+\nu/2}<N/(2\sqrt V)$, since
+$\gamma<1-s_1$ and $\omega,\nu$ can be chosen small.
+
+The number of nonzero frequencies times $M/N$ is at most
+$2N^{2\omega}$. Inserting \eqref{eq:reciprocal-small-first},
+including the large physical normalization, bounds the block by
+\[
+ \ll_\epsilon N^{2\omega+\epsilon}
+        \left(\sqrt{HV/W}+HV^{1/4}/\sqrt W\right).
+\]
+Writing $V=N^s$ and using $H\le T$, the two exponents in
+parentheses are at most $(\gamma+s-1)/2+\nu/4$ and
+$\gamma-s/4$, respectively. Both are strictly negative
+uniformly for $s_0\le s\le s_1$ with $\nu$ small. Choose
+$\omega,\nu,\epsilon$ in that order to preserve the savings
+here and in the smoothing error, then sum $O(L)$ blocks.
+For the original form the continuous model is
+$O(\SSS(N)L\sqrt{V/W})$ by \eqref{eq:Mpacket}, again a
+power saving. Taking $b_d=\mu(d)\log(T/d)$ gives $U_T$ as
+the remaining weight. Restricting $b_d$ instead to a subset
+of $(T_{jk},T]$ with its old logarithmic weight proves the
+same power bound there (an absolute constant in $|b_d|\ll L$
+is immaterial).
+\end{proof}
+
+\begin{theorem}[Long divisors at every critical input scale]
+\label{thm:all-critical-long-cofactor}
+Assume Dirichlet GRH and fix $0<\gamma<1/22$. There exist
+$0<\nu<\gamma$ and $c>0$ such that, for every sufficiently
+large even $N$, on every pair of unit log packets of scales
+$1\le V\le W$ with $N^{2-\nu}\le VW\le N^{2+\nu}$, one has
+\begin{equation}
+ \B(F,G)=\mathcal A_N(\Lambda,U_T;F,G)+O(N^{-c}),\qquad
+ T=\lfloor N^\gamma\sqrt{W/V}\rfloor .
+ \label{eq:all-critical-long-cofactor}
+\end{equation}
+Here $\mathcal A_N$ is the arithmetic sum in \eqref{eq:form}
+with its unit restrictions and deleted diagonal, using the
+indicated weights in place of the two Mangoldt factors.
+Put $U_T$ on the larger input, choosing either side in case
+of a tie. All complementary factors in its divisor expansion
+satisfy $m/d\ll \sqrt{VW}\,N^{-\gamma}\ll N^{1-\gamma+\nu/2}$.
+Replacing the original form on all these packet pairs, including
+their transposes, incurs unnormalized operator-norm error
+$O(N^{-c'})$ for some $c'>0$.
+\end{theorem}
+
+\begin{proof}
+Write $V=N^s$. For $s\le2/11$ take $\theta=2/11$ in
+\cref{thm:far-critical-inverse-band}; the smallest of its three
+upper bounds on $\gamma$ is $1/22$. For $2/11\le s\le3/4$
+use \cref{thm:critical-reciprocal-sampling} with those
+endpoints. This gives the same admissible range of $\gamma$.
+
+For $s\ge3/4$ the supports can overlap. In this case we
+evaluate the continuous main term of the subtracted weight
+$\Lambda_T(m)=\sum_{d\mid m,\,d\le T}\mu(d)\log(T/d)$.
+The identity $\Lambda-\Lambda_T=U_T$ holds for $m>1$.
+If $2eW<N$ all lines are empty. Otherwise there are $O(W/N)$
+positive shifts $h=bN$ on each of the three types of line in
+\eqref{eq:model}. On a line let $\Phi$ be the product of the
+physical test weights, with its usual conjugation, and $I_h$
+its integral. As in \cref{thm:two-level-packets},
+$\|\Phi\|_\infty+\|\Phi'\|_1\ll1/\sqrt{VW}$ and
+$|I_h|\ll\sqrt{V/W}$. First sum on the unrestricted line.
+For a divisor $d$ of the larger coordinate the smaller prime
+coordinate lies in one class modulo $d$. The GRH progression
+estimate, partial summation and
+$\sum_{d\le T}|\mu(d)\log(T/d)|\ll T$ give
+\[
+ \sum_{\rm line}\Lambda(n)\Lambda_T(m)\Phi
+    = C_T(h)I_h+O(L^2T/\sqrt W),\quad
+ C_T(h)=\sum_{q\le T} a_q b_q^* c_q(h).
+\]
+Here $a_q$ is the Ramanujan coefficient of $\Lambda_T$ and
+$b_q^*=\mu(q)/\varphi(q)$. The average of $c_q(h\pm n)$ over
+the units $n\bmod q$ gives $b_q^*c_q(h)$, as in
+\cref{prop:single-test-long-divisors}. The GRH partial-sum
+error on a nonunit class includes its possible prime powers.
+The original unit restriction removes only small-coordinate
+powers at bases dividing $N$, with total Mangoldt weight
+$O(L^2)$ per line. Since $|\Lambda_T(m)|\ll_\epsilon N^\epsilon$
+there, this costs $O_\epsilon(N^\epsilon/\sqrt{VW})$ per
+line. A reflected pair with $m=n=h/2$ is already excluded
+by the unit condition. The difference lines have $h>0$.
+
+Extend $a_q$ by zero for $q>T$. The coefficient estimate in
+the proof of \cref{prop:single-test-long-divisors} gives
+$\sum_q|a_q-b_q^*|^2|c_q(h)|\ll_\epsilon N^\epsilon/T$
+in this range ($T<\sqrt h$ for small $\nu$).
+Also $\sum_q|b_q^*|^2|c_q(h)|\ll_\epsilon N^\epsilon$
+by the absolutely convergent Euler product, separating primes
+dividing $h$. Cauchy--Schwarz and the full singular series
+expansion give $|C_T(h)-\SSS(h)|\ll_\epsilon N^\epsilon/\sqrt T$.
+Thus the total error after subtracting the original continuous
+model is bounded by
+\[
+ O_\epsilon\left(L^2 T\sqrt W/N
+      +N^\epsilon\frac{\sqrt{VW}}{N\sqrt T}
+      +N^\epsilon\frac{\sqrt{W/V}}N\right).
+\]
+The first term has power exponent at most
+$\gamma+1-3s/2+\nu$ up to logarithms. The second saves a
+power because $T\gg N^\gamma$ and $\nu$ may be taken smaller
+than $\gamma/2$. The last is $O(N^{-s+\nu/2+\epsilon})$.
+All save a power for $s\ge3/4$. Choose the smaller collar
+and saving among the three ranges. There are $O(L^2)$
+nonnegative-index packet pairs in the collar. Their norms
+are individually bounded by the corresponding full input
+norms times a constant, so summing the errors still saves
+a power. This proves the full-operator assertion.
+\end{proof}
+
+\begin{theorem}[A common sharp cofactor cutoff through the critical product]
+\label{thm:sharp-common-cofactor}
+Assume Dirichlet GRH. For each fixed $0<\gamma<1/22$ there
+are $\delta,c>0$ such that the following replacement has
+unnormalized full-operator error $O(N^{-c})$ at every
+sufficiently large even modulus. On the physical region
+$x,y\ge1$, $xy\le N^{2+\delta}$, omit the continuous shift
+model and use the arithmetic coefficient
+\begin{equation}
+ \Lambda(\min(m,n))\,R_K(\max(m,n)),\qquad
+ R_K(v)=\sum_{\substack{u\mid v\\ u\le K}}\mu(v/u)\log u,\qquad
+ K=\lfloor N^{1-\gamma}\rfloor .
+ \label{eq:common-sharp-cofactor}
+\end{equation}
+Keep the original congruence signs, unit restrictions and
+deleted diagonal. On the complement use the original form.
+The cutoff is the same for all samples and all energy tests.
+\end{theorem}
+
+\begin{proof}
+Write $P=N^{2+\delta}$ and partition into unit log packets of
+scales $V\le W$ as above. There are $O(L^2)$ relevant pairs
+since $x,y\ge1$. Fix $\gamma<\gamma_1<1/22$ to allow room for
+the width of the product range. We detail the changes needed
+for a sharp cofactor cutoff; the summand now has logarithm
+$\log u$, and the product cap is imposed on the actual pair.
+
+First consider $VW=N^{2+v}$ with $|v|$ sufficiently small
+and $s=\log V/L\le3/4$. The supports are disjoint. Initially
+allow arbitrary interval cuts on each support. In the signed
+arithmetic sum the deleted part of $\Lambda(m)$ is exactly
+\[
+ \sum_{\substack{du=m\\u>K}}\mu(d)\log u ,
+\]
+by $\mu*\log=\Lambda$. Its divisors satisfy $d\ll W/K$.
+Choose a small $\omega>0$ using the exponent margins in the
+proofs of \cref{thm:far-critical-inverse-band,thm:critical-reciprocal-sampling}
+at $\gamma_1$. For $d\le N^{-\omega}\sqrt{W/V}$ the condition
+$u>K$ holds throughout the packet when $|v|$ is small enough:
+$m/d\gg N^\omega\sqrt{VW}\gg K$. The large weight times
+$\log(m/d)$ and its interval indicator have total variation
+$O(L/\sqrt W)$. Equal signed progression densities as in
+\cref{thm:full-far-long-divisor} bound this range by $O(LN^{-\omega})$.
+
+For the other divisors smooth the large test at relative scale
+$N^{-\omega}$, including its interval endpoints. The $H^1$
+smoothing error costs $O_\epsilon(N^{-\omega/2+\epsilon}
+\sqrt{VW}/N)$ as before. Each endpoint strip of length
+$O(WN^{-\omega})$ meets a progression modulo $N$ in
+$O(1+WN^{-\omega}/N)$ samples, each of divisor weight
+$O_\epsilon(N^\epsilon)$. Thus the additional endpoint error
+is $O_\epsilon(N^\epsilon(\sqrt{V/W}+N^{-\omega}\sqrt{VW}/N))$.
+Restriction of the small input to an interval does not change
+the bounds used in either proof.
+
+Smooth the step at $u=K$ inside $|u/K-1|\le N^{-\omega}$.
+On a block $d\asymp H$ the Poisson transform is now formed
+from $g((d/H)t)\log(Mt)$ times the smoothed step at $Mt=K$,
+where $M=W/H$ and $t$ ranges in a fixed compact positive
+interval. Each derivative of order $i$ costs $O_i(LN^{i\omega})$.
+The total variation with respect to $d/H$ costs $O(LN^\omega)$
+since the step is independent of $d$ in these coordinates.
+For $s\le2/11$ apply \eqref{eq:far-critical-inverse-max};
+for $2/11\le s\le3/4$ apply \eqref{eq:reciprocal-small-first}.
+All block and frequency ranges are admissible: $W/K\ll
+N^{\gamma+v/2}\sqrt{W/V}$ and $|h|\ll N^{2\omega}N/K$
+at the largest block. Taking $|v|$ and $\omega$ sufficiently
+small relative to the fixed margins at $\gamma_1$ gives the
+same power savings. The zero frequency cancels between the signs.
+
+To justify the sharp step, majorize the endpoint error in
+absolute value by a smooth bump of width $O(N^{-\omega})$
+in $u/K$, retaining both progressions with a plus sign.
+Use a fixed smooth majorant on the large packet, the absolute
+small weights, $|\mu(d)|\le1$, and $\log u\ll L$. Here
+$H\asymp W/K$ and $M\asymp K$. The zero mode is
+$O(L N^{-\omega}\sqrt{VW}/N)$ after summing $d$ and $n$,
+because the normalized bump integral is $O(N^{-\omega})$.
+For the nonzero modes and $s\ge2/11$ the bound
+\eqref{eq:reciprocal-small-first} already allows these unsigned
+coefficients. For $s\le2/11$ the sum over unit $d$ now has
+coefficient one. On every subinterval completion gives
+$O_\epsilon(N^\epsilon(\sqrt q+H/q))$ as in the one-variable
+completion in \cref{thm:far-critical-inverse-band}. In the
+present ranges this is $O_\epsilon(N^{1/2+\epsilon})$.
+Partial summation, the frequency count and the two physical
+normalizations cost at most
+$O_\epsilon(N^{3\omega+\epsilon}\sqrt{V/W}\,N^{1/2})$,
+which saves a power uniformly. This proves the endpoint estimate
+without assuming cancellation from M\"obius signs in the error.
+
+The preceding bound has some saving $N^{-b}$ uniform on packet
+rectangles for sufficiently small $|v|$. To impose $nm\le P$,
+divide the small support into $O(N^\kappa)$ intervals of relative
+width $N^{-\kappa}$ with fixed $0<\kappa<b/2$. Freeze $P/n$
+at one endpoint in each. Where the large support is crossed,
+the change has width $O(WN^{-\kappa})$. Counting its samples
+separately at each $n$ costs in total
+$O_\epsilon(N^\epsilon(\sqrt{V/W}+N^{-\kappa}\sqrt{VW}/N))$.
+After shrinking $|v|$ further this saves a power, as does the
+sum of the rectangle errors. The continuous model with the
+physical cap remains $O(\SSS(N)L\sqrt{V/W})$: in the lattice
+comparison of \eqref{eq:Mpacket}, for each fixed small $x$ cut
+the large weight at $P/x$. This preserves its variation bound
+$O(W^{-1/2})$ and its odd extension still has integral zero.
+
+It remains to treat $s\ge3/4$ in the same product range.
+Designate the larger sampled integer by $m$. On overlapping
+packets split each line at $m=n$ and use either orientation;
+the two packet scales are then comparable. For each $d\ll W/K$
+the complementary condition is exactly $m>dK$. In the
+small-coordinate GRH progression estimate of
+\cref{thm:all-critical-long-cofactor}, include the cuts
+$m>dK$, $mn\le P$, $m\ge n$ in the line weight. They give
+a bounded number of intervals on each line (the product is
+quadratic there). The extra logarithm $\log(m/d)$ costs $O(L)$
+in the supremum and variation bounds. The aggregate progression
+error is consequently $O(L^3(W/K)\sqrt W/N)$, a power saving
+since $s\ge3/4$, $\gamma<1/22$ and $|v|$ is small. As before
+one may impose the unit restrictions after evaluation of the
+unrestricted lines; per line the cost is
+$O_\epsilon(N^\epsilon/\sqrt{VW})$ by the divisor bound.
+The possible reflected diagonal is included in this error.
+
+At each real large coordinate $y\asymp W$ on a line of shift
+$h$ the summed principal coefficient is
+\[
+ \sum_{\substack{d<y/K\\(d,h)=1}}
+           \frac{\mu(d)}{\varphi(d)}\log(y/d)
+       =\SSS(h)+O_\epsilon(N^\epsilon (y/K)^{-1/2+\epsilon}).
+\]
+For details, factor the Dirichlet series of the coefficients
+$\mu(d)\mathbf1_{(d,h)=1}/\varphi(d)$ as
+$G_h(z)/\zeta(1+z)$. Away from $h$ the local factor of $G_h$
+is $(1-p^{-z}/(p-1))/(1-p^{-1-z})$; at $p\mid h$ it is
+$(1-p^{-1-z})^{-1}$. Its coefficients have absolute
+$(1/2-\epsilon)$-moment $O_\epsilon(h^\epsilon)$ by the
+Euler products. Evaluation gives $G_h(0)=\SSS(h)$ for even
+$h$. The RH bound for partial sums of $\mu$ used in
+\cref{prop:single-test-long-divisors}, partial summation and
+convolution therefore give a tail $O_\epsilon(h^\epsilon
+R^{-1/2+\epsilon})$ at $R=y/K$ for the unmarked sum; a
+logarithmic factor for the log-marked sum is absorbed by
+choosing a smaller $\epsilon$. The complete sums with weights
+$1$ and $-\log d$ are respectively $0$ and $G_h(0)$ by the
+value and derivative at zero. Either endpoint convention
+satisfies the stated error. This proves the coefficient formula.
+Its integrated error over all lines is
+$O_\epsilon(N^\epsilon(\sqrt{VW}/N)(W/K)^{-1/2+\epsilon})$.
+Here $W/K\gg N^{\gamma+v/2}$, so uniformly for small $|v|$
+the main term recovers the restricted continuous model with
+a power saving.
+
+Finally choose $\delta>0$ so that all of the preceding savings
+hold for $|v|\le 3\delta$. Packet centers above $e^2P$ give
+no pairs. Below $VW=N^{2-2\delta}$, the original and replacement
+arithmetic sums each have absolute packet bound
+$O_\epsilon(N^\epsilon\sqrt{VW}/N)$ by the divisor bound and
+counting the $O(W/N)$ partners per small sample whenever a
+nonzero line exists. The absolute model bound follows from
+\eqref{eq:subseries} and the $O(V)$ length of each line.
+These too save a power. Summing all packet errors completes
+the proof.
+\end{proof}
+
+\begin{corollary}[Composite larger inputs in the capped remainder]
+\label{cor:critical-composite-cofactor}
+In \cref{thm:sharp-common-cofactor} the larger sampled integer
+can be restricted to integers with at least two distinct prime
+divisors, with a power-saving norm error. If such an integer
+has the form $m=pa$ with $p>K$ prime and $a\le K$, its exact
+coefficient on the larger side is $-\Lambda(a)$. In particular,
+for $m\le K^2$ this describes every surviving sample having a
+prime factor above $K$.
+\end{corollary}
+
+\begin{proof}
+The subcritical packet bound in the last paragraph of the proof
+of \cref{thm:sharp-common-cofactor} is absolute. On the remaining
+packets the larger sampled integer is $\asymp W$ and exceeds $K$,
+after shrinking $\delta<\gamma/4$. Hence $R_K(p)=0$ for primes.
+For $m=p^j>K$, $j\ge2$, its only possible contribution is
+$-\log(p^{j-1})\mathbf1_{p^{j-1}\le K}$. If $V\le N^\gamma$
+then $W\ge N^{2-2\delta-\gamma}$ and $m>K^2$, so this also
+vanishes. Otherwise the $O(\sqrt W L)$ proper powers each
+have at most $O(1+V/N)$ smaller partners on the two residue
+classes. With the physical weights this costs
+$O(L^3(1+V/N)/\sqrt V)$ per packet. Since $N^\gamma<V
+\ll N^{1+\delta}$ this still saves a power after summation.
+Finally in $m=pa$ with $p>K\ge a$ every divisor $u\le K$
+in \eqref{eq:common-sharp-cofactor} divides $a$, and every
+divisor of $a$ is included. Thus $R_K(pa)=-(\mu*\log)(a)
+=-\Lambda(a)$. If $m\le K^2$, any prime factor $p>K$ has
+cofactor $a<K$.
 \end{proof}
 
 \section{Norm decay of the progression profiles near the square of the modulus}
