@@ -57,6 +57,8 @@ On $xy\le CN^2$ with $C$ fixed, Theorem 12.33 permits the larger integer to have
 
 Proposition 12.34 bounds the absolute contribution of $m=pa$ with $p>K$ prime and $a\le Y\le N^{1/8}$ by $O(\sqrt C\log(2Y)/\log N+N^{-1/10})$ after singular-series normalization. In particular this sector vanishes on fixed product caps for $\log Y=o(\log N)$. The signed sum over the other composites is still open.
 
+Theorem 12.35 computes the major-arc contribution for each fixed number of prime factors on each macroscopic congruence line. Under Dirichlet GRH the formula for the full line sum holds outside $O(X^{1-c})$ even moduli in $[X,2X]$, for some $c>0$ depending on the fixed parameters. On the reflection line $n+m=N$, the semiprimes have normalized coefficient $\log((1-\eta)/\gamma)$ against a test of unit squared integral. Corollaries 12.36–12.37 show that the terms with at least four prime factors must supply a nonzero contribution of the opposite sign. Summed over factor counts, the normalized major arcs are $O_{s,R,\gamma}(\exp(-c_\gamma\eta^{-1}\log(1/\eta)))$ in the limit through **all** even moduli. Bounding the combined minor-arc coefficient at each remaining modulus on these lines is open.
+
 - [Manuscript (PDF)](output/pdf/hypothesis_s_paper.pdf)
 - [LaTeX source](output/pdf/hypothesis_s_paper.tex)
 - [Lean verification of the least-prime divisor split, logarithm weight, and factor-count inequality](formalization/LeastPrimeSplit.lean)

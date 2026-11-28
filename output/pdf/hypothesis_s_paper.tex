@@ -314,6 +314,8 @@ weight with a sharp complementary-factor cutoff on the whole
 product cap.
 \Cref{thm:common-cofactor-sifted} permits the same weight to
 retain only squarefree composites with no small prime factor.
+\Cref{thm:cofactor-sector-lines} evaluates the macroscopic
+major arcs separately at each retained number of prime factors.
 \Cref{thm:criticalprofiles} bounds those sums near the square
 of the modulus using equidistribution in progressions with
 factored moduli.
@@ -15125,6 +15127,237 @@ $o(1)$ by \cref{thm:common-cofactor-sifted}, and the model at
 a physical coordinate below one costs a power saving by the proof
 of \cref{thm:subcritical}. This proves the equality and specifies
 the order of limits.
+
+\subsection{The main terms at fixed factor count}
+
+Fix $0<\eta<\gamma<1/22$, and let $B_{k,N}(m)$ equal $R_K(m)$
+on squarefree products of exactly $k\ge2$ primes exceeding
+$N^\eta$, and zero elsewhere. Write $L=\log N$. On the simplex
+$t_i>0$, $\sum_{i=1}^k t_i=1$, set $t_S=\sum_{i\in S}t_i$.
+Use $dt=dt_1\cdots dt_{k-1}$ with $t_k=1-\sum_{i<k}t_i$.
+Define the signed density
+\begin{equation}
+ D_k(a,b)=\frac1{k!}\int_{\min t_i>a}
+     \sum_{\varnothing\ne S\subseteq\{1,\ldots,k\}}
+        (-1)^{k-|S|} t_S\mathbf1_{t_S\le b}
+            \frac{dt}{\prod_i t_i}.
+ \label{eq:cofactor-sector-density}
+\end{equation}
+On a compact macroscopic interval of physical coordinates $y$
+write $D_{k,N}(y)=D_k(\eta L/\log y,(1-\gamma)L/\log y)$
+and $d_k=D_k(\eta,1-\gamma)$.
+
+\begin{theorem}[Macroscopic congruence lines at fixed factor count]
+\label{thm:cofactor-sector-lines}
+Assume Dirichlet GRH. Fix $0<s<R$ and a positive integer $j$.
+There is $c>0$ depending on the fixed parameters such that,
+outside $O(X^{1-c})$ even moduli $N\in[X,2X]$, the following
+holds on each of $n+m=jN$ and $n-m=\pm jN$. For any interval
+on the line restricted to $sN\le n,m\le RN$,
+\begin{equation}
+ \sum_{\rm interval}\Lambda(n) B_{k,N}(m)
+ =\SSS(jN)\int_{\rm interval}D_{k,N}(y)\,\ud y
+                      +O(X^{1-c}).
+ \label{eq:cofactor-sector-line}
+\end{equation}
+The integration variable is the $m$ coordinate. One can impose
+the original unit and diagonal conventions. For every modulus
+the major arcs alone give the main term to power accuracy;
+the exceptional set bounds the complementary Fourier coefficient.
+\end{theorem}
+
+\begin{proof}
+Work in a fixed box $sX\le n,m\le 2RX$. Put $Q=X^\lambda$
+with $\lambda>0$ sufficiently small. First freeze the lower
+prime cutoff $z\asymp X^\eta$ and upper cofactor cutoff
+$K'\asymp X^{1-\gamma}$. Expand $B$ as $1/k!$ times the sum
+over ordered distinct prime tuples and over their nonempty
+subsets $S$, with sign $(-1)^{k-|S|}$ and weight
+$\log(\prod_{i\in S}p_i)$ on $\prod_{i\in S}p_i\le K'$.
+We can work with each nonnegative subset weight separately.
+On this box the full subset contributes zero for large $X$.
+For every unit class modulo $q\le Q$ and every $m$-interval,
+the sum of the subset weight is its real prime-density integral
+divided by $\varphi(q)$, with error $O(X^{1-e})$ for some
+$e=e(k,\eta)>0$. The real integral uses $\prod_i dp_i/\log p_i$
+over the same product region.
+
+Indeed omit repeated primes at cost $O(X^{1-\eta+o(1)}+
+X^{1/2+o(1)})$ by summing $O(X/p^2+1)$ over $z<p\ll\sqrt X$;
+each sample has bounded multiplicity and logarithmic weight.
+Freeze all but one factor. Its allowed values form an interval,
+and the residue of the product fixes one unit class since
+$z>Q$. GRH and partial summation replace this prime variable
+by its density, with error $O(X^{o(1)}\sqrt{X/v})$ when
+$v$ is the other product, including the logarithmic mark.
+On every nonempty interval $X/v\gg z$, so this costs
+$O(X^{1-\eta/2+o(1)}/v)$. Integrating or summing $1/v$
+over the other variables costs at most a power of $\log X$.
+After the first replacement the congruence has supplied the
+constant $1/\varphi(q)$; replace the remaining prime variables
+without congruences in the same way, using Fubini. The exponent
+$e$ can be chosen independently of sufficiently small $\lambda$.
+With $y=\prod_i p_i$ and $t_i=\log p_i/\log y$, the volume
+element times the mark is exactly
+$t_S\,dy\,dt/\prod_i t_i$. This gives the corresponding
+term of \eqref{eq:cofactor-sector-density}, with parameters
+$\log z/\log y,\log K'/\log y$. Its density is bounded and of
+uniformly bounded variation on the box: each moving face sweeps
+volume $O(|\Delta a|+|\Delta b|)$, and the denominators stay
+bounded away from zero. This also gives
+$D_{k,N}(y)=d_k+O(1/L)$ there.
+
+Use the arcs of radius $2Q/(qX)$ at reduced fractions of
+denominator $q\le Q$. They are disjoint for small $\lambda$.
+Partial summation in each class and summation of the additive
+phases over unit classes replace the exponential sum of the subset weight
+on an arc by $\mu(q)/\varphi(q)$ times the Fourier transform
+of its density on the interval. The pointwise error is
+$O(Q^2 X^{1-e})$; nonunit samples do not arise since all
+factors exceed $Q$. The prime polynomial in the other variable
+satisfies the same approximation by GRH (including its
+nonunit prime powers at logarithmic cost). Both full transforms
+are $O(X\log X)$ and the arc measure is $O(Q^2/X)$, giving a
+power saving relative to $X$ in each coefficient for small
+$\lambda$. The model transforms are
+$O(\min(X,|\beta|^{-1}))$. Completing the integrals and the
+Ramanujan series costs
+\[
+ \ll X\sum_{q\ge1}\min(1,q/Q)
+               \frac{\mu(q)^2|c_q(h)|}{\varphi(q)^2}
+ \ll_\epsilon XQ^{-1/2}|h|^\epsilon
+\]
+at each nonzero shift $h=\pm jN$, by the Euler-factor tail
+argument in \cref{thm:sampled-major-arc-model}. Fourier
+inversion gives the claimed line integral. This major-arc
+calculation is uniform in the frozen cutoffs and intervals
+and thus also applies at their actual values for each $N$.
+
+On the minor arcs the ordinary prime polynomial, including
+prime powers, is $O(X^{1-e_1})$ for some $e_1>0$ by Vaughan's
+bound as in \eqref{eq:almostminor}. The squared circle norm
+of the other polynomial is $O_k(X\log^2 X)$ by Parseval.
+Bessel therefore bounds the sum of squared minor coefficients
+over shifts by $O(X^{3-e_2})$ for some $e_2>0$, for each
+fixed choice of endpoints and cutoffs. To pass to moving
+parameters use an $X^{1-\kappa}$ mesh for physical endpoints
+in the box and for the parameter in $[X,2X]$ determining
+the two power cutoffs. For a nonnegative subset term enclose
+the true region between nested mesh regions, rounding the
+two cutoffs in opposite directions as needed. The continuous
+integrals differ by $O(X^{1-\kappa})$ by the face bound and
+the endpoint widths (before the factor $\SSS(h)\ll\log\log X$).
+Use all rounded regions, at most $O(X^{6\kappa})$, and apply
+Chebyshev at threshold $X^{1-\kappa}$ to each. The map
+$N\mapsto\pm jN$ is injective. Taking $10\kappa<e_2$ gives
+the stated power savings with a smaller $c$. Restore the fixed
+finite subset signs. On a line the excluded nonunits require
+the prime coordinate to have a base dividing $N$, so their
+total cost is $O(\log^3 X)$; a possible reflected diagonal
+likewise costs only logarithmic weight.
+\end{proof}
+
+\begin{corollary}[Opposite contributions on a reflection test]
+\label{cor:cofactor-sector-compensation}
+Choose real nonzero $f\in C_c^\infty((1/3,1/2))$, put
+$g(v)=f(1-v)$, and let $I_f=\int f^2$. In the cofactor
+arithmetic form let $E_{k,N}$ be the contribution of the
+$k$-factor sector, including the reflection sign and divided
+by $\SSS(N)$ as in \eqref{eq:form}. Then on a set of even
+moduli of density one,
+\[
+ E_{k,N}=-d_k I_f+O_{f,k,\eta,\gamma}(1/L),\qquad
+ -d_2=\log((1-\eta)/\gamma)>0 .
+\]
+In particular the semiprime contribution alone fails to decay.
+For each fixed $\gamma$ and sufficiently small fixed $\eta$,
+\[
+ \sum_{3\le k\le\lceil 2/\eta\rceil} d_k
+ =\log((1-\eta)/\gamma)
+       +O_\gamma(\exp\{-c_\gamma\eta^{-1}\log(1/\eta)\}).
+\]
+\end{corollary}
+
+\begin{proof}
+The supports allow only $n+m=N$ and put the larger integer
+on the $g$ side. Partial summation of the uniform interval
+estimate against $f(n/N)^2$, followed by division by
+$N\SSS(N)$, proves the first formula. At $k=2$ symmetry
+reduces $-d_2$ to $\int_\eta^{1-\gamma}dt/(1-t)$, giving
+the stated value. The original balanced form divided by
+$\SSS(N)$ tends to zero in density by
+\cref{thm:quantitativenormexceptions}. The replacements of
+\cref{thm:sharp-common-cofactor,thm:fixed-precision-rough}
+apply on this support with $C=1$. Thus $|\sum_{k\ge2}d_k|$
+is bounded by the fixed-precision error
+times $\limsup_{N\to\infty}\E(f)^{1/2}\E(g)^{1/2}/I_f$.
+For the coefficient identity fix one such test
+once and for all; its energies are uniformly bounded by
+\eqref{eq:sturm}. The intersection of the finitely many
+density-one estimates suffices, and no sector above
+$\lceil2/\eta\rceil$ occurs for large $N$. Subtraction of
+$d_2$ yields the second formula.
+\end{proof}
+
+In particular there is a conclusion through \emph{every} even modulus.
+Write $M_N(J)$ for the sum of the major-arc coefficients in
+\cref{thm:cofactor-sector-lines} over the retained counts $k\ge2$
+on a macroscopic line interval $J$. Then
+\[
+ \limsup_{2\mid N,\ N\to\infty}\ \sup_J
+ \frac{|M_N(J)|}{N\SSS(jN)}
+ \ll_{s,R,\gamma}\exp\{-c_\gamma\eta^{-1}\log(1/\eta)\}.
+\]
+Indeed one may use the same sufficiently small major-arc exponent
+for the finitely many counts at fixed $\eta$. Their densities sum
+to $\sum_{k\ge2}d_k+O_{s,R,\eta,\gamma}(1/L)$ uniformly on the
+box, and $|J|\le RN$. The density identity just proved bounds the
+constant sum independently of $N$. For an individual remaining
+modulus, the minor-arc coefficient of the signed sum is still needed.
+
+\begin{corollary}[Compensation requires at least four distinct primes]
+\label{cor:four-factor-compensation}
+For fixed $\gamma$ and sufficiently small $\eta$ as above,
+\[
+ \sum_{k\ge4}d_k\ \ge\
+ \log((1-\eta)/\gamma)+\tfrac12\log^2(1/(8\gamma))
+       -\frac{\pi^2}{12}
+       -O_\gamma(\exp\{-c_\gamma\eta^{-1}\log(1/\eta)\}).
+\]
+In particular the sectors with at least four prime factors
+carry a nonvanishing combined reflection contribution on a
+density-one set. This statement concerns the original cofactor
+weights with the indicated lower prime cutoff.
+\end{corollary}
+
+\begin{proof}
+There is a useful samplewise sign rule. For a squarefree
+composite $m>K$ put $H=m/K$ and let $b$ be the product of
+its prime factors strictly below $H$. If $b<H$, all omitted
+complementary divisors $d<H$ are precisely the divisors of
+$b$. Hence $R_K(m)=-\sum_{d\mid b}\mu(d)\log(m/d)$, which is
+$-\log m$ for $b=1$, $-\log p$ for $b=p$, and zero otherwise.
+Positive weight requires at least two such primes and $b\ge H$.
+
+In the limiting three-factor simplex the only positive cell
+therefore has two coordinates $x,y<\gamma$ with $x+y\ge\gamma$;
+the third is $1-x-y>\gamma$. The mark in
+\eqref{eq:cofactor-sector-density} there is $1-x-y$.
+Its positive integral, allowing $x,y$ down to zero, is
+\[
+ \frac12\int_0^\gamma\int_{\gamma-x}^\gamma
+           \frac{dy\,dx}{xy}
+   =\frac12\int_0^1\frac{-\log(1-u)}u\,du=\frac{\pi^2}{12}.
+\]
+The factor $1/2$ orders the two smaller primes. On the disjoint
+cell $2\gamma<x,y<1/4$ the third coordinate exceeds $1/2$;
+all three exceed $\gamma$, so the mark is $-1$. This cell
+contributes at most $-\tfrac12\log^2(1/(8\gamma))$, using
+$(1-x-y)^{-1}\ge1$. All other negative cells can only reduce
+$d_3$. Subtract its upper bound from
+\cref{cor:cofactor-sector-compensation}. The sign on the actual
+reflection line is the negative of the density sign.
+\end{proof}
 
 \section{Norm decay of the progression profiles near the square of the modulus}
 \label{sec:criticalprofiles}
