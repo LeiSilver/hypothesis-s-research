@@ -312,6 +312,8 @@ power gain on the critical product for every ratio of input scales.
 \Cref{thm:sharp-common-cofactor} gives a single arithmetic
 weight with a sharp complementary-factor cutoff on the whole
 product cap.
+\Cref{thm:common-cofactor-sifted} permits the same weight to
+retain only squarefree composites with no small prime factor.
 \Cref{thm:criticalprofiles} bounds those sums near the square
 of the modulus using equidistribution in progressions with
 factored moduli.
@@ -14642,6 +14644,487 @@ divisor of $a$ is included. Thus $R_K(pa)=-(\mu*\log)(a)
 =-\Lambda(a)$. If $m\le K^2$, any prime factor $p>K$ has
 cofactor $a<K$.
 \end{proof}
+
+\subsection{Divisibility conditions on the sharp cofactor sum}
+
+For $P\ge1$, let $\mathcal R_{N,P}(f)$ denote the arithmetic form
+in \cref{thm:sharp-common-cofactor} on $x,y\ge1$, $xy\le P$,
+multiplied by $f(m)$ at the larger sampled integer $m$.
+Thus the coefficient there is $f(m)R_K(m)$, and the smaller
+coordinate carries $\Lambda$. Take $0<\gamma<1/22$ fixed and
+$K=\lfloor N^{1-\gamma}\rfloor$. All norms below are unnormalized
+unless a singular-series denominator is displayed.
+
+\begin{lemma}[Cancellation on multiples of a small modulus]
+\label{lem:cofactor-multiples}
+Under Dirichlet GRH there are $\xi,\delta_0,c_0>0$ such that
+at each sufficiently large even $N$,
+\[
+ \sup_{\substack{2\le r\le N^\xi\\1\le P\le N^{2+\delta_0}}}
+     \|\mathcal R_{N,P}(\mathbf1_{r\mid m})\|\ll N^{-c_0}.
+\]
+\end{lemma}
+
+\begin{proof}
+For $(r,N)>1$ the unit condition makes the sum empty. Suppose
+$(r,N)=1$. Use the packet decomposition and the margins of
+\cref{thm:sharp-common-cofactor}, writing $V\le W$ for the scales
+and $H<d\le2H$ for a divisor block. Its below-critical estimate
+is absolute and uniform for a smaller cap. On critical packets,
+the true Mangoldt weight on $r\mid m$ contributes only powers at
+bases dividing $r$. There are $O(L^2)$ such large samples and
+each has $O(1+V/N)$ smaller partners. After physical normalization
+their contribution is $O_\epsilon(N^\epsilon(1+V/N)/\sqrt{VW})$,
+a power saving. We evaluate the subtracted divisor sum
+$\sum_{du=m,\,u>K}\mu(d)\log u$ on the same multiples.
+
+First take $\log V/L\le3/4$. For the short $d$ the two signed
+progressions now use $[d,r]\mid m$, with the same density for
+each sign (or both are empty). For the other blocks fix
+$g=(d,r)$ and write $\ell=r/g$. Nonzero M\"obius coefficients
+require $g$ squarefree, $d=gd'$ with $(d',r)=1$, and
+$\mu(d)=\mu(g)\mu(d')$. Then $u=\ell v$, $m=rd'v$ and
+$v\equiv\pm n\bar r\,\overline{d'}\bmod N$. The scale of
+$d'$ is $H/g$ and the scale for Poisson summation in $v$ is
+$M'=W/(H\ell)$. The normalized transform on a block is still
+formed from $g_0((d'/(H/g))t)\log(\ell M't)$, with the smooth
+large test $g_0$ and step at $\ell M't=K$. Consequently its
+derivative and variation bounds in the proof of
+\cref{thm:sharp-common-cofactor} are unchanged. The frequency
+cutoff grows by at most $r$, while its product with $M'/N$
+is still $O(N^{2\omega})$ in the notation of that proof.
+
+For $\log V/L\le2/11$ use \eqref{eq:far-critical-inverse-max}
+with the additional unit condition $(d',r)=1$. In its proof this
+condition separates over the convolution factors. On the free
+factor in the one-variable completion, inclusion--exclusion has
+at most $\tau(Nr)$ terms; in the bilinear estimate the condition
+is absorbed in the coefficients. Thus it costs only $N^\epsilon$.
+The lower bound on the divisor scale loses at most $N^\xi$ and
+the lower bound on the reduced modulus loses at most $N^\xi$.
+Choose $\xi$ within the strict margins for both bounds. For
+$2/11\le\log V/L\le3/4$ use \eqref{eq:reciprocal-small-first}.
+Its occupancy argument also holds for numerator $h\bar r$
+whenever $0<|h|\sqrt V<N$: for an approximating denominator
+$b\le\sqrt V$ center the product equation at the least absolute
+residue of $bh\bar r\bmod N$. This residue is nonzero and again
+gives $O(1+(H/g)/\sqrt V)$ possible translates. Shrinking
+$\xi$ preserves the frequency inequality. The first-moment
+bound only decreases on replacing $H$ by $H/g$.
+
+In the unsigned majorant for the cofactor endpoint one can sum
+over $g\mid r$ and over all unit $d'$ for an upper bound,
+omitting the extra coprimality restrictions. Its zero-mode count
+on each such block has $(H/g)M'\le W$ in place of $HM=W$.
+For nonzero modes the same one-variable completion or occupancy
+bound applies. The physical smoothing and the rectangular
+approximation of the product boundary have absolute errors
+bounded by the old estimates, with the extra indicator at most
+one. The $\tau(r)$ blocks per old block cost only $N^\epsilon$.
+These arguments keep a fixed power saving: first fix the strict
+slack between $\gamma$ and the exponent $\gamma_1$ in the
+original proof, then take the smoothing exponents, $\xi$ and
+the product width small enough that the perturbed divisor and
+frequency exponents lie inside the same open bounds. The cap
+itself may be clipped at any $P$ in the stated range.
+
+For $\log V/L\ge3/4$ the divisor condition on a line of shift
+$h$ is $[r,d]\mid m$. The smaller prime coordinate still occupies
+one residue class, so the GRH progression error over all lines
+is $O(L^3(W/K)\sqrt W/N)$ as before. The actual larger-coordinate
+cut and the product boundary still give boundedly many intervals
+on a line. The principal coefficient at physical coordinate
+$y\asymp W$ is now
+\[
+ \sum_{d<y/K}
+   \frac{\mu(d)\mathbf1_{([r,d],h)=1}}{\varphi([r,d])}\log(y/d).
+\]
+It is zero for $(r,h)>1$. Otherwise the Dirichlet series before
+the logarithm is
+\[
+ \frac{1}{\varphi(r)}
+ \prod_{p\mid r}(1-p^{-z})\,\frac{G_{hr}(z)}{\zeta(1+z)}
+\]
+with $G_{hr}$ as in \cref{thm:sharp-common-cofactor}. The value
+and first derivative at zero both vanish because $r>1$.
+The additional finite product divided by $\varphi(r)$ has
+absolute $(1/2-\epsilon)$-moment bounded by
+$\prod_{p\mid r}(1+\sqrt p)/\varphi(r)\ll_\epsilon N^\epsilon$.
+The same convolution and RH tail estimate therefore bounds the
+whole coefficient by $O_\epsilon(N^\epsilon(y/K)^{-1/2+\epsilon})$.
+There is no continuous main term on these multiples. The integral
+of the absolute weight on each line is $O(\sqrt{V/W})$;
+summing the coefficient error still saves a power. The unit
+and diagonal corrections are bounded as in the original proof.
+Finally sum over the $O(L^2)$ packet pairs, shrinking the
+saving if necessary.
+\end{proof}
+
+\begin{theorem}[Squarefree rough composites with the same sharp cutoff]
+\label{thm:common-cofactor-sifted}
+Assume Dirichlet GRH and fix $A\ge1$, $0<\gamma<1/22$.
+In \cref{thm:sharp-common-cofactor} one may keep only larger
+integers $m$ that are squarefree, have at least two prime factors,
+and have every prime factor greater than $z=L^A$. The same
+$K=\lfloor N^{1-\gamma}\rfloor$ works with unnormalized error
+$O(N^{-c})$ through $P=N^{2+\delta}$ for some $\delta,c>0$
+depending on $A,\gamma$. This holds at every sufficiently large
+even modulus. In the resulting expansion $m=du$ one has
+$(d,u)=1$, both factors are squarefree, and $z<u\le K$ for
+every nonzero summand.
+\end{theorem}
+
+\begin{proof}
+Let $Z=N^\alpha$ with $3\alpha<\xi$, $2\alpha<c_0/2$ and
+$\alpha<1/10$, using \cref{lem:cofactor-multiples}. Truncate
+$\mu^2(m)=\sum_{\ell^2\mid m}\mu(\ell)$ at $\ell\le Z$.
+For the roughness indicator truncate inclusion--exclusion to
+products of fewer than $t=\lfloor\log Z/\log z\rfloor$ distinct
+primes at most $z$. Every retained squarefree product $b$ is at
+most $Z$. Each combined term restricts to multiples of
+$[\ell^2,b]\le Z^3$. Only $(\ell,b)=(1,1)$ gives modulus one.
+All other terms together cost $O(Z^2 N^{-c_0})$ even with
+the sharp physical product cap.
+
+We bound the two truncation errors in absolute value. The square
+tail is supported on multiples of some $\ell^2$ with $\ell>Z$,
+with multiplicity at most $\tau(m)$. For packets $V\le W$ with
+nonempty lines, $W\gg N$ and $VW\ll N^{2+\delta}$. If
+$W\le N^{151/100}$, apply \eqref{eq:largesquareinterval} on
+each of $O(W/N)$ lines, using an interval of length $O(V)$.
+The two physical test weights contribute $O(1/\sqrt{VW})$,
+giving the absolute packet bound
+\[
+ \ll_\epsilon N^\epsilon
+     \left(\frac{\sqrt{VW}}{NZ}+\frac{W^{79/120}}{N}\right).
+\]
+Here one may use $\min(V,W^{19/60})\le\sqrt V W^{19/120}$
+for the interval count error. For $W>N^{151/100}$ use
+\eqref{eq:largesquareprogression} at each unit small coordinate.
+For $W>N^2$ its root count in the proof picks up at most a factor
+$O(1+\sqrt W/N)$ on the $N^\epsilon W^{1/3}$ term, by counting
+all lifts of a root modulo $N$. The resulting packet bound is
+\[
+ \ll_\epsilon N^\epsilon\frac{\sqrt{VW}}{N}
+ \left(Z^{-1}+\frac{N}{W^{2/3}}(1+\sqrt W/N)\right).
+\]
+Both bounds save a power for $\delta,\epsilon$ sufficiently
+small. All divisor multiplicities and $|R_K(m)|$ have been
+absorbed by $N^\epsilon$.
+
+For the roughness truncation the elementary binomial identity
+for partial inclusion--exclusion bounds the pointwise error by
+the number of $b\mid m$ made of exactly $t$ distinct primes
+at most $z$. The truncated squarefree multiplier costs at most
+$\tau(m)$. For a single $b$ coprime to $N$, counting the larger
+coordinate on a progression modulo $Nb$ at each smaller sample
+costs $O(V(W/(Nb)+1))$ pairs. Alternatively count multiples of
+$b$ in an interval of length $O(V)$ on each of $O(W/N)$ lines.
+After division by $\sqrt{VW}$ the smaller error of the two
+counts is at most
+$\min(\sqrt{V/W},\sqrt{W/V}/N)\le N^{-1/2}$.
+The common main bound is $O(\sqrt{VW}/(Nb))$.
+Nonunit $b$ give no samples. These upper bounds also hold with
+the cap or additional indicators present. There are at most $Z$
+products, and
+\[
+ \sum_b\frac1b\le\frac{(\sum_{p\le z}1/p)^t}{t!}
+        \le N^{-\alpha/A+o(1)}.
+\]
+The last estimate follows from $t\sim\alpha L/(A\log L)$
+and $\sum_{p\le z}1/p=O(\log\log(3z))$. Thus the roughness
+error costs $O_\epsilon(N^\epsilon(N^{\delta/2-\alpha/A+o(1)}
++Z/\sqrt N))$ per packet. Take $\delta$ smaller than
+$\alpha/A$, $\delta_0$ and the preceding square-tail margins,
+then take $\epsilon$ small. Summing the packet errors proves
+the two restrictions simultaneously. The prime-power deletion
+in \cref{cor:critical-composite-cofactor} is absolute. The
+assertions about $d,u$ now follow from squarefreeness and from
+$\log1=0$.
+\end{proof}
+
+\begin{theorem}[Fewer factors through logarithmic product caps]
+\label{thm:common-cofactor-few-factors}
+Fix $B\ge0$, $D\ge1$ and $0<\gamma<1/22$. Under Dirichlet GRH
+there is $\lambda>0$ such that through $P=N^2 L^B$ the
+replacement of \cref{thm:common-cofactor-sifted} holds with
+unnormalized error $O_{B,D,\gamma}(L^{-D})$ for the larger cutoff
+\[
+ z=\exp\left(\lambda L\,\frac{\log\log L}{\log L}\right).
+\]
+Thus the squarefree larger input and its coprime cofactorization
+have in total at most $O_{B,D,\gamma}(\log L/\log\log L)$ prime
+factors, each greater than $z$. The cutoff $u\le K$ and all
+input ratios are as in \cref{thm:sharp-common-cofactor}.
+\end{theorem}
+
+\begin{proof}
+We need an absolute moment on the actual signed congruence lines.
+Count both signs with positive multiplicity and omit the equal
+coordinate on the difference line. For each fixed integer $k\ge1$
+and packet with $VW\le e^2N^2L^B$,
+\begin{equation}
+ \frac{1}{\sqrt{VW}}\sum_{\rm pairs}\tau(m)^k
+ \ll_{k,B} L^{C_k}\left(\frac{\sqrt{VW}}{N}+N^{-1/4}\right)
+ \label{eq:cofactor-packet-divisor-moment}
+\end{equation}
+for some fixed $C_k$, where $m$ is the larger integer. To see
+this, $m\le N^3$ for large $N$. At most $24$ of its prime
+factors, with repetitions, exceed $N^{1/8}$. Group the others
+until the product first exceeds $N^{1/8}$, then start a new
+group. Each product is at most $N^{1/4}$ and there are at most
+$25$ groups including the final one. Submultiplicativity gives
+\[
+ \tau(m)^k\ll_k
+       \sum_{\substack{d\mid m\\d\le N^{1/4}}}\tau(d)^{25k}.
+\]
+The two pair counts in the proof of \cref{thm:common-cofactor-sifted}
+bound the scaled number for each $d$ by
+$O(\sqrt{VW}/(Nd)+N^{-1/2})$. If $(d,N)>1$ it is zero.
+The sums of $\tau(d)^{25k}/d$ up to $N^{1/4}$ are bounded by a
+fixed power of $L$ by the Euler product (its first local
+coefficient is $2^{25k}$). This proves
+\eqref{eq:cofactor-packet-divisor-moment}.
+
+Use the same $Z=N^\alpha$ as in \cref{thm:common-cofactor-sifted}.
+Group primes into blocks $z^{2^{-i-1}}<p\le z^{2^{-i}}$,
+ending when the lower endpoint is below two. There are $O(\log L)$
+blocks and the sum of $1/p$ in each is bounded by an absolute
+constant $C_*$, by Mertens' estimate. In each block retain
+products of fewer than $t=\lceil M\log L/\log\log L\rceil$
+distinct primes in inclusion--exclusion. Choose $M$ large in
+terms of $B,D$ and $C_6$, and then take $\lambda<\alpha/(3M)$.
+Every term of the multiplied truncations has modulus
+$b\le z^{2t}\le Z$. Its assignment to the blocks is unique.
+Combining with the squarefree truncation at $Z$ again leaves only
+$O(Z^2)$ terms of modulus at most $Z^3$, handled by
+\cref{lem:cofactor-multiples}. The square-tail error remains
+power saving before expanding the exact roughness indicator.
+
+The roughness truncation is exact unless $m$ has at least $t$
+distinct prime divisors in some block. Its absolute value is at
+most $\tau(m)$, since each divisor occurs at most once. For a
+bad block, a product of exactly $t$ primes divides $m$. These
+witnesses satisfy $b\le Z$ and their reciprocal mass over all
+blocks is at most
+\[
+ O(\log L)\frac{C_*^t}{t!}=L^{-M+o(1)}.
+\]
+The number of witnesses is $O(Z\log L)$. Consequently the
+scaled number of bad pairs is
+$O((\sqrt{VW}/N)L^{-M+o(1)}+Z(\log L)N^{-1/2})$ by the
+same two pair counts. In the error sum the squarefree truncation,
+the difference of the roughness indicators and $R_K$ together
+cost $O(L\tau(m)^3)$; the small Mangoldt weight costs $O(L)$.
+Apply Cauchy--Schwarz to this bad set and use
+\eqref{eq:cofactor-packet-divisor-moment} with $k=6$. Since
+$\sqrt{VW}/N\ll L^{B/2}$, the result is $O(L^{-D-3})$ per
+packet by the choice of $M$. Summation and the absolute
+prime-power deletion give the claimed norm error. Finally
+the number of factors is at most $\log m/\log z$, as stated.
+\end{proof}
+
+\begin{theorem}[A bounded number of factors at fixed precision]
+\label{thm:fixed-precision-rough}
+Fix $0<\gamma<1/22$ and $C\ge1$. In the sharp cofactor sum
+through $P=CN^2$ let $J_\eta$ restrict the larger integer to
+squarefree composites all of whose prime factors exceed $N^\eta$.
+Under Dirichlet GRH, for sufficiently small fixed $\eta>0$,
+\[
+ \limsup_{2\mid N,\ N\to\infty}
+ \frac{\|\mathcal R_{N,P}(1)-\mathcal R_{N,P}(J_\eta)\|}{\SSS(N)}
+ \ll_{C,\gamma}\exp\{-c_\gamma\eta^{-1}\log(1/\eta)\}
+\]
+with $c_\gamma>0$. In particular at any prescribed norm precision
+the number of distinct factors can be bounded independently of
+$N$ on this cap, by choosing $\eta$ first. The remaining signed
+sum still requires cancellation.
+\end{theorem}
+
+\begin{proof}
+Use the squarefree truncation at $Z=N^\alpha$ as in
+\cref{thm:common-cofactor-sifted}, taking also $\alpha<1/32$.
+Its error against an exact roughness indicator is absolutely
+power saving. Divide primes up to $z=N^\eta$ into the blocks of
+\cref{thm:common-cofactor-few-factors}, indexed from the largest.
+In block $j$ keep products of fewer than $t_j=t_0+j$ primes,
+where $t_0=\lfloor\alpha/(8\eta)\rfloor$. Since
+$\eta\sum_{j\ge0}2^{-j}t_j<\alpha$, every combined modulus
+before including the squarefree factor is at most $Z$. Each
+assignment is unique. The fully truncated sum therefore differs
+from $\mathcal R_{N,P}(1)$ by $O(Z^2N^{-c_0})$ by
+\cref{lem:cofactor-multiples}.
+
+Telescope the exact and truncated block products, keeping the
+\emph{smaller} primes exactly sifted in each error. For a block
+with lower endpoint $y=z^{2^{-j-1}}$, any such sample has no
+prime factor at most $y$. The single-block error is bounded by
+the number of divisors $b\mid m$ made of exactly $t_j$ block
+primes. The truncated factors for larger primes together have
+absolute value at most $\tau(m)$. With $|R_K(m)|\le L\,O(\tau(m))$
+and the squarefree truncation, it suffices, for each witness $b$,
+to count with weight $O(L\Lambda(n)\tau(m)^3)$, where $n$ is
+the smaller input. We retain the restriction on primes up to
+$y$ in this positive bound.
+
+Write $m=bv$. Then $\tau(m)^3\le 8^{t_j}\tau(v)^3$. By
+grouping the primes of $v\le N^3$ as in
+\eqref{eq:cofactor-packet-divisor-moment}, now making groups of
+size at most $N^{1/32}$ (start a new group upon crossing
+$N^{1/64}$), one has
+\[
+ \tau(v)^3\ll\sum_{d\mid v,\ d\le N^{1/32}}\tau(d)^E
+\]
+with an absolute fixed $E$: there are at most $193$ groups
+and at most $192$ individual primes above $N^{1/64}$.
+All primes of $d$ exceed $y$. The harmonic sum of these
+coefficients satisfies
+\[
+ \sum_{\substack{d\le N^{1/32}\\p\mid d\Rightarrow p>y}}
+       \frac{\tau(d)^E}{d}
+ \ll_E \left(\frac{L}{\log(2y)}\right)^{M_0}
+\]
+for a fixed $M_0$, by the Euler product and Mertens' estimate
+on the interval $(y,N^{1/32}]$. In particular this cost grows
+only polynomially in $2^j/\eta$.
+
+Here are the counts used with this harmonic sum. Take $V\le W$
+in a packet and first suppose $W\ge N^{5/4}$. For a fixed
+unit $n$ and $m=bdw$ on either progression, $w$ is in a unit
+class modulo $N$. Its progression variable runs over an interval
+of length $H\asymp W/(bdN)\gg N^{3/16}$. Sift $w$ at primes
+up to $y$, omitting primes dividing $N$. Equation
+\eqref{eq:uniformsieve} bounds the count by
+$O(H(N/\varphi(N))/\log(2y))$. Indeed $y\le N^\eta$ is
+below the allowed sifting level for small $\eta$; inapplicable
+primes have zero excluded residues. The sieve remainder is
+absorbed since $H$ has polynomial size. Sum $\Lambda(n)$ by
+Chebyshev. After insertion of $L$ and the two packet suprema
+the result per $b,d$, before divisor weights, is at most
+\[
+ O\left(\SSS(N)\frac{\sqrt{VW}}{Nbd}
+                 \left(\frac{L}{\log(2y)}\right)^2\right).
+\]
+For $W<N^{5/4}$ and $V\ge N^{1/2}$ count on lines of shift
+$h$ instead. On a padded interval of length $\asymp V/(bd)$
+for $w$, sift both $w$ and $\pm bdw\pm h$ up to $y$ when
+$n$ is prime. No prime up to $y$ divides $bd$; outside $h$
+there are two excluded residues, and at a prime dividing $h$
+there is one. The resulting count is
+$O(V\SSS(h)/(bd\log^2(2y)))$. Summing the shifts using
+\eqref{eq:subseries} gives the displayed bound with both
+logarithmic weights included. Proper powers in $n$ cost
+$O_\epsilon(N^\epsilon\sqrt W/N)$ per packet directly before
+the divisor expansion, since all truncated products and the
+witness multiplicity are divisor bounded. If also $V<N^{1/2}$
+the entire packet costs $O_\epsilon(N^\epsilon\sqrt{VW}/N)$
+before expansion. These errors save powers, also after summing
+over blocks. Empty lines need no estimate.
+
+The reciprocal mass of the witnesses is at most $C_*^{t_j}/t_j!$
+as in the previous block sieve. The positive error bound on each
+packet is consequently $\SSS(N)\sqrt{VW}/N$ times
+\[
+ O\left(\sum_{j\ge0}(2^j/\eta)^{M_0+2}
+                      (8C_*)^{t_0+j}/(t_0+j)!\right).
+\]
+For $\eta$ small the ratio of consecutive terms is at most
+$1/2$, and Stirling's bound on the first gives the stated
+exponential estimate. Both geometric Schur sums for
+$\sqrt{VW}/N$ are $O(\sqrt C)$. Thus there is no packet-count
+logarithm in the fixed-precision error. Prime powers in the
+larger coordinate can finally be deleted by the absolute estimate
+of \cref{cor:critical-composite-cofactor}.
+\end{proof}
+
+\begin{proposition}[A large prime factor with a small complementary weight]
+\label[proposition]{prop:common-cofactor-large-prime}
+Fix $0<\gamma<1/22$. Let $1\le C\le N^{\delta}$ for a fixed
+small $\delta<1/8$, and $2\le Y\le N^{1/8}$. In the arithmetic
+weight \eqref{eq:common-sharp-cofactor} through $P=CN^2$, retain
+only $m=pa$ with $p>K$ prime and $a\le Y$. Even upon taking
+absolute values on both congruence signs and both test inputs,
+the resulting pairing on the unit balls, divided by $\SSS(N)$,
+is bounded by
+\begin{equation}
+ \ll \sqrt C\,\frac{\log(2Y)}{\log N}+N^{-1/10}.
+ \label{eq:large-prime-small-complement}
+\end{equation}
+This estimate uses no zero hypothesis and allows further
+restrictions on individual samples. For fixed $C$ it is $o(1)$
+whenever $\log Y=o(\log N)$.
+\end{proposition}
+
+\begin{proof}
+Here $Y<K$ for large $N$, so $a$ is uniquely determined and the
+absolute large weight is precisely $\Lambda(a)$. Consider packets
+of scales $V\le W$, with the sampled smaller and larger integers
+called $n$ and $m$. Their physical suprema have product
+$O((VW)^{-1/2})$ on unit packet tests. We may restrict to
+$W\ge N/(2e)$ and $VW\le e^2 C N^2$. If the supports overlap,
+split at the ordering of the samples; either orientation has
+the same estimates up to fixed constants.
+
+For $W\ge N^{5/4}$, fix a unit $n$ and $a\le Y$, $(a,N)=1$.
+Each sign gives one unit class for $p\bmod N$. The
+Brun--Titchmarsh bound \cite{MontgomeryVaughanSieve} up to
+$eW/a$ counts $O(W/(a\varphi(N)L))$ primes since
+$W/(aN)\ge N^{1/8}$. Chebyshev gives small-input mass $O(V)$,
+and $\sum_{a\le Y}\Lambda(a)/a\ll\log(2Y)$. By
+\eqref{eq:subseries} the resulting packet coefficient is
+\[
+ \ll \SSS(N)\frac{\sqrt{VW}}N\frac{\log(2Y)}L .
+\]
+
+Suppose $W<N^{5/4}$ and $V\ge N^{1/2}$. Proper powers in
+the smaller coordinate cost $O(L^4\sqrt W/N)$ on the packet:
+there are $O(\sqrt V L)$ such samples and each has $O(W/N)$
+partners of absolute weight at most $O(L)$. For an ordinary
+prime $n$, fix $a$ and a shift $h=bN$. Sift the two linear
+forms $p$ and $\pm ap\pm h=n$ on an interval padded to length
+$\asymp V/a\gg N^{3/8}$. If $(a,h)>1$ then the prime $n$
+divides $a$, which is impossible since $n\gg V>eY$.
+Otherwise the two forms exclude two residues away from $ah$
+and one at primes dividing $ah$; the factor at two is bounded
+in the admissible case. By \eqref{eq:uniformsieve} and Mertens'
+product this counts $O(V\SSS(h)/(a L^2))$ pairs. Indeed $a$
+is a prime power whenever its weight is nonzero and the one
+extra local factor is bounded. Both required primes exceed
+the sifting level. Insert the weights $\log n\ll L$ and
+$\Lambda(a)$, and use $\sum_{b\ll W/N}\SSS(bN)\ll(W/N)\SSS(N)$.
+This gives the same packet coefficient as above.
+If also $V<N^{1/2}$, counting all $O(W/N)$ partners per small
+input costs just $O(L^2\sqrt{VW}/N)\ll L^2N^{-1/8}$.
+
+For each fixed packet index the geometric sum of $\sqrt{VW}/N$
+over the other indices with $VW\le e^2CN^2$ is $O(\sqrt C)$.
+Apply the two Schur bounds and sum the negligible errors over
+$O(L^2)$ pairs. This proves \eqref{eq:large-prime-small-complement}.
+\end{proof}
+
+For example, on each fixed macroscopic window $x,y\le RN$,
+$R\ge1$, the following criterion uses an upper as well as a
+lower restriction on the prime factors. Fix $A\ge1$, and let
+$H_N(\gamma,A,R)$ be the norm divided by $\SSS(N)$ of the
+arithmetic form on that window with the weight of
+\cref{thm:common-cofactor-sifted}, retaining only larger
+integers whose prime factors are all at most $K$. Under
+Dirichlet GRH one has the iterated limit
+\begin{equation}
+ \lim_{\gamma\downarrow0}\limsup_{2\mid N,\ N\to\infty}
+ H_N(\gamma,A,R)
+     =\limsup_{2\mid N,\ N\to\infty} W_N(R).
+ \label{eq:macroscopic-sifted-cofactor-limit}
+\end{equation}
+Indeed $m\le RN<K^2$ there, so any prime factor $p>K$
+has $a=m/p\le RN/K$. Use \cref{prop:common-cofactor-large-prime}
+with $C=R^2$ and $Y=\max(2,RN/K)$. The omitted norm is
+$O_R(\gamma+L^{-1})$ uniformly in the limit for each fixed
+$\gamma$. The squarefree and lower-prime restrictions cost
+$o(1)$ by \cref{thm:common-cofactor-sifted}, and the model at
+a physical coordinate below one costs a power saving by the proof
+of \cref{thm:subcritical}. This proves the equality and specifies
+the order of limits.
 
 \section{Norm decay of the progression profiles near the square of the modulus}
 \label{sec:criticalprofiles}
