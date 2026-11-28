@@ -319,6 +319,9 @@ major arcs separately at each retained number of prime factors.
 \Cref{thm:cofactor-prime-marks} evaluates the full macroscopic
 line sums for logarithmic marks on a range of prime divisors
 at every even modulus.
+\Cref{thm:internal-cofactor-prime,cor:internal-cofactor-root}
+extract a prime from the complementary factor itself. On
+macroscopic lines its lower cutoff reaches $N^{1/2-o(1)}$.
 \Cref{thm:criticalprofiles} bounds those sums near the square
 of the modulus using equidistribution in progressions with
 factored moduli.
@@ -15516,6 +15519,239 @@ and writing $m=pa$ gives $a\le RN^{1-\theta}$. All smaller
 prime factors of $a$ are allowed. This equivalence follows by
 addition of the two complementary weights and uses no average
 over moduli. The required large-prime correlation is open.
+
+\subsection{Extracting a large prime from the complementary factor}
+
+In the arithmetic coefficient $R_K(m)$ of
+\eqref{eq:common-sharp-cofactor}, expand $\log u$ for each
+individual divisor $u\le K$ of $m$. For any real $Y\ge2$ define
+\begin{equation}
+ B_{K,Y}(m)=-\sum_{\substack{m=pa\\Y<p\le K\\p\ {\rm prime}}}
+                 \log p\sum_{\substack{d\mid a\\d<m/K}}\mu(d).
+ \label{eq:internal-cofactor-prime}
+\end{equation}
+Here a prime $p$ is counted once per factorization $m=pa$.
+The strict boundary in the inner sum includes the contribution
+of $u=K$ in the original expression.
+
+\begin{theorem}[A marked prime in the capped operator at every input ratio]
+\label{thm:internal-cofactor-prime}
+Assume Dirichlet GRH and fix $0<\gamma<1/22$,
+$K=\lfloor N^{1-\gamma}\rfloor$. There exist $\xi,\delta,c>0$
+such that on the physical region $x,y\ge1$, $xy\le N^{2+\delta}$,
+one may replace $R_K(m)$ at the larger sampled integer in
+\cref{thm:sharp-common-cofactor} by $B_{K,N^\xi}(m)$.
+The unnormalized operator error is $O(N^{-c})$ at every
+sufficiently large even modulus, uniformly also for smaller
+product caps. The other coordinate still carries $\Lambda$.
+\end{theorem}
+
+\begin{proof}
+Every possible pair has $m\ge N/2>K$: the positive difference
+or the sum is at least $N$. The total contribution to $R_K(m)$
+of a fixed prime power $r=p^i\le K$ in the identity
+$\log u=\sum_{r\mid u}\Lambda(r)$ is zero unless $r\mid m$,
+in which case it is
+\[
+ \Lambda(r)\sum_{\substack{d\mid m/r\\d\ge m/K}}\mu(d)
+   =-\Lambda(r)\sum_{\substack{d\mid m/r\\d<m/K}}\mu(d).
+\]
+Indeed $m/r>1$. For $r\le N^\xi$ we show a uniform power saving
+per $r$ before the factor $\Lambda(r)$. The divisibility condition
+is now $rd\mid m$, even when $r$ and $d$ share a prime.
+If $(r,N)>1$ there is no unit sample. On a line of shift $h$
+the unrestricted progression density at $y\asymp W$ is
+\[
+ C_{r,h}(H)=\sum_{\substack{d<H\\(rd,h)=1}}
+                  \frac{\mu(d)}{\varphi(rd)},\qquad H=y/K.
+\]
+It is zero for $(r,h)>1$. Otherwise its Dirichlet series, before
+truncation, is $G_{r,h}(z)/(\varphi(r)\zeta(1+z))$.
+The Euler factors of $G_{r,h}$ are those of $G_h$ in
+\cref{thm:sharp-common-cofactor}, except that at $p\mid r$
+the factor is one: the local series before removing $1/\zeta$
+is $1-p^{-1-z}$. The absolute coefficient moment of order
+$1/2-\epsilon$ is $O_\epsilon(h^\epsilon)$ uniformly in $r$,
+by the same Euler product. The full series vanishes at zero.
+Convolution with the RH tail for $\mu(d)/d$ therefore gives
+\begin{equation}
+ |C_{r,h}(H)|\ll_\epsilon
+      h^\epsilon H^{-1/2+\epsilon}/\varphi(r),\qquad H\ge2.
+ \label{eq:internal-cofactor-density}
+\end{equation}
+
+We give the packet bounds to specify where uniformity in $r$ enters.
+Write $V\le W$ for the two scales. In the critical range
+$VW=N^{2+v}$ with $|v|$ sufficiently small and $V\ge N^{3/4}$,
+sum the smaller Mangoldt variable in its class modulo $rd$ under
+GRH. There are $O(W/K)$ choices of $d$ per line, each cut by
+$m>dK$ and by the cap as in \cref{thm:sharp-common-cofactor}.
+After summing over $O(W/N)$ shifts the progression error per
+$r$ is $O(L^3(W/K)\sqrt W/N)$, where $L=\log N$.
+Its exponent is at most $-1/8+\gamma+O(|v|)$. Unit and diagonal
+corrections have the divisor-bound cost in that proof. The
+integrated principal term costs
+$O_\epsilon(N^\epsilon(\sqrt{VW}/N)(W/K)^{-1/2+\epsilon})$
+by \eqref{eq:internal-cofactor-density}; here
+$W/K\gg N^{\gamma+v/2}$. Both bounds save a fixed power.
+
+For $V<N^{3/4}$ use the reciprocal estimates in the proof of
+\cref{lem:cofactor-multiples}. More explicitly, below
+$d\le N^{-\omega}\sqrt{W/V}$ the two classes modulo $Nrd$
+have equal density, and the bounded-variation error costs
+$O(L^2N^{-\omega})$ after summing $d$ and the small input.
+On a remaining block $d\asymp D$, put $m=rdt$.
+The Poisson variable has scale $M=W/(rD)$ and classes
+$t\equiv\pm n\bar r\bar d\bmod N$. These are exactly the formulas
+of that proof with $g=1$, including the sharp step at $rt=K$;
+in scaled coordinates this step is at $rMt'=K$. The coefficient
+on $d$ is $\mu(d)$ without a coprimality restriction at $r$.
+The cutoff for nonzero frequencies increases by $r$, and its
+product with $M/N$ remains $O(N^{2\omega})$. In the range
+$V\le N^{2/11}$ multiplication by the unit $\bar r$ preserves
+the reduced denominator for a given frequency and small sample;
+\eqref{eq:far-critical-inverse-max} applies with the same strict
+exponent margins for sufficiently small $\xi,\omega,|v|$.
+For $N^{2/11}<V<N^{3/4}$, \eqref{eq:reciprocal-small-first}
+applies to the numerator multiplied by $\bar r$ by the occupancy
+argument of \cref{lem:cofactor-multiples}. The endpoint bump
+for the sharp step has zero-mode size bounded using $DM=W/r\le W$.
+Its nonzero modes use the same bounds with unsigned coefficients
+as in that lemma. Smoothing the physical tests and slicing the
+cap use only the absolute divisor bound. Thus the savings persist
+uniformly for $r\le N^{\xi_0}$ for some $\xi_0>0$. Below the
+critical range the absolute packet bound
+$O_\epsilon(N^\epsilon\sqrt{VW}/N)$ suffices for each $r$.
+Take $\xi\le\xi_0$ smaller than half the resulting saving, and
+sum using $\sum_{r\le N^\xi}\Lambda(r)\ll N^\xi$.
+
+For $p^i>N^\xi$, $i\ge2$, the sample has a square divisor
+$\ell^2$ with $\ell=p^{\lfloor i/2\rfloor}>N^{\xi/3}$.
+All marks and multiplicities at a sample cost $O_\epsilon(N^\epsilon)$.
+The two absolute square-tail estimates in the proof of
+\cref{thm:common-cofactor-sifted} with $Z=N^{\xi/3}$ give a
+power saving after shrinking $\delta$. The $O(L^2)$ packet
+pairs are absorbed by a smaller saving. What remains is exactly
+\eqref{eq:internal-cofactor-prime}.
+\end{proof}
+
+\begin{corollary}[A near-square-root prime on every macroscopic line]
+\label{cor:internal-cofactor-root}
+Assume Dirichlet GRH. Use the line intervals $J$ and $h=jN$ of
+\cref{thm:cofactor-prime-marks}, with the same unit and diagonal
+conventions. Given $A\ge1$, set
+\[
+ H_0=\exp((A+10)(\log L)^2),\qquad K_*=\lfloor N/H_0\rfloor,
+ \qquad Y_*=\frac{\sqrt N}{H_0 L^{A+4}} .
+\]
+For every sufficiently large even $N$, uniformly in $J$,
+\begin{equation}
+ \sum_J^*\Lambda(n)\Lambda(m)-\SSS(h)|J|
+     =\sum_J^*\Lambda(n) B_{K_*,Y_*}(m)+O_{s,R,j,A}(NL^{-A}).
+ \label{eq:internal-cofactor-root}
+\end{equation}
+Thus the retained $m=pa$ have $Y_*<p\le K_*$ and
+$m/K_*\le a\le R\sqrt N H_0 L^{A+4}$. The inner divisor cutoff
+is only $m/K_*\asymp H_0$. In particular, a bound
+$o(N\SSS(h))$ for the signed right-hand sum is equivalent to
+the desired line asymptotic, uniformly in $J$.
+\end{corollary}
+
+\begin{proof}
+We need uniform tails with $H=y/K_*\asymp H_0$.
+Put $\sigma=1/\log L$. Both $G_h$ and $G_{r,h}$ above have
+absolute coefficient moment at $2\sigma$ bounded by
+$(1+\log L)^{O(1)}$ for $h=jN$. Indeed the good-prime factors
+cost $1+O(p^{-2+2\sigma})$, and for primes dividing $h$ split
+at $L^2$. Below the split, $p^{2\sigma}\le e^4$ and Mertens'
+product gives the bound (treat bounded primes separately);
+above it, $\sum_{p\mid h}p^{-1+2\sigma}\ll1$.
+For $\mu(d)/d$ the ordinary and once logarithmically weighted
+tails beyond $T\ge1$ are $O(T^{-1/4})$ by RH and partial
+summation \cite{SoundMobius}. In convolution a shift by $k$
+costs at most $O((1+\log k)(H/k)^{-\sigma})$, also for $k>H$
+where the full inner sums are used. Absorbing $1+\log k$
+by $O(\sigma^{-1}k^\sigma)$ proves uniformly for $y\in[sN,RN]$
+\begin{align*}
+ \sum_{\substack{d<H\\(d,h)=1}}
+       \frac{\mu(d)}{\varphi(d)}\log(y/d)
+ &=\SSS(h)+O\big(L(1+\log L)^{O(1)}H^{-\sigma}\big),\\
+ C_{r,h}(H)&\ll (1+\log L)^{O(1)}H^{-\sigma}/\varphi(r).
+\end{align*}
+The first main term uses the value zero and derivative $\SSS(h)$
+of $G_h(z)/\zeta(1+z)$ at zero. Both estimates allow the strict
+cutoff. Here $H^{-\sigma}\ll L^{-A-10}$.
+
+First subtract $R_{K_*}$ from $\Lambda(m)$. On each $d<H$
+the larger coordinate is a multiple of $d$, the smaller
+Mangoldt coordinate lies in one progression, and $m>dK_*$
+cuts the line in an interval. Under GRH, partial summation
+gives total error $O_{s,R,j}(H_0\sqrt N L^3)$; the first density
+above gives $\SSS(h)|J|$ to the required accuracy.
+Next expand the internal logarithm of $R_{K_*}$. For each
+$r\le Y_*$ the condition $rd\mid m$ gives one progression
+and the same interval cut. The GRH remainder summed with weights
+$\Lambda(r)$ is $O(H_0Y_*\sqrt N L^2)\ll NL^{-A-2}$.
+The integrated principal term is negligible by the second
+density bound and $\sum_{r\le Y_*}\Lambda(r)/\varphi(r)\ll L$.
+Nonunit progression classes contain only prime powers at bases
+dividing the modulus and satisfy the same GRH error bound.
+Restoring the original unit and diagonal conventions costs
+$O_\epsilon(N^\epsilon)$ for each complete divisor expansion
+by the divisor bound and the prime-power support on nonunits.
+Finally the marked proper powers $p^i>Y_*$ require a square
+divisor $\ell^2$ with $\ell>Y_*^{1/3}$. In the macroscopic box
+their multiples number $O_R(N/Y_*^{1/3}+\sqrt N)$, and the
+absolute weight at a sample is $O_\epsilon(N^\epsilon)$.
+This proves \eqref{eq:internal-cofactor-root}.
+\end{proof}
+
+\begin{corollary}[Operator comparison on logarithmically growing windows]
+\label{cor:internal-cofactor-window}
+Assume Dirichlet GRH. Fix $b\ge0$, $A\ge1$, and restrict both
+tests to physical inputs at most $NL^b$. For some fixed $D=D(A,b)$
+use $K_*,Y_*$ of \cref{cor:internal-cofactor-root} with precision
+parameter $D$. On these tests the original form $\B$ differs in
+unnormalized operator norm by $O_{A,b}(L^{-A})$ from its signed
+arithmetic sum with $B_{K_*,Y_*}(m)$ on the larger integer,
+ordinary-prime weight $\mathbf1_{n\ {\rm prime}}\log n$ on the
+smaller one, and no continuous model. This comparison is uniform
+at every sufficiently large even modulus.
+\end{corollary}
+
+\begin{proof}
+Only $m\ge N/2$ is needed after splitting by the ordering.
+In the preceding line calculation allow $n\le NL^b$ and
+$N/2\le m\le NL^b$, with $h\le2NL^b$. The Euler moment
+bound is unchanged since $\log h\ll L$. Now $H=y/K_*$ lies
+between $H_0/2$ and $O(H_0 L^b)$. Counting $d$ costs at most
+an extra $O(L^b)$, the GRH square root at most $L^{b/2}$,
+and the integration length at most $NL^b$. Thus the interval
+error in \eqref{eq:internal-cofactor-root} is
+$O_{D,b}(NL^{-D+2b+1})$ uniformly even for intervals reaching
+$n=1$. On each line the proper powers in $n$ cost
+$O_\epsilon(N^{1/2+\epsilon})$ by the divisor bound.
+
+For unit log packets of scales $1\ll V\le W\ll NL^b$ with
+nonempty contributions, $W\gg N$. The product of the packet
+weights has supremum plus total variation on a line
+$O(1/\sqrt{VW})$ on the packet unit balls, as in
+\cref{thm:all-critical-long-cofactor}. Fix $B>0$.
+For $V\ge NL^{-B}$ partial summation and the $O(L^b)$ shifts
+give packet error $O_{D,b}(L^{-D+3b+1+B/2})$.
+For $V<NL^{-B}$ use $|B_{K_*,Y_*}(m)|\le\tau(m)\log m$.
+The absolute arithmetic sums on the packet are bounded by
+$O_b(L^{C_b}(\sqrt{VW}/N+N^{-1/4}))$ by
+\eqref{eq:cofactor-packet-divisor-moment} with $k=1$ and
+product exponent $2b$ (a fixed enlargement absorbs packet
+endpoints). The absolute continuous model is
+$O(\SSS(N)\sqrt{VW}/N)$ by \eqref{eq:subseries} and the
+$O(V)$ length on each line. Here $\sqrt{VW}/N\ll L^{(b-B)/2}$.
+Choose $B$ first and then $D$ to absorb these logarithms and
+the $O_b(L^2)$ packet pairs. Finally the normalized contribution
+with a physical coordinate below one is $O(N^{-1})$ by the proof
+of \cref{thm:subcritical}, and $\SSS(N)\ll\log\log(3N)$.
+\end{proof}
 
 \section{Norm decay of the progression profiles near the square of the modulus}
 \label{sec:criticalprofiles}
