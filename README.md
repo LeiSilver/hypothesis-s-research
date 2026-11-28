@@ -46,6 +46,10 @@ Theorem 12.21 identifies the minor-arc error with a quadrature error: the pairin
 
 Theorem 12.23 also gives a full-operator reduction. On log packets whose indices satisfy $0\le j<k$ and $k-j\ge(2D+12)\log\log N$, the larger prime weight can retain only Möbius divisors above $\lfloor e^{(k-j)/2}(\log N)^{-D-4}\rfloor$. The sum of the errors over all such packet pairs, including their continuous terms and transposes, has unnormalized norm $O_D((\log N)^{-D})$. The larger input has no support ceiling. Cancellation among the retained long divisors remains open.
 
+Theorem 12.24 proves cancellation in part of the long-divisor sum left by Theorem 12.23, at every sufficiently large even modulus. Write $V,W$ for the smaller and larger input scales. For $V\le N^{1/8}$ and $N^{2-\nu}\le VW\le N^{2+\nu}$ with some fixed $\nu>0$, the cutoff increases to $\lfloor N^{1/20}\sqrt{W/V}\rfloor$. Every subinterval of the newly discarded divisors, with the original Möbius-logarithm weights, has unnormalized error $O(N^{-c})$ for some fixed $c>0$. For $V\le N^{1/64}$ the exponent $1/20$ can be increased to $1/16$. Formula (12.39) gives the tradeoff up to smaller-input exponent $3/8$ (excluded). At $VW\asymp N^2$ the complementary factors left in the first case are $O(N^{19/20})$. Their contribution and the other support ranges still enter the full hypothesis.
+
+Theorem 12.25 uses Dirichlet GRH in the smaller prime coordinate. On the separated packets of Theorem 12.23 it also permits a cutoff of $\lfloor N/(\sqrt W(\log N)^{D+8})\rfloor$ whenever this is larger, with full-operator error $O_D((\log N)^{-D})$. For example, at $V\asymp N^{4/5}$, $W\asymp N^{6/5}$, the power in the cutoff rises from $1/5$ to $2/5$, up to the stated logarithmic factors. On the critical product these two theorems give no extra power over the cutoff in Theorem 12.23 for $N^{3/8}\le V\le N^{2/3}$.
+
 - [Manuscript (PDF)](output/pdf/hypothesis_s_paper.pdf)
 - [LaTeX source](output/pdf/hypothesis_s_paper.tex)
 - [Lean verification of the least-prime divisor split, logarithm weight, and factor-count inequality](formalization/LeastPrimeSplit.lean)

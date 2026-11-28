@@ -300,6 +300,11 @@ separated scales on the critical hyperbola.
 \Cref{thm:full-far-long-divisor} removes short M\"obius
 divisors in the larger coordinate of all widely separated
 packets, with an unnormalized full-operator error.
+\Cref{thm:far-critical-inverse-band} raises this cutoff by a
+power of the modulus on separated packets near $VW=N^2$,
+including smaller inputs of polynomial size.
+\Cref{thm:far-critical-small-pnt} gives a complementary cutoff
+using the progression estimate in the smaller prime coordinate.
 \Cref{thm:criticalprofiles} bounds those sums near the square
 of the modulus using equidistribution in progressions with
 factored moduli.
@@ -13987,6 +13992,262 @@ gap gives Schur sums $O(\SSS(N)L^{1-(D+6)})=O(L^{-D})$.
 The square sums of the packet norms are bounded by the
 respective full energies. This proves the assertion first on
 compact tests and then by continuity on the entire space.
+\end{proof}
+
+\subsection{Cancellation beyond the long-divisor cutoff at critical scales}
+
+\begin{theorem}[A power gain in the divisor cutoff near the critical product]
+\label{thm:far-critical-inverse-band}
+Fix $0\le\theta<3/8$ and
+\begin{equation}
+ 0<\gamma<\min\left\{\frac{1-\theta}{15},
+              \frac{1/2-\theta}{7},\frac{3-8\theta}{30}\right\}.
+ \label{eq:far-critical-exponents}
+\end{equation}
+There exist $\nu,c>0$ depending only on $\theta,\gamma$ with the
+following property at every sufficiently large even modulus. For
+unit log packets of scales $V=e^j$, $W=e^k$ satisfying
+\[
+  1\le V\le N^\theta,\qquad N^{2-\nu}\le VW\le N^{2+\nu},
+  \qquad T_*=\lfloor N^\gamma\sqrt{W/V}\rfloor ,
+\]
+keep the unit restrictions and the two signs in the arithmetic
+sum of \eqref{eq:form}, use $\Lambda$ at the smaller input and
+$U_{T_*}$ at the larger input, and omit the continuous form.
+The resulting pairing differs from $\B$ by $O(N^{-c})$ on the
+two unit energy balls under Dirichlet GRH. The estimate for the
+physical sum uses no zero hypothesis.
+
+More precisely, for each fixed $D\ge1$ take $T_{jk}$ from
+\cref{thm:full-far-long-divisor}. The contribution of any
+interval of divisors in $(T_{jk},T_*]$ to that theorem's
+original long-divisor pairing, with weight $\mu(d)\log(d/T_{jk})$,
+is $O(N^{-c})$ uniformly in the interval.
+In \cref{thm:full-far-long-divisor} one may therefore use $T_*$
+on all these packets and their transposes with the same
+$O_D(L^{-D})$ full-operator error. The surviving complementary
+factor satisfies $m/d\ll\sqrt{VW}\,N^{-\gamma}$. For example
+one can take $(\theta,\gamma)=(1/8,1/20)$ or $(1/64,1/16)$.
+\end{theorem}
+
+\begin{proof}
+Put $s=\log V/L$. We first prove a maximal bound for the
+M\"obius sum after completing the complementary factor.
+For some $\xi,\beta>0$ depending only on \eqref{eq:far-critical-exponents},
+uniformly for $0\le s\le\theta$,
+\begin{equation}
+ \sup_{I\subset [H,2H]}
+ \left|\sum_{\substack{d\in I\\(d,N)=1}}\mu(d)e_q(a\bar d)\right|
+ \ll N^{1-s-\beta}.
+ \label{eq:far-critical-inverse-max}
+\end{equation}
+Here $I$ is an interval, $(a,q)=1$, $q\mid N$,
+$q\ge N^{1-\gamma-\xi}$, and
+$N^{1-s-\xi}\le H\le N^{1-s+\gamma+\xi}$.
+We give the exponent calculation since the saving must survive
+the sum over the smaller input.
+
+Let $z=N^{1/10}$, let $b(n)=\mu(n)\mathbf1_{n\le z}$,
+and write $1$ for the constant arithmetic function and
+$\delta_1$ for the convolution identity. On $d\le2H$,
+\[
+ \mu(d)=\sum_{i=1}^{16}(-1)^{i-1}\binom{16}{i}
+                   (b^{*i}*1^{*(i-1)})(d).
+\]
+Indeed $(\delta_1-b*1)^{*16}*\mu$ is supported above $z^{16}$,
+since $\delta_1-b*1=(\mu-b)*1$. This exceeds $2H$.
+Split each variable dyadically, with singleton intervals at one.
+The condition of being a unit modulo $N$ separates over all
+variables. Choose a small fixed $\tau>0$, and set
+$A=\min(H^{1/3},N^{1/2-s-\tau})$.
+In a box with product comparable to $H$, if a single factor has
+scale exceeding $H/A$, it is unrestricted by $b$, since
+$H/A\ge H^{2/3}\gg z$. The other variables have total product
+$O(A)$ and $O_\epsilon(AN^\epsilon)$ choices by the divisor
+bound. For each choice, the large factor ranges over one
+interval. Remove the unit conditions away from $q$ by
+inclusion--exclusion over divisors of $N$. Completion of the
+incomplete inverse sum on units modulo $q$ and the Weil bound
+give $O_\epsilon(N^\epsilon(\sqrt q+H/q))$ including the
+complete periods; their Ramanujan sum has absolute value at
+most one. This is the completion step in the proof of
+\cref{lem:criticalgridinverse-mobius}. Since
+$H/q\le N^{2\gamma+2\xi}\le\sqrt N$, the box costs
+$O_\epsilon(N^{1-s-\tau+\epsilon})$.
+
+In the remaining boxes group the factors into two products
+of scales $U_1,U_2\gg A$ with $U_1U_2\asymp H$. A factor
+between $A$ and $H/A$ can stand alone. If all are smaller
+than $A$, multiply up to the first crossing of $A$; that
+product is at most $A^2$, and $A^3\le H$. The fixed dyadic
+constants only change the implied constants. Each grouped
+variable has divisor-bounded coefficients. Both scales are
+$O(H/A)=O(\max(H^{2/3},HN^{-1/2+s+\tau}))=o(q)$ for small
+$\xi,\tau$. Subdivide the grouped ranges into dyadic blocks.
+The sharp interval on the product can be imposed at logarithmic
+cost: smooth its indicator in the log product variable at width
+$N^{-3}$ on a fixed larger circle. Only $O(1)$ integer products
+at the endpoints can change, each of divisor-bounded weight.
+The Fourier coefficients have absolute sum $O(L)$ by integration
+by parts once and twice, and the Fourier characters separate.
+Thus the reciprocal-energy bound \eqref{eq:criticalgridinversebilinear}
+applies. With $S$ denoting a box sum, it gives
+\[
+ |S|^8\ll_\epsilon N^\epsilon H^8
+   \left(\frac N{H^2}+\frac{\sqrt N}{\sqrt H A^{3/2}}
+                       +\frac1{\sqrt H}\right).
+\]
+All terms increase with $H$ after inserting either branch of
+$A$. Divide by $N^{8(1-s)}$ and use the upper endpoint for $H$.
+At $\xi=\tau=0$ the four exponents, separating the two branches
+in the middle term, are
+\[
+ 6\gamma-1+2s,\quad 7\gamma-\tfrac12+s,\quad
+ \tfrac{15}2\gamma-\tfrac34+2s,\quad
+ \tfrac{15}2\gamma-\tfrac{1-s}{2}.
+\]
+All are strictly negative uniformly for $s\le\theta$ by
+\eqref{eq:far-critical-exponents}. Choose $\tau,\xi>0$ small
+enough to preserve strict negativity, then absorb the dyadic
+losses and $N^\epsilon$ in the two types of bounds. This gives
+\eqref{eq:far-critical-inverse-max} for some $\beta>0$.
+
+Choose $0<\omega<\min(\beta,\xi)/20$ and
+$0<\nu<\omega/10$. Write $D_0=N^{-\omega}\sqrt{W/V}$.
+To replace $\Lambda$ by $U_{T_*}$ we must delete the divisors
+$d\le T_*$ with coefficients $\mu(d)\log(T_*/d)$. For $d\le
+D_0$, the two residue classes for each unit small input $n$
+have equal density, as in \cref{thm:full-far-long-divisor}.
+Their total cost is $O(L D_0\sqrt{V/W})=O(LN^{-\omega})$.
+
+On $D_0<d\le T_*$ write the large physical weight as
+$W^{-1/2}g(m/W)$, with $g$ supported on a fixed compact
+subinterval of $(0,\infty)$ and $\|g\|_{H^1}\ll1$. Smooth
+$g$ at scale $N^{-\omega}$. Its uniform change is
+$O(N^{-\omega/2})$ and its derivatives of order $i$ now
+cost $O_i(N^{i\omega})$. Each sampled integer has total
+absolute divisor weight $O_\epsilon(N^\epsilon)$ and each
+of the two progressions has $O(W/N)$ samples, since $W\gg N$.
+The small-input weights have total absolute value $O(\sqrt V)$.
+Hence the change costs
+$O_\epsilon(N^{-\omega/2+\epsilon}\sqrt{VW}/N)$, which saves
+a power by the choice of $\nu$.
+
+Take a block $H<d\le2H$ clipped to $(D_0,T_*]$ and put $M=W/H$.
+For a unit small input $n$ and $(d,N)=1$, write $m=du$.
+Poisson summation on $u\equiv\pm n\bar d\bmod N$ gives the
+signed difference, with the factor $W^{-1/2}$ suppressed, as
+\[
+ \frac MN\sum_{h\ne0}
+ \widehat g_d(hM/N)
+       \big[e_N(hn\bar d)-e_N(-hn\bar d)\big],
+ \qquad g_d(t)=g((d/H)t).
+\]
+Repeated integration by parts truncates this to
+$|h|\le N^{2\omega}N/M$ with an error smaller than any
+prescribed negative power after summation, by taking sufficiently
+many derivatives. Its reduced modulus is $q=N/(h,N)$ and its
+numerator is a unit since $(n,N)=1$. The support conditions
+give $|h|\ll N^{\gamma+2\omega+\nu/2}$ and place $H$ between
+constant multiples of $N^{1-s-\omega-\nu/2}$ and
+$N^{1-s+\gamma+\nu/2}$. Thus \eqref{eq:far-critical-inverse-max}
+applies, including noncoprime frequencies $h$. For each fixed
+frequency the supremum plus total variation in $d$ of
+$\log(T_*/d)\widehat g_d(hM/N)$ is $O(LN^\omega)$, by
+differentiation in $d/H$ under the integral. Partial summation
+and the frequency count times $M/N$ therefore bound the block
+after both physical weights by
+\[
+ \ll L N^{3\omega}\sqrt{V/W}\,N^{1-s-\beta}
+ \ll L N^{3\omega+\nu/2-\beta}.
+\]
+The $O(L)$ blocks still save a power. For the assertion about
+the original long-divisor weight, $D_0<T_{jk}$ for large $N$.
+Intersect each block with the prescribed interval and replace
+$\log(T_*/d)$ by $\log(d/T_{jk})$. Its supremum is $O(L)$
+and its variation on a block is $O(1)$, so the same bound
+applies with exactly the original coefficients. The continuous model
+costs $O(\SSS(N)L\sqrt{V/W})$ by \eqref{eq:Mpacket}, also
+a power saving. These estimates prove the packet assertion.
+Only $O(L^2)$ packet pairs meet the critical product and scale
+conditions. Their individual errors thus still give a power
+saving in operator norm. On the other pairs the absolute
+Schur bounds of \cref{thm:full-far-long-divisor} apply on any
+subset, proving the full-operator assertion.
+\end{proof}
+
+\begin{theorem}[A second divisor cutoff from the small prime input]
+\label{thm:far-critical-small-pnt}
+Under Dirichlet GRH, on the separated pairs of
+\cref{thm:full-far-long-divisor} the long-divisor cutoff can
+also be taken as
+\[
+ T'_{jk}=\max\left(T_{jk},
+               \left\lfloor\frac{N}{\sqrt W L^{D+8}}\right\rfloor\right),
+ \qquad V=e^j,\quad W=e^k .
+\]
+The total unnormalized norm error is $O_D(L^{-D})$. On the
+packets covered by \cref{thm:far-critical-inverse-band} one
+may take the largest of the three cutoffs. In particular, if
+$V\asymp N^s$, $VW\asymp N^2$, and $2/3<s<1$ is fixed,
+the new cutoff is $\asymp N^{s/2}L^{-D-8}$.
+\end{theorem}
+
+\begin{proof}
+Only consider packets where the maximum raises the cutoff;
+then $W\le N^2$ and there are $O(L^2)$ such pairs. If
+$W<N/(2e)$ the signed lines are empty. On the remaining pairs
+let $Q\le N$ and consider subtracting
+$\sum_{d\mid m,\,d\le Q}a_d$ at the larger coordinate,
+where $|a_d|\le L$. We claim the signed arithmetic contribution
+has unnormalized bound
+\begin{equation}
+ \ll L^4\sqrt{V/W}+ L^3 Q\sqrt W/N .
+ \label{eq:far-small-pnt-type-i}
+\end{equation}
+The gap ensures that the support at $W$ lies above the one at
+$V$. Writing the physical weights as $w,z$, the two lines
+are $m=bN+n$ and $m=bN-n$ for $b\ge1$, with opposite signs.
+We need only $(d,N)=1$ by the original unit restriction.
+At each $b$, the small prime coordinate lies in one residue
+class modulo $d$ for each sign. Up to any endpoint of its
+packet the Mangoldt sum in that class differs from its
+principal term by $O(\sqrt V L^2)$ under GRH. This includes
+nonunit classes, which have only powers of primes dividing $d$.
+Deleting the powers at primes dividing $N$ costs at most
+$O(L^2)$ in this partial sum. For either sign the supremum
+plus total variation of $w(x)\overline{z(bN\pm x)}$ is
+$O((VW)^{-1/2})$. Hence the summed error over $O(W/N)$ shifts
+and all $d$ is the second term of \eqref{eq:far-small-pnt-type-i}.
+
+Since $(d,N)=1$, the main coefficient for both signs is
+$\mathbf1_{(b,d)=1}/\varphi(d)$. Expand this indicator as
+$\sum_{r\mid(b,d)}\mu(r)$. For $x$ on the small support,
+the sum of $z(bN+x)-z(bN-x)$ over positive multiples $b$ of
+$r$ is exactly $\sum_{\ell\in\mathbb Z}z_o(x+\ell rN)$,
+where $z_o$ is the odd extension. Indeed $z(x)=0$, and a
+negative argument of magnitude at most $x$ is outside the
+large support. The integral of $z_o$ vanishes. Comparison
+on consecutive intervals of length $rN$ bounds the lattice
+sum by $\|z_o'\|_1\ll W^{-1/2}$, uniformly in $r$. Integration
+against $w$ costs $O(\sqrt V)$. Finally
+$\sum_{d\le Q}\tau(d)/\varphi(d)\ll L^3$ by the harmonic
+divisor sum and $d/\varphi(d)\ll L$. This proves the first
+term of \eqref{eq:far-small-pnt-type-i}.
+
+Take $Q=\lfloor N/(\sqrt W L^{D+8})\rfloor$ and
+$a_d=\mu(d)\log(Q/d)$ to obtain $U_Q$ on the larger coordinate.
+The same estimate holds when restricted to any subinterval
+of the newly removed divisors with the old logarithmic weight,
+since only the bound on $|a_d|$ was used. The gap gives
+$L^4\sqrt{V/W}\le L^{-D-2}$, and the progression error is
+$O(L^{-D-5})$. Summing the packet bounds still costs at most
+$O_D(L^{-D})$. The continuous terms have the same absolute
+Schur bounds as in \cref{thm:full-far-long-divisor}. These
+estimates and the preceding theorem permit packetwise selection
+of the largest cutoff. At $VW\asymp N^2$ the power in this
+second cutoff is $s/2$, which exceeds the power $1-s$ in
+$\sqrt{W/V}$ exactly when $s>2/3$.
 \end{proof}
 
 \section{Norm decay of the progression profiles near the square of the modulus}
