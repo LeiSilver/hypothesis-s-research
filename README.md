@@ -65,6 +65,8 @@ Theorem 12.39 expands the logarithm of the retained divisor $u\le K$ itself. Thr
 
 Corollary 12.41 gives the corresponding unnormalized operator comparison on the whole window $x,y\le N(\log N)^b$, including tests chosen separately at each modulus and inputs close to zero. For fixed $A,b$, increasing the precision parameter gives error $O((\log N)^{-A})$. The smaller coordinate can be restricted to ordinary primes.
 
+Theorem 12.42 evaluates the sum of the local prime-pair densities in the residual form of Corollary 12.40. With $H=m/K_*$ the Möbius-weighted densities on $H\le a<X$ cancel to $O((\log N)^{-A})$ uniformly for $H^2\le X\le N^2$, so on each macroscopic line one may subtract the explicit local integral for each $a$. Proposition 12.43 and Corollary 12.44 also remove samples with a second prime factor close to $\sqrt N$. On $x,y\le N(\log N)^b$, $0\le b<1$, fix $0<t<(1-b)/2$. At normalized operator cost $o(1)$ through every even modulus the extracted prime $p$ is unique, and every prime factor of $a=m/p$ is at most $\sqrt N\exp(-(\log N)^t)$. On macroscopic lines this restriction applies to both counts and local integrals. The remaining correlations for these separated factors are open.
+
 - [Manuscript (PDF)](output/pdf/hypothesis_s_paper.pdf)
 - [LaTeX source](output/pdf/hypothesis_s_paper.tex)
 - [Lean verification of the least-prime divisor split, logarithm weight, and factor-count inequality](formalization/LeastPrimeSplit.lean)

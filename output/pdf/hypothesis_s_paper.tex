@@ -322,6 +322,9 @@ at every even modulus.
 \Cref{thm:internal-cofactor-prime,cor:internal-cofactor-root}
 extract a prime from the complementary factor itself. On
 macroscopic lines its lower cutoff reaches $N^{1/2-o(1)}$.
+\Cref{thm:cofactor-local-centering,cor:isolated-cofactor-prime}
+cancel the local densities of the remaining prime pairs and
+separate the extracted prime from all other prime factors.
 \Cref{thm:criticalprofiles} bounds those sums near the square
 of the modulus using equidistribution in progressions with
 factored moduli.
@@ -15751,6 +15754,199 @@ Choose $B$ first and then $D$ to absorb these logarithms and
 the $O_b(L^2)$ packet pairs. Finally the normalized contribution
 with a physical coordinate below one is $O(N^{-1})$ by the proof
 of \cref{thm:subcritical}, and $\SSS(N)\ll\log\log(3N)$.
+\end{proof}
+
+\subsection{Local densities and a unique large prime}
+
+Keep the parameters of \cref{cor:internal-cofactor-root}, and
+write $M_H(a)=\sum_{d\mid a,\,d<H}\mu(d)$. For even $h$ put
+\[
+ g_h(a)=\mathbf1_{(a,h)=1}\prod_{\substack{\ell\mid a\\\ell>2}}
+             \frac{\ell-1}{\ell-2},
+\]
+where products indexed by $\ell$ run over primes. For the two
+forms $p$ and $n=\pm ap\pm h$, the prime-pair local density in
+the $p$ coordinate is $\SSS(h)g_h(a)$. Indeed at a prime
+outside $ah$ there are two forbidden classes, at a prime
+dividing just one of $a,h$ there is one, and a common prime
+divisor makes $n$ identically zero there. In the $m=ap$
+coordinate this density is divided by $a$.
+
+\begin{theorem}[Cancellation of the local densities at every shift]
+\label{thm:cofactor-local-centering}
+Assume Dirichlet GRH. Let $A\ge1$ be fixed, $h=jN$ with $j$
+fixed, $H\asymp H_0$ as in \cref{cor:internal-cofactor-root},
+and $H^2\le X\le N^2$. At each sufficiently large even $N$,
+uniformly in these cutoffs,
+\begin{equation}
+ \SSS(h)\sum_{H\le a<X}\frac{g_h(a)}a M_H(a)
+                    =O_A(L^{-A}).
+ \label{eq:cofactor-local-centering}
+\end{equation}
+The implied constant may also depend on $j$ and the fixed
+comparison constants for $H$. In \eqref{eq:internal-cofactor-root}
+one may consequently subtract from each $a$-sum its prime-pair
+integral with density $\SSS(h)g_h(a)/a$, the same $p$ endpoints
+and the original signed divisor weight. This changes the formula
+by $O(NL^{-A})$, uniformly in the line interval.
+\end{theorem}
+
+\begin{proof}
+Include $1\le a<H$ temporarily. In this interval
+$M_H(a)=\mathbf1_{a=1}$, so the added term in the normalized
+sum is exactly $\SSS(h)$. Expand the divisors $d<H$; only
+squarefree $d$ coprime to $h$ occur. Writing $a=dk$ gives
+$g_h(dk)=g_h(d)(1*v_d)(k)$, where $v_d$ is multiplicative on
+squarefree integers, zero on nonsquarefree integers, and
+\[
+ v_d(\ell)=
+ \begin{cases}
+ -1 & \ell\mid h,\\
+ 0 & \ell\mid d,\\
+ 1/(\ell-2) & \ell\nmid dh .
+ \end{cases}
+\]
+Set $V_d(z)=\sum_k v_d(k)k^{-1-z}$. With
+$\sigma=1/\log L$, $\sum_k |v_d(k)|k^{-1+2\sigma}
+\ll (1+\log L)^{O(1)}$ uniformly in $d$. The primes dividing
+$h$ are split at $L^2$ as in \cref{cor:internal-cofactor-root};
+the other Euler factors have a convergent absolute product.
+For $U=X/d$ the harmonic sum with strict endpoint gives
+\[
+ \sum_{k<U}\frac{(1*v_d)(k)}k
+  = V_d(0)(\log U+\gamma_{\rm E})+V_d'(0)
+       +O((1+\log L)^{O(1)}U^{-\sigma}),
+\]
+where $\gamma_{\rm E}$ is Euler's constant. Indeed the harmonic
+sum up to $U/t$ has error $O(t/U)$ for $t<U$; for $t\ge U$
+use $1+\log(t/U)\ll \sigma^{-1}(t/U)^\sigma$.
+Since $U\ge H$, the total error after summing over $d$ is
+$O(L^{-A-3})$, even with the outer $\SSS(h)$: the absolute
+divisor mass $\sum_{d<H}g_h(d)/d\ll\log(2H)$ by its Euler product.
+
+The local products give
+\[
+ V_1(0)=1/\SSS(h),\qquad
+ \frac{g_h(d)V_d(0)}d=\frac{1}{\SSS(h)\varphi(d)},\qquad
+ \frac{V_d'(0)}{V_d(0)}=v_h+\sum_{\ell\mid d}
+                       \frac{\log\ell}{(\ell-1)^2},
+\]
+where $v_h=V_1'(0)/V_1(0)=O(1+\log\log N)$. The last
+bound uses $\sum_{\ell\mid h}\log\ell/(\ell-1)$ and an absolutely
+convergent sum away from $h$. Thus the principal expression,
+including $a=1$, is
+\[
+ \sum_{\substack{d<H\\(d,h)=1}}\frac{\mu(d)}{\varphi(d)}
+ \left(\log X+\gamma_{\rm E}+v_h-\log d+
+                  \sum_{\ell\mid d}\frac{\log\ell}{(\ell-1)^2}\right).
+\]
+The unmarked sum has full value zero and the $-\log d$ sum has
+full value $\SSS(h)$; the tails are $O((1+\log L)^{O(1)}H^{-\sigma})$
+by the convolution estimate in \cref{cor:internal-cofactor-root}.
+For the inner prime mark set $d=\ell e$. Its outer absolute
+coefficient is $\log\ell/(\ell-1)^3$. For $\ell\le\sqrt H$
+the unmarked sum with $(e,h\ell)=1$ is
+$O((1+\log L)^{O(1)}(H/\ell)^{-\sigma})$; the proof of the tail
+bound is uniform since $\log(h\ell)\ll L$. These errors sum
+absolutely, including $\ell^\sigma$. Larger $\ell$ cost
+$O(H^{-1+o(1)})$ even with the absolute inner divisor mass.
+This leaves $\SSS(h)+O(L^{-A})$. Removing $a=1$ proves
+\eqref{eq:cofactor-local-centering}. At each physical $y=m$ in
+the model integral the admissible $a$ range is exactly
+$y/K_*\le a<y/Y_*$. Its lower endpoint is $H=y/K_*$ and
+its upper endpoint exceeds $H^2$ for large $N$. Integrating
+\eqref{eq:cofactor-local-centering} proves the last assertion.
+\end{proof}
+
+\begin{proposition}[Cost of a second prime near the square root]
+\label[proposition]{prop:cofactor-second-prime}
+Fix $b\ge0$, use the marked prime form of
+\cref{cor:internal-cofactor-window} on $x,y\le NL^b$, and set
+$T=L^t$, $Z=\sqrt N e^{-T}$ for fixed $0<t<1/2$.
+The terms $m=pa$ with a prime $q\mid a$, $q>Z$, even with
+absolute weights on both signs and tests, have operator norm
+divided by $\SSS(N)$ at most
+\begin{equation}
+ O_{b,D,t}\big(L^{b+2t-1}(1+\log L)^{O(1)}+N^{-c}\big)
+ \label{eq:cofactor-second-prime}
+\end{equation}
+for some $c>0$. The bound on a fixed macroscopic line, before
+operator normalization, is $O(N\SSS(h)L^{2t-1}(1+\log L)^{O(1)})$.
+These upper bounds require no zero hypothesis.
+\end{proposition}
+
+\begin{proof}
+Overcount by all ordered representations $m=pqk$, including $q=p$.
+Since $p>Y_*$, $q>Z$, $m\le NL^b$, we have $k\le e^{2T}$
+and $Y_*<p\le\sqrt N e^{2T}$ for sufficiently large $N$.
+On this window $H=m/K_*\le H_{\max}=2H_0L^b<Z$. Thus
+$M_H(qk)=M_H(k)$, bounded absolutely by
+$\tau_{\le H_{\max}}(k)=\sum_{d\mid k,\,d\le H_{\max}}1$.
+In particular its harmonic cost is at most
+\[
+ \sum_{k\le e^{2T}}\frac{\tau_{\le H_{\max}}(k)}k
+       \ll (1+T)\log(2H_{\max}).
+\]
+
+Take a packet of scales $V\le W$ as in
+\cref{cor:internal-cofactor-window}. For $V<N^{9/10}$ the
+absolute divisor moment \eqref{eq:cofactor-packet-divisor-moment}
+gives a power saving since $W\ll NL^b$. One may bound the discarded
+part before overcounting by $\tau(m)L$ on the larger integer.
+For $V\ge N^{9/10}$, fix a shift $h=jN$ and $p,k$. Sift the
+two linear forms $q$ and $n=\pm pkq\pm h$ in an interval padded
+to length $\asymp V/(pk)\ge N^{1/3}$. Both primes exceed a
+fixed small power of $N$. If $(pk,h)>1$, the prime $n$ divides
+$pk$, impossible since $pk\le N^{1/2+o(1)}$. Otherwise the
+two-residue upper sieve \eqref{eq:uniformsieve} counts
+\[
+ \ll \frac{V}{pk L^2}\,\SSS(h)
+       \prod_{\ell\mid pk,\,\ell>2}\frac{\ell-1}{\ell-2}
+ \ll \frac{V}{pk L^2}\,\SSS(h)(1+\log L)^{O(1)} .
+\]
+This follows from the local counts above and Mertens' bound,
+splitting the primes of $pk$ at $L^2$. The logarithms of $p,n$
+cost $O(L^2)$. Partial summation of the prime number theorem
+gives $\sum_{Y_*<p\le\sqrt N e^{2T}}1/p\ll T/L$
+(the $O(1/L)$ remainder in Mertens' estimate suffices).
+The two harmonic bounds give the claimed estimate per line
+with $V$ in place of $N$. Summing
+$\SSS(jN)$ over the $O(W/N)$ shifts by \eqref{eq:subseries}
+and applying the two physical packet suprema gives the
+coefficient $\SSS(N)(\sqrt{VW}/N)L^{2t-1}(1+\log L)^{O(1)}$.
+Both geometric Schur sums of $\sqrt{VW}/N$ are $O(L^b)$ on
+this window. This proves \eqref{eq:cofactor-second-prime}.
+\end{proof}
+
+\begin{corollary}[A unique separated prime in the window criterion]
+\label{cor:isolated-cofactor-prime}
+Under Dirichlet GRH let $0\le b<1$ and $0<t<(1-b)/2$.
+On $x,y\le NL^b$ one may restrict \eqref{eq:internal-cofactor-prime}
+with $K_*,Y_*$ of \cref{cor:internal-cofactor-window} to
+$P^+(a)\le \sqrt N\exp(-L^t)$ at normalized operator cost $o(1)$
+through all even moduli. Thus $p$ is the unique largest prime
+factor of every retained $m$, occurs to the first power, and
+exceeds each other prime factor by a ratio at least $\exp(L^t/2)$
+for large $N$. Norm decay on this window is equivalent to
+normalized norm decay of the restricted form.
+On a fixed macroscopic line the same restriction is valid in
+the centered formula of \cref{thm:cofactor-local-centering},
+with error $o(N\SSS(h))$. Its remaining summands are discrepancies
+between the weighted prime-pair counts at a given $a$ and the
+corresponding local integrals.
+\end{corollary}
+
+\begin{proof}
+Combine \cref{cor:internal-cofactor-window,prop:cofactor-second-prime}
+and use $Y_*/Z=\exp(T-O_{b,D}((\log L)^2))$.
+In the fixed-line density at $y$, an omitted $a=qk$ has
+$Z<q\le RN/Y_*$, $k\le e^{2T}$ and $M_H(a)=M_H(k)$.
+The harmonic prime sum here is $O(T/L)$ and $g_h(qk)$ is
+polylogarithmic in $L$ by the product bound above. Hence the
+discarded model has the same absolute bound as the discarded
+arithmetic sum after integrating over $y$. Proper powers of
+the Mangoldt coordinate cost $O_\epsilon(N^{1/2+\epsilon})$
+on these lines by the divisor bound.
 \end{proof}
 
 \section{Norm decay of the progression profiles near the square of the modulus}
