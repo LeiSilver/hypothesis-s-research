@@ -316,6 +316,9 @@ product cap.
 retain only squarefree composites with no small prime factor.
 \Cref{thm:cofactor-sector-lines} evaluates the macroscopic
 major arcs separately at each retained number of prime factors.
+\Cref{thm:cofactor-prime-marks} evaluates the full macroscopic
+line sums for logarithmic marks on a range of prime divisors
+at every even modulus.
 \Cref{thm:criticalprofiles} bounds those sums near the square
 of the modulus using equidistribution in progressions with
 factored moduli.
@@ -15358,6 +15361,161 @@ $d_3$. Subtract its upper bound from
 \cref{cor:cofactor-sector-compensation}. The sign on the actual
 reflection line is the negative of the density sign.
 \end{proof}
+
+\subsection{Logarithmic prime-divisor weights at an individual modulus}
+
+Fix $0<s<R$, an integer $j\ge1$, $h=jN$, and
+$K=\lfloor N^{1-\gamma}\rfloor$ with $0<\gamma<1/22$.
+Let $J$ be an interval in the physical $m$ coordinate on any
+of $n+m=h$, $n-m=\pm h$, restricted to $sN\le m,n\le RN$.
+Write $S_J(w)=\sum_J\Lambda(n)R_K(m)w(m)$, with the unit and
+diagonal conventions of \eqref{eq:form}. One may further cut at
+$m=n$ to place the cofactor on the larger side. For $Y=N^\theta$ set
+\[
+ w_{\le Y}(m)=\frac1{\log m}\sum_{p\le Y}v_p(m)\log p,
+ \qquad w_{>Y}(m)=1-w_{\le Y}(m).
+\]
+Each prime thus receives a share of the logarithm with multiplicity.
+
+\begin{theorem}[Prime-divisor marks on the full congruence line]
+\label{thm:cofactor-prime-marks}
+Assume Dirichlet GRH. At every sufficiently large even $N$,
+uniformly in $J$, for fixed $\gamma<\theta<1/2-\gamma$ one has
+\begin{equation}
+ S_J(w_{\le N^\theta})=(1-\theta)\SSS(h)|J|
+       +O\left(N\SSS(h)\frac{1+\log\log N}{\log N}\right).
+ \label{eq:cofactor-small-marks}
+\end{equation}
+For fixed $\gamma<\alpha<\beta<1/2-\gamma$ one has the sharper
+interval formula, with $c>0$ depending on the fixed parameters,
+\begin{equation}
+ S_J(w_{\le N^\beta}-w_{\le N^\alpha})
+ =-\SSS(h)(\beta-\alpha)\log N\int_J\frac{\ud y}{\log y}
+       +O(N^{1-c}).
+ \label{eq:cofactor-band-marks}
+\end{equation}
+In particular two disjoint prime bands of equal logarithmic width
+in this range give line sums differing by $O(N^{1-c})$ at
+each modulus, including moduli exceptional in
+\cref{thm:cofactor-sector-lines}.
+\end{theorem}
+
+\begin{proof}
+Write $H_y=y/K$ and $L=\log N$. Use
+\[
+ R_K(m)=\Lambda(m)-\sum_{d\mid m,\ d<H_m}\mu(d)\log(m/d).
+\]
+The $\Lambda(m)$ term with a small mark requires a proper prime
+power $m$ and costs $O(\sqrt N L^3)$. Units and the possible
+diagonal may be restored at $O_\epsilon(N^\epsilon)$ cost:
+on a nonunit sample with $\Lambda(n)\ne0$ its prime base divides
+$N$, and $|R_K(m)|\le\tau(m)\log m$. Here and
+below it suffices that the coordinate carrying $\Lambda(n)$
+lies in the stated box.
+
+First consider the band in \eqref{eq:cofactor-band-marks}.
+Every marked $p$ exceeds $H_m$, so $d$ and $p$ are coprime.
+Replacing $v_p(m)$ by $\mathbf1_{p\mid m}$ costs
+$O(N^{1-c})$: the number of multiples of squares of primes
+$p>N^\alpha$ in the box is $O(N^{1-\alpha}+\sqrt N)$, and
+the sample weights are $O_\epsilon(N^\epsilon)$.
+For fixed $p,d$ the prime coordinate lies in one class modulo
+$pd$, with the interval cut $m>dK$. GRH and partial summation
+replace the Mangoldt sum by the integral with density
+$\mathbf1_{(pd,h)=1}/\varphi(pd)$, at cost $O(\sqrt N L^4)$
+including logarithmic weights. Nonunit classes contain only
+powers of primes dividing the modulus, covered by this error.
+There are $O(N^{\gamma+\beta})$ pairs. Their total error saves a
+power by the upper endpoint hypothesis. The integral for the
+subtracted divisor sum has density
+\[
+ \frac{1}{\log y}
+ \sum_{\substack{N^\alpha<p\le N^\beta\\p\nmid h}}
+     \frac{\log p}{p-1}
+ \sum_{\substack{d<H_y\\(d,h)=1}}\frac{\mu(d)}{\varphi(d)}
+                                      \log(y/d).
+\]
+The second sum is $\SSS(h)+O(N^{-c})$ uniformly on the box
+by the RH tail estimate in \cref{thm:sharp-common-cofactor}.
+The first is $(\beta-\alpha)L+O(N^{-c})$ by partial summation
+of the RH prime number theorem; primes dividing $h$ in the
+band cost $O(LN^{-\alpha})$. This proves the band formula with
+the sign of the subtraction.
+
+For the cumulative mark put $A_Y(v)=\sum_{p\le Y}v_p(v)\log p$.
+Since $d<H_m<Y$, one has $A_Y(m)=\log d+A_Y(m/d)$ whenever
+$d\mid m$. This identity accounts for shared prime divisors.
+In the second term expand $A_Y(m/d)$ into divisibility by prime
+powers $r=p^a$, retaining $r\le Y$. The omitted samples require
+$p^a\mid m$ with $a\ge2$, $Y<p^a\le RN$. Their number is
+$O((N/\sqrt Y+\sqrt N)L^2)$ by counting multiples and summing
+the reciprocal tail of proper powers on dyadic blocks. The
+discarded weight at a sample is $O_\epsilon(N^\epsilon)$.
+The remaining divisor condition is $dr\mid m$, including the
+case $p\mid d$. The same GRH argument now costs
+$O(N^{1/2+\gamma+\theta}L^4)$ in total. For squarefree $d$
+coprime to $h$, division by the base density $1/\varphi(d)$
+gives the local multiplier $1/\varphi(p^a)$ for $p\nmid dh$,
+$1/p^a$ for $p\mid d$, and zero for $p\mid h$.
+In the resulting densities we may sum all powers of $p\le Y$:
+the reciprocal tail beyond $Y$ is $O(Y^{-1/2}L^2)$, even with
+the factor $\log p$, by partial summation; the remaining absolute
+divisor mass and logarithmic weights cost only powers of $L$.
+Consequently the principal density of the subtracted divisor
+sum equals, to power accuracy,
+\[
+ \frac1{\log y}\sum_{d<H_y}a_h(d)\log(y/d)
+ \left(\log d+B_h(Y)-\sum_{p\mid d}\frac{\log p}{(p-1)^2}\right),
+\]
+where
+\[
+ a_h(d)=\frac{\mu(d)\mathbf1_{(d,h)=1}}{\varphi(d)},\qquad
+ B_h(Y)=\sum_{\substack{p\le Y\\p\nmid h}}\frac{p\log p}{(p-1)^2}.
+\]
+One has $B_h(Y)=\log Y+O(1+\log\log N)$. Indeed the unexcluded
+sum is $\log Y+O(1)$ by Mertens' estimate. For the excluded
+primes, split $\sum_{p\mid h}\log p/(p-1)$ at $L^2$ and use
+$\sum_{p\mid h}\log p\le\log h$ above the split.
+
+Let $F_h(z)=\sum a_h(d)d^{-z}=G_h(z)/\zeta(1+z)$, as in
+\cref{thm:sharp-common-cofactor}. Then $F_h(0)=0$,
+$F_h'(0)=\SSS(h)$ and
+$F_h''(0)=O(\SSS(h)(1+\log\log N))$. For the last bound the
+logarithmic derivative of $G_h$ at zero costs
+$O(\log p/p^2)$ at $p\nmid h$ and $O(\log p/(p-1))$ at
+$p\mid h$; $2\mid h$. The same RH partial-sum tail used above
+allows up to two logarithms by partial summation, with error
+$O_\epsilon(N^\epsilon H_y^{-1/2+\epsilon})$ after absorbing
+logarithms. Hence the sum marked by $\log d$ in the numerator
+is $-\log y\,F_h'(0)-F_h''(0)+O(N^{-c})$.
+
+The last mark in parentheses contributes $O(\SSS(h))$ before
+division by $\log y$. To see this, put $d=pe$. For
+$p\le\sqrt{H_y}$ the inner $e$ sum with weight
+$a_{hp}(e)\log((y/p)/e)$ up to $H_y/p$ is
+$\SSS(hp)+O(N^{-c})$ by the same tail bound.
+Here $\SSS(hp)\ll\SSS(h)$, and the outer absolute weights
+$\log p/(p-1)^3$ are summable. For $p>\sqrt{H_y}$ their tail
+saves a power even with the trivial polylogarithmic inner bound.
+Combining the three terms and reversing the subtraction yields
+density $\SSS(h)(1-\log Y/\log y)
++O(\SSS(h)(1+\log\log N)/L)$. Integration proves
+\eqref{eq:cofactor-small-marks}.
+\end{proof}
+
+Choose $1/3<\theta<1/2-\gamma$. The unweighted cofactor
+discrepancy $S_J(1)=o(N\SSS(h))$, uniformly in these intervals
+through all even $N$, is now equivalent to
+\[
+ S_J(w_{>N^\theta})=-(1-\theta)\SSS(h)|J|+o(N\SSS(h)).
+\]
+Only composites with a marked prime $p>N^\theta$ need enter
+this last sum, up to a power-saving error from proper powers.
+There are at most two such prime factors with multiplicity,
+and writing $m=pa$ gives $a\le RN^{1-\theta}$. All smaller
+prime factors of $a$ are allowed. This equivalence follows by
+addition of the two complementary weights and uses no average
+over moduli. The required large-prime correlation is open.
 
 \section{Norm decay of the progression profiles near the square of the modulus}
 \label{sec:criticalprofiles}
